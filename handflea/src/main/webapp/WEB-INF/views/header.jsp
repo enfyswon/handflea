@@ -96,7 +96,7 @@
 			}
 			#bottom-header {
 				width : 80%;
-				height: 50px;
+				height: 40px;
 				border-bottom: 1px;
 				border-bottom-color: #595959;
 			}
