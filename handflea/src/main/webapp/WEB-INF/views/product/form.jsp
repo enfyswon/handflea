@@ -50,8 +50,10 @@
 					<tr>
 						<th> 배 송 비  </th>
 						<td>
+							<div>
 							<input type="text" id="delivery_price" name="delivery_price" class="form-control">
 							<label for="delivery_price" id="delivery_price_label" class="write_label"></label>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -59,7 +61,10 @@
 						<td>
 							<input type="radio" id="option_yn" name="option_yn"> 사용함
 							<input type="radio" id="option_yn" name="option_yn"> 사용안함
+							<div class="input-group">
 							<input type="text" id="option_no" name="option_no" class="form-control" value="옵션을 추가하세요.">
+							<button type="submit" class="">+</button>
+							</div>
 							<label for="option_no" id="option_no_label" class="write_label"></label>
 						</td>
 					</tr>

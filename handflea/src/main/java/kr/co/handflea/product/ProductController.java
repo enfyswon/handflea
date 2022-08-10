@@ -50,7 +50,6 @@ public class ProductController {
 
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(list);
-		System.out.println(jsonString);
 		
 		out.print(jsonString);
 		out.close();
