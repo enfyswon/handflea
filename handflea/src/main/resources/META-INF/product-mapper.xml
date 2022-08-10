@@ -10,4 +10,5 @@
 		values(#{mem_no}, #{smallcate_no}, #{product_name}, #{product_contents}, #{product_price}, #{option_no}, #{soldout_yn}, #{delete_yn})   
 	</insert>
 
+	<select id=""></select>
 </mapper>

@@ -19,4 +19,9 @@ public class ProductController {
 	public void insert(ProductDTO dto) {
 		
 	}
+	
+	@RequestMapping(value = "/form", method = RequestMethod.GET)
+	public String form() {
+		return "product/form";//jsp file name
+	}//form
 }//class
