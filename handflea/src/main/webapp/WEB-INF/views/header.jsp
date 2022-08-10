@@ -10,7 +10,7 @@
 			a {
 				text-decoration: none;
 			}
-			#top {
+			#top-header {
 				background-color: #0F8BFF;
 				height: 35px;
 			}
@@ -20,23 +20,36 @@
 				margin-top: 6px;
 				margin-right: 30px;
 			}
+			#middle-header {
+				width : 80%;
+				height : 150px;
+			}
 			#logo {
-				height: 100px;
-				width: 200px;
-				background-color: gray;
+				height : 150px;
+				display : inline-block;
+				margin : 0;
+				float : left;
+			}
+			#search-bar {
+				width: 50%;
+				display : inline-block;
+				margin: 0;
+				float : left;
 			}
 			#icon-bar {
-				display : inline;
-				float : right;
+				width : 30%;
+				display : inline-block;
+				margin: 0;
+				float : left;
 			}
-			#nav-bar {
+			#bottom-header {
 				background-color: light-gray;
-				height: 50px;
+				height: 80px;
 			}
 		</style>
 	</head>
 	<body>
-		<div id="top">
+		<div id="top-header">
 			<a class="top-item" href="#">
 				로그인
 			</a>
@@ -44,20 +57,23 @@
 				회원가입
 			</a>
 		</div>
-		<div class="container">
+		<div id="middle-header">
 			<div id="logo-bar">
 				<a href="${pageContext.request.contextPath}/">
-					<img id="logo" alt="LOGO" src="#">
+					<img id="logo" alt="LOGO" src="./resources/img/logo.png">
 				</a>
 			</div>
 			<div id="search-bar">
 				검색창
 			</div>
 			<div id="icon-bar">
-				<a href="#">Q&A</a>
+				<a href="#">
+					<img alt="Q&A" src="./resources/img/QnA.png">
+					<p>Q&A</p>
+				</a>
 			</div>
 		</div>
-		<div id="nav-bar">
+		<div id="bottom-header">
 			<a href="#">디저트</a>
 			<a href="#">니트/뜨개</a>
 			<a href="#">디자인/아트</a>
