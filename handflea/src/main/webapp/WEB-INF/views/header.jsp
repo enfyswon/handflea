@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib  prefix="spring" uri="http://www.springframework.org/tags" %>     
 <!DOCTYPE html>
 <html>
 	<head>
@@ -74,24 +75,25 @@
 				border-radius: 4px;
 			}
 			#icon-bar {
-				width : 19%;
+				width : 22%;
 				display: inline-block;
 				float: right;
 				padding-top : 15px;
 			}
 			.icon {
-				width : 50px;
+				width : 54px;
 				height : 70px;
 				float : left;
 				margin : 7px;
 			}
 			.icon_img{
 				width : 50px;
+				margin : 0px 2px;
 			}
 			.icon_cnts {
 				font-size : small;
 				color : gray;
-				width : 50px;
+				width : 54px;
 				text-align: center;
 			}
 			#bottom-header {
@@ -126,7 +128,7 @@
 			<div id="middle-header">
 				<div id="logo-bar">
 					<a href="${pageContext.request.contextPath}/">
-						<img id="logo" alt="LOGO" src="./resources/img/logo.png">
+						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>
 				<div id="search-bar">
@@ -138,19 +140,19 @@
 				<div id="icon-bar">
 					<div class="icon">
 						<a href="#">
-							<img class="icon_img" alt="cart" src="./resources/img/cart.png">
+							<img class="icon_img" alt="cart" src="${pageContext.request.contextPath}/resources/img/cart.png">
 							<p class="icon_cnts">장바구니</p>
 						</a>
 					</div>
 					<div class="icon">
-						<a href="#">
-							<img class="icon_img" alt="chatting" src="./resources/img/chat.png">
+						<a href="${pageContext.request.contextPath}/chat/">
+							<img class="icon_img" alt="chatting" src="${pageContext.request.contextPath}/resources/img/chat.png">
 							<p class="icon_cnts">채팅</p>
 						</a>
 					</div>
 					<div class="icon">
 						<a href="#">
-							<img class="icon_img" alt="Q&A" src="./resources/img/qna.png">
+							<img class="icon_img" alt="Q&A" src="${pageContext.request.contextPath}/resources/img/qna.png">
 							<p class="icon_cnts">Q&A</p>
 						</a>
 					</div>

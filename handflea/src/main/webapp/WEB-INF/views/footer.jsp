@@ -47,7 +47,7 @@
 		<div id="footer">
 			<div id="footer-main">
 				<div id="footer-logo">
-					<img alt="logo" src="./resources/img/logo.png">
+					<img alt="logo" src="${pageContext.request.contextPath}/resources/img/logo.png">
 				</div>
 				<div class="footer-cnts">
 					<br><br>

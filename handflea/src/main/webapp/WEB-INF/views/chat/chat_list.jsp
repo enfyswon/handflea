@@ -12,6 +12,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
+	<%@ include file="/WEB-INF/views/header.jsp" %>
 	
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 </html>
