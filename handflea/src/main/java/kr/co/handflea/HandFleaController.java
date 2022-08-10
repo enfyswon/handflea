@@ -11,7 +11,7 @@ public class HandFleaController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HandFleaController.class);
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	@RequestMapping(value = "/header", method = RequestMethod.GET)
 	public void mainPageGET() {
 		
 		logger.info("메인 페이지 진입");

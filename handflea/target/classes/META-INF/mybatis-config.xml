@@ -6,7 +6,7 @@
 <configuration>
 	
 	<mappers>
-
+		<mapper resource="META-INF/product-mapper.xml" />
 	</mappers>
 
 </configuration>

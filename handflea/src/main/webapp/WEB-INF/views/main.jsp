@@ -115,11 +115,11 @@
 		<div class="navi_bar_area">
 			<h1>navi area</h1>
 		</div>
-		<!-- HEADER END -->
 		<div class="content_area">
 			<h1>content area</h1>
 		</div>
 	</div>
 </div>
+<!-- HEADER END -->
 </body>
 </html>
