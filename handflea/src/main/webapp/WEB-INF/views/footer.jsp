@@ -25,16 +25,20 @@
 			}
 			.footer-cnts {
 				display: inline-block;
-				margin-left : 8%;
+				margin-left : 5%;
 			}
 			.footer-cnts>p {
 				font-size: small;
+			}
+			#center {
+				font-size : medium;
+				font-weight: bold;
 			}
 			#tel {
 				font-size : x-large;
 				font-weight : bold;
 				color : #0F8BFF;
-				margin-bottom : 5px;
+				margin-bottom : 8px;
 			}
 		</style>
 	</head>
@@ -45,7 +49,7 @@
 					<img alt="logo" src="./resources/img/logo.png">
 				</div>
 				<div class="footer-cnts">
-					<p>고객센터</p>
+					<p id="center">고객센터</p>
 					<p id="tel">02-1111-1111</p>
 					<p>평일 오전 10시 ~ 오후 6시 / 점심 시간 12:00 - 13:00</p>
 					<p>토, 일요일 및 공휴일 휴무</p>
