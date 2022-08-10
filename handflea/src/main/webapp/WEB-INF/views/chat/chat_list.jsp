@@ -13,7 +13,9 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-	
+		<div id="main" style="width : 80%;">
+			채팅
+		</div>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 </html>
