@@ -25,6 +25,10 @@
 				width: 200px;
 				background-color: gray;
 			}
+			#icon-bar {
+				display : inline;
+				float : right;
+			}
 			#nav-bar {
 				background-color: light-gray;
 				height: 50px;
@@ -41,9 +45,17 @@
 			</a>
 		</div>
 		<div class="container">
-			<a href="${pageContext.request.contextPath}/">
-				<img id="logo" alt="LOGO" src="#">
-			</a>
+			<div id="logo-bar">
+				<a href="${pageContext.request.contextPath}/">
+					<img id="logo" alt="LOGO" src="#">
+				</a>
+			</div>
+			<div id="search-bar">
+				검색창
+			</div>
+			<div id="icon-bar">
+				<a href="#">Q&A</a>
+			</div>
 		</div>
 		<div id="nav-bar">
 			<a href="#">디저트</a>
