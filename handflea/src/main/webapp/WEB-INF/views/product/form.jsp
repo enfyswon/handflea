@@ -31,18 +31,11 @@
 					<tr>
 						<th> 카 테 고 리  </th>
 						<td colspan="3">
-							<select id="bigcate_name" name="bigcate_name">
+							<select id="bigcate" name="bigcate">
 								<option value="0" selected="selected">대분류 선택</option>
-								<option value="1">디저트</option>
-								<option value="2">니트/뜨개</option>
-								<option value="3">디자인/아트</option>
-								<option value="4">캔들/디퓨저</option>
-								<option value="5">가족공예</option>
-								<option value="6">액세사리</option>
-								<option value="7">잡화/기타</option>
 							</select>
 							>
-							<select id="smallcate_name" name="smallcate_name">
+							<select id="smallcate" name="smallcate">
 								<option value="0" selected="selected">소분류 선택</option>
 							</select>
 						</td>
@@ -79,6 +72,36 @@
 					</tr>
 				</tbody>
 			</table>
-		</form>			
+		</form>		
+		<%@ include file="/WEB-INF/views/footer.jsp" %>
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			$("#bigcate").change(function() {
+				$.get(
+						"${pageContext.request.contextPath}/product/smallcate"
+						, { bigcate_no : $("#bigcate").val() }
+						, function(data, status) { 
+							$("#smallcate").empty();
+							$("#smallcate").append("<option value='0'>선택하세요</option>");
+							$.each(JSON.parse(data), function(idx, dto) {
+								$("#smallcate").append("<option value='" + dto.smallcate_no + "'>" + dto.smallcate_name + "</option>");
+							});//each
+						}//call back function
+				);//get
+			});//change
+		});//ready
+		
+		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/bigcate"
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#bigcate").append("<option value='" + dto.bigcate_no + "'>" + dto.bigcate_name + "</option>");
+						});//each
+					}//call back function
+			);//get
+		});//ready
+		</script>	
 	</body>
 </html>

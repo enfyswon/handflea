@@ -10,5 +10,15 @@
 		values(#{mem_no}, #{smallcate_no}, #{product_name}, #{product_contents}, #{product_price}, #{option_no}, #{soldout_yn}, #{delete_yn})   
 	</insert>
 
-	<select id=""></select>
+	<select id="smallcateSelect" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
+	select smallcate_no, smallcate_name
+	from smallcate
+	where bigcate_no = #{bigcate_no}
+	</select>
+
+	<select id="bigcateSelect" resultType="kr.co.handflea.product.ProductDTO">
+	select bigcate_no, bigcate_name
+	from bigcate
+	order by bigcate_no
+	</select>
 </mapper>
