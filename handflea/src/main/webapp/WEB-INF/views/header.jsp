@@ -3,154 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib  prefix="spring" uri="http://www.springframework.org/tags" %>     
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<style type="text/css">
-			*{
-				margin : 0;
-				margin : auto;
-				padding : 0;
-			}
-			a {
-				text-decoration: none;
-			}
-			ul {
-				z-index: 999;
-			}
-			li {
-				list-style: none;
-			}
-			#header {
-				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
-			}
-			#top-header {
-				background-color: #0F8BFF;
-				height: 35px;
-			}
-			.top-item {
-				color : white;
-				float : right;
-				margin-top: 6px;
-				margin-right: 30px;
-			}
-			#middle-header {
-				width : 80%;
-				height : 130px;
-				padding-top : 15px;
-			}
-			#logo-bar {
-				width : 20%;
-				display: inline-block;
-				float : left;
-				margin-right: 15px;
-			}
-			#logo {
-				height : 100px;
-				float : left;
-			}
-			#search-bar {
-				width: 50%;
-				display: inline-block;
-				float : left;
-				padding : 40px;
-			}
-			#search {
-				width : 90%;
-				height: 35px;
-			}
-			#search > input {
-				width : 80%;
-				line-heigth : 30px;
-				padding : 5.5px;
-				margin : 0;
-				font-size: 13pt;
-				display: inline-block;
-			}
-			#search > button {
-				display : inline-block;
-				text-align : center;
-				text-decoration : none;
-				font-size : 12pt;
-				width : 60px;
-				height : 35px;
-				background-color: #0F8BFF;
-				color : white;
-				margin : 0;
-				border : 0;
-				outline : 0;
-				border-radius: 4px;
-			}
-			#icon-bar {
-				width : 22%;
-				display: inline-block;
-				float: right;
-				padding-top : 15px;
-			}
-			.icon {
-				width : 54px;
-				height : 70px;
-				float : left;
-				margin : 7px;
-			}
-			.icon_img{
-				width : 50px;
-				margin : 0px 2px;
-			}
-			.icon_cnts {
-				font-size : small;
-				color : gray;
-				width : 54px;
-				text-align: center;
-			}
-			#bottom-header {
-				width : 80%;
-				height: 40px;
-				border-bottom: 1px;
-				border-bottom-color: #595959;
-			}
-			#navMenu {
-				width: 100%;
-				margin-bottom: 20px;
-				text-align : center;
-				position: relative;
-			}
-			#navMenu:after {
-				content: ""; display: block; clear: both;
-			}
-			#big-menu > li {
-				float : left;
-				width : 13.5%;
-				line-height: 40px;
-			}
-			#big-menu span {
-				color : black;
-			}
-			#big-menu span:hover {
-				color : 0F8BFF;
-			}
-			#big-menu span {
-				font-size : medium;
-				font-weight: bold;
-			}
-			.small-menu {
-				position : absolute;
-				top: 40px;
-				width : 13.5%;
-				display: none;
-				padding : 20px 0;
-				background-color: rgba(255, 255, 255, 0.5);
-			}
-			.side {
-				float : none;
-				color : black;
-			}
-			.side:after {
-				content: "";
-				display: block;
-				clear : both;
-			}
-			.side:hover {
-				color : #0F8BFF;
-			}
-		</style>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/basic_style.css">
 		<script type="text/javascript">
 		$(document).ready(function() {
 			$("#big-menu").mouseover(function() {
@@ -181,37 +35,38 @@
 				</div>
 				<div id="search-bar">
 					<div id="search">
-						<input type="text" placeholder="검색">
-						<button>검색</button>
+						<input type="text" placeholder="검색 키워드">
+						<button>검 색</button>
 					</div>
 				</div>
 				<div id="icon-bar">
-					<div class="icon">
-						<a href="#">
+					<a href="${pageContext.request.contextPath}/cart/">
+						<div class="icon">
 							<img class="icon_img" alt="cart" src="${pageContext.request.contextPath}/resources/img/cart.png">
 							<p class="icon_cnts">장바구니</p>
-						</a>
-					</div>
-					<div class="icon">
-						<a href="${pageContext.request.contextPath}/chat/">
+						</div>
+					</a>
+					<a href="${pageContext.request.contextPath}/chat/">
+						<div class="icon">
 							<img class="icon_img" alt="chatting" src="${pageContext.request.contextPath}/resources/img/chat.png">
 							<p class="icon_cnts">채팅</p>
-						</a>
-					</div>
-					<div class="icon">
-						<a href="#">
+						</div>
+					</a>
+					<a href="#">
+						<div class="icon">
 							<img class="icon_img" alt="Q&A" src="${pageContext.request.contextPath}/resources/img/qna.png">
 							<p class="icon_cnts">Q&A</p>
-						</a>
-					</div>
+						</div>
+					</a>
 				</div>
 			</div>
 			<div id="bottom-header">
 				<div id="navMenu">
-					<ul class="clearfix" id="big-menu">
-						<a href="#">
-							<li><span>디저트</span>
-						</a>
+					<ul id="big-menu">
+						<li>
+							<a href="${pageContext.request.contextPath}/#">
+								<span>디저트</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">빵</li>
@@ -236,9 +91,10 @@
 								</a>
 							</ul>
 						</li>
-						<a href="#">
-							<li><span>니트/뜨개</span>
-						</a>
+						<li>
+							<a href="#">
+								<span>니트/뜨개</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">장갑</li>
@@ -263,9 +119,10 @@
 								</a>
 							</ul>
 						</li>
-						<a href="#">
-							<li><span>디자인/아트</span>
-						</a>
+						<li>
+							<a href="#">
+								<span>디자인/아트</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">프로필</li>
@@ -293,9 +150,10 @@
 								</a>
 							</ul>
 						</li>
-						<a href="#">
-							<li><span>캔들/디퓨저</span>
-						</a>
+						<li>
+							<a href="#">
+								<span>캔들/디퓨저</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">캔들</li>
@@ -308,9 +166,10 @@
 								</a>
 							</ul>
 						</li>
-						<a href="#">
-							<li><span>가죽공예</span>
-						</a>
+						<li>
+							<a href="#">
+								<span>가죽공예</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">지갑</li>
@@ -326,9 +185,10 @@
 								</a>
 							</ul>
 						</li>
-						<a href="#">
-							<li><span>액세서리</span>
-						</a>
+						<li>
+							<a href="#">
+								<span>액세서리</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">귀걸이</li>
@@ -350,9 +210,10 @@
 								</a>
 							</ul>
 						</li>			
-						<a href="#">
-							<li><span>잡화/기타</span>
-						</a>
+						<li>
+							<a href="#">
+								<span>잡화/기타</span>
+							</a>
 							<ul class="small-menu">
 								<a href="#">
 									<li class="side">잡화</li>
