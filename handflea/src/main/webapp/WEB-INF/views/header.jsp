@@ -124,6 +124,9 @@
 				width : 13.5%;
 				line-height: 40px;
 			}
+			#big-menu span {
+				color : black;
+			}
 			#big-menu span:hover {
 				color : 0F8BFF;
 			}
@@ -141,6 +144,7 @@
 			}
 			.side {
 				float : none;
+				color : black;
 			}
 			.side:after {
 				content: "";
@@ -211,69 +215,157 @@
 			<div id="bottom-header">
 				<div id="navMenu">
 					<ul class="clearfix" id="big-menu">
-						<li><span>디저트</span>
+						<a href="#">
+							<li><span>디저트</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">빵</li>
-								<li class="side">청</li>
-								<li class="side">떡</li>
-								<li class="side">잼</li>
-								<li class="side">캔디류</li>
-								<li class="side">초콜릿</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">빵</li>
+								</a>
+								<a href="#">
+									<li class="side">청</li>
+								</a>
+								<a href="#">
+									<li class="side">떡</li>
+								</a>
+								<a href="#">
+									<li class="side">잼</li>
+								</a>
+								<a href="#">
+									<li class="side">캔디류</li>
+								</a>
+								<a href="#">
+									<li class="side">초콜릿</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>
-						<li><span>니트/뜨개</span>
+						<a href="#">
+							<li><span>니트/뜨개</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">장갑</li>
-								<li class="side">목도리</li>
-								<li class="side">모자</li>
-								<li class="side">코스터</li>
-								<li class="side">수세미</li>
-								<li class="side">매트</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">장갑</li>
+								</a>
+								<a href="#">
+									<li class="side">목도리</li>
+								</a>
+								<a href="#">
+									<li class="side">모자</li>
+								</a>
+								<a href="#">
+									<li class="side">코스터</li>
+								</a>
+								<a href="#">
+									<li class="side">수세미</li>
+								</a>
+								<a href="#">
+									<li class="side">매트</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>
-						<li><span>디자인/아트</span>
+						<a href="#">
+							<li><span>디자인/아트</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">프로필</li>
-								<li class="side">배너</li>
-								<li class="side">스티커</li>
-								<li class="side">이모티콘</li>
-								<li class="side">카톡테마</li>
-								<li class="side">배경화면</li>
-								<li class="side">템플릿</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">프로필</li>
+								</a>
+								<a href="#">
+									<li class="side">배너</li>
+								</a>
+								<a href="#">
+									<li class="side">스티커</li>
+								</a>
+								<a href="#">
+									<li class="side">이모티콘</li>
+								</a>
+								<a href="#">
+									<li class="side">카톡테마</li>
+								</a>
+								<a href="#">
+									<li class="side">배경화면</li>
+								</a>
+								<a href="#">
+									<li class="side">템플릿</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>
-						<li><span>캔들/디퓨저</span>
+						<a href="#">
+							<li><span>캔들/디퓨저</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">캔들</li>
-								<li class="side">디퓨저</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">캔들</li>
+								</a>
+								<a href="#">
+									<li class="side">디퓨저</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>
-						<li><span>가죽공예</span>
+						<a href="#">
+							<li><span>가죽공예</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">지갑</li>
-								<li class="side">소품</li>
-								<li class="side">가방</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">지갑</li>
+								</a>
+								<a href="#">
+									<li class="side">소품</li>
+								</a>
+								<a href="#">
+									<li class="side">가방</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>
-						<li><span>액세서리</span>
+						<a href="#">
+							<li><span>액세서리</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">귀걸이</li>
-								<li class="side">목걸이</li>
-								<li class="side">반지</li>
-								<li class="side">팔찌</li>
-								<li class="side">발찌</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">귀걸이</li>
+								</a>
+								<a href="#">
+									<li class="side">목걸이</li>
+								</a>
+								<a href="#">
+									<li class="side">반지</li>
+								</a>
+								<a href="#">
+									<li class="side">팔찌</li>
+								</a>
+								<a href="#">
+									<li class="side">발찌</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>			
-						<li><span>잡화/기타</span>
+						<a href="#">
+							<li><span>잡화/기타</span>
+						</a>
 							<ul class="small-menu">
-								<li class="side">잡화</li>
-								<li class="side">기타</li>
+								<a href="#">
+									<li class="side">잡화</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
 							</ul>
 						</li>		
 					</ul>
