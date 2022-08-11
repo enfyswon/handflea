@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
 		<style type="text/css">
 			* {
 				margin : 0;
@@ -42,8 +38,6 @@
 				margin-bottom : 8px;
 			}
 		</style>
-	</head>
-	<body>
 		<div id="footer">
 			<div id="footer-main">
 				<div id="footer-logo">
@@ -66,5 +60,3 @@
 				</div>
 			</div>
 		</div>
-	</body>
-</html>
