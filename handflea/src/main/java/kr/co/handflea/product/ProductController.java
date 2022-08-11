@@ -1,7 +1,14 @@
 package kr.co.handflea.product;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +32,18 @@ public class ProductController {
 	private ProductService service;
 	
 	@RequestMapping( value = "/insert", method = RequestMethod.POST)
-	public void insert(ProductDTO dto) {
+	public void insert(ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
 		
-	}
+		Date today = new Date();
+		DateFormat nalja = new SimpleDateFormat("YYYYMMDD");
+		DateFormat sigan = new SimpleDateFormat("HHmmss");
+		String todayNalja = nalja.format(today);
+		String todaySigan = sigan.format(today);
+		
+		String mid = "hw";
+		File newFolder = new File("C:/upload/product/" + mid + "/");
+		if( newFolder.exists() == false ) newFolder.mkdirs();
+	}//insert
 	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form() {
