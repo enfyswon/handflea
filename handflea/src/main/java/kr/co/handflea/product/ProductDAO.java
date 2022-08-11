@@ -14,6 +14,12 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public List<ProductDTO> list() {
+		List<ProductDTO> list = null;
+		list = sqlSession.selectList("ProductMapper.list");
+		return list;
+	}
+	
 	public int insert(ProductDTO dto) {
 		int successCount = 0;
 		successCount = sqlSession.insert("ProductMapper.insert", dto);

@@ -5,6 +5,11 @@
  
 <mapper namespace="ProductMapper">
 
+	<select id="list" resultType="kr.co.handflea.product.ProductDTO">
+	select mem_no, product_name, product_contents, product_price, option_no
+	from product 
+	</select>
+
 	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
 		insert into product(mem_no, smallcate_no, product_name, product_contents, product_price, option_no, soldout_yn, delete_yn)
 		values(#{mem_no}, #{smallcate_no}, #{product_name}, #{product_contents}, #{product_price}, #{option_no}, #{soldout_yn}, #{delete_yn})   

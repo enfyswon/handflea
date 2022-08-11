@@ -14,6 +14,12 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
+	public List<ProductDTO> list() {
+		List<ProductDTO> list = null;
+		list = dao.list();
+		return list;
+	}
+	
 	public int insert(ProductDTO dto) {
 		int successCount = 0;
 		successCount = dao.insert(dto);
@@ -31,5 +37,7 @@ public class ProductService {
 		list = dao.bigcateSelect();
 		return list;
 	}//bigcateSelect
+
+	
 
 }//class

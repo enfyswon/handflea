@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.co.handflea.product.ProductDTO;
+import kr.co.handflea.util.dto.SearchDTO;
 
 
 @Controller
@@ -34,6 +36,15 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService service;
+	
+	@RequestMapping( value = "/list", method = RequestMethod.GET )
+	public String list( Model model, String userWantPage, SearchDTO dto ) {
+	
+		List<ProductDTO> list = null;
+		list = service.list();
+		model.addAttribute("list", list);
+	return "/product/list";//jsp file name
+}//list
 	
 	@RequestMapping( value = "/insert", method = RequestMethod.POST)
 	public void insert(ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
