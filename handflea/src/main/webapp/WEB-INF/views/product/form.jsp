@@ -43,8 +43,8 @@
 							>
 							<select id="smallcate" name="smallcate">
 								<option value="0" selected="selected">소분류 선택</option>
-								<label for="smallcate" id="smallcate_label" class="write_label"></label>
 							</select>
+							<label for="smallcate" id="smallcate_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
@@ -117,11 +117,11 @@
 				return;
 			} else { $("#product_name_label").text(""); }
 
-		/*	if( $.trim( $("#smallcate").val() ) == "0" ){
+			if( $("#smallcate").val() == "0" ){
 				$("#smallcate_label").text("카테고리를 선택하세요");
 				return;
 			} else { $("#smallcate_label").text(""); }
-		*/		
+			
 			if( $("#product_price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
 				$("#product_price_label").text("판매 가격을 입력하세요, 숫자만 허용 됩니다.");
 				return;
