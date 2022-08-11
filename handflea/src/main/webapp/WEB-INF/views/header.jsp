@@ -68,159 +68,141 @@
 								<span>디저트</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">빵</li>
-								</a>
-								<a href="#">
-									<li class="side">청</li>
-								</a>
-								<a href="#">
-									<li class="side">떡</li>
-								</a>
-								<a href="#">
-									<li class="side">잼</li>
-								</a>
-								<a href="#">
-									<li class="side">캔디류</li>
-								</a>
-								<a href="#">
-									<li class="side">초콜릿</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">빵</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">청</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">떡</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">잼</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">캔디류</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">초콜릿</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/#">
 								<span>니트/뜨개</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">장갑</li>
-								</a>
-								<a href="#">
-									<li class="side">목도리</li>
-								</a>
-								<a href="#">
-									<li class="side">모자</li>
-								</a>
-								<a href="#">
-									<li class="side">코스터</li>
-								</a>
-								<a href="#">
-									<li class="side">수세미</li>
-								</a>
-								<a href="#">
-									<li class="side">매트</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">장갑</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">목도리</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">모자</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">코스터</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">수세미</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">매트</a>
+								</li>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/#">
 								<span>디자인/아트</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">프로필</li>
-								</a>
-								<a href="#">
-									<li class="side">배너</li>
-								</a>
-								<a href="#">
-									<li class="side">스티커</li>
-								</a>
-								<a href="#">
-									<li class="side">이모티콘</li>
-								</a>
-								<a href="#">
-									<li class="side">카톡테마</li>
-								</a>
-								<a href="#">
-									<li class="side">배경화면</li>
-								</a>
-								<a href="#">
-									<li class="side">템플릿</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">프로필</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">배너</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">스티커</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">이모티콘</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">카톡테마</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">배경화면</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">템플릿</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/#">
 								<span>캔들/디퓨저</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">캔들</li>
-								</a>
-								<a href="#">
-									<li class="side">디퓨저</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">캔들</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">디퓨저</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/#">
 								<span>가죽공예</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">지갑</li>
-								</a>
-								<a href="#">
-									<li class="side">소품</li>
-								</a>
-								<a href="#">
-									<li class="side">가방</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">지갑</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">소품</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">가방</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/#">
 								<span>액세서리</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">귀걸이</li>
-								</a>
-								<a href="#">
-									<li class="side">목걸이</li>
-								</a>
-								<a href="#">
-									<li class="side">반지</li>
-								</a>
-								<a href="#">
-									<li class="side">팔찌</li>
-								</a>
-								<a href="#">
-									<li class="side">발찌</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">귀걸이</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">목걸이</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">반지</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">팔찌</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">발찌</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>			
 						<li>
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/#">
 								<span>잡화/기타</span>
 							</a>
 							<ul class="small-menu">
-								<a href="#">
-									<li class="side">잡화</li>
-								</a>
-								<a href="#">
-									<li class="side">기타</li>
-								</a>
+								<li class="side">
+									<a href="${pageContext.request.contextPath}/#">잡화</a>
+								</li><li class="side">
+									<a href="${pageContext.request.contextPath}/#">기타</a>
+								</li>
 							</ul>
 						</li>		
 					</ul>
