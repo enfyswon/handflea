@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReviewMapper"> 
+
+	<insert id="write" parameterType="kr.co.ictedu.board.free.FreeBoardDTO">
+	insert into review (title, writer, contents, write_date)
+	values( #{writer}, #{contents}, now() );
+	</insert>
+
+	<select id="list" resultType="kr.co.ictedu.board.free.FreeBoardDTO">
+	select board_no, writer, contents, write_date from review
+	</select>
+
+</mapper>
