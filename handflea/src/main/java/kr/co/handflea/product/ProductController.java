@@ -81,7 +81,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form() {
-		return "product/form";//jsp file name
+		return "product2/form";//jsp file name
 	}//form
 	
 	@RequestMapping( value = "/smallcate", method = RequestMethod.GET )
