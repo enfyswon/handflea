@@ -46,6 +46,8 @@ public class JoinController {
 /*
 drop table member;
 
+create database handfleatest;
+
 CREATE TABLE `member` (
 	`mem_no`	int(11)	primary key auto_increment,
 	`mem_name`	Varchar(100)	NOT NULL,
