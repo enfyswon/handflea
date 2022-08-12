@@ -27,7 +27,7 @@
         </tr>
         <c:forEach items="${review_mylist}" var="data">
         <tr>
-            <td>${row.mem_no}</td>
+            <td>${row.bno}</td>
             <td><a href="${path}/board/view.do?bno=${row.bno}">${row.contents}</a></td>
             <td>${row.star_point}</td>
             <td>
