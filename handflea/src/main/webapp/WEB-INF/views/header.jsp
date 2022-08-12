@@ -58,6 +58,7 @@
 							<p class="icon_cnts">Q&A</p>
 						</div>
 					</a>
+					<c:if test="true">
 					<a href="${pageContext.request.contextPath}/chat/">
 						<div class="icon">
 							<img class="icon_img" alt="chatting" src="${pageContext.request.contextPath}/resources/img/chat.png">
@@ -70,6 +71,7 @@
 							<p class="icon_cnts">장바구니</p>
 						</div>
 					</a>
+					</c:if>
 				</div>
 			</div>
 			<div id="bottom-header">
@@ -102,7 +104,7 @@
 									<a href="${pageContext.request.contextPath}/#">기타</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#" class="nonecate">test</a>
+									<a class="nonecate">test</a>
 								</li>
 							</ul>
 						</li>
@@ -133,7 +135,7 @@
 									<a href="${pageContext.request.contextPath}/#">기타</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#" class="nonecate">test</a>
+									<a class="nonecate">test</a>
 								</li>
 							</ul>
 						</li>

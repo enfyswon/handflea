@@ -82,7 +82,7 @@ li {
 }
 .icon {
 	width : 100%;
-	height : 70px;
+	height : 65px;
 	text-align: center;
 }
 .icon_img{
@@ -92,7 +92,7 @@ li {
 	font-size : small;
 	color : gray;
 	width : 100%;
-	height : 20px;
+	height : 15px;
 	text-align: center;
 }
 #bottom-header {
