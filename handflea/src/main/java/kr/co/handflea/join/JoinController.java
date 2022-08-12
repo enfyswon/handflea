@@ -46,20 +46,19 @@ public class JoinController {
 /*
 drop table member;
 
-create table member (
-  mno int not null auto_increment,
-  mid varchar(20) not null,
-  mpwd varchar(20) not null,
-  tel varchar(15) default null,
-  email varchar(50) default null,
-  mdate datetime not null,
-  service_agree varchar(5) not null default 'true',
-  info_agree varchar(5) not null default 'true',
-  sms_agree varchar(5) not null default 'false',
-  email_agree varchar(5) not null default 'false',
-  post_code varchar(10) default null,
-  addr1 varchar(150) default null,
-  addr2 varchar(150) default null,
-  primary key (mno)
+CREATE TABLE `member` (
+	`mem_no`	int(11)	primary key auto_increment,
+	`mem_name`	Varchar(100)	NOT NULL,
+	`mem_email`	Varchar(255)	NOT NULL,
+	`mem_pwd`	Varchar(255)	NOT NULL,
+	`mdate` datetime not null,
+	`add_1`	Varchar(100)	NOT NULL,
+	`add_2`	Varchar(100)	NOT NULL,
+	`pnum`	Varchar(100)	NOT NULL,
+	`mem_photo`	Varchar(100)	,
+	`mem_photopath`	Varchar(255)	,
+	`account_no`	Varchar(100)	,
+	`seller_yn`	int(1)	NOT NULL	DEFAULT 0,
+	`bank_no`	int(11)
 );
 */
