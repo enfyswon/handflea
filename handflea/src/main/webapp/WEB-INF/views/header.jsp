@@ -41,7 +41,7 @@
 			</div>
 			<div id="middle-header">
 				<div id="logo-bar">
-					<a href="${pageContext.request.contextPath}/">
+					<a href="${pageContext.request.contextPath}/home">
 						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>
