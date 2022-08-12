@@ -14,7 +14,7 @@ public String loginCheck(MemberDTO dto, HttpSession session) {
 String name = memberDao.loginCheck(dto);
  if (name != null) { 
   session.setAttribute("mem_email", dto.getMem_email());
-  session.setAttribute("mem_name", dto.getMem_name);
+  session.setAttribute("mem_name", dto.getMem_name());
 }
  return name; 
 }
