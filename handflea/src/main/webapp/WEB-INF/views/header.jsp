@@ -2,17 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib  prefix="spring" uri="http://www.springframework.org/tags" %>     
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<style type="text/css">
 			*{
 				margin : 0;
 				margin : auto;
+				padding : 0;
 			}
 			a {
 				text-decoration: none;
+			}
+			ul {
+				z-index: 999;
+			}
+			li {
+				list-style: none;
 			}
 			#header {
 				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
@@ -29,7 +33,7 @@
 			}
 			#middle-header {
 				width : 80%;
-				height : 150px;
+				height : 130px;
 				padding-top : 15px;
 			}
 			#logo-bar {
@@ -102,20 +106,64 @@
 				border-bottom: 1px;
 				border-bottom-color: #595959;
 			}
-			.cate {
-				display: inline-block;
-				width: 13.5%;
-				text-align: center;
+			#navMenu {
+				width: 100%;
+				margin-bottom: 20px;
+				text-align : center;
+				position: relative;
 			}
-			.cate > a {			
-				color : #595959;
+			#navMenu:after {
+				content: ""; display: block; clear: both;
 			}
-			.cate > a:hover {
+			#big-menu > li {
+				float : left;
+				width : 13.5%;
+				line-height: 40px;
+			}
+			#big-menu span {
+				color : black;
+			}
+			#big-menu span:hover {
+				color : 0F8BFF;
+			}
+			#big-menu span {
+				font-size : medium;
+				font-weight: bold;
+			}
+			.small-menu {
+				position : absolute;
+				top: 40px;
+				width : 13.5%;
+				display: none;
+				padding : 20px 0;
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+			.side {
+				float : none;
+				color : black;
+			}
+			.side:after {
+				content: "";
+				display: block;
+				clear : both;
+			}
+			.side:hover {
 				color : #0F8BFF;
 			}
 		</style>
-	</head>
-	<body>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("#big-menu").mouseover(function() {
+				$(".small-menu").stop().slideDown(300);
+			});
+			$("#big-menu").mouseout(function() {
+				$(".small-menu").stop().slideUp(300);
+			});
+			$(".small-menu").mouseout(function() {
+				$(".small-menu").stop().slideUp(300);
+			});
+		});
+		</script>
 		<div id="header">
 			<div id="top-header">
 				<a class="top-item" href="#">
@@ -159,28 +207,162 @@
 				</div>
 			</div>
 			<div id="bottom-header">
-				<div class="cate">
-					<a href="#">디저트</a>
-				</div>
-				<div class="cate">
-					<a href="#">니트/뜨개</a>
-				</div>
-				<div class="cate">
-					<a href="#">디자인/아트</a>
-				</div>
-				<div class="cate">
-					<a href="#">캔들/디퓨저</a>
-				</div>
-				<div class="cate">
-					<a href="#">가죽 공예</a>
-				</div>
-				<div class="cate">
-					<a href="#">액세사리</a>
-				</div>
-				<div class="cate">
-					<a href="#">잡화/기타</a>
+				<div id="navMenu">
+					<ul class="clearfix" id="big-menu">
+						<a href="#">
+							<li><span>디저트</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">빵</li>
+								</a>
+								<a href="#">
+									<li class="side">청</li>
+								</a>
+								<a href="#">
+									<li class="side">떡</li>
+								</a>
+								<a href="#">
+									<li class="side">잼</li>
+								</a>
+								<a href="#">
+									<li class="side">캔디류</li>
+								</a>
+								<a href="#">
+									<li class="side">초콜릿</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>
+						<a href="#">
+							<li><span>니트/뜨개</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">장갑</li>
+								</a>
+								<a href="#">
+									<li class="side">목도리</li>
+								</a>
+								<a href="#">
+									<li class="side">모자</li>
+								</a>
+								<a href="#">
+									<li class="side">코스터</li>
+								</a>
+								<a href="#">
+									<li class="side">수세미</li>
+								</a>
+								<a href="#">
+									<li class="side">매트</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>
+						<a href="#">
+							<li><span>디자인/아트</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">프로필</li>
+								</a>
+								<a href="#">
+									<li class="side">배너</li>
+								</a>
+								<a href="#">
+									<li class="side">스티커</li>
+								</a>
+								<a href="#">
+									<li class="side">이모티콘</li>
+								</a>
+								<a href="#">
+									<li class="side">카톡테마</li>
+								</a>
+								<a href="#">
+									<li class="side">배경화면</li>
+								</a>
+								<a href="#">
+									<li class="side">템플릿</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>
+						<a href="#">
+							<li><span>캔들/디퓨저</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">캔들</li>
+								</a>
+								<a href="#">
+									<li class="side">디퓨저</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>
+						<a href="#">
+							<li><span>가죽공예</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">지갑</li>
+								</a>
+								<a href="#">
+									<li class="side">소품</li>
+								</a>
+								<a href="#">
+									<li class="side">가방</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>
+						<a href="#">
+							<li><span>액세서리</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">귀걸이</li>
+								</a>
+								<a href="#">
+									<li class="side">목걸이</li>
+								</a>
+								<a href="#">
+									<li class="side">반지</li>
+								</a>
+								<a href="#">
+									<li class="side">팔찌</li>
+								</a>
+								<a href="#">
+									<li class="side">발찌</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>			
+						<a href="#">
+							<li><span>잡화/기타</span>
+						</a>
+							<ul class="small-menu">
+								<a href="#">
+									<li class="side">잡화</li>
+								</a>
+								<a href="#">
+									<li class="side">기타</li>
+								</a>
+							</ul>
+						</li>		
+					</ul>
 				</div>
 			</div>
 		</div>
-	</body>
-</html>
