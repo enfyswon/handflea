@@ -23,6 +23,7 @@
 			}
 			.top-item {
 				color : white;
+				font-weight: bold;
 				float : right;
 				margin-top: 6px;
 				margin-right: 30px;
@@ -118,16 +119,21 @@
 	<body>
 		<div id="header">
 			<div id="top-header">
-				<a class="top-item" href="#">
-					로그인
-				</a>
-				<a class="top-item" href="#">
-					회원가입
-				</a>
+				<c:choose>
+					<c:when test="${login_info != null && login_info.mem_email != null}">
+						<a class="top-item" href="${pageContext.request.contextPath}/logout""> 로그아웃 </a>
+						<a class="top-item" href="${pageContext.request.contextPath}/basket/list"> 마이페이지 </a>
+						<span class="top-item" style="color: lightgray;">${login_info.mem_name}님</span>
+					</c:when>
+					<c:otherwise>
+					<a class="top-item" href="${pageContext.request.contextPath}/login_form">로그인</a>
+					<a class="top-item" href="${pageContext.request.contextPath}/join/form">회원가입</a>
+					</c:otherwise>
+				</c:choose>	
 			</div>
 			<div id="middle-header">
 				<div id="logo-bar">
-					<a href="${pageContext.request.contextPath}/">
+					<a href="${pageContext.request.contextPath}/main">
 						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>

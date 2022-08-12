@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class HandFleaController {
+public class MainPageController {
+
+	private static final Logger logger = LoggerFactory.getLogger(MainPageController.class);
 	
-	private static final Logger logger = LoggerFactory.getLogger(HandFleaController.class);
-	
-	@RequestMapping(value = "/header", method = RequestMethod.GET)
-	public void mainPageGET() {
-		
-		logger.info("메인 페이지 진입");
-		
-	}//mainPageGET
+	@RequestMapping( value = "/main", method = RequestMethod.GET )
+	public String mainPage() {
+		return "main";//jsp file name
+	}//mainPage
 	
 }//class
