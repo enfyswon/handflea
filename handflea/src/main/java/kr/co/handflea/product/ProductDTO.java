@@ -29,7 +29,11 @@ public class ProductDTO {
 	private String desc_img_path;
 	private String add_file_name;
 	private String add_file_path;
-
+	
+	private MultipartFile product_photo;
+	
+	private String photo_name;
+	private String photo_path;
 	@Override
 	public String toString() {
 		return product_no
@@ -215,6 +219,30 @@ public class ProductDTO {
 
 	public void setAdd_file_path(String add_file_path) {
 		this.add_file_path = add_file_path;
+	}
+
+	public MultipartFile getProduct_photo() {
+		return product_photo;
+	}
+
+	public void setProduct_photo(MultipartFile product_photo) {
+		this.product_photo = product_photo;
+	}
+
+	public String getPhoto_name() {
+		return photo_name;
+	}
+
+	public void setPhoto_name(String photo_name) {
+		this.photo_name = photo_name;
+	}
+
+	public String getPhoto_path() {
+		return photo_path;
+	}
+
+	public void setPhoto_path(String photo_path) {
+		this.photo_path = photo_path;
 	}
 	
 	

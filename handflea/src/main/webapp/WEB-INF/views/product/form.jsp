@@ -146,8 +146,10 @@
 			} else { $("#product_photo_label").text(""); }
 			
 			let form = new FormData( document.getElementById( "write_form" ) );
-			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
-
+			form.append( "product_contents", CKEDITOR.instances.desc_txt.getData() );
+			
+			let keys = form.keys();
+			for(key of keys) console.log(key);
 			
 			$.ajax({
 				type : "POST"

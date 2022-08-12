@@ -18,7 +18,7 @@
 
 
 
-.first {
+	.first {
 
     flex:1;
 
@@ -30,21 +30,7 @@
 
 
 
-.second{
-
-    flex:1;
-
-    margin-left: 5%;
-
-    width:25%;
-
-    box-sizing: border-box;
-
-}
-
-
-
-.third{
+	.second{
 
     flex:1;
 
@@ -56,7 +42,21 @@
 
 }
 
-.force{ 
+
+
+	.third{
+
+    flex:1;
+
+    margin-left: 5%;
+
+    width:25%;
+
+    box-sizing: border-box;
+
+}
+
+	.force{ 
 
     flex:1;
 

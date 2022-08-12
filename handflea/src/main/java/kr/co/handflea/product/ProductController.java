@@ -59,57 +59,20 @@ public class ProductController {
 		File newFolder = new File("C:/upload/product/" + mid + "/");
 		if( newFolder.exists() == false ) newFolder.mkdirs();
 		
-		MultipartFile thumbnail = dto.getThumbnail();
-		InputStream is = thumbnail.getInputStream();
+		MultipartFile product_photo = dto.getProduct_photo();
+		InputStream is = product_photo.getInputStream();
 		FileOutputStream fos = new FileOutputStream( "C:/upload/product/" + mid + "/" + todayNalja + "_"
-													+ todaySigan + "_" + thumbnail.getOriginalFilename() );
+													+ todaySigan + "_" + product_photo.getOriginalFilename() );
 		
 		FileCopyUtils.copy(is, fos);
 		is.close();
 		fos.close();
-		dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
-		dto.setThumbnail_path("/upload/product/" + mid + "/" + todayNalja + "_"
-								+ todaySigan + "_" + thumbnail.getOriginalFilename());
-		
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mid + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mid + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
-
-		MultipartFile desc_img = dto.getDesc_img();
-		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
-			is = desc_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mid + "/" + todayNalja + "_"
-										+ todaySigan + "_" + desc_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setDesc_img_name(todayNalja + "_" + todaySigan + "_" + desc_img.getOriginalFilename());
-			dto.setDesc_img_path("/upload/product/" + mid + "/" + todayNalja + "_"
-									+ todaySigan + "_" + desc_img.getOriginalFilename());
-		}
-
-		MultipartFile add_file = dto.getAdd_file();
-		if(add_file != null && !add_file.getOriginalFilename().equals("")) {
-			is = add_file.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mid + "/" + todayNalja + "_"
-										+ todaySigan + "_" + add_file.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setAdd_file_name(todayNalja + "_" + todaySigan + "_" + add_file.getOriginalFilename());
-			dto.setAdd_file_path("/upload/product/" + mid + "/" + todayNalja + "_"
-									+ todaySigan + "_" + add_file.getOriginalFilename());
-		}
+		dto.setPhoto_name(todayNalja + "_" + todaySigan + "_" + product_photo.getOriginalFilename());
+		dto.setPhoto_path("/upload/product/" + mid + "/" + todayNalja + "_"
+								+ todaySigan + "_" + product_photo.getOriginalFilename());
 			
+		//dto.setMno( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );//로그인 구현 안됨 아직
+		
 		int successCount = 0;
 		successCount = service.insert(dto);
 		out.print(successCount);
