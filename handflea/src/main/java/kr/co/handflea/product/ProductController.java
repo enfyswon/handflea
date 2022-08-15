@@ -98,7 +98,7 @@ public class ProductController {
 									+ todaySigan + "_" + desc_img.getOriginalFilename());
 		}
 
-		dto.setMem_no ( (MemberDTO) session.getAttribute("login_info") ).getMem_email() );
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_email() );
 
 		int successCount = 0;
 		successCount = service.insert(dto);
