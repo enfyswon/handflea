@@ -25,7 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.co.handflea.product.ProductDTO;
+import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
+
 
 
 @Controller
@@ -54,25 +56,50 @@ public class ProductController {
 		DateFormat sigan = new SimpleDateFormat("HHmmss");
 		String todayNalja = nalja.format(today);
 		String todaySigan = sigan.format(today);
-		
-		String mid = "hw";
-		File newFolder = new File("C:/upload/product/" + mid + "/");
+
+		String mem_email = ( (MemberDTO) session.getAttribute("login_info") ).getMem_email();
+		File newFolder = new File("C:/upload/product/" + mem_email + "/");
 		if( newFolder.exists() == false ) newFolder.mkdirs();
-		
-		MultipartFile product_photo = dto.getProduct_photo();
-		InputStream is = product_photo.getInputStream();
-		FileOutputStream fos = new FileOutputStream( "C:/upload/product/" + mid + "/" + todayNalja + "_"
-													+ todaySigan + "_" + product_photo.getOriginalFilename() );
-		
+
+		MultipartFile thumbnail = dto.getThumbnail();
+		InputStream is = thumbnail.getInputStream();
+		FileOutputStream fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+													+ todaySigan + "_" + thumbnail.getOriginalFilename() );
 		FileCopyUtils.copy(is, fos);
 		is.close();
 		fos.close();
-		dto.setPhoto_name(todayNalja + "_" + todaySigan + "_" + product_photo.getOriginalFilename());
-		dto.setPhoto_path("/upload/product/" + mid + "/" + todayNalja + "_"
-								+ todaySigan + "_" + product_photo.getOriginalFilename());
-			
-		//dto.setMno( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );//로그인 구현 안됨 아직
-		
+		dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
+		dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+								+ todaySigan + "_" + thumbnail.getOriginalFilename());
+
+		MultipartFile prdt_img = dto.getPrdt_img();
+		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
+			is = prdt_img.getInputStream();
+			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
+			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+									+ todaySigan + "_" + prdt_img.getOriginalFilename());
+		}
+
+		MultipartFile desc_img = dto.getDesc_img();
+		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
+			is = desc_img.getInputStream();
+			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+										+ todaySigan + "_" + desc_img.getOriginalFilename() );
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			dto.setDesc_img_name(todayNalja + "_" + todaySigan + "_" + desc_img.getOriginalFilename());
+			dto.setDesc_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+									+ todaySigan + "_" + desc_img.getOriginalFilename());
+		}
+
+		dto.setMem_no ( (MemberDTO) session.getAttribute("login_info") ).getMem_email() );
+
 		int successCount = 0;
 		successCount = service.insert(dto);
 		out.print(successCount);
@@ -81,7 +108,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form() {
-		return "product2/form";//jsp file name
+		return "product/form";//jsp file name
 	}//form
 	
 	@RequestMapping( value = "/smallcate", method = RequestMethod.GET )
@@ -106,3 +133,26 @@ public class ProductController {
 	}//bigcateSelect
 	
 }//class
+
+/*
+ create table product (
+  prdt_no int not null auto_increment,
+  prdt_name varchar(60) not null,
+  mem_no int not null,
+  price int not null,
+  description varchar(1500) default null,
+  view_cnt int default '0',
+  reg_date datetime default null,
+  del_yn int default '0',
+  del_date datetime default null,
+  thumbnail_name varchar(100) not null,
+  thumbnail_path varchar(100) not null,
+  prdt_img_name varchar(100) default null,
+  prdt_img_path varchar(100) default null,
+  desc_img_name varchar(100) default null,
+  desc_img_path varchar(100) default null,
+  primary key (prdt_no)
+);
+강사님꺼에서 뺸거 : 파일 업로드, 디스카운트, 재고
+추가해야 할 것 : 옵션, 품절여부
+*/
