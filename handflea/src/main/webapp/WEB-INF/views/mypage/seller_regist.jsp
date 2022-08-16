@@ -5,12 +5,23 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>HandFlea</title>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
 <style type="text/css">
 #regist-box {
 	background-color: #f4f4f4;
 	border: 1px solid #cecece;
 	margin: 10px 0;
+	padding: 10px;
+}
+#regist-box button {
+	background-color: #5b5b5b;
+	color: white;
+	text-align: center;
+	border: 0;
+	border-radius: 4px;
+	outline: 0;
+	padding: 5px 10px;
 }
 .input-block {
 	display: flex;
@@ -18,11 +29,44 @@
 	margin: 3% 0;
 }
 .input-label {
-	width: 20%;
+	width: 15%;
 	padding: 0 5%;
 }
 .input-box {
-	width: 80%;
+	width: 85%;
+}
+.input-box input {
+	padding: 5px;
+	margin: 3px 0;
+}
+.input-box select {
+	padding: 5px;
+	margin: 3px 0;
+}
+.input-box option {
+	padding: 5px;
+	margin: 3px 0;
+}
+#seller_name {
+	width: 300px;
+}
+#seller_add_1 {
+	width: 100px;
+}
+#seller_add_2 {
+	width: 250px;
+}
+#seller_add_3 {
+	width: 200px;
+}
+#seller_add_4 {
+	width: 150px;
+}
+#account_no {
+	width: 200px;
+}
+#regist_btn {
+	font-size: medium;
 }
 </style>
 	</head>
@@ -62,10 +106,10 @@
 				<div id="regist-box">
 					<div class="input-block">
 						<div class="input-label">
-							마켓명
+							<label for="seller_name">마켓명</label>
 						</div>
 						<div class="input-box">
-							<input type="text" id="seller_name" name="seller_name">
+							<input type="text" id="seller_name" name="seller_name" maxlength="20">
 						</div>
 					</div>
 					<div class="input-block">
@@ -74,12 +118,15 @@
 						</div>
 						<div class="input-box">
 							<div>
-								<input type="text" id="seller_add_1" name="seller_add_1">
-								<button>우편번호 찾기</button>
+								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="우편번호">
+								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
 								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="도로명 주소">
+							</div>
+							<div>
 								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="상세 주소">
+								<input type="text" id="seller_add_4" name="seller_add_4" placeholder="참고항목">
 							</div>
 						</div>
 					</div>
@@ -88,16 +135,78 @@
 							계좌
 						</div>
 						<div class="input-box">
-							<input type="text" placeholder="은행 이름">
-							<input type="text" placeholder="계좌 번호">
-							<button>환불 계좌 가져오기</button> 
+							<div>
+								<select id="bank" name="bank">
+									<option value="0">--은행 선택--</option>
+								</select>
+								<button type="button" id="account_btn" name="account_btn">환불 계좌 가져오기</button> 
+							</div>
+							<div>
+								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+							</div>
 						</div>
 					</div>
-					<button>판매자 등록</button>
+					<div class="input-block">
+						<button type="button" id="regist_btn" name="regist_btn">판매자 등록</button>
+					</div>
 				</div>
 			</div>
 		</main>
 	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$.get(
+				"${pageContext.request.contextPath}/mypage/bank",
+				function(data, status) {
+					$.each(JSON.parse(data), function(idx, dto) {
+						$("#bank").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+					})
+				}
+		);
+	});
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				let addr = '';
+				let extraAddr = '';
+				
+				if(data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
+				
+				if(data.userSelectedType === 'R') {
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					
+					if(data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== ''?', ' + data.buildingName : data.buildingName);
+					}
+					
+					if(extraAddr !== '') {
+						extraAddr = '(' + extraAddr + ')';
+					}
+					
+					document.getElementById("seller_add_4").value = extraAddr;
+				} else {
+					document.getElementById("seller_add_4").value = '';
+				}
+				
+				document.getElementById("seller_add_1").value = data.zonecode;
+				document.getElementById("seller_add_2").value = addr;
+				document.getElementById("seller_add_3").focus();
+			}
+		}).open();
+	}
+	
+	$(document).ready(
+		$("#regist_btn").click(function() {
+			
+		});
+	);
+	</script>
 	</body>
 </html>
