@@ -31,6 +31,20 @@
 .item-detail > p {
 	font-size: small;
 }
+.item-detail > div {
+	display: flex;
+	flex-direction: row;
+}
+.item-detail > div > img {
+	width: 18px;
+	margin: 0;
+}
+.item-detail > div > p {
+	font-size: small;
+	margin: 0;
+	margin-left: 3px;
+	color: #595959;
+}
 #new {
 	margin: 10px 0;
 }
@@ -46,9 +60,12 @@
 						<div class="item-card">
 							<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
 							<div class="item-detail">
-								<p>판매자명</p>
+								<div>
+									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+								</div>
 								<h4>상품명</h4>
-								<p>가격</p>
+								<p>10000원</p>
+								<p>별점</p>
 							</div>
 						</div>
 						<div class="item-card">
