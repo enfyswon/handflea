@@ -45,23 +45,21 @@ public class JoinController {
 
 /*
 drop table member;
-CREATE TABLE `member` (
-  `mno` int NOT NULL AUTO_INCREMENT,
-  `mid` varchar(20) NOT NULL,
-  `mpwd` varchar(20) NOT NULL,
-  `tel` varchar(15) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `mdate` datetime NOT NULL,
-  `service_agree` varchar(5) NOT NULL DEFAULT 'true',
-  `info_agree` varchar(5) NOT NULL DEFAULT 'true',
-  `sms_agree` varchar(5) NOT NULL DEFAULT 'false',
-  `email_agree` varchar(5) NOT NULL DEFAULT 'false',
-  `post_code` varchar(10) DEFAULT NULL,
-  `addr1` varchar(150) DEFAULT NULL,
-  `addr2` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`mno`)
+
+create table member (
+  mno int not null auto_increment,
+  mid varchar(20) not null,
+  mpwd varchar(20) not null,
+  tel varchar(15) default null,
+  email varchar(50) default null,
+  mdate datetime not null,
+  service_agree varchar(5) not null default 'true',
+  info_agree varchar(5) not null default 'true',
+  sms_agree varchar(5) not null default 'false',
+  email_agree varchar(5) not null default 'false',
+  post_code varchar(10) default null,
+  addr1 varchar(150) default null,
+  addr2 varchar(150) default null,
+  primary key (mno)
 );
-insert into member(mid, mpwd, tel, email, mdate)
-values('tea', '1111', '010-9999-8888', 'aaa@bbb.com', now());
-commit;
 */

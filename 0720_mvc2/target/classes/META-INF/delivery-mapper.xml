@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DeliveryMapper">
+
+	<update id="delete" parameterType="kr.co.ictedu.delivery.DeliveryDTO">
+	update delivery_address
+	set del_yn = 1
+	where addr_no = #{addr_no}
+	and mno = #{mno}
+	</update>
+
+	<insert id="insert" parameterType="kr.co.ictedu.delivery.DeliveryDTO">
+	insert into delivery_address ( addr_name, mno, recipient_name, tel, post_code, addr1, addr2, used_date )
+	values ( #{addr_name}, #{mno}, #{recipient_name}, #{tel}, #{post_code}, #{addr1}, #{addr2}, now() )
+	</insert>
+
+	<select id="list"  parameterType="java.lang.String"
+						resultType="kr.co.ictedu.delivery.DeliveryDTO">
+		select da.addr_no, da.addr_name, da.mno
+			, da.recipient_name, da.tel, da.post_code, da.addr1, da.addr2, used_date
+		from delivery_address da, member m
+		where da.mno = #{mno}
+		and del_yn = 0
+		and da.mno = m.mno
+		order by da.used_date desc
+	</select>
+
+</mapper>

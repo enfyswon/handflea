@@ -69,3 +69,25 @@ public class DongCodeController {
 	}//dongCodeView
 
 }//class
+
+/*
+drop table code_sido;
+drop table code_gugun;
+drop table code_dong;
+
+create table code_sido (
+  sido_code varchar(10) not null,
+  sido_name varchar(30) default null,
+  primary key (sido_code)
+);
+create table code_gugun (
+  gugun_code varchar(10) not null,
+  gugun_name varchar(30) default null,
+  primary key (gugun_code)
+);
+create table code_dong (
+  dong_code varchar(10) not null,
+  dong_name varchar(30) default null,
+  primary key (dong_code)
+);
+*/

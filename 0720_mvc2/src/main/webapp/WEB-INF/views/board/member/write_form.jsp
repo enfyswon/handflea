@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -12,8 +12,7 @@
 		<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
 		<style type="text/css">
 		.write_label {
-			font-size: 0.7em;
-			color: red;
+			color : red;
 		}
 		</style>
 	</head>
@@ -27,42 +26,31 @@
 				<tr>
 					<th> 제 목 </th>
 					<td>
-						<input type="text" id="title" name="title" maxlength="50"
-							class="form-control">
-						<label id="title_label" for="title" class="write_label"></label>
+						<input type="text" id="title" name="title" maxlength="20"
+								class="form-control">
+						<label for="title" id="title_label" class="write_label"></label>
 					</td>
 				</tr>
 				<tr>
 					<th> 작 성 자 </th>
 					<td>
-						<input type="text" id="writer" name="writer" maxlength="20"
-							class="form-control">
-						<label id="writer_label" for="writer" class="write_label"></label>
-					</td>
-				</tr>
-				<tr>
-					<th> 비 밀 번 호 </th>
-					<td>
-						<input type="password" id="pwd" name="pwd" maxlength="20"
-							class="form-control">
-						<label id="pwd_label" for="pwd" class="write_label"></label>
+						${login_info.mid}
 					</td>
 				</tr>
 				<tr>
 					<th> 내 용 </th>
 					<td>
-						<textarea rows="5" id="contents" name="contents"
-							class="form-control"></textarea>
+						<textarea class="form-contol" id="contents" name="contents"></textarea>
 						<script type="text/javascript">
-						CKEDITOR.replace('contents');
+						CKEDITOR.replace("contents");
 						</script>
-						<label id="contents_label" for="contents" class="write_label"></label>
+						<label for="contents" id="contents_label" class="write_label"></label>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<button id="write_btn" class="btn btn-primary float-right"> 글 작성 완료 </button>
-		<a href="${pageContext.request.contextPath}/board/free/final_list">
+		<a href="${pageContext.request.contextPath}/board/member/list">
 			<button class="btn btn-warning"> 글 작성 취소 </button>
 		</a>
 		<hr>
@@ -74,43 +62,30 @@
 			if( $.trim( $("#title").val() ) == "" ){
 				$("#title_label").text("제목을 입력 하세요.");
 				return;
-			} else { $("#title_label").text(""); }
-
-			if( $.trim( $("#writer").val() ) == "" ){
-				$("#writer_label").text("작성자를 입력 하세요.");
-				return;
-			} else { $("#writer_label").text(""); }
-
-			if( $.trim( $("#pwd").val() ) == "" ){
-				$("#pwd_label").text("비밀번호를 입력 하세요.");
-				return;
-			} else { $("#pwd_label").text(""); }
+			}
 
 			if( CKEDITOR.instances.contents.getData() == "" ){
 				$("#contents_label").text("내용을 입력 하세요.");
 				return;
-			} else { $("#contents_label").text(""); }
+			}
 
 			$.post(
-					"${pageContext.request.contextPath}/board/free/write"
+					"${pageContext.request.contextPath}/board/member/write"
 					, {
 						title : $("#title").val()
-						, writer : $("#writer").val()
-						, pwd : $("#pwd").val()
 						, contents : CKEDITOR.instances.contents.getData()
 					}
 					, function(data, status) {
 						if(data >= 1){
 							alert("게시글이 성공적으로 업로드 되었습니다.");
-							location.href = "${pageContext.request.contextPath}/board/free/final_list";
-						} else if(data <= 0) {
-							alert("게시글이 작성을 실패 하였습니다.");
+							location.href="${pageContext.request.contextPath}/board/member/list";
+						} else if(data <= 0){
+							alert("게시글 작성을 실패 하였습니다.");
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}
-					}//call back function : 서버에서 불러주는 함수
+					}//call back function
 			);//post
-
 		});//click
 	});//ready
 	</script>

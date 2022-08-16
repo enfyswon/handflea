@@ -66,7 +66,6 @@ public class FreeBoardController {
 	public String search1Test( SearchDTO dto, Model model ) {
 		List<FreeBoardDTO> list = null;
 		list = service.search1Test( dto );
-		logger.info(list.toString());
 		model.addAttribute("list", list);
 		model.addAttribute("search_dto", dto);
 		return "/board/free/search1";//jsp file name
@@ -217,14 +216,16 @@ public class FreeBoardController {
 }//class
 
 /*
-CREATE TABLE `freeboard` (
-  `board_no` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) NOT NULL,
-  `writer` varchar(60) NOT NULL,
-  `pwd` varchar(20) NOT NULL,
-  `contents` varchar(1500) NOT NULL,
-  `write_date` datetime NOT NULL,
-  `view_cnt` int DEFAULT '0',
-  PRIMARY KEY (`board_no`)
+drop table memberboard;
+
+create table freeboard (
+  board_no int not null auto_increment,
+  title varchar(150) not null,
+  writer varchar(60) not null,
+  pwd varchar(20) not null,
+  contents varchar(1500) not null,
+  write_date datetime not null,
+  view_cnt int default '0',
+  primary key (board_no)
 );
 */

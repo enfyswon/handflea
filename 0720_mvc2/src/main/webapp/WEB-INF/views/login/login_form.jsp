@@ -30,6 +30,19 @@
 					</td>
 				</tr>
 				<tr>
+					<th> 테스트 ID 선택 -> 테스트 후 삭제 </th>
+					<td>
+						<div class="input-group">
+							<input type="radio" id="rdo1" name="test_id_selector" value="tea">
+							<h3><label for="rdo1">tea</label></h3>
+						</div>
+						<div class="input-group">
+						<input type="radio" id="rdo2" name="test_id_selector" value="sellerfruit">
+						<h3><label for="rdo2">sellerfruit</label></h3>
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2">
 						<button id="login_btn" type="button" class="btn btn-primary float-right"> 로 그 인 </button>
 					</td>
@@ -37,6 +50,16 @@
 			</tbody>
 		</table>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+
+	<script type="text/javascript">
+	$(document).ready(function() {//테스트용 스크립트 -> 테스트 후 삭제
+		$("input[type='radio']").click(function() {
+			$("#mid").val( $(this).val() );
+			$("#mpwd").val("1111");
+		});//click
+	});//ready
+	</script>
+
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#login_btn").click(function() {
@@ -61,6 +84,19 @@
 		});//click
 	});//ready
 	</script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#mpwd").keyup(function() {
+
+			if(event.keyCode == 13) {
+				$("#login_btn").click();
+			}
+
+		});//click
+	});//ready
+	</script>
+
 	</body>
 </html>
 
