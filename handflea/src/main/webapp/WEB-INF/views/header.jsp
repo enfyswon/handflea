@@ -27,14 +27,14 @@
 						<span class="top-item" style="color:lime;">${login_info.mem_name}님</span>
 					</c:when>
 					<c:otherwise>
-				<a class="top-item" href="${pageContext.request.contextPath}/login_form">로그인</a>
-				<a class="top-item" href="${pageContext.request.contextPath}/join/form">회원가입</a>
+					<a class="top-item" href="${pageContext.request.contextPath}/login_form">로그인</a>
+					<a class="top-item" href="${pageContext.request.contextPath}/join/form">회원가입</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<div id="middle-header">
 				<div id="logo-bar">
-					<a href="${pageContext.request.contextPath}/home">
+					<a href="${pageContext.request.contextPath}/">
 						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>
