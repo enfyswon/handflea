@@ -20,13 +20,13 @@
 				<tr>
 					<th> 이 메 일 </th>
 					<td>
-						<input type="text" id="mem_email" name="mem_email" maxlength="20" class="form-control">
+						<input type="text" id="mem_email" name="mem_email" maxlength="20" class="form-control" value="test@naver.com">
 					</td>
 				</tr>
 				<tr>
 					<th> 패 스 워 드 </th>
 					<td>
-						<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" class="form-control">
+						<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" class="form-control" value="1111">
 					</td>
 				</tr>
 				<tr>

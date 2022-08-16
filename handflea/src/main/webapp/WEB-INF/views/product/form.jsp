@@ -43,14 +43,14 @@
 					<tr>
 						<th> 카테고리 (*)  </th>
 						<td colspan="3">
-							<select id="bigcate" name="bigcate">
+							<select id="bigcate_no" name="bigcate_no">
 								<option value="0" selected="selected">대분류 선택</option>
 							</select>
 							>
-							<select id="smallcate" name="smallcate">
+							<select id="smallcate_no" name="smallcate_no">
 								<option value="0" selected="selected">소분류 선택</option>
 							</select>
-							<label for="smallcate" id="smallcate_label" class="write_label"></label>
+							<label for="smallcate_no" id="smallcate_no_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
@@ -126,15 +126,17 @@
 	$(document).ready(function() {
 		$("#write_btn").click(function() {
 
+			//alert($("#smallcate_no").val() + " : " + $("#bigcate_no").val());
+
 			if( $.trim( $("#prdt_name").val() ) == "" ){
 				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
 			} else { $("#prdt_name_label").text(""); }
 
-			if( $("#smallcate").val() == "0" ){
-				$("#smallcate_label").text("카테고리를 선택하세요");
+			if( $("#smallcate_no").val() == "0" ){
+				$("#smallcate_no_label").text("카테고리를 선택하세요");
 				return;
-			} else { $("#smallcate_label").text(""); }
+			} else { $("#smallcate_no_label").text(""); }
 			
 			if( $("#price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
 				$("#price_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
@@ -228,15 +230,15 @@
 		<script type="text/javascript">
 		
 		$(document).ready(function() {
-			$("#bigcate").change(function() {
+			$("#bigcate_no").change(function() {
 				$.get(
 						"${pageContext.request.contextPath}/product/smallcate"
-						, { bigcate_no : $("#bigcate").val() }
+						, { bigcate_no : $("#bigcate_no").val() }
 						, function(data, status) { 
-							$("#smallcate").empty();
-							$("#smallcate").append("<option value='0'>선택하세요</option>");
+							$("#smallcate_no").empty();
+							$("#smallcate_no").append("<option value='0'>선택하세요</option>");
 							$.each(JSON.parse(data), function(idx, dto) {
-								$("#smallcate").append("<option value='" + dto.smallcate_no + "'>" + dto.smallcate_name + "</option>");
+								$("#smallcate_no").append("<option value='" + dto.smallcate_no + "'>" + dto.smallcate_name + "</option>");
 							});//each
 						}//call back function
 				);//get
@@ -248,7 +250,7 @@
 					"${pageContext.request.contextPath}/product/bigcate"
 					, function(data, status) {
 						$.each(JSON.parse(data), function(idx, dto) { 
-							$("#bigcate").append("<option value='" + dto.bigcate_no + "'>" + dto.bigcate_name + "</option>");
+							$("#bigcate_no").append("<option value='" + dto.bigcate_no + "'>" + dto.bigcate_name + "</option>");
 						});//each
 					}//call back function
 			);//get
