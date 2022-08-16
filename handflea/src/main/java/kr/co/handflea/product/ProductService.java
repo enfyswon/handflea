@@ -37,13 +37,15 @@ public class ProductService {
 		int successCount = 0;
 		successCount = dao.option_insert(dto);
 		return successCount;
-	}
+	}//option_insert
 	
 	public int insert(ProductDTO dto) {
 		int successCount = 0;
 		successCount = dao.insert(dto);
 		if(successCount < 1) return successCount;
-		successCount = dao.option_insert(dto);
+		if (dto.getArr_option() != null && dto.getArr_option().length > 0) {
+			successCount = dao.option_insert(dto);
+		}
 		return successCount;
 	}//insert
 

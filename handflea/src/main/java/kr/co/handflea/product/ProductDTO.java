@@ -12,6 +12,7 @@ public class ProductDTO {
 	private String delivery_price;
 	private String option_no;
 	private String option_contents;
+	private String option_yn;
 	private String view_cnt;
 	private String reg_date;
 	private MultipartFile thumbnail;
@@ -137,6 +138,14 @@ public class ProductDTO {
 
 	public void setOption_contents(String option_contents) {
 		this.option_contents = option_contents;
+	}
+
+	public String getOption_yn() {
+		return option_yn;
+	}
+
+	public void setOption_yn(String option_yn) {
+		this.option_yn = option_yn;
 	}
 
 	public String getView_cnt() {

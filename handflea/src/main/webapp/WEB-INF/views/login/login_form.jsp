@@ -51,7 +51,7 @@
 						if(data == 0){
 							alert("아이디와 패스워드가 올바르지 않습니다.");
 						} else if(data == 1){
-							location.href = "${pageContext.request.contextPath}/main";
+							location.href = "${pageContext.request.contextPath}/home";
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}
