@@ -78,8 +78,8 @@
 					<tr>
 						<th> 상품 준비 기간(단위 : 일) (*)  </th>
 						<td>
-							<input type="text" id="product_prepare" name="product_prepare" class="form-control">
-							<label for="product_prepare" id="product_prepare_label" class="write_label"></label>
+							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control">
+							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
@@ -146,8 +146,8 @@
 				return;
 			} else { $("#delivery_price_label").text(""); }
 			
-			if( $("#product_prepare").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
-				$("#product_prepare_label").text("상품 준비 기간을 입력하세요, 숫자만 허용 됩니다.");
+			if( $("#prdt_rdy").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#prdt_rdy_label").text("상품 준비 기간을 입력하세요, 숫자만 허용 됩니다.");
 				return;
 			} else { $("#product_prepare_label").text("해당 기간 내에 출고가 되지 않을 경우, 구매자가 환불을 요청할 수 있습니다."); }
 			

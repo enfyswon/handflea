@@ -135,11 +135,14 @@ public class ProductController {
 }//class
 
 /*
+ drop table product;
+ 
  create table product (
   prdt_no int not null auto_increment,
   prdt_name varchar(60) not null,
   mem_no int not null,
   price int not null,
+  delivery_price int not null,
   description varchar(1500) default null,
   view_cnt int default '0',
   reg_date datetime default null,
@@ -151,6 +154,10 @@ public class ProductController {
   prdt_img_path varchar(100) default null,
   desc_img_name varchar(100) default null,
   desc_img_path varchar(100) default null,
+  prdt_rdy int(5) default '0',
+  option_no int(11),
+  bigcate_no int(11) not null,
+  smallcate_no int(11) not null,
   primary key (prdt_no)
 );
 강사님꺼에서 뺸거 : 파일 업로드, 디스카운트, 재고

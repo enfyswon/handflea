@@ -9,6 +9,7 @@ public class ProductDTO {
 	private String mem_email;
 	private String description;
 	private String price;
+	private String delivery_price;
 	private String option_no;
 	private String view_cnt;
 	private String reg_date;
@@ -27,9 +28,13 @@ public class ProductDTO {
 	private String smallcate_no;
 	private String smallcate_name;
 	
+	private String prdt_rdy;
+	private String delete_yn;
+	
 	private String basket_no;
 	private String buy_qty;
 	private String total_price;
+	
 	
 	@Override
 	public String toString() {
@@ -38,6 +43,7 @@ public class ProductDTO {
 				+ " : " + mem_no
 				+ " : " + mem_email
 				+ " : " + price
+				+ " : " + delivery_price
 				+ " : " + description
 				+ " : " + option_no
 				+ " : " + view_cnt
@@ -54,7 +60,10 @@ public class ProductDTO {
 				+ " : " + buy_qty
 				+ " : " + total_price
 				+ " : " + bigcate_name
-				+ " : " + smallcate_name;
+				+ " : " + smallcate_name
+				+ " : " + prdt_rdy
+				+ " : " + delete_yn;
+		
 	}
 
 	public String getPrdt_no() {
@@ -103,6 +112,14 @@ public class ProductDTO {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public String getDelivery_price() {
+		return delivery_price;
+	}
+
+	public void setDelivery_price(String delivery_price) {
+		this.delivery_price = delivery_price;
 	}
 
 	public String getOption_no() {
@@ -231,6 +248,22 @@ public class ProductDTO {
 
 	public void setSmallcate_name(String smallcate_name) {
 		this.smallcate_name = smallcate_name;
+	}
+
+	public String getPrdt_rdy() {
+		return prdt_rdy;
+	}
+
+	public void setPrdt_rdy(String prdt_rdy) {
+		this.prdt_rdy = prdt_rdy;
+	}
+
+	public String getDelete_yn() {
+		return delete_yn;
+	}
+
+	public void setDelete_yn(String delete_yn) {
+		this.delete_yn = delete_yn;
 	}
 
 	public String getBasket_no() {
