@@ -21,21 +21,14 @@
 		<div id="header">
 			<div id="top-header">
 				<c:choose>
-					<c:when test="true">
-				<a class="top-item" href="#">
-					로그아웃
-				</a>
-				<a class="top-item" href="${pageContext.request.contextPath}/mypage/">
-					마이페이지
-				</a>
+					<c:when test="${login_info != null && login_info.mem_email != null}">
+						<a class="top-item" href="${pageContext.request.contextPath}/logout""> 로그아웃 </a>
+						<a class="top-item" href="${pageContext.request.contextPath}/basket/list"> 마이페이지 </a>
+						<span class="top-item" style="color:lime;">${login_info.mem_name}님</span>
 					</c:when>
 					<c:otherwise>
-				<a class="top-item" href="#">
-					로그인
-				</a>
-				<a class="top-item" href="#">
-					회원가입
-				</a>	
+				<a class="top-item" href="${pageContext.request.contextPath}/login_form">로그인</a>
+				<a class="top-item" href="${pageContext.request.contextPath}/join/form">회원가입</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
