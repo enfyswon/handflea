@@ -61,8 +61,7 @@ public class ProductDTO {
 				+ " : " + total_price
 				+ " : " + bigcate_name
 				+ " : " + smallcate_name
-				+ " : " + prdt_rdy
-				+ " : " + delete_yn;
+				+ " : " + prdt_rdy;
 		
 	}
 
