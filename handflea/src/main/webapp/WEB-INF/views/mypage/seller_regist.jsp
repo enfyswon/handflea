@@ -7,68 +7,6 @@
 		<title>HandFlea</title>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
-<style type="text/css">
-#regist-box {
-	background-color: #f4f4f4;
-	border: 1px solid #cecece;
-	margin: 10px 0;
-	padding: 10px;
-}
-#regist-box button {
-	background-color: #5b5b5b;
-	color: white;
-	text-align: center;
-	border: 0;
-	border-radius: 4px;
-	outline: 0;
-	padding: 5px 10px;
-}
-.input-block {
-	display: flex;
-	flex-direction: row;
-	margin: 3% 0;
-}
-.input-label {
-	width: 15%;
-	padding: 0 5%;
-}
-.input-box {
-	width: 85%;
-}
-.input-box input {
-	padding: 5px;
-	margin: 3px 0;
-}
-.input-box select {
-	padding: 5px;
-	margin: 3px 0;
-}
-.input-box option {
-	padding: 5px;
-	margin: 3px 0;
-}
-#seller_name {
-	width: 300px;
-}
-#seller_add_1 {
-	width: 100px;
-}
-#seller_add_2 {
-	width: 250px;
-}
-#seller_add_3 {
-	width: 200px;
-}
-#seller_add_4 {
-	width: 150px;
-}
-#account_no {
-	width: 200px;
-}
-#regist_btn {
-	font-size: medium;
-}
-</style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -90,7 +28,7 @@
 						<a href="#">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
-						<a href="#">회원정보 변경</a>
+						<a href="${pageContext.request.contextPath}/mypage/myinfo">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
 						<c:if test="false">
 						<h4>판매자 메뉴</h4>
@@ -102,7 +40,7 @@
 				</div>
 			</div>
 			<div id="main-content">
-				<h3>판매자 등록</h3>
+				<h2>판매자 등록</h2>
 				<div id="regist-box">
 					<div class="input-block">
 						<div class="input-label">
@@ -165,6 +103,8 @@
 				}
 		);
 	});
+	</script>
+	<script>
 	function DaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -201,12 +141,6 @@
 			}
 		}).open();
 	}
-	
-	$(document).ready(
-		$("#regist_btn").click(function() {
-			
-		});
-	);
 	</script>
 	</body>
 </html>

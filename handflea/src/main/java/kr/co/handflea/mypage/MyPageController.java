@@ -42,4 +42,9 @@ public class MyPageController {
 		out.print( new Gson().toJson( list ) );
 		out.close();		
 	}
+	
+	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
+	public String myInfo() {
+		return "/mypage/myinfo";
+	}
 }

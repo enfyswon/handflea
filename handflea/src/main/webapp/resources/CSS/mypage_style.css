@@ -91,3 +91,63 @@
 .list-box td {
 	padding: 5px 0;
 }
+#regist-box {
+	background-color: #f4f4f4;
+	border: 1px solid #cecece;
+	margin: 10px 0;
+	padding: 10px;
+}
+#regist-box button {
+	background-color: #5b5b5b;
+	color: white;
+	text-align: center;
+	border: 0;
+	border-radius: 4px;
+	outline: 0;
+	padding: 5px 10px;
+}
+.input-block {
+	display: flex;
+	flex-direction: row;
+	margin: 3% 0;
+}
+.input-label {
+	width: 15%;
+	padding: 0 5%;
+}
+.input-box {
+	width: 85%;
+}
+.input-box input {
+	padding: 5px;
+	margin: 3px 0;
+}
+.input-box select {
+	padding: 5px;
+	margin: 3px 0;
+}
+.input-box option {
+	padding: 5px;
+	margin: 3px 0;
+}
+#seller_name {
+	width: 300px;
+}
+#seller_add_1 {
+	width: 100px;
+}
+#seller_add_2 {
+	width: 250px;
+}
+#seller_add_3 {
+	width: 200px;
+}
+#seller_add_4 {
+	width: 150px;
+}
+#account_no {
+	width: 200px;
+}
+#regist_btn {
+	font-size: medium;
+}
