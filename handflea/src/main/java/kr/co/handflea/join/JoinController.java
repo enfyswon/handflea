@@ -54,6 +54,7 @@ CREATE TABLE `member` (
 	`mem_email`	Varchar(255)	NOT NULL,
 	`mem_pwd`	Varchar(255)	NOT NULL,
 	`mdate` datetime not null,
+    `post_code`	Varchar(100)	NOT NULL,
 	`add_1`	Varchar(100)	NOT NULL,
 	`add_2`	Varchar(100)	NOT NULL,
 	`pnum`	Varchar(100)	NOT NULL,

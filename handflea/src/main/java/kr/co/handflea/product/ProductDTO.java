@@ -3,126 +3,165 @@ package kr.co.handflea.product;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductDTO {
-	private int product_no;
-	private int mem_no;
-	private String smallcate_no;
-	private String product_name;
-	private String product_contents;
-	private int product_price;
-	private int option_no;
-	private int soldout_yn;
-	private int delete_yn;
-	
-	private String bigcate_no;
-	private String bigcate_name;
-	private String smallcate_name;
-	
+	private String prdt_no;
+	private String prdt_name;
+	private String mem_no;
+	private String mem_email;
+	private String description;
+	private String price;
+	private String delivery_price;
+	private String option_no;
+	private String option_contents;
+	private String option_yn;
+	private String view_cnt;
+	private String reg_date;
 	private MultipartFile thumbnail;
 	private MultipartFile prdt_img;
 	private MultipartFile desc_img;
-	private MultipartFile add_file;
 	private String thumbnail_name;
 	private String thumbnail_path;
 	private String prdt_img_name;
 	private String prdt_img_path;
 	private String desc_img_name;
 	private String desc_img_path;
-	private String add_file_name;
-	private String add_file_path;
 	
-	private MultipartFile product_photo;
+	private String bigcate_no;
+	private String bigcate_name;
+	private String smallcate_no;
+	private String smallcate_name;
 	
-	private String photo_name;
-	private String photo_path;
+	private String prdt_rdy;
+	private String delete_yn;
+	
+	private String basket_no;
+	private String buy_qty;
+	private String total_price;
+	
+	private String [] arr_option;
+
 	@Override
 	public String toString() {
-		return product_no
+		return prdt_no
+				+ " : " + prdt_name
 				+ " : " + mem_no
-				+ " : " + smallcate_no
-				+ " : " + product_name
-				+ " : " + product_contents
-				+ " : " + product_price
+				+ " : " + mem_email
+				+ " : " + price
+				+ " : " + delivery_price
+				+ " : " + description
 				+ " : " + option_no
-				+ " : " + soldout_yn
-				+ " : " + delete_yn;
+				+ " : " + view_cnt
+				+ " : " + reg_date
+				+ " : " + thumbnail
+				+ " : " + prdt_img
+				+ " : " + desc_img
+				+ " : " + thumbnail_name
+				+ " : " + thumbnail_path
+				+ " : " + prdt_img_name
+				+ " : " + prdt_img_path
+				+ " : " + desc_img_name
+				+ " : " + desc_img_path
+				+ " : " + buy_qty
+				+ " : " + total_price
+				+ " : " + bigcate_name
+				+ " : " + smallcate_name
+				+ " : " + prdt_rdy;
+		
 	}
-	
-	public int getProduct_no() {
-		return product_no;
+
+	public String getPrdt_no() {
+		return prdt_no;
 	}
-	public void setProduct_no(int product_no) {
-		this.product_no = product_no;
+
+	public void setPrdt_no(String prdt_no) {
+		this.prdt_no = prdt_no;
 	}
-	public int getMem_no() {
+
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
+	}
+
+	public String getMem_no() {
 		return mem_no;
 	}
-	public void setMem_no(int mem_no) {
+
+	public void setMem_no(String mem_no) {
 		this.mem_no = mem_no;
 	}
-	public String getSmallcate_no() {
-		return smallcate_no;
+
+	public String getMem_email() {
+		return mem_email;
 	}
-	public void setSmallcate_no(String smallcate_no) {
-		this.smallcate_no = smallcate_no;
+
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
 	}
-	public String getProduct_name() {
-		return product_name;
+
+	public String getDescription() {
+		return description;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getProduct_contents() {
-		return product_contents;
+
+	public String getPrice() {
+		return price;
 	}
-	public void setProduct_contents(String product_contents) {
-		this.product_contents = product_contents;
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
-	public int getProduct_price() {
-		return product_price;
+
+	public String getDelivery_price() {
+		return delivery_price;
 	}
-	public void setProduct_price(int product_price) {
-		this.product_price = product_price;
+
+	public void setDelivery_price(String delivery_price) {
+		this.delivery_price = delivery_price;
 	}
-	public int getOption_no() {
+
+	public String getOption_no() {
 		return option_no;
 	}
-	public void setOption_no(int option_no) {
+
+	public void setOption_no(String option_no) {
 		this.option_no = option_no;
 	}
-	public int getSoldout_yn() {
-		return soldout_yn;
-	}
-	public void setSoldout_yn(int soldout_yn) {
-		this.soldout_yn = soldout_yn;
-	}
-	public int getDelete_yn() {
-		return delete_yn;
-	}
-	public void setDelete_yn(int delete_yn) {
-		this.delete_yn = delete_yn;
-	}
-	public String getBigcate_no() {
-		return bigcate_no;
+
+	public String getOption_contents() {
+		return option_contents;
 	}
 
-	public void setBigcate_no(String bigcate_no) {
-		this.bigcate_no = bigcate_no;
+	public void setOption_contents(String option_contents) {
+		this.option_contents = option_contents;
 	}
 
-	public String getBigcate_name() {
-		return bigcate_name;
+	public String getOption_yn() {
+		return option_yn;
 	}
 
-	public void setBigcate_name(String bigcate_name) {
-		this.bigcate_name = bigcate_name;
+	public void setOption_yn(String option_yn) {
+		this.option_yn = option_yn;
 	}
 
-	public String getSmallcate_name() {
-		return smallcate_name;
+	public String getView_cnt() {
+		return view_cnt;
 	}
 
-	public void setSmallcate_name(String smallcate_name) {
-		this.smallcate_name = smallcate_name;
+	public void setView_cnt(String view_cnt) {
+		this.view_cnt = view_cnt;
+	}
+
+	public String getReg_date() {
+		return reg_date;
+	}
+
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
 	}
 
 	public MultipartFile getThumbnail() {
@@ -147,14 +186,6 @@ public class ProductDTO {
 
 	public void setDesc_img(MultipartFile desc_img) {
 		this.desc_img = desc_img;
-	}
-
-	public MultipartFile getAdd_file() {
-		return add_file;
-	}
-
-	public void setAdd_file(MultipartFile add_file) {
-		this.add_file = add_file;
 	}
 
 	public String getThumbnail_name() {
@@ -205,45 +236,84 @@ public class ProductDTO {
 		this.desc_img_path = desc_img_path;
 	}
 
-	public String getAdd_file_name() {
-		return add_file_name;
+	public String getBigcate_no() {
+		return bigcate_no;
 	}
 
-	public void setAdd_file_name(String add_file_name) {
-		this.add_file_name = add_file_name;
+	public void setBigcate_no(String bigcate_no) {
+		this.bigcate_no = bigcate_no;
 	}
 
-	public String getAdd_file_path() {
-		return add_file_path;
+	public String getBigcate_name() {
+		return bigcate_name;
 	}
 
-	public void setAdd_file_path(String add_file_path) {
-		this.add_file_path = add_file_path;
+	public void setBigcate_name(String bigcate_name) {
+		this.bigcate_name = bigcate_name;
 	}
 
-	public MultipartFile getProduct_photo() {
-		return product_photo;
+	public String getSmallcate_no() {
+		return smallcate_no;
 	}
 
-	public void setProduct_photo(MultipartFile product_photo) {
-		this.product_photo = product_photo;
+	public void setSmallcate_no(String smallcate_no) {
+		this.smallcate_no = smallcate_no;
 	}
 
-	public String getPhoto_name() {
-		return photo_name;
+	public String getSmallcate_name() {
+		return smallcate_name;
 	}
 
-	public void setPhoto_name(String photo_name) {
-		this.photo_name = photo_name;
+	public void setSmallcate_name(String smallcate_name) {
+		this.smallcate_name = smallcate_name;
 	}
 
-	public String getPhoto_path() {
-		return photo_path;
+	public String getPrdt_rdy() {
+		return prdt_rdy;
 	}
 
-	public void setPhoto_path(String photo_path) {
-		this.photo_path = photo_path;
+	public void setPrdt_rdy(String prdt_rdy) {
+		this.prdt_rdy = prdt_rdy;
+	}
+
+	public String getDelete_yn() {
+		return delete_yn;
+	}
+
+	public void setDelete_yn(String delete_yn) {
+		this.delete_yn = delete_yn;
+	}
+
+	public String getBasket_no() {
+		return basket_no;
+	}
+
+	public void setBasket_no(String basket_no) {
+		this.basket_no = basket_no;
+	}
+
+	public String getBuy_qty() {
+		return buy_qty;
+	}
+
+	public void setBuy_qty(String buy_qty) {
+		this.buy_qty = buy_qty;
+	}
+
+	public String getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(String total_price) {
+		this.total_price = total_price;
+	}
+
+	public String[] getArr_option() {
+		return arr_option;
+	}
+
+	public void setArr_option(String[] arr_option) {
+		this.arr_option = arr_option;
 	}
 	
-	
-}
+}//class

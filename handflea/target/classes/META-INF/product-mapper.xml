@@ -2,134 +2,43 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+ 
 <mapper namespace="ProductMapper">
 
-	<update id="fileDelete" parameterType="kr.co.handflea.product.ProductDTO">
-	update product
-		<if test="thumbnail_name != null and thumbnail_name != ''">
-			set thumbnail_name = ''
-			, thumbnail_path = ''
-		</if>
-		<if test="prdt_img_name != null and prdt_img_name != ''">
-			set prdt_img_name = ''
-			, prdt_img_path = ''
-		</if>
-		<if test="desc_img_name != null and desc_img_name != ''">
-			set desc_img_name = ''
-			, desc_img_path = ''
-		</if>
-		<if test="add_file_name != null and add_file_name != ''">
-			set add_file_name = ''
-			, add_file_path = ''
-		</if>
-	where prdt_no = #{prdt_no}
-	and mno = #{mno}
-	</update>
-
-	<update id="update" parameterType="kr.co.handflea.product.ProductDTO">
-	update product
-	set prdt_name = #{prdt_name}
-		, qty = #{qty}
-		, price = #{price}
-		, discount = #{discount}
-		, description = #{description}
-		<if test="thumbnail_name != null and thumbnail_name != ''">
-			, thumbnail_name = #{thumbnail_name}
-			, thumbnail_path = #{thumbnail_path}
-		</if>
-		<if test="prdt_img_name != null and prdt_img_name != ''">
-			, prdt_img_name = #{prdt_img_name}
-			, prdt_img_path = #{prdt_img_path}
-		</if>
-		<if test="desc_img_name != null and desc_img_name != ''">
-			, desc_img_name = #{desc_img_name}
-			, desc_img_path = #{desc_img_path}
-		</if>
-		<if test="add_file_name != null and add_file_name != ''">
-			, add_file_name = #{add_file_name}
-			, add_file_path = #{add_file_path}
-		</if>
-	where prdt_no = #{prdt_no}
-	and mno = #{mno}
-	</update>
-
-	<update id="delete" parameterType="kr.co.handflea.product.ProductDTO">
-	update product
-	set del_yn = 1
-	, del_date = now()
-	where prdt_no = #{prdt_no}
-	and mno = #{mno}
-	</update>
-
-	<update id="incrementViewCnt" parameterType="java.lang.String">
-	update product
-	set view_cnt = view_cnt + 1
-	where prdt_no = #{prdt_no}
-	</update>
-
-	<select id="detail" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
-	select p.prdt_no, p.prdt_name, p.mno, m.mid, p.qty, p.price, p.discount
-	, truncate( p.price - (p.price / 100 * p.discount), 0 ) sale_price
-	, p.description, p.view_cnt, p.reg_date
-	, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-	, p.desc_img_name, p.desc_img_path, p.add_file_name, p.add_file_path
-   	from product p, member m
-	where p.prdt_no = #{prdt_no}
-	and del_yn = 0
-	and p.mno = m.mno
+	<select id="list" resultType="kr.co.handflea.product.ProductDTO">
+	select mem_no, product_name, product_contents, product_price, option_no
+	from product 
 	</select>
 
-	<select id="selectList" parameterType="kr.co.handflea.util.dto.SearchDTO"
-			resultType="kr.co.handflea.product.ProductDTO">
-		select p.prdt_no, p.prdt_name, p.mno, m.mid, p.qty, p.price, p.discount
-		, truncate( p.price - (p.price / 100 * p.discount), 0 ) sale_price
-		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.add_file_name, p.add_file_path
-    	from product p, member m
-		where del_yn = 0
-		<if test="searchOption != null and searchOption != ''
-					and searchWord != null and searchWord !=''">
-			<choose>
-				<when test="searchOption == 'prdt_name'">
-					and p.prdt_name like concat('%', #{searchWord}, '%')
-				</when>
-				<when test="searchOption == 'mid'">
-					and m.mid like concat('%', #{searchWord}, '%')
-				</when>
-			</choose>
-		</if>
-		and p.mno = m.mno
-		order by prdt_no desc
-		limit #{limitNum}, 10
-	</select>
-
-	<select id="searchListCount" parameterType="kr.co.handflea.util.dto.SearchDTO" resultType="int">
-		select count(p.prdt_no) cnt
-		from product p, member m
-		where del_yn = 0
-		<if test="searchOption != null and searchOption != ''
-					and searchWord != null and searchWord !=''">
-			<choose>
-				<when test="searchOption == 'prdt_name'">
-					and p.prdt_name like concat('%', #{searchWord}, '%')
-				</when>
-				<when test="searchOption == 'mid'">
-					and m.mid like concat('%', #{searchWord}, '%')
-				</when>
-			</choose>
-		</if>
-		and p.mno = m.mno
-	</select>
-
-	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
-	insert into product (prdt_name, mno , qty, price, discount, description, reg_date
-						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
-						, desc_img_name, desc_img_path, add_file_name, add_file_path)
-	values(#{prdt_name}, #{mno} , #{qty}, #{price}, #{discount}, #{description}, now()
-			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
-			, #{desc_img_name}, #{desc_img_path}, #{add_file_name}, #{add_file_path})
+	<insert id="option_insert" parameterType="kr.co.handflea.product.ProductDTO">
+	insert into prdt_option (prdt_no, option_contents)
+	values
+		<foreach item="item" collection="arr_option" separator=",">
+			( #{prdt_no}, #{item} )
+		</foreach>
 	</insert>
 
+	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
+	insert into product (prdt_name, mem_no, price, delivery_price, description, reg_date
+						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
+						, desc_img_name, desc_img_path, prdt_rdy, option_yn, bigcate_no, smallcate_no)
+	values(#{prdt_name}, #{mem_no}, #{price}, #{delivery_price}, #{description}, now()
+			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
+			, #{desc_img_name}, #{desc_img_path}, #{prdt_rdy}, #{option_yn}, #{bigcate_no}, #{smallcate_no}) 
+		<selectKey resultType="String" keyProperty="prdt_no" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<select id="smallcateSelect" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
+	select smallcate_no, smallcate_name
+	from smallcate
+	where bigcate_no = #{bigcate_no}
+	</select>
+
+	<select id="bigcateSelect" resultType="kr.co.handflea.product.ProductDTO">
+	select bigcate_no, bigcate_name
+	from bigcate
+	order by bigcate_no
+	</select>
 </mapper>
