@@ -3,7 +3,7 @@ package kr.co.handflea.login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.handflea.MemberDTO;
+import kr.co.handflea.util.dto.MemberDTO;
 
 @Service
 public class LoginService {

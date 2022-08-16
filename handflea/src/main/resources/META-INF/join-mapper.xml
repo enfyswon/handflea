@@ -5,14 +5,14 @@
 
 <mapper namespace="JoinMapper">
 
-	<insert mem_email="join" parameterType="kr.co.handflea.util.dto.MemberDTO">
-	INSERT INTO member ( mem_name, mem_email, mem_pwd, mem_add_1, mem_add_2, mem_add_3, Mem_no )
-	VALUES ( #{ mem_email}, #{mem_pwd}, now()
-		,#{service_agree}, #{info_agree}, #{sms_agree}, #{mem_email_agree}
-		,#{post_code}, #{mem_add_1}, #{mem_add_2}, #{mem_add_3} )
+	<insert id="join" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	INSERT INTO member ( mem_name, mem_email, mem_pwd, pnum, mdate
+		, post_code, add_1, add_2 )
+	VALUES ( #{mem_name}, #{mem_email}, #{mem_pwd}, #{pnum}, now()
+		,#{post_code}, #{add_1}, #{add_2} )
 	</insert>
 
-	<select mem_email="mem_emailCheck" parameterType="java.lang.String" resultType="int">
+	<select id="idCheck" parameterType="java.lang.String" resultType="int">
 	select count(mem_email) cnt
 	from member
 	where mem_email = #{mem_email}

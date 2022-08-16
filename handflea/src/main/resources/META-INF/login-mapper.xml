@@ -5,11 +5,11 @@
 
 <mapper namespace="LoginMapper">
 
-	<select id="login" parameterType="kr.co.handflea.dto.MemberDTO"
+	<select id="login" parameterType="kr.co.handflea.util.dto.MemberDTO"
 						resultType="kr.co.handflea.util.dto.MemberDTO">
-	select Mem_no,  tel,  mem_email;
+	select mem_no, mem_name, mem_email, pnum
 	from member
-	where  mem_emai = #{ mem_emai} and mem_pwd = #{mem_pwd}
+	where mem_email = #{mem_email} and mem_pwd = #{mem_pwd}
 	</select>
 
 </mapper>

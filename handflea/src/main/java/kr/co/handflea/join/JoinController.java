@@ -9,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.handflea.MemberDTO;
-
-
+import kr.co.handflea.util.dto.MemberDTO;
 
 @Controller
 @RequestMapping( value = "/join" )
@@ -31,9 +29,9 @@ public class JoinController {
 	}//join
 
 	@RequestMapping( value = "/id_chk", method = RequestMethod.GET )
-	public void idCheck( String mid, PrintWriter out ) {
+	public void idCheck( String mem_email, PrintWriter out ) {
 		int isYN = 0;
-		isYN = service.idCheck( mid );
+		isYN = service.idCheck( mem_email );
 		out.print(isYN);
 		out.close();
 	}//idCheck
@@ -45,3 +43,25 @@ public class JoinController {
 
 }//class
 
+/*
+drop table member;
+
+create database handfleatest;
+
+CREATE TABLE `member` (
+	`mem_no`	int(11)	primary key auto_increment,
+	`mem_name`	Varchar(100)	NOT NULL,
+	`mem_email`	Varchar(255)	NOT NULL,
+	`mem_pwd`	Varchar(255)	NOT NULL,
+	`mdate` datetime not null,
+    `post_code`	Varchar(100)	NOT NULL,
+	`add_1`	Varchar(100)	NOT NULL,
+	`add_2`	Varchar(100)	NOT NULL,
+	`pnum`	Varchar(100)	NOT NULL,
+	`mem_photo`	Varchar(100)	,
+	`mem_photopath`	Varchar(255)	,
+	`account_no`	Varchar(100)	,
+	`seller_yn`	int(1)	NOT NULL	DEFAULT 0,
+	`bank_no`	int(11)
+);
+*/

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import kr.co.handflea.MemberDTO;
+import kr.co.handflea.util.dto.MemberDTO;
 
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 
@@ -21,7 +21,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		//logger.info("호출된 메소드가 실행되기 전에 실행되는 부분이다.");
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login_info");
-		if( dto == null || dto.getMem_no() == null || dto.getMem_no().equals("") ) {
+		if( dto == null || dto.getMem_email() == null || dto.getMem_email().equals("") ) {
 			response.sendRedirect( request.getContextPath() + "/login_form" );
 			return false;//계속 진행할 메소드 호출 중지.
 		}

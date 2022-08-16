@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="ProductMapper">
+
+	<select id="list" resultType="kr.co.handflea.product.ProductDTO">
+	select mem_no, product_name, product_contents, product_price, option_no
+	from product 
+	</select>
+
+	<insert id="option_insert" parameterType="kr.co.handflea.product.ProductDTO">
+	insert into prdt_option (prdt_no, option_contents)
+	values
+		<foreach item="item" collection="arr_option" separator=",">
+			( #{prdt_no}, #{item} )
+		</foreach>
+	</insert>
+
+	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
+	insert into product (prdt_name, mem_no, price, delivery_price, description, reg_date
+						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
+						, desc_img_name, desc_img_path, prdt_rdy, option_yn, bigcate_no, smallcate_no)
+	values(#{prdt_name}, #{mem_no}, #{price}, #{delivery_price}, #{description}, now()
+			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
+			, #{desc_img_name}, #{desc_img_path}, #{prdt_rdy}, #{option_yn}, #{bigcate_no}, #{smallcate_no}) 
+		<selectKey resultType="String" keyProperty="prdt_no" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<select id="smallcateSelect" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
+	select smallcate_no, smallcate_name
+	from smallcate
+	where bigcate_no = #{bigcate_no}
+	</select>
+
+	<select id="bigcateSelect" resultType="kr.co.handflea.product.ProductDTO">
+	select bigcate_no, bigcate_name
+	from bigcate
+	order by bigcate_no
+	</select>
+</mapper>
