@@ -33,9 +33,17 @@ public class ProductService {
 		return totalCount;
 	}//searchListCount
 	
+	public int option_insert(ProductDTO dto) {
+		int successCount = 0;
+		successCount = dao.option_insert(dto);
+		return successCount;
+	}
+	
 	public int insert(ProductDTO dto) {
 		int successCount = 0;
 		successCount = dao.insert(dto);
+		if(successCount < 1) return successCount;
+		successCount = dao.option_insert(dto);
 		return successCount;
 	}//insert
 
@@ -50,7 +58,5 @@ public class ProductService {
 		list = dao.bigcateSelect();
 		return list;
 	}//bigcateSelect
-
-	
 
 }//class

@@ -78,8 +78,22 @@ public class ProductController {
 		return "/product/list";//jsp file name
 }//list
 	
+	@RequestMapping( value = "option_insert", method = RequestMethod.POST)
+	public void option_insert(ProductDTO dto, HttpSession session, PrintWriter out) {
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		
+		int successCount = 0;
+		successCount = service.option_insert(dto);
+		out.print(successCount);
+		out.close();
+	}//option_insert
+	
 	@RequestMapping( value = "/insert", method = RequestMethod.POST)
 	public void insert(ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
+
+		for (int i = 0; i < dto.getArr_option().length; i++) {
+			System.out.println(dto.getArr_option()[i]);
+		}
 
 		Date today = new Date();
 		DateFormat nalja = new SimpleDateFormat("YYYYMMDD");
@@ -165,31 +179,42 @@ public class ProductController {
 }//class
 
 /*
- drop table product;
- 
- create table product (
-  prdt_no int not null auto_increment,
-  prdt_name varchar(60) not null,
-  mem_no int not null,
-  price int not null,
-  delivery_price int not null,
-  description varchar(1500) default null,
-  view_cnt int default '0',
-  reg_date datetime default null,
-  del_yn int default '0',
-  del_date datetime default null,
-  thumbnail_name varchar(100) not null,
-  thumbnail_path varchar(100) not null,
-  prdt_img_name varchar(100) default null,
-  prdt_img_path varchar(100) default null,
-  desc_img_name varchar(100) default null,
-  desc_img_path varchar(100) default null,
-  prdt_rdy int(5) default '0',
-  option_no int(11),
-  bigcate_no int(11) not null,
-  smallcate_no int(11) not null,
-  primary key (prdt_no)
+drop table product;
+
+CREATE TABLE `product` (
+  `prdt_no` int NOT NULL AUTO_INCREMENT,
+  `prdt_name` varchar(60) NOT NULL,
+  `mem_no` int NOT NULL,
+  `price` int NOT NULL,
+  `delivery_price` int NOT NULL,
+  `description` varchar(1500) DEFAULT NULL,
+  `view_cnt` int DEFAULT '0',
+  `reg_date` datetime DEFAULT NULL,
+  `del_yn` int DEFAULT '0',
+  `del_date` datetime DEFAULT NULL,
+  `thumbnail_name` varchar(100) NOT NULL,
+  `thumbnail_path` varchar(100) NOT NULL,
+  `prdt_img_name` varchar(100) DEFAULT NULL,
+  `prdt_img_path` varchar(100) DEFAULT NULL,
+  `desc_img_name` varchar(100) DEFAULT NULL,
+  `desc_img_path` varchar(100) DEFAULT NULL,
+  `prdt_rdy` int DEFAULT '0',
+  `option_yn` int DEFAULT '0',
+  `bigcate_no` int NOT NULL,
+  `smallcate_no` int NOT NULL,
+  PRIMARY KEY (`prdt_no`)
 );
+
+
+drop table option;
+
+CREATE TABLE `prdt_option` (
+  `option_no` int NOT NULL AUTO_INCREMENT,
+  `prdt_no` int NOT NULL,
+  `option_contents` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`option_no`)
+);
+
 강사님꺼에서 뺸거 : 파일 업로드, 디스카운트, 재고
 추가해야 할 것 : 옵션, 품절여부, 카테고리, 상품준비기간
 */

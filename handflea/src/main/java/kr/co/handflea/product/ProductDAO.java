@@ -37,6 +37,12 @@ public class ProductDAO {
 		return totalCount;
 	}//searchListCount
 	
+	public int option_insert(ProductDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.insert("ProductMapper.option_insert", dto);
+		return successCount;
+	}
+	
 	public int insert(ProductDTO dto) {
 		int successCount = 0;
 		successCount = sqlSession.insert("ProductMapper.insert", dto);

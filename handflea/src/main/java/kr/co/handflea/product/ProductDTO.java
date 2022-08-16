@@ -11,6 +11,7 @@ public class ProductDTO {
 	private String price;
 	private String delivery_price;
 	private String option_no;
+	private String option_contents;
 	private String view_cnt;
 	private String reg_date;
 	private MultipartFile thumbnail;
@@ -35,7 +36,8 @@ public class ProductDTO {
 	private String buy_qty;
 	private String total_price;
 	
-	
+	private String [] arr_option;
+
 	@Override
 	public String toString() {
 		return prdt_no
@@ -127,6 +129,14 @@ public class ProductDTO {
 
 	public void setOption_no(String option_no) {
 		this.option_no = option_no;
+	}
+
+	public String getOption_contents() {
+		return option_contents;
+	}
+
+	public void setOption_contents(String option_contents) {
+		this.option_contents = option_contents;
 	}
 
 	public String getView_cnt() {
@@ -288,8 +298,13 @@ public class ProductDTO {
 	public void setTotal_price(String total_price) {
 		this.total_price = total_price;
 	}
-	
 
-	
+	public String[] getArr_option() {
+		return arr_option;
+	}
+
+	public void setArr_option(String[] arr_option) {
+		this.arr_option = arr_option;
+	}
 	
 }//class
