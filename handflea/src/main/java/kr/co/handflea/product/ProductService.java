@@ -44,7 +44,6 @@ public class ProductService {
 		successCount = dao.insert(dto);
 		if(successCount < 1) return successCount;
 		if (dto.getArr_option() != null && dto.getArr_option().length > 0) {
-			System.out.println("option service");
 			successCount = dao.option_insert(dto);
 		}
 		return successCount;
