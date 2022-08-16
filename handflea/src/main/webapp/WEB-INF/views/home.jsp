@@ -8,9 +8,9 @@
 #product {
 	width: 100%;
 }
-#best {
+.product-list {
 	width: 100%;
-	margin: 10px 0;
+	padding: 20px 0;
 }
 .item-box {
 	width: 100%;
@@ -22,7 +22,10 @@
 	width: 23%;
 	border: 1px solid #cecece;
 }
-.item-card > img {
+.item-card > a {
+	color: black;
+}
+.item-card > a > img {
 	width: 100%;
 }
 .item-detail {
@@ -45,47 +48,102 @@
 	margin-left: 3px;
 	color: #595959;
 }
-#new {
-	margin: 10px 0;
-}
 </style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 		<main>
 			<div id="product">
-				<div id="best">
+				<div class="product-list">
 					<h3>BEST</h3>
 					<div class="item-box">
 						<div class="item-card">
-							<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-							<div class="item-detail">
-								<div>
-									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
 								</div>
-								<h4>상품명</h4>
-								<p>10000원</p>
-								<p>별점</p>
-							</div>
+							</a>
 						</div>
 						<div class="item-card">
-							<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-							<div class="item-detail"></div>
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail"></div>
+							</a>
 						</div>
 						<div class="item-card">
-							<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-							<div class="item-detail"></div>
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail"></div>
+							</a>
 						</div>
 						<div class="item-card">
-							<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-							<div class="item-detail"></div>
+							<a href=#>
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail"></div>
+							</a>
 						</div>
 					</div>
 				</div>
-				<div id="new">
+				<div class="product-list">
 					<h3>NEW</h3>
 					<div class="item-box">
 						<div class="item-card">
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
+								</div>
+							</a>
+						</div>
+						<div class="item-card">
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
+								</div>
+							</a>
+						</div>
+						<div class="item-card">
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
+								</div>
+							</a>
+						</div>
+						<div class="item-card">
+							<a href="#">
+								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
+								</div>
+							</a>
 						</div>
 					</div>
 				</div>

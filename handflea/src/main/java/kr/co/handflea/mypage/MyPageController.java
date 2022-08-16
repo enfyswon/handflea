@@ -16,4 +16,9 @@ public class MyPageController {
 		
 		return "/mypage/mypage";
 	}
+	
+	@RequestMapping(value = "/regist", method = RequestMethod.GET)
+	public String seller_regist() {
+		return "/mypage/seller_regist";
+	}
 }
