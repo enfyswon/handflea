@@ -90,10 +90,12 @@ public class ProductController {
 	
 	@RequestMapping( value = "/insert", method = RequestMethod.POST)
 	public void insert(ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
-
+		
+		dto.setOption_yn("0");
+	
 		for (int i = 0; i < dto.getArr_option().length; i++) {
-			System.out.println(dto.getArr_option()[i]);
-		}
+			dto.setOption_yn("1");
+		}//for
 
 		Date today = new Date();
 		DateFormat nalja = new SimpleDateFormat("YYYYMMDD");
@@ -143,7 +145,6 @@ public class ProductController {
 		}
 
 		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-
 		int successCount = 0;
 		successCount = service.insert(dto);
 		out.print(successCount);

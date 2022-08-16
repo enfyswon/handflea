@@ -21,10 +21,10 @@
 	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
 	insert into product (prdt_name, mem_no, price, delivery_price, description, reg_date
 						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
-						, desc_img_name, desc_img_path, prdt_rdy, bigcate_no, smallcate_no)
+						, desc_img_name, desc_img_path, prdt_rdy, option_yn, bigcate_no, smallcate_no)
 	values(#{prdt_name}, #{mem_no}, #{price}, #{delivery_price}, #{description}, now()
 			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
-			, #{desc_img_name}, #{desc_img_path}, #{prdt_rdy}, #{bigcate_no}, #{smallcate_no}) 
+			, #{desc_img_name}, #{desc_img_path}, #{prdt_rdy}, #{option_yn}, #{bigcate_no}, #{smallcate_no}) 
 		<selectKey resultType="String" keyProperty="prdt_no" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
