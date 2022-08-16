@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>HandFlea</title>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
 <style type="text/css">
 .info-title {
@@ -72,17 +73,20 @@
 					<div class="info-box">
 						<div class="info-line">
 							<div class="info-label">
-								<p>프로필 사진</p>
+								프로필 사진
 							</div>
 							<div class="info-contents">
+								<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
+								사진은 회원님의 게시물이나 리뷰 등에 사용됩니다.
+								<button type="button">사진 변경</button>
 							</div>
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								<p>이메일</p>
+								이메일
 							</div>
 							<div class="info-contents">
-								<p>member Email</p>
+								member Email
 							</div>
 						</div>
 						<div class="info-line">
@@ -95,18 +99,28 @@
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								<p>이름</p>
+								이름
 							</div>
 							<div class="info-contents">
-								<p>member name</p>
+								member name
 							</div>
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								<p>기본 배송지</p>
+								기본 배송지
 							</div>
 							<div class="info-contents">
-								<div></div>
+								<div>
+									<input type="text" id="seller_add_1" name="seller_add_1" placeholder="우편번호">
+									<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
+								</div>
+								<div>
+									<input type="text" id="seller_add_2" name="seller_add_2" placeholder="도로명 주소">
+								</div>
+								<div>
+									<input type="text" id="seller_add_3" name="seller_add_3" placeholder="상세 주소">
+									<input type="text" id="seller_add_4" name="seller_add_4" placeholder="참고항목">
+								</div>
 							</div>
 						</div>
 						<div class="info-line">
@@ -117,6 +131,9 @@
 								<input type="text" id="tel" name="tel">
 							</div>
 						</div>
+						<div class="info-line">
+						이메일, 이름은 수정이 불가능합니다.
+						</div>
 					</div>
 				</div>
 				<div>
@@ -124,15 +141,132 @@
 						<h2>추가 회원 정보</h2>
 						<h2 class="type">선택</h2>
 					</div>
+					<div class="info-line">
+						<div class="info-label">
+							생년월일
+						</div>
+						<div class="info-contents">
+							<p>1997.01.01</p>
+						</div>
+					</div>
+					<div class="info-line">
+						<div class="info-label">
+							환불 계좌
+						</div>
+						<div class="info-contents">
+							<div>
+								<select id="bank" name="bank">
+									<option value="0">--은행 선택--</option>
+								</select>
+							</div>
+							<div>
+								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+							</div>
+						</div>
+					</div>
 				</div>
 				<c:if test="true">
 				<div>
 					<h2>판매자 정보</h2>
+					<div class="info-line">
+						<div class="info-label">
+							발송지
+						</div>
+						<div class="info-contents">
+							<div>
+								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="우편번호">
+								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
+							</div>
+							<div>
+								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="도로명 주소">
+							</div>
+							<div>
+								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="상세 주소">
+								<input type="text" id="seller_add_4" name="seller_add_4" placeholder="참고항목">
+							</div>
+						</div>
+					</div>
+					<div class="info-line">
+						<div class="info-label">
+							인출계좌
+						</div>
+						<div class="info-contents">
+							<div>
+								<select id="bank2" name="bank">
+									<option value="0">--은행 선택--</option>
+								</select>
+								<button type="button" id="account_btn" name="account_btn">환불 계좌 가져오기</button> 
+							</div>
+							<div>
+								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+							</div>
+						</div>
+					</div>
 				</div>
 				</c:if>
 			</div>
 		</main>	
 	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$.get(
+				"${pageContext.request.contextPath}/mypage/bank",
+				function(data, status) {
+					$.each(JSON.parse(data), function(idx, dto) {
+						$("#bank").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+					})
+				}
+		);
+	});
+	$(document).ready(function() {
+		$.get(
+				"${pageContext.request.contextPath}/mypage/bank",
+				function(data, status) {
+					$.each(JSON.parse(data), function(idx, dto) {
+						$("#bank2").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+					})
+				}
+		);
+	});
+	</script>
+	<script>
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				let addr = '';
+				let extraAddr = '';
+				
+				if(data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
+				
+				if(data.userSelectedType === 'R') {
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					
+					if(data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== ''?', ' + data.buildingName : data.buildingName);
+					}
+					
+					if(extraAddr !== '') {
+						extraAddr = '(' + extraAddr + ')';
+					}
+					
+					document.getElementById("seller_add_4").value = extraAddr;
+				} else {
+					document.getElementById("seller_add_4").value = '';
+				}
+				
+				document.getElementById("seller_add_1").value = data.zonecode;
+				document.getElementById("seller_add_2").value = addr;
+				document.getElementById("seller_add_3").focus();
+			}
+		}).open();
+	}
+	</script>
 	</body>
 </html>
