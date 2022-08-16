@@ -14,7 +14,7 @@ public class ReviewDAO {
 	
 	public int write( ReviewDTO dto ) {
 		int successCount = 0;
-		successCount = sqlSession.insert("review_write", dto);
+		successCount = sqlSession.insert("ReviewMapper.write", dto);
 		return successCount;
 	}//write
 

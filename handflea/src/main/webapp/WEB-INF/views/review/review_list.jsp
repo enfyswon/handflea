@@ -32,63 +32,67 @@
 
             <tr style="{$list_bg_color} {$list_char_color}">
                 <td>{$no}</td>
-                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
-
-                <td class="txtLess {$date_display|display}">{$review_contents}</td>
-				<td>{$mem_no}</td>
-                <td class="txtLess {$date_display|display}">{$write_date}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">${review_photo}<span>${option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">${review_contents}</td>
+				<td>${mem_no}</td>
+                <td class="txtLess {$date_display|display}">${write_date}</td>
 				<td class="subject">${dto.star_point}</td>
             </tr>
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
-                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
-                <td class="txtLess {$date_display|display}">{$review_contents}</td>
-				<td>{$mem_no}</td>
-				<td class="txtLess {$date_display|display}">{$write_date}</td>
+                <td>${no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">${review_photo}<span>${option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">${review_contents}</td>
+				<td>${mem_no}</td>
+				<td class="txtLess {$date_display|display}">${write_date}</td>
 				<td class="subject"></td>
-
             </tr>
         </tbody>
         <tbody module="board_fixed_[seq]" class="notice">
 
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
-                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
-                <td class="date {$date_display|display}">{$review_contents}</td>
-				<td>{$mem_no}</td>
-				<td class="txtLess {$date_display|display}">{$write_date}</td>
+                <td>${no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">${review_photo}<span>${option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">${review_contents}</td>
+				<td>${mem_no}</td>
+				<td class="txtLess {$date_display|display}">${write_date}</td>
 				<td class="subject"></td>
-
             </tr>
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
-                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
-                <td class="date {$date_display|display}">{$review_contents}</td>
-				<td>{$mem_no}</td>
-				<td class="txtLess {$date_display|display}">{$write_date}</td>
+                <td>${no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">${review_photo}<span>${option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">${review_contents}</td>
+				<td>${mem_no}</td>
+				<td class="txtLess {$date_display|display}">${write_date}</td>
 				<td class="subject"></td>
             </tr>
         </tbody>
         <tbody module="board_list_[seq]">
 
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
-                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
-				<td class="txtLess {$hit_display|display}">{$review_contents}</td>
-				<td>{$mem_no}</td>
-                <td class="txtLess {$date_display|display}">{$write_date}</td>
-				<td class="subject">
-                </td>
+                <td>${no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">${review_photo}<span>${option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">${review_contents}</td>
+				<td>${mem_no}</td>
+				<td class="txtLess {$date_display|display}">${write_date}</td>
+				<td class="subject"></td>
             </tr>
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
-                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
-                <td class="txtLess {$date_display|display}">{$review_contents}</td>
-				<td>{$mem_no}</td>
-				<td class="txtLess {$date_display|display}">{$write_date}</td>
+                <td>${no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">${review_photo}<span>${option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">${review_contents}</td>
+				<td>${mem_no}</td>
+				<td class="txtLess {$date_display|display}">${write_date}</td>
 				<td class="subject"></td>
             </tr>
         </tbody>
+			<div module="board_paging_[seq]">
+    <p><a href="{$param_prev}"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/common/btn_page_prev.gif" alt="이전 페이지" /></a></p>
+    <ol>
+        <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
+        <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
+    </ol>
+    <p><a href="{$param_next}"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/common/btn_page_next.gif" alt="다음 페이지" /></a></p>
+</div>
         </table>
     </div>
 </html>

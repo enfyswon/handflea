@@ -3,6 +3,8 @@ package kr.co.handflea.review;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping( value = "/write", method = RequestMethod.POST )
-	public void write( ReviewDTO dto, PrintWriter out ) {
+	public void write( ReviewDTO dto, HttpSession session, PrintWriter out ) {
 		int successCount = 0;
 		successCount = service.write(dto);
 		out.print(successCount);
