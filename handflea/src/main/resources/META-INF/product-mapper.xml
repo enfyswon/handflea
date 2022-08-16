@@ -11,8 +11,12 @@
 	</select>
 
 	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
-		insert into product(mem_no, smallcate_no, product_name, product_contents, product_price, option_no, soldout_yn, delete_yn)
-		values(#{mem_no}, #{smallcate_no}, #{product_name}, #{product_contents}, #{product_price}, #{option_no}, #{soldout_yn}, #{delete_yn})   
+	insert into product (prdt_name, mem_no, price, description, reg_date
+						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
+						, desc_img_name, desc_img_path)
+	values(#{prdt_name}, #{mem_no}, #{price}, #{description}, now()
+			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
+			, #{desc_img_name}, #{desc_img_path}) 
 	</insert>
 
 	<select id="smallcateSelect" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">

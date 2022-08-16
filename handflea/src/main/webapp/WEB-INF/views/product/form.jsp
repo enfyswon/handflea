@@ -27,11 +27,17 @@
 			<table class="table table-hover">
 				<tbody>
 					<tr>
-						<th> 상품명 (*)  </th>
+						<th> 상 품 명 (*) </th>
 						<td colspan="3">
-							<input type="text" id="product_name" name="product_name" maxlength="50"
+							<input type="text" id="prdt_name" name="prdt_name" maxlength="20"
 									class="form-control">
-							<label for="product_name" id="product_name_label" class="write_label"></label>
+							<label for="prdt_name" id="prdt_name_label" class="write_label"></label>
+						</td>
+					</tr>
+					<tr>
+						<th> 판 매 자 </th>
+						<td>
+							${login_info.mem_email}
 						</td>
 					</tr>
 					<tr>
@@ -50,17 +56,13 @@
 					<tr>
 						<th> 판매 가격(단위 : 원) (*)  </th>
 						<td>
-							<input type="text" id="product_price" name="product_price" class="form-control">
-							<label for="product_price" id="product_price_label" class="write_label"></label>
+							<input type="text" id="price" name="price" class="form-control">
+							<label for="price" id="price_label" class="write_label"></label>
 						</td>
-					</tr>
-					<tr>
 						<th> 배송비(단위 : 원) (*)  </th>
 						<td>
-							<div>
 							<input type="text" id="delivery_price" name="delivery_price" class="form-control">
 							<label for="delivery_price" id="delivery_price_label" class="write_label"></label>
-							</div>
 						</td>
 					</tr>
 					<tr>
@@ -81,18 +83,30 @@
 						</td>
 					</tr>
 					<tr>
-						<th> 상품 이미지 (*)  </th>
+						<th> 썸 네 일 이 미 지 (*) </th>
 						<td>
-							<input type="file" id="product_photo" name="product_photo" class="form-control">
-							<label for="product_photo" id="product_photo_label" class="write_label"></label>
+							<input type="file" id="thumbnail" name="thumbnail" class="form-control">
+							<label for="thumbnail" id="thumbnail_label" class="write_label"></label>
+						</td>
+						<th> 상 품 상 세 이 미 지 </th>
+						<td>
+							<input type="file" id="prdt_img" name="prdt_img" class="form-control">
+							<label for="prdt_img" id="prdt_img_label" class="write_label"></label>
+						</td>
+					</tr>
+					<tr>
+						<th> 상 품 설 명 이 미 지 </th>
+						<td>
+							<input type="file" id="desc_img" name="desc_img" class="form-control">
+							<label for="desc_img" id="desc_img_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
 						<th> 상품 상세 설명   </th>
 						<td colspan="3">
-							<textarea class="form-contol" id="product_contents" name="product_contents"></textarea>
+							<textarea class="form-contol" id="desc_txt" name="desc_txt"></textarea>
 							<script type="text/javascript">
-							CKEDITOR.replace("product_contents");
+							CKEDITOR.replace("desc_txt");
 							</script>
 						</td>
 					</tr>
@@ -112,20 +126,20 @@
 	$(document).ready(function() {
 		$("#write_btn").click(function() {
 
-			if( $.trim( $("#product_name").val() ) == "" ){
-				$("#product_name_label").text("상품명을 입력 하세요.");
+			if( $.trim( $("#prdt_name").val() ) == "" ){
+				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
-			} else { $("#product_name_label").text(""); }
+			} else { $("#prdt_name_label").text(""); }
 
 			if( $("#smallcate").val() == "0" ){
 				$("#smallcate_label").text("카테고리를 선택하세요");
 				return;
 			} else { $("#smallcate_label").text(""); }
 			
-			if( $("#product_price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
-				$("#product_price_label").text("판매 가격을 입력하세요, 숫자만 허용 됩니다.");
+			if( $("#price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#price_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
 				return;
-			} else { $("#product_price_label").text(""); }
+			} else { $("#price_label").text(""); }
 		
 			if( $("#delivery_price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
 				$("#delivery_price_label").text("배송비를 입력하세요, 숫자만 허용 됩니다.");
@@ -137,19 +151,38 @@
 				return;
 			} else { $("#product_prepare_label").text("해당 기간 내에 출고가 되지 않을 경우, 구매자가 환불을 요청할 수 있습니다."); }
 			
-			let tmp1 = $("#product_photo").val().substring($("#product_photo").val().length-3);
+			let tmp1 = $("#thumbnail").val().substring($("#thumbnail").val().length-3);
 			let tmp1_boolean = (tmp1 == "jpg" || tmp1 == "jpeg" || tmp1 == "gif" || tmp1 == "png"
 								|| tmp1 == "JPG" || tmp1 == "JPEG" || tmp1 == "GIF" || tmp1 == "PNG");
-			if( $.trim( $("#product_photo").val() ) == "" || tmp1_boolean == false ){
-				$("#product_photo_label").text("필수 입력 사항이며, jpg/jpeg/gif/png 파일만 허용 됩니다.");
+			if( $.trim( $("#thumbnail").val() ) == "" || tmp1_boolean == false ){
+				$("#thumbnail_label").text("필수 입력 사항이며, jpg/jpeg/gif/png 파일만 허용 됩니다.");
 				return;
-			} else { $("#product_photo_label").text(""); }
+			} else { $("#thumbnail_label").text(""); }
+
+			let tmp2 = $("#prdt_img").val().substring($("#prdt_img").val().length-3);
+			let tmp2_boolean = (tmp2 == "jpg" || tmp2 == "jpeg" || tmp2 == "gif" || tmp2 == "png"
+				|| tmp2 == "JPG" || tmp2 == "JPEG" || tmp2 == "GIF" || tmp2 == "PNG");
+			if( $.trim( $("#prdt_img").val() ) != "" && tmp2_boolean == false ){
+				$("#prdt_img_label").text("상품이미지는 jpg/jpeg/gif/png 파일만 허용 됩니다.");
+				return;
+			} else { $("#prdt_img_label").text(""); }
+
+			let tmp3 = $("#desc_img").val().substring($("#desc_img").val().length-3);
+			let tmp3_boolean = (tmp3 == "jpg" || tmp3 == "jpeg" || tmp3 == "gif" || tmp3 == "png"
+				|| tmp3 == "JPG" || tmp3 == "JPEG" || tmp3 == "GIF" || tmp3 == "PNG");
+			if( $.trim( $("#desc_img").val() ) != "" && tmp3_boolean == false ){
+				$("#desc_img_label").text("상품이미지는 jpg/jpeg/gif/png 파일만 허용 됩니다.");
+				return;
+			} else { $("#desc_img_label").text(""); }
 			
 			let form = new FormData( document.getElementById( "write_form" ) );
-			form.append( "product_contents", CKEDITOR.instances.desc_txt.getData() );
+			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
 			
 			let keys = form.keys();
 			for(key of keys) console.log(key);
+
+			let values = form.values();
+			for(value of values) console.log(value);
 			
 			$.ajax({
 				type : "POST"

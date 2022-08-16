@@ -154,5 +154,5 @@ public class ProductController {
   primary key (prdt_no)
 );
 강사님꺼에서 뺸거 : 파일 업로드, 디스카운트, 재고
-추가해야 할 것 : 옵션, 품절여부
+추가해야 할 것 : 옵션, 품절여부, 카테고리, 상품준비기간
 */
