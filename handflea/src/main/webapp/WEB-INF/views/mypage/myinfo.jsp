@@ -154,14 +154,10 @@
 							환불 계좌
 						</div>
 						<div class="info-contents">
-							<div>
-								<select id="bank" name="bank">
-									<option value="0">--은행 선택--</option>
-								</select>
-							</div>
-							<div>
-								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
-							</div>
+							<select id="bank" name="bank">
+								<option value="0">--은행 선택--</option>
+							</select>
+							<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
 						</div>
 					</div>
 				</div>
@@ -191,15 +187,10 @@
 							인출계좌
 						</div>
 						<div class="info-contents">
-							<div>
-								<select id="bank2" name="bank">
-									<option value="0">--은행 선택--</option>
-								</select>
-								<button type="button" id="account_btn" name="account_btn">환불 계좌 가져오기</button> 
-							</div>
-							<div>
-								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
-							</div>
+							<select id="bank2" name="bank">
+								<option value="0">--은행 선택--</option>
+							</select>
+							<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
 						</div>
 					</div>
 				</div>
