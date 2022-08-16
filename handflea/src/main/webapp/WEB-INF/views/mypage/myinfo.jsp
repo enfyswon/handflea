@@ -9,6 +9,9 @@
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
 <style type="text/css">
+.info {
+	margin-bottom: 2%;
+}
 .info-title {
 	display: inline-flex;
 	flex-direction: row;
@@ -23,13 +26,38 @@
 	display: flex;
 	flex-direction: row;
 	border-top: 1px solid #595959;
+	padding: 10px 0 ;
 }
 .info-label {
 	width: 20%;
 	text-align: center;
+	display: flex;
+	align-items: center;
+}
+#info-guide {
+	font-size: small;
+	margin-left: 10%;
 }
 .info-contents {
 	width: 80%;
+}
+.info-contents > img {
+	width: 100px;
+}
+.info-contents input {
+	margin-top: 5px;
+	padding: 5px;
+}
+#add_btn {
+	background-color: #0F8BFF;
+	color: white;
+	outline: 0;
+	border: 0;
+	width: 100px;
+	height: 30px;
+	border-radius: 4px;
+}
+#button-box {
 }
 </style>
 	</head>
@@ -57,7 +85,7 @@
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
 						<c:if test="false">
 						<h4>판매자 메뉴</h4>
-						<a href="#">상품 등록 / 관리</a>
+						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
 						<a href="#">판매 내역</a>
 						<a href="#">정산</a>
 						</c:if>
@@ -65,7 +93,7 @@
 				</div>
 			</div>
 			<div id="main-content">
-				<div id="info">
+				<div class="info">
 					<div class="info-title">
 						<h2>기본 회원 정보</h2>
 						<h2 class="type">필수</h2>
@@ -73,7 +101,7 @@
 					<div class="info-box">
 						<div class="info-line">
 							<div class="info-label">
-								프로필 사진
+								<p>프로필 사진</p>
 							</div>
 							<div class="info-contents">
 								<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
@@ -83,7 +111,7 @@
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								이메일
+								<p>이메일</p>
 							</div>
 							<div class="info-contents">
 								${login_info.mem_email}
@@ -99,7 +127,7 @@
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								이름
+								<p>이름</p>
 							</div>
 							<div class="info-contents">
 								${login_info.mem_name}
@@ -107,7 +135,7 @@
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								기본 배송지
+								<p>기본 배송지</p>
 							</div>
 							<div class="info-contents">
 								<div>
@@ -128,22 +156,22 @@
 								<label for="tel">휴대폰 번호</label>
 							</div>
 							<div class="info-contents">
-								<input type="text" id="tel" name="tel">
+								<input type="text" id="pnum" name="pnum">
 							</div>
 						</div>
 						<div class="info-line">
-						이메일, 이름은 수정이 불가능합니다.
+							<p id="info-guide">이메일, 이름은 수정이 불가능합니다.</p>
 						</div>
 					</div>
 				</div>
-				<div>
+				<div class="info">
 					<div class="info-title">
 						<h2>추가 회원 정보</h2>
 						<h2 class="type">선택</h2>
 					</div>
 					<div class="info-line">
 						<div class="info-label">
-							생년월일
+							<p>생년월일</p>
 						</div>
 						<div class="info-contents">
 							<p>1997.01.01</p>
@@ -151,7 +179,7 @@
 					</div>
 					<div class="info-line">
 						<div class="info-label">
-							환불 계좌
+							<p>환불 계좌</p>
 						</div>
 						<div class="info-contents">
 							<select id="bank" name="bank">
@@ -162,11 +190,11 @@
 					</div>
 				</div>
 				<c:if test="true">
-				<div>
+				<div class="info">
 					<h2>판매자 정보</h2>
 					<div class="info-line">
 						<div class="info-label">
-							발송지
+							<p>발송지</p>
 						</div>
 						<div class="info-contents">
 							<div>
@@ -184,7 +212,7 @@
 					</div>
 					<div class="info-line">
 						<div class="info-label">
-							인출계좌
+							<p>인출계좌</p>
 						</div>
 						<div class="info-contents">
 							<select id="bank2" name="bank">
@@ -195,6 +223,10 @@
 					</div>
 				</div>
 				</c:if>
+				<div id="button-box">
+					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
+					<button type="button" id="save_btn" name="save_btn">저장</button>
+				</div>
 			</div>
 		</main>	
 	

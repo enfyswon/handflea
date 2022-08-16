@@ -9,34 +9,70 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style type="text/css">
+* {
+	margin : 0 auto;
+	padding : 0;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+main {
+	width: 70%;
+	margin-top : 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+a {
+	text-decoration: none;
+}
+img {
+	width: 40%;
+}
+.mem-input input {
+	padding: 5px;
+	width: 30%;
+	margin-top: 5px;
+}
+#login_btn {
+	background-color: #0F8BFF;
+	color: white;
+	font-size: medium;
+	width: 30%;
+	border: 0;
+	border-radius: 5px;
+	outline: 0;
+	padding: 5px;
+	margin-top: 10px;
+}
+#mem_search {
+	font-size: small;
+	color: #c3c3c3;
+	float: right;
+}
+</style>
 	</head>
 	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> 로그인 </h3>
-		<hr>
-		<table class="table table-hover">
-			<tbody>
-				<tr>
-					<th> 이 메 일 </th>
-					<td>
-						<input type="text" id="mem_email" name="mem_email" maxlength="20" class="form-control" value="test@naver.com">
-					</td>
-				</tr>
-				<tr>
-					<th> 패 스 워 드 </th>
-					<td>
-						<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" class="form-control" value="1111">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<button id="login_btn" type="button" class="btn btn-primary float-right"> 로 그 인 </button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
+		<main>
+			<div>
+				<a href="${pageContext.request.contextPath}/home">
+					<img alt="logo" src="${pageContext.request.contextPath}/resources/img/logo.png">
+				</a>
+				<h4>로그인</h4>
+			</div>
+			<div class="mem-input">
+				<input type="text" id="mem_email" name="mem_email" maxlength="20" placeholder="이메일" value="test@naver.com">
+			</div>
+			<div class="mem-input">
+				<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" placeholder="비밀번호" value="1111">
+			</div>
+			<div>
+				<button id="login_btn">로그인</button>
+			</div>
+			<div>
+				<a href="#" id="mem_search">아이디/비밀번호 찾기</a>
+			</div>
+		</main>
+		
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#login_btn").click(function() {
