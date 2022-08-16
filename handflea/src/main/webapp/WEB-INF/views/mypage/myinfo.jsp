@@ -41,8 +41,8 @@
 				<div id="profile">
 					<h3>My Page</h3>
 					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
-					<p>member name 님</p>
-					<p style="font-size: small; margin-bottom: 10px;">member Email</p>
+					<p>${login_info.mem_name} 님</p>
+					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
 				</div>
 				<div id="menu-box">
 					<div id="menu-link">
@@ -86,7 +86,7 @@
 								이메일
 							</div>
 							<div class="info-contents">
-								member Email
+								${login_info.mem_email}
 							</div>
 						</div>
 						<div class="info-line">
@@ -102,7 +102,7 @@
 								이름
 							</div>
 							<div class="info-contents">
-								member name
+								${login_info.mem_name}
 							</div>
 						</div>
 						<div class="info-line">
