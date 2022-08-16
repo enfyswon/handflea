@@ -1,84 +1,94 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>  </title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	</head>
-	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h4> 상품 후기 </h4>
-		<hr>
-		<form action="${pageContext.request.contextPath}/board/free/final_list" method="get">
-			<div class="input-group">
-			</div>
-		</form>
-		<hr>
-		<table class="table table-hover">
-			<tbody> 
-			<c:forEach items="${list}" var="list">
-            <tr>
-                <td><c:out value="${list.bno}"/></td>
-				<td><c:out value="${list.writer}"/></td>
-                <td><c:out value="${list.contents}"/></td>
-                <td><c:out value="${list.regdate}"/></td>
-                <td><c:out value="${list.updateDate}"/></td>
+<head>
+<meta charset="utf-8">
+<title>list</title>
+</head>
+    <div class="myList">
+        <table border="1" summary="">
+        <h3>상품 후기</h3>
+        <colgroup module="board_listheader_[seq]">
+            <col style="width:70px;" />
+            <col style="width:134px;" />
+            <col style="width:135px;" class="{$config.is_category|display}" />
+            <col style="width:auto;" />
+            <col style="width:84px;" />
+            <col style="width:80px;" class="{$config.use_date|display}" />
+            <col style="width:55px;" class="{$config.use_cnt|display}" />
+            <col style="width:55px;" class="{$config.is_use_recom|display}" />
+            <col style="width:80px;" class="{$config.is_use_point|display}" />
+        </colgroup>
+        <thead module="board_listheader_[seq]">
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <th scope="col" class="thumb">번호</th>
+                <th scope="col">사진/옵션</th>
+                <th scope="col" class="{$config.use_date|display}">후기</th>
+				<th scope="col">작성자</th>
+                <th scope="col" class="{$config.is_use_point|display}">작성일</th>
+                <th scope="col">별점</th>				
             </tr>
-       		</c:forEach>
-						
-							<a href="${pageContext.request.contextPath}/board/free/detail?review_no=${dto.review_no}">
-								${dto.star_point}
-							</a>
-						</td>
-					</tr>
-			</tbody>
-		</table>
-		<hr>
+        </thead>
+        <tbody module="board_notice_[seq]" class="notice">
 
-		<ul class="pagination">
-			<c:if test="${startPageNum > 10}">
-				<li class="page-item">
-					<a class="page-link"
-						href="${pageContext.request.contextPath}/board/free/final_list?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
-						Previous
-					</a>
-				</li>
-			</c:if>
-			<c:forEach var="page_no" begin="${startPageNum}" end="${endPageNum}">
-				<c:choose>
-					<c:when test="${page_no == userWantPage}">
-						<li class="page-item active">
-							<a class="page-link" href="#">${page_no}</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item">
-							<a class="page-link"
-								href="${pageContext.request.contextPath}/board/free/final_list?userWantPage=${page_no}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
-								${page_no}
-							</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${lastPageNum > endPageNum}">
-				<li class="page-item">
-					<a class="page-link"
-						href="${pageContext.request.contextPath}/board/free/final_list?userWantPage=${endPageNum+1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
-						Next
-					</a>
-				</li>
-			</c:if>
-		</ul>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
 
-		<hr>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
-	</body>
+                <td class="txtLess {$date_display|display}">{$review_contents}</td>
+				<td>{$mem_no}</td>
+                <td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject">${dto.star_point}</td>
+            </tr>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">{$review_contents}</td>
+				<td>{$mem_no}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+
+            </tr>
+        </tbody>
+        <tbody module="board_fixed_[seq]" class="notice">
+
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
+                <td class="date {$date_display|display}">{$review_contents}</td>
+				<td>{$mem_no}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+
+            </tr>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
+                <td class="date {$date_display|display}">{$review_contents}</td>
+				<td>{$mem_no}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+            </tr>
+        </tbody>
+        <tbody module="board_list_[seq]">
+
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
+				<td class="txtLess {$hit_display|display}">{$review_contents}</td>
+				<td>{$mem_no}</td>
+                <td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject">
+                </td>
+            </tr>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$review_photo}<span>{$option_no}</span></a></td>
+                <td class="txtLess {$date_display|display}">{$review_contents}</td>
+				<td>{$mem_no}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
 </html>

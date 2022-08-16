@@ -1,40 +1,87 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 목록</title>
-<%@ include file="/WEB-INF/views/header.jsp" %>
-<script>
-    $(document).ready(function(){
-        $("#btnWrite").click(function(){
-            // 페이지 주소 변경(이동)
-            location.href = "${path}/v/write.do";
-        });
-    });
-</script>
+<meta charset="utf-8">
+<title>list</title>
 </head>
-<body>
-<%@ include file="/WEB-INF/views/header.jsp" %> 
-<!-- menu.jsp로 변경 -->
-    <h3>내가 작성한 후기</h3>
-    <table border="1" width="600px">
-        <tr>
-            <th>상품정보</th>
-            <th>내용</th>
-			<th>평가</th>
-			<th>작성일</th>
-        </tr>
-        <c:forEach items="${review_mylist}" var="data">
-        <tr>
-            <td>${row.bno}</td>
-            <td><a href="${path}/board/view.do?bno=${row.bno}">${row.contents}</a></td>
-            <td>${row.star_point}</td>
-            <td>
-                <formatDate value="${row.regdate}" pattern="YYYYMMdd"/>
-            </td>
-        </tr>    
-        </c:forEach>
-</table>
-</body>
+    <div class="myList">
+        <table border="1" summary="">
+        <h3>내가 작성한 후기</h3>
+        <colgroup module="board_listheader_[seq]">
+            <col style="width:70px;" />
+            <col style="width:134px;" />
+            <col style="width:135px;" class="{$config.is_category|display}" />
+            <col style="width:auto;" />
+            <col style="width:84px;" />
+            <col style="width:80px;" class="{$config.use_date|display}" />
+            <col style="width:55px;" class="{$config.use_cnt|display}" />
+            <col style="width:55px;" class="{$config.is_use_recom|display}" />
+            <col style="width:80px;" class="{$config.is_use_point|display}" />
+        </colgroup>
+        <thead module="board_listheader_[seq]">
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <th scope="col">번호</th>
+              <th scope="col" class="thumb">상품정보</th>
+                <th scope="col">후기</th>
+              <th scope="col" class="{$config.use_date|display}">작성일</th>
+                <th scope="col">별점</th>
+            </tr>
+        </thead>
+        <tbody module="board_notice_[seq]" class="notice">
+
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
+
+                <td class="txtLess {$date_display|display}">{$review_contents}</td>
+                <td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject">${dto.star_point}</td>
+            </tr>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
+                <td class="txtLess {$date_display|display}">{$review_contents}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+
+            </tr>
+        </tbody>
+        <tbody module="board_fixed_[seq]" class="notice">
+
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
+                <td class="date {$date_display|display}">{$review_contents}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+
+            </tr>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
+                <td class="date {$date_display|display}">{$review_contents}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+            </tr>
+        </tbody>
+        <tbody module="board_list_[seq]">
+
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
+				<td class="txtLess {$hit_display|display}">{$review_contents}</td>
+                <td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject">
+                </td>
+            </tr>
+            <tr style="{$list_bg_color} {$list_char_color}">
+                <td>{$no}</td>
+                <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
+                <td class="txtLess {$date_display|display}">{$review_contents}</td>
+				<td class="txtLess {$date_display|display}">{$write_date}</td>
+				<td class="subject"></td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
 </html>
