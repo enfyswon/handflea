@@ -177,6 +177,10 @@ public class ProductController {
 		out.close();
 	}//bigcateSelect
 	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail() {
+		return "/product/detail";
+	}
 }//class
 
 /*

@@ -10,67 +10,121 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/member_style.css">
 		<style type="text/css">
-		#mem_pwd_label, #rempwd_label, #tel1_label, #mem_name_label {
-			color : red;
-		}
+.mem-input h6 {
+	text-align: left;
+	padding-top: 10px;
+}
+.check-input {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+}
+.check-input input{
+	width: 70%;
+	margin-right: 3px;
+}
+.check-input button {
+	width: 30%;
+	height: 38px;
+	border-radius: 4px;
+}
+#add-box {
+	display: flex;
+	flex-direction: row;
+}
+#add-box > #add_2 {
+	width: 70%;
+	margin-right: 3px;
+}
+#add-box > #add_3 {
+	width: 30%;
+}
+#mem_pwd_label, #rempwd_label, #tel1_label, #mem_name_label {
+	color : red;
+}
+#terms-box {
+	width: 30%;
+	margin-top: 20px;
+	text-align: left;
+}
+#terms-box > hr {
+	border: 0;
+	height: 1px;
+	background-color: #808080;
+	margin: 5px 0;
+}
+#join_btn {
+	width: 100%;
+	border-radius: 5px;
+	margin-top: 20px;
+	padding: 5px;
+}
+input[type="checkbox"] {
+	margin-right: 5px;
+}
 		</style>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script type="text/javascript">
-		$(document).ready(function() {
-			$("#addr_btn").click(function() {
-
-			    new daum.Postcode({
-			        oncomplete: function(data) {//data : 다음에서 주는 결과 값.
-			        	$("#post_code").val(data.zonecode);
-			        	$("#add_1").val(data.address);
-			        }//call back function
-			    }).open();
-
-			});//click
-		});//ready
-		</script>
 	</head>
 	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> 회원 가입 </h3>
-		<hr>
+		<main>
+			<div>
+				<a href="${pageContext.request.contextPath}/home">
+					<img alt="logo" src="${pageContext.request.contextPath}/resources/img/logo.png">
+				</a>
+				<h4>회원가입</h4>
+			</div>
+			<div class="mem-input">
+				<h6>이름</h6>
+				<input type="text" id="mem_name" name="mem_name" maxlength="20" placeholder="이름을 입력해주세요">
+				<label for="mem_name" id="mem_name_label"></label>
+			</div>
+			<div class="mem-input">
+				<h6>이메일</h6>
+				<div class="check-input">
+					<input type="text" id="mem_email" name="mem_email" maxlength="40" placeholder="이메일을 입력해주세요">
+					<button id="id_btn">중복 체크</button>
+				</div>
+				<label for="mem_email" id="mem_email_label"></label>
+			</div>
+			<div class="mem-input">
+				<h6>비밀번호</h6>
+				<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" placeholder="비밀번호를 입력해주세요">
+				<label for="mem_pwd" id="mem_pwd_label"></label>
+				<input type="password" id="rempwd" name="rempwd" maxlength="20" placeholder="비밀번호를 다시 입력해주세요">
+				<label for="rempwd" id="rempwd_label"></label>
+			</div>
+			<div class="mem-input">
+				<h6>기본 배송지</h6>
+				<div class="check-input">
+					<input type="text" id="post_code" name="post_code" readonly="readonly" placeholder="우편번호">
+					<button type="button" id="addr_btn" onclick="DaumPostcode()">우편번호 검색</button>
+				</div>
+				<input type="text" id="add_1" name="add_1" readonly="readonly" placeholder="주소">
+				<div id="add-box">
+					<input type="text" id="add_2" name="add_2" placeholder="상세주소">
+					<input type="text" id="add_3" name="add_3" placeholder="참고항목">
+				</div>
+			</div>
+			<div class="mem-input">
+				<h6>전화번호</h6>
+				<input type="text" id="tel" name="tel" maxlength="12" placeholder="휴대전화 번호를 '-'없이 입력해주세요">
+			</div>
+			<div id="terms-box">
+				<input type="checkbox" name="selectAll" onclick="selectAll(this)"> 필수 내용 모두 동의합니다.
+				<hr>
+				<input type="checkbox" name="terms" onclick="checkSelectAll()"> 만 14세 이상입니다. (필수)<br>
+				<input type="checkbox" name="terms" onclick="checkSelectAll()"> 이용약관 필수 동의 (필수)<br>
+				<input type="checkbox" name="terms" onclick="checkSelectAll()"> 개인정보 수집 및 이용 동의 (필수)
+			</div>
+			<div class="mem-input">
+				<button id="join_btn">회원가입</button>
+			</div>
+		</main>
 		<table class="table table-hover">
 			<tbody>
-				<tr>
-					<th> 이 름 </th>
-					<td>
-						<input type="text" id="mem_name" name="mem_name" maxlength="20" class="form-control">
-						<label for="mem_name" id="mem_name_label"></label>
-					</td>
-				</tr>
-				<tr>
-					<th> 이 메 일 </th>
-					<td>
-						<div class="input-group">
-							<input type="text" id="mem_email" name="mem_email" maxlength="30" class="form-control">
-							<div class="input-group-append">
-								<button id="id_btn" class="btn btn-primary"> 아 이 디 중 복 체 크 </button>
-							</div>
-						</div>
-						<label for="mem_email" id="mem_email_label"></label>
-					</td>
-				</tr>
-				<tr>
-					<th> 비 밀 번 호 </th>
-					<td>
-						<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" class="form-control">
-						<label for="mem_pwd" id="mem_pwd_label"></label>
-					</td>
-				</tr>
-				<tr>
-					<th> 비 밀 번 호 확 인 </th>
-					<td>
-						<input type="password" id="rempwd" name="rempwd" maxlength="20" class="form-control">
-						<label for="rempwd" id="rempwd_label"></label>
-					</td>
-				</tr>
 				<tr>
 					<th> 전 화 번 호 </th>
 					<td>
@@ -85,33 +139,12 @@
 						<label for="tel1" id="tel1_label"></label>
 					</td>
 				</tr>
-				<tr>
-					<th> 주 소 </th>
-					<td>
-						<div class="input-group">
-							<span class="input-group-text"> 우 편 번 호 </span>
-							<input type="text" id="post_code" name="post_code" readonly="readonly"
-									class="form-control">
-							<button id="addr_btn" class="btn btn-primary"> 주 소 검 색 </button>
-						</div>
-						<div class="input-group">
-							<span class="input-group-text"> 주 소 </span>
-							<input type="text" id="add_1" name="add_1" readonly="readonly"
-									class="form-control">
-						</div>
-						<div class="input-group">
-							<span class="input-group-text"> 상 세 주 소 </span>
-							<input type="text" id="add_2" name="add_2" class="form-control">
-						</div>
-					</td>
-				</tr>
 			</tbody>
 		</table>
 		<div class="clearfix">
 			<button id="join_btn" class="btn btn-primary float-right"> 회 원 가 입 </button>
 		</div>
 		<hr>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
 	let checkedID = "";
 	let onlyNum = /^[0-9]+$/;
@@ -121,7 +154,6 @@
 
 	$(document).ready(function() {
 		$("#join_btn").click(function() {
-			
 			if( $("#mem_name").val() == "" ){//null.
 				$("#mem_name_label").text("이름을 입력해 주세요.");
 				return;
@@ -165,7 +197,7 @@
 						, tel3 : $("#tel3").val()
 						, post_code : $("#post_code").val()
 						, add_1 : $("#add_1").val()
-						, add_2 : $("#add_2").val()
+						, add_2 : $("#add_2").val() + ' ' + $("#add_3").val()
 					}
 					, function(data, status) {
 						if(data == 1){
@@ -210,6 +242,70 @@
 
 		});//click
 	});//ready
+	
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				let addr = '';
+				let extraAddr = '';
+				
+				if(data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
+				
+				if(data.userSelectedType === 'R') {
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					
+					if(data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== ''?', ' + data.buildingName : data.buildingName);
+					}
+					
+					if(extraAddr !== '') {
+						extraAddr = '(' + extraAddr + ')';
+					}
+					
+					document.getElementById("add_3").value = extraAddr;
+				} else {
+					document.getElementById("add_3").value = '';
+				}
+				
+				document.getElementById("post_code").value = data.zonecode;
+				document.getElementById("add_1").value = addr;
+				document.getElementById("add_2").focus();
+			}
+		}).open();
+	}
+	
+	function checkSelectAll()  {
+		  const checkboxes 
+		    = document.querySelectorAll('input[name="terms"]');
+		  // 선택된 체크박스
+		  const checked 
+		    = document.querySelectorAll('input[name="terms"]:checked');
+		  // select all 체크박스
+		  const selectAll 
+		    = document.querySelector('input[name="selectAll"]');
+		  
+		  if(checkboxes.length === checked.length)  {
+		    selectAll.checked = true;
+		  }else {
+		    selectAll.checked = false;
+		  }
+
+		}
+
+		function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.getElementsByName('terms');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
 	</script>
 	</body>
 </html>

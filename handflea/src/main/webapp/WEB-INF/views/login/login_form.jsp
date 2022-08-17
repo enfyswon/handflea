@@ -6,50 +6,10 @@
 		<meta charset="UTF-8">
 		<title> 로그인 </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-<style type="text/css">
-* {
-	margin : 0 auto;
-	padding : 0;
-	font-family: 'IBM Plex Sans KR', sans-serif;
-}
-main {
-	width: 70%;
-	margin-top : 20px;
-	margin-bottom: 20px;
-	text-align: center;
-}
-a {
-	text-decoration: none;
-}
-img {
-	width: 40%;
-}
-.mem-input input {
-	padding: 5px;
-	width: 30%;
-	margin-top: 5px;
-}
-#login_btn {
-	background-color: #0F8BFF;
-	color: white;
-	font-size: medium;
-	width: 30%;
-	border: 0;
-	border-radius: 5px;
-	outline: 0;
-	padding: 5px;
-	margin-top: 10px;
-}
-#mem_search {
-	font-size: small;
-	color: #c3c3c3;
-	float: right;
-}
-</style>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/member_style.css">
 	</head>
 	<body>
 		<main>
@@ -65,10 +25,10 @@ img {
 			<div class="mem-input">
 				<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" placeholder="비밀번호" value="1111">
 			</div>
-			<div>
+			<div class="mem-input">
 				<button id="login_btn">로그인</button>
 			</div>
-			<div>
+			<div class="mem-input">
 				<a href="#" id="mem_search">아이디/비밀번호 찾기</a>
 			</div>
 		</main>
