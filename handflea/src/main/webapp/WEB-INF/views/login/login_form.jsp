@@ -14,7 +14,7 @@
 	<body>
 		<main>
 			<div>
-				<a href="${pageContext.request.contextPath}/home">
+				<a href="${pageContext.request.contextPath}/main">
 					<img alt="logo" src="${pageContext.request.contextPath}/resources/img/logo.png">
 				</a>
 				<h4>로그인</h4>

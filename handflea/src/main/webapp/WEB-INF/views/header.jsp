@@ -71,7 +71,7 @@
 				<div id="navMenu">
 					<ul id="big-menu">
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/list?bigcate_no=1">
 								<span>디저트</span>
 							</a>
 							<ul class="small-menu">
