@@ -165,7 +165,12 @@
 					</div>
 				</div>
 			</div>
-			
+			<div>
+				상품 설명
+			</div>
+			<div>
+				상품 후기
+			</div>
 		</main>
 	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
