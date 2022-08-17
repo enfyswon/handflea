@@ -22,8 +22,8 @@
 			<div id="top-header">
 				<c:choose>
 					<c:when test="${login_info != null && login_info.mem_email != null}">
-						<a class="top-item" href="${pageContext.request.contextPath}/logout""> 로그아웃 </a>
-						<a class="top-item" href="${pageContext.request.contextPath}/mypage/"> 마이페이지 </a>
+						<a class="top-item" href="${pageContext.request.contextPath}/logout"> 로그아웃 </a>
+						<a class="top-item" href="${pageContext.request.contextPath}/mypage"> 마이페이지 </a>
 						<span class="top-item" style="color:lime;">${login_info.mem_name}님</span>
 					</c:when>
 					<c:otherwise>
@@ -34,7 +34,7 @@
 			</div>
 			<div id="middle-header">
 				<div id="logo-bar">
-					<a href="${pageContext.request.contextPath}/product/main">
+					<a href="${pageContext.request.contextPath}/main">
 						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>

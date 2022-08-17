@@ -31,6 +31,7 @@
 }
 .item-card > a > img {
 	width: 100%;
+	height: 450px;
 }
 .item-detail {
 	border-top: 1px solid #cecece;

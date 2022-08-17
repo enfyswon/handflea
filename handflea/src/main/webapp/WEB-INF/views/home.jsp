@@ -27,6 +27,7 @@
 }
 .item-card > a > img {
 	width: 100%;
+	height: 500px;
 }
 .item-detail {
 	border-top: 1px solid #cecece;

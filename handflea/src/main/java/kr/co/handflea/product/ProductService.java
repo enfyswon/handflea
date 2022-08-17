@@ -27,7 +27,7 @@ public class ProductService {
 		List<ProductDTO> list = null;
 		list = dao.main();
 		return list;
-	}
+	}//main
 	
 	public List<ProductDTO> searchList( SearchDTO dto ) {
 		List<ProductDTO> list = null;
