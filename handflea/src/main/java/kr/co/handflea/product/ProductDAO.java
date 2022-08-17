@@ -15,11 +15,11 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<ProductDTO> list() {
-		List<ProductDTO> list = null;
-		list = sqlSession.selectList("ProductMapper.list");
-		return list;
-	}
+	public ProductDTO detail( String prdt_no ) {
+		ProductDTO dto = null;
+		dto = sqlSession.selectOne("ProductMapper.detail", prdt_no);
+		return dto;
+	}//detail
 	
 	public void incrementViewCnt( String prdt_no ) {
 		sqlSession.update("ProductMapper.incrementViewCnt", prdt_no);

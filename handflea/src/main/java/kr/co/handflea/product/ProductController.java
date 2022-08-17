@@ -39,6 +39,14 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
+	@RequestMapping( value = "/detail", method = RequestMethod.GET )
+	public String detail( String prdt_no, Model model ) {
+		ProductDTO dto = null;
+		dto = service.detail( prdt_no );
+		model.addAttribute("detail_dto", dto);
+		return "/product/detail";//jsp file name
+	}//detail
+	
 	@RequestMapping( value = "/list", method = RequestMethod.GET )
 	public String list( Model model, String userWantPage, SearchDTO dto ) {
 		if( userWantPage == null || userWantPage.equals("") ) userWantPage = "1";

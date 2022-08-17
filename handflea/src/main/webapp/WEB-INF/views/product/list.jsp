@@ -64,7 +64,7 @@
 					<div class="item-box">
 					<c:forEach var="dto" items="${list}">
 						<div class="item-card">
-							<a href="#">
+							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
 								<img alt="product_img" src="${dto.thumbnail_path}">
 								<div class="item-detail">
 									<div>

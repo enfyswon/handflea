@@ -15,6 +15,14 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
+	public ProductDTO detail( String prdt_no ) {
+		dao.incrementViewCnt( prdt_no );
+
+		ProductDTO dto = null;
+		dto = dao.detail( prdt_no );
+		return dto;
+	}//detail
+	
 	public List<ProductDTO> searchList( SearchDTO dto ) {
 		List<ProductDTO> list = null;
 		list = dao.searchList( dto );
