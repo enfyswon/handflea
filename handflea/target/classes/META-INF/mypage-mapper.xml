@@ -8,5 +8,4 @@
 	<select id="bankSelect"	resultType="kr.co.handflea.util.dto.BankDTO">
 	select bank_no, bank_name from bank;
 	</select>
-
 </mapper>

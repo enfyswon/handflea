@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+main {
+	display: flex;
+	flex-direction: row;
+}
 #side {
 	width: 15%;
 	margin: 0 1%;

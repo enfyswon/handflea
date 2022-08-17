@@ -16,8 +16,8 @@
 				<div id="profile">
 					<h3>My Page</h3>
 					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
-					<p>member name 님</p>
-					<p style="font-size: small; margin-bottom: 10px;">member Email</p>
+					<p>${login_info.mem_name} 님</p>
+					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
 				</div>
 				<div id="menu-box">
 					<div id="menu-link">
@@ -28,11 +28,11 @@
 						<a href="#">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
-						<a href="${pageContext.request.contextPath}/mypage/myinfo">회원정보 변경</a>
+						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
 						<c:if test="false">
 						<h4>판매자 메뉴</h4>
-						<a href="#">상품 등록 / 관리</a>
+						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
 						<a href="#">판매 내역</a>
 						<a href="#">정산</a>
 						</c:if>
@@ -105,6 +105,15 @@
 	});
 	</script>
 	<script>
+	function pwd_ch() {
+		var userinput = prompt("비밀번호를 입력해주세요.");
+		if ("${login_info.mem_pwd}" == userinput) {
+			location.href="${pageContext.request.contextPath}/mypage/myinfo";
+		} else {
+			alert("비밀번호가 틀렸습니다.");
+			location.href="${pageContext.request.contextPath}/mypage/";
+		}
+	}
 	function DaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
