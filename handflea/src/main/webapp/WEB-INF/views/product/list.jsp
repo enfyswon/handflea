@@ -19,10 +19,12 @@
 	display: flex;
 	flex-direction: row;
 	margin: 10px 0;
+	flex-wrap: wrap;
 }
 .item-card {
 	width: 23%;
 	border: 1px solid #cecece;
+	margin-bottom: 30px;
 }
 .item-card > a {
 	color: black;
@@ -58,7 +60,7 @@
 		<main>
 			<div id="product">
 				<div class="product-list">
-					<h3>BEST</h3>
+					<h3>NEW</h3>
 					<div class="item-box">
 					<c:forEach var="dto" items="${list}">
 						<div class="item-card">
@@ -77,6 +79,7 @@
 					</c:forEach>	
 					</div>
 				</div>
+			</div>	
 		</main>
 		
 	<%@ include file="/WEB-INF/views/footer.jsp" %>	
