@@ -47,7 +47,7 @@
 #add-box > #add_3 {
 	width: 30%;
 }
-#mem_pwd_label, #rempwd_label, #tel1_label, #mem_name_label {
+#mem_pwd_label, #rempwd_label, #pnum_label, #mem_name_label, #add_2_label, #terms_label {
 	color : red;
 }
 #terms-box {
@@ -61,10 +61,14 @@
 	background-color: #808080;
 	margin: 5px 0;
 }
+#terms-box > label {
+	font-size: small;
+}
 #join_btn {
 	width: 100%;
 	border-radius: 5px;
 	margin-top: 20px;
+	margin-bottom: 50px;
 	padding: 5px;
 }
 input[type="checkbox"] {
@@ -111,41 +115,26 @@ input[type="checkbox"] {
 					<input type="text" id="add_2" name="add_2" placeholder="상세주소">
 					<input type="text" id="add_3" name="add_3" placeholder="참고항목">
 				</div>
+				<label for="add_2" id="add_2_label"></label>
 			</div>
 			<div class="mem-input">
 				<h6>전화번호</h6>
-				<input type="text" id="tel" name="tel" maxlength="12" placeholder="휴대전화 번호를 '-'없이 입력해주세요">
+				<input type="text" id="pnum" name="pnum" maxlength="12" placeholder="휴대전화 번호를 '-'없이 입력해주세요">
+				<label for="pnum" id="pnum_label"></label>
 			</div>
 			<div id="terms-box">
-				<input type="checkbox" name="selectAll" onclick="selectAll(this)"> 필수 내용 모두 동의합니다.
+				<input type="checkbox" id="selectAll" name="selectAll" onclick="selectAll(this)"> 필수 내용 모두 동의합니다.
 				<hr>
 				<input type="checkbox" name="terms" onclick="checkSelectAll()"> 만 14세 이상입니다. (필수)<br>
 				<input type="checkbox" name="terms" onclick="checkSelectAll()"> 이용약관 필수 동의 (필수)<br>
 				<input type="checkbox" name="terms" onclick="checkSelectAll()"> 개인정보 수집 및 이용 동의 (필수)
+				<label id="terms_label"></label>
 			</div>
 			<div class="mem-input">
 				<button id="join_btn">회원가입</button>
 			</div>
 		</main>
-		<table class="table table-hover">
-			<tbody>
-				<tr>
-					<th> 전 화 번 호 </th>
-					<td>
-						<div class="input-group">
-							<input type="text" id="tel1" name="tel1" maxlength="3" class="form-control"
-									placeholder="010">
-							<input type="text" id="tel2" name="tel2" maxlength="4" class="form-control"
-									placeholder="1234">
-							<input type="text" id="tel3" name="tel3" maxlength="4" class="form-control"
-									placeholder="5678">
-						</div>
-						<label for="tel1" id="tel1_label"></label>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<hr>
+		
 	<script type="text/javascript">
 	let checkedID = "";
 	let onlyNum = /^[0-9]+$/;
@@ -175,17 +164,32 @@ input[type="checkbox"] {
 				$("#rempwd_label").text("비밀번호와 비밀번호 확인이 서로 다릅니다.");
 				return;
 			} else { $("#rempwd_label").text(""); }
-
-			let tmpTel1 = $.trim( $("#tel1").val() );
-			let tmpTel2 = $.trim( $("#tel2").val() );
-			let tmpTel3 = $.trim( $("#tel3").val() );
-
-			if( ( tmpTel1 != "" && tmpTel1.match(onlyNum) == null )
-				|| ( tmpTel2 != "" && tmpTel2.match(onlyNum) == null )
-				|| ( tmpTel3 != "" && tmpTel3.match(onlyNum) == null ) ){
-				$("#tel1_label").text("숫자만 허용 됩니다.");
+			
+			if( $("#add_2").val() == "") {
+				$("#add_2_label").text("상세주소를 입력해주세요.");
 				return;
-			} else { $("#tel1_label").text(""); }
+			} else { $("#add_2_label").text(""); }
+
+			let pnum = $.trim($("#pnum").val());
+			
+			if (pnum == "") {
+				$("#pnum_label").text("전화번호를 입력해주세요.");
+				return;
+			} else { $("#pnum_label").text(""); }
+
+			if( ( pnum != "" && pnum.match(onlyNum) == null )){
+				$("#pnum_label").text("숫자만 허용 됩니다.");
+				return;
+			} else { $("#pnum_label").text(""); }
+
+			if (!$("#selectAll").is(':checked')) {
+				$("#terms_label").text("필수 사항을 모두 체크해야합니다.");
+				return;
+			} else { $("#terms_label").text(""); }
+			
+			let tmptel1 = pnum.substring(0, 3);
+			let tmptel2 = pnum.substring(3, 7);
+			let tmptel3 = pnum.substring(7, 11);
 
 			$.post(
 					"${pageContext.request.contextPath}/join/"
@@ -193,9 +197,9 @@ input[type="checkbox"] {
 						mem_name : $("#mem_name").val()
 						, mem_email : $("#mem_email").val()
 						, mem_pwd : $("#mem_pwd").val()
-						, tel1 : $("#tel1").val()
-						, tel2 : $("#tel2").val()
-						, tel3 : $("#tel3").val()
+						, tel1 : tmptel1
+						, tel2 : tmptel2
+						, tel3 : tmptel3
 						, post_code : $("#post_code").val()
 						, add_1 : $("#add_1").val()
 						, add_2 : $("#add_2").val() + ' ' + $("#add_3").val()
