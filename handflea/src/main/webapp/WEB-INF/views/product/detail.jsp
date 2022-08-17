@@ -91,6 +91,7 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 	
+		<input type="text" id="prdt_no" value="${detail_dto.prdt_no}" hidden="hidden">
 		<main>
 			<div id="prdt-outline">
 				<div id="prdt-img">
@@ -141,8 +142,8 @@
 							옵션
 						</div>
 						<div class="element-value">
-							<select>
-								<option>--선택하세요--</option>
+							<select id="option_no" name="option_no">
+								<option value="0" selected="selected">옵션을 선택하세요.</option>
 							</select>
 						</div>
 					</div>
@@ -172,7 +173,20 @@
 				상품 후기
 			</div>
 		</main>
-	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/option"
+					, { prdt_no : $("#prdt_no").val() }
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#option_no").append("<option value='" + dto.option_no + "'>" + dto.option_contents + "</option>");
+						});//each
+					}//call back function
+		);//get
+	});//ready
+	</script>
+	
 	</body>
 </html>

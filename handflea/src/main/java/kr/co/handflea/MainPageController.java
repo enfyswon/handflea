@@ -55,7 +55,7 @@ public class MainPageController {
 		dto.setLimitNum( ( Integer.parseInt(userWantPage) - 1 ) * 10  );
 
 		List<ProductDTO> list = null;
-		list = service.searchList( dto );
+		list = service.main( dto );
 		model.addAttribute("list", list);
 		model.addAttribute("search_dto", dto);
 		return "main";//jsp file name

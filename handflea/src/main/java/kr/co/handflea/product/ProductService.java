@@ -15,6 +15,12 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
+	public List<ProductDTO> option_contents(String prdt_no) {
+		List<ProductDTO> list = null;
+		list = dao.option_contents(prdt_no);
+		return list;
+	}//option_contents
+	
 	public ProductDTO detail( String prdt_no ) {
 		dao.incrementViewCnt( prdt_no );
 
@@ -23,15 +29,15 @@ public class ProductService {
 		return dto;
 	}//detail
 	
-	public List<ProductDTO> main() {
+	public List<ProductDTO> list() {
 		List<ProductDTO> list = null;
-		list = dao.main();
+		list = dao.list();
 		return list;
-	}//main
+	}//list
 	
-	public List<ProductDTO> searchList( SearchDTO dto ) {
+	public List<ProductDTO> main( SearchDTO dto ) {
 		List<ProductDTO> list = null;
-		list = dao.searchList( dto );
+		list = dao.main( dto );
 		return list;
 	}//searchList
 

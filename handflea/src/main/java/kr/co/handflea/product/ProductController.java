@@ -38,6 +38,19 @@ public class ProductController {
 	
 	@Autowired             
 	private ProductService service;
+
+	@RequestMapping( value = "/option", method = RequestMethod.GET)
+	public void option_contents( String prdt_no ,PrintWriter out ) {
+		System.out.println(prdt_no);
+		List<ProductDTO> list = null;
+		list = service.option_contents( prdt_no );
+
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(list);
+		
+		out.print(jsonString);
+		out.close();
+	}//option_contents
 	
 	@RequestMapping( value = "/detail", method = RequestMethod.GET )
 	public String detail( String prdt_no, Model model ) {
@@ -51,7 +64,7 @@ public class ProductController {
 	public String main( Model model ) {
 		
 		List<ProductDTO> list = null;
-		list = service.main();
+		list = service.list();
 		model.addAttribute("list", list);
 		return "/product/list";//jsp file name
 		

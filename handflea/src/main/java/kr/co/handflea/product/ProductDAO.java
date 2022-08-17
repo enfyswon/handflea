@@ -15,15 +15,21 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public List<ProductDTO> option_contents(String prdt_no) {
+		List<ProductDTO> list = null;
+		list = sqlSession.selectList("ProductMapper.option_contents", prdt_no);
+		return list;
+	}//option_contents
+	
 	public ProductDTO detail( String prdt_no ) {
 		ProductDTO dto = null;
 		dto = sqlSession.selectOne("ProductMapper.detail", prdt_no);
 		return dto;
 	}//detail
 	
-	public List<ProductDTO> main() {
+	public List<ProductDTO> list() {
 		List<ProductDTO> list = null;
-		list = sqlSession.selectList("ProductMapper.main");
+		list = sqlSession.selectList("ProductMapper.list");
 		return list;
 	}
 	
@@ -31,9 +37,9 @@ public class ProductDAO {
 		sqlSession.update("ProductMapper.incrementViewCnt", prdt_no);
 	}//incrementViewCnt
 
-	public List<ProductDTO> searchList( SearchDTO dto ) {
+	public List<ProductDTO> main( SearchDTO dto ) {
 		List<ProductDTO> list = null;
-		list = sqlSession.selectList("ProductMapper.selectList", dto);
+		list = sqlSession.selectList("ProductMapper.main", dto);
 		return list;
 	}//searchList
 
