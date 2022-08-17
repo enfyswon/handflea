@@ -52,6 +52,10 @@
 	display: block;
 	margin: 0;
 }
+.info-contents label {
+	font-size: small;
+	color: red;
+}
 #add_btn {
 	background-color: #0F8BFF;
 	color: white;
@@ -171,6 +175,7 @@
 								<div>
 									<input type="text" id="add_2" name="add_2" placeholder="상세 주소" value="${login_info.add_2}">
 									<input type="text" id="add_3" name="add_3" placeholder="참고항목">
+									<label id="add_label" for="add_2"></label>
 								</div>
 							</div>
 						</div>
@@ -180,6 +185,7 @@
 							</div>
 							<div class="info-contents">
 								<input type="text" id="pnum" name="pnum" value="${login_info.pnum}" placeholder="휴대폰 번호 '-'없이 입력">
+								<label id="pnum_label" for="pnum"></label>
 							</div>
 						</div>
 						<div class="info-line">
@@ -201,6 +207,7 @@
 								<option value="0">--은행 선택--</option>
 							</select>
 							<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+							<label id="account_no_label" for="account_no"></label>
 						</div>
 					</div>
 				</div>
@@ -283,15 +290,67 @@
 	});
 	$(document).ready(function() {
 		let pwd = ${login_info.mem_pwd};
-		$.POST(
-				"",
-				{
-					mem_pwd: pwd
-				},
-				function(data, status) {
-					
-				}
-		);
+		let onlyPwd = /^[a-z0-9~!@#$%^&*().]+$/;
+		let onlyNum = /^[0-9]+$/;
+		$("#save_btn").click(function() {
+			if ($("#mem_pwd").val() != "") {
+				if( $("#mem_pwd").val().match(onlyPwd) == null ){//허용되지 않은 글자는 null.
+					$("#mem_pwd_label").text("영문 소문자, 숫자, 특수 문자만 허용 됩니다.");
+					return;
+				} else { $("#mem_pwd_label").text(""); }
+
+				if( $("#mem_pwd").val() != $("#repwd").val() ){
+					$("#mem_pwd_label").text("비밀번호와 비밀번호 확인이 서로 다릅니다.");
+					return;
+				} else { $("#mem_pwd_label").text(""); }
+				pwd = $("#mem_pwd").val();
+			} else { $("#mem_pwd_label").text(""); }
+			
+			if( $("#add_2").val() == "") {
+				$("#add_label").text("상세주소를 입력해주세요.");
+				return;
+			} else { $("#add_label").text(""); }
+
+			let pnum = $.trim($("#pnum").val());
+			
+			if (pnum == "") {
+				$("#pnum_label").text("전화번호를 입력해주세요.");
+				return;
+			} else { $("#pnum_label").text(""); }
+
+			if( ( pnum != "" && pnum.match(onlyNum) == null )){
+				$("#pnum_label").text("숫자만 허용 됩니다.");
+				return;
+			} else { $("#pnum_label").text(""); }
+			
+			let tmptel1 = pnum.substring(0, 3);
+			let tmptel2 = pnum.substring(3, 7);
+			let tmptel3 = pnum.substring(7, 11);
+			
+			let account = $.trim($("#account_no").val());
+			
+			if (account != "" && account.match(onlyNum) == null) {
+				$("#account_no_label").text("숫자만 허용됩니다.");
+				return;
+			} else { $("#account_no_label").text(''); }
+			
+			return;
+			$.post(
+					"${pageContext.request.contextPath}/mypage/info_update",
+					{
+						mem_pwd : pwd,
+						post_code : $("#post_code").val(),
+						add_1 : $("#add_1").val(),
+						add_2 : $("#add_2").val() + ' ' + $("#add_3").val(),
+						pnum : tmptel1 + "-" + tmptel2 + "-" + tmptel3,
+						bank_no : $("#bank").val(),
+						account_no : account
+					},
+					function(data, status) {
+						
+					}
+			);
+		});
 	});
 	</script>
 	<script>
