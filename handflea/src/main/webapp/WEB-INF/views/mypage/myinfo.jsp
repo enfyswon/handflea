@@ -48,6 +48,10 @@
 	margin-top: 5px;
 	padding: 5px;
 }
+#mem_pwd {
+	display: block;
+	margin: 0;
+}
 #add_btn {
 	background-color: #0F8BFF;
 	color: white;
@@ -58,6 +62,23 @@
 	border-radius: 4px;
 }
 #button-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+#button-box button {
+	margin: 0;
+	padding: 5px;
+	width: 100px;
+	border-radius: 4px;
+}
+#quit_btn {
+	background-color: #f4f4f4;
+}
+#save_btn {
+	background-color: #333333;
+	color: white;
 }
 </style>
 	</head>
@@ -81,7 +102,7 @@
 						<a href="#">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
-						<a href="${pageContext.request.contextPath}/mypage/myinfo">회원정보 변경</a>
+						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
 						<c:if test="false">
 						<h4>판매자 메뉴</h4>
@@ -106,7 +127,7 @@
 							<div class="info-contents">
 								<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
 								사진은 회원님의 게시물이나 리뷰 등에 사용됩니다.
-								<button type="button">사진 변경</button>
+								<button type="button" id="photo_btn">사진 변경</button>
 							</div>
 						</div>
 						<div class="info-line">
@@ -123,6 +144,8 @@
 							</div>
 							<div class="info-contents">
 								<input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호">
+								<input type="password" id="repwd" name="repwd" placeholder="비밀번호 확인">
+								<label for="mem_pwd" id="mem_pwd_label"></label>
 							</div>
 						</div>
 						<div class="info-line">
@@ -139,24 +162,24 @@
 							</div>
 							<div class="info-contents">
 								<div>
-									<input type="text" id="seller_add_1" name="seller_add_1" placeholder="우편번호">
+									<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" value="${login_info.post_code}">
 									<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
 								</div>
 								<div>
-									<input type="text" id="seller_add_2" name="seller_add_2" placeholder="도로명 주소">
+									<input type="text" id="add_1" name="add_1" placeholder="도로명 주소" readonly="readonly" value="${login_info.add_1}">
 								</div>
 								<div>
-									<input type="text" id="seller_add_3" name="seller_add_3" placeholder="상세 주소">
-									<input type="text" id="seller_add_4" name="seller_add_4" placeholder="참고항목">
+									<input type="text" id="add_2" name="add_2" placeholder="상세 주소" value="${login_info.add_2}">
+									<input type="text" id="add_3" name="add_3" placeholder="참고항목">
 								</div>
 							</div>
 						</div>
 						<div class="info-line">
 							<div class="info-label">
-								<label for="tel">휴대폰 번호</label>
+								<label for="pnum">휴대폰 번호</label>
 							</div>
 							<div class="info-contents">
-								<input type="text" id="pnum" name="pnum">
+								<input type="text" id="pnum" name="pnum" value="${login_info.pnum}" placeholder="휴대폰 번호 '-'없이 입력">
 							</div>
 						</div>
 						<div class="info-line">
@@ -171,14 +194,6 @@
 					</div>
 					<div class="info-line">
 						<div class="info-label">
-							<p>생년월일</p>
-						</div>
-						<div class="info-contents">
-							<p>1997.01.01</p>
-						</div>
-					</div>
-					<div class="info-line">
-						<div class="info-label">
 							<p>환불 계좌</p>
 						</div>
 						<div class="info-contents">
@@ -189,7 +204,7 @@
 						</div>
 					</div>
 				</div>
-				<c:if test="true">
+				<c:if test="${login_info.seller_yn}">
 				<div class="info">
 					<h2>판매자 정보</h2>
 					<div class="info-line">
@@ -198,15 +213,15 @@
 						</div>
 						<div class="info-contents">
 							<div>
-								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="우편번호">
+								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호">
 								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
-								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="도로명 주소">
+								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소">
 							</div>
 							<div>
-								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="상세 주소">
-								<input type="text" id="seller_add_4" name="seller_add_4" placeholder="참고항목">
+								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소">
+								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="참고항목">
 							</div>
 						</div>
 					</div>
@@ -233,6 +248,20 @@
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		var addr = $("#add_2").val();
+		var pos = addr.lastIndexOf(' ');
+		if (pos != -1) {
+			var extraaddr = addr.substring(pos+1);
+			var add2 = addr.substring(0, pos);
+			$("#add_2").val(add2);
+			$("#add_3").val(extraaddr);
+		}
+		let tmppnum = $("#pnum").val();
+		var tel = tmppnum.split('-');
+		let pnum = tel[0] + tel[1] + tel[2];
+		$("#pnum").val(pnum);
+	});
+	$(document).ready(function() {
 		$.get(
 				"${pageContext.request.contextPath}/mypage/bank",
 				function(data, status) {
@@ -252,8 +281,29 @@
 				}
 		);
 	});
+	$(document).ready(function() {
+		let pwd = ${login_info.mem_pwd};
+		$.POST(
+				"",
+				{
+					mem_pwd: pwd
+				},
+				function(data, status) {
+					
+				}
+		);
+	});
 	</script>
 	<script>
+	function pwd_ch() {
+		var userinput = prompt("비밀번호를 입력해주세요.");
+		if ("${login_info.mem_pwd}" == userinput) {
+			location.href="${pageContext.request.contextPath}/mypage/myinfo";
+		} else {
+			alert("비밀번호가 틀렸습니다.");
+			location.href="${pageContext.request.contextPath}/mypage/";
+		}
+	}
 	function DaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {

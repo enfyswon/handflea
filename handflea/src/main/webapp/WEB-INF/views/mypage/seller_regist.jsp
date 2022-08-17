@@ -28,7 +28,7 @@
 						<a href="#">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
-						<a href="${pageContext.request.contextPath}/mypage/myinfo">회원정보 변경</a>
+						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
 						<c:if test="false">
 						<h4>판매자 메뉴</h4>
@@ -105,6 +105,15 @@
 	});
 	</script>
 	<script>
+	function pwd_ch() {
+		var userinput = prompt("비밀번호를 입력해주세요.");
+		if ("${login_info.mem_pwd}" == userinput) {
+			location.href="${pageContext.request.contextPath}/mypage/myinfo";
+		} else {
+			alert("비밀번호가 틀렸습니다.");
+			location.href="${pageContext.request.contextPath}/mypage/";
+		}
+	}
 	function DaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {

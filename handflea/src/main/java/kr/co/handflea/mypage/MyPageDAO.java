@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.handflea.util.dto.BankDTO;
+import kr.co.handflea.util.dto.MemberDTO;
 
 @Repository
 public class MyPageDAO {
@@ -19,5 +20,4 @@ public class MyPageDAO {
 		list = sqlSession.selectList("MyPageMapper.bankSelect");
 		return list;
 	}
-
 }

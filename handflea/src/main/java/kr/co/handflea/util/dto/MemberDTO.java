@@ -16,6 +16,10 @@ public class MemberDTO {
 	private String post_code;
 	private String add_1;
 	private String add_2;
+	
+	private String seller_yn;
+	private String bank_no;
+	private String account_no;
 
 	@Override
 	public String toString() {
@@ -128,10 +132,29 @@ public class MemberDTO {
 	public void setAdd_2(String add_2) {
 		this.add_2 = add_2;
 	}
-	
 
-	
+	public String getSeller_yn() {
+		return seller_yn;
+	}
 
-	
+	public void setSeller_yn(String seller_yn) {
+		this.seller_yn = seller_yn;
+	}
 
+	public String getBank_no() {
+		return bank_no;
+	}
+
+	public void setBank_no(String bank_no) {
+		this.bank_no = bank_no;
+	}
+
+	public String getAccount_no() {
+		return account_no;
+	}
+
+	public void setAccount_no(String account_no) {
+		this.account_no = account_no;
+	}
+	
 }//class
