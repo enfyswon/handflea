@@ -8,6 +8,8 @@ public class MemberDTO {
 	private String mem_pwd;
 	private String pnum;
 	private String mdate;
+	private String mem_photo;
+	private String mem_photopath;
 
 	private String tel1;
 	private String tel2;
@@ -83,6 +85,22 @@ public class MemberDTO {
 
 	public void setMdate(String mdate) {
 		this.mdate = mdate;
+	}
+	
+	public String getMem_photo() {
+		return mem_photo;
+	}
+
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
+	}
+
+	public String getMem_photopath() {
+		return mem_photopath;
+	}
+
+	public void setMem_photopath(String mem_photopath) {
+		this.mem_photopath = mem_photopath;
 	}
 
 	public String getTel1() {
