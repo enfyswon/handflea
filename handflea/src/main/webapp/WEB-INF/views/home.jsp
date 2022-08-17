@@ -73,19 +73,40 @@
 						<div class="item-card">
 							<a href="#">
 								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-								<div class="item-detail"></div>
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
+								</div>
 							</a>
 						</div>
 						<div class="item-card">
 							<a href="#">
 								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-								<div class="item-detail"></div>
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>
+								</div>
 							</a>
 						</div>
 						<div class="item-card">
 							<a href=#>
 								<img alt="product_img" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
-								<div class="item-detail"></div>
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>판매자명</p>
+									</div>
+									<h4>상품명</h4>
+									<p>10000원</p>
+									<p>별점</p>	
+								</div>
 							</a>
 						</div>
 					</div>

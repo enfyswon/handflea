@@ -29,7 +29,7 @@
 					<tr>
 						<th> 상 품 명 (*) </th>
 						<td colspan="3">
-							<input type="text" id="prdt_name" name="prdt_name" maxlength="50"
+							<input type="text" id="prdt_name" name="prdt_name" maxlength="40"
 									class="form-control">
 							<label for="prdt_name" id="prdt_name_label" class="write_label"></label>
 						</td>
@@ -131,7 +131,7 @@
 			for( let i=0; i < tmpArr2.length; i++ ){
 				arr_option2.push( tmpArr2[i].value );
 			}
-/*
+
 			if( $.trim( $("#prdt_name").val() ) == "" ){
 				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
@@ -180,7 +180,7 @@
 				$("#desc_img_label").text("상품이미지는 jpg/jpeg/gif/png 파일만 허용 됩니다.");
 				return;
 			} else { $("#desc_img_label").text(""); }
-*/
+
 			let form = new FormData( document.getElementById( "write_form" ) );
 			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
 			form.append( "arr_option", arr_option2 );

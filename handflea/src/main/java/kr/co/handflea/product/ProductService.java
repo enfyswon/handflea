@@ -15,12 +15,6 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
-	public List<ProductDTO> list() {
-		List<ProductDTO> list = null;
-		list = dao.list();
-		return list;
-	}
-	
 	public List<ProductDTO> searchList( SearchDTO dto ) {
 		List<ProductDTO> list = null;
 		list = dao.searchList( dto );
