@@ -36,7 +36,7 @@ public class ProductController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
-	@Autowired
+	@Autowired             
 	private ProductService service;
 	
 	@RequestMapping( value = "/detail", method = RequestMethod.GET )
@@ -47,7 +47,17 @@ public class ProductController {
 		return "/product/detail";//jsp file name
 	}//detail
 	
-	@RequestMapping( value = "/list", method = RequestMethod.GET )
+	@RequestMapping( value = "/list", method = RequestMethod.GET)
+	public String main( Model model ) {
+		
+		List<ProductDTO> list = null;
+		list = service.main();
+		model.addAttribute("list", list);
+		return "/product/list";//jsp file name
+		
+	}//main
+	
+	@RequestMapping( value = "/main", method = RequestMethod.GET )
 	public String list( Model model, String userWantPage, SearchDTO dto ) {
 		if( userWantPage == null || userWantPage.equals("") ) userWantPage = "1";
 		int totalCount = 0, startPageNum = 1, endPageNum = 10, lastPageNum = 1;
@@ -83,7 +93,7 @@ public class ProductController {
 		list = service.searchList( dto );
 		model.addAttribute("list", list);
 		model.addAttribute("search_dto", dto);
-		return "/product/list";//jsp file name
+		return "/main";//jsp file name
 }//list
 	
 	@RequestMapping( value = "option_insert", method = RequestMethod.POST)

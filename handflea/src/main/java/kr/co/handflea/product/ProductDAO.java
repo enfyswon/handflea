@@ -21,6 +21,12 @@ public class ProductDAO {
 		return dto;
 	}//detail
 	
+	public List<ProductDTO> main() {
+		List<ProductDTO> list = null;
+		list = sqlSession.selectList("ProductMapper.main");
+		return list;
+	}
+	
 	public void incrementViewCnt( String prdt_no ) {
 		sqlSession.update("ProductMapper.incrementViewCnt", prdt_no);
 	}//incrementViewCnt

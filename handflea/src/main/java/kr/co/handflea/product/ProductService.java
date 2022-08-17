@@ -23,6 +23,12 @@ public class ProductService {
 		return dto;
 	}//detail
 	
+	public List<ProductDTO> main() {
+		List<ProductDTO> list = null;
+		list = dao.main();
+		return list;
+	}
+	
 	public List<ProductDTO> searchList( SearchDTO dto ) {
 		List<ProductDTO> list = null;
 		list = dao.searchList( dto );

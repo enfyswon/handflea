@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 상품 목록 </title>
+<title> MainPage </title>
 <style type="text/css">
 #product {
 	width: 100%;
