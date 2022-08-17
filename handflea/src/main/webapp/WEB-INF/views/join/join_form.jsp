@@ -17,6 +17,11 @@
 	text-align: left;
 	padding-top: 10px;
 }
+.mem-input label {
+	text-align: left;
+	font-size: small;
+	left: auto;
+}
 .check-input {
 	display: flex;
 	flex-direction: row;
@@ -92,7 +97,6 @@ input[type="checkbox"] {
 			<div class="mem-input">
 				<h6>비밀번호</h6>
 				<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" placeholder="비밀번호를 입력해주세요">
-				<label for="mem_pwd" id="mem_pwd_label"></label>
 				<input type="password" id="rempwd" name="rempwd" maxlength="20" placeholder="비밀번호를 다시 입력해주세요">
 				<label for="rempwd" id="rempwd_label"></label>
 			</div>
@@ -141,9 +145,6 @@ input[type="checkbox"] {
 				</tr>
 			</tbody>
 		</table>
-		<div class="clearfix">
-			<button id="join_btn" class="btn btn-primary float-right"> 회 원 가 입 </button>
-		</div>
 		<hr>
 	<script type="text/javascript">
 	let checkedID = "";
@@ -166,9 +167,9 @@ input[type="checkbox"] {
 			} else { $("#mem_email_label").text(""); }
 
 			if( $("#mem_pwd").val().match(onlyPwd) == null ){//허용되지 않은 글자는 null.
-				$("#mem_pwd_label").text("영문 소문자, 숫자, 특수 문자만 허용 됩니다.");
+				$("#rempwd_label").text("영문 소문자, 숫자, 특수 문자만 허용 됩니다.");
 				return;
-			} else { $("#mem_pwd_label").text(""); }
+			} else { $("#rempwd_label").text(""); }
 
 			if( $("#mem_pwd").val() != $("#rempwd").val() ){
 				$("#rempwd_label").text("비밀번호와 비밀번호 확인이 서로 다릅니다.");

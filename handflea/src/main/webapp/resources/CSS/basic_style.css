@@ -14,6 +14,10 @@ ul {
 li {
 	list-style: none;
 }
+button {
+	outline: 0;
+	border: 0;
+}
 #header {
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
 }
@@ -168,18 +172,18 @@ main {
 #footer-main {
 	width: 80%;
 	padding-top : 20px;
+	display: flex;
+	flex-direction: row;
 }
 #footer-logo {
-	display: inline-block;
-	float : left;
+	width: 25%;
+	text-align: center;
 }
 #footer-logo>img {
 	width : 200px;
 }
 .footer-cnts {
-	display: inline-block;
-	margin : 0 5% 3% 5%;
-	float : left;
+	width: 35%;
 }
 .footer-cnts>p {
 	font-size: small;
