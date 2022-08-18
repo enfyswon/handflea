@@ -11,4 +11,21 @@
 	where chat_no in (select max(chat_no) from chat group by chat_roomno) and (send_mem_no = #{mem_no} or recv_mem_no = #{mem_no})
 	order by chat_no desc
 	</select>
+	
+	<select id="unreadCnt" parameterType="kr.co.handflea.chat.ChatDTO" resultType="Int">
+	select count(chat_no) cnt from chat
+	where recv_mem_no = #{mem_no} and chat_yn = 0 and chat_roomno = #{chat_roomno}
+	</select>
+	
+	<select id="getName" parameterType="kr.co.handflea.chat.ChatDTO" resultType="java.lang.String">
+	select mem_name from member
+	<choose>
+		<when test="send_mem_no == mem_no">
+			where mem_no = #{recv_mem_no}
+		</when>
+		<otherwise>
+			where mem_no = #{send_mem_no}
+		</otherwise>
+	</choose>
+	</select>
 </mapper>

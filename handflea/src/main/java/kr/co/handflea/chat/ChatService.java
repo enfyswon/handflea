@@ -11,9 +11,9 @@ public class ChatService {
 	@Autowired
 	ChatDAO dao;
 
-	public List<ChatDTO> ajaxList(String send_mem_no) {
+	public List<ChatDTO> ajaxList(String mem_no) {
 		List<ChatDTO> list = null;
-		list = dao.ajaxList(send_mem_no);
+		list = dao.ajaxList(mem_no);
 		
 		return list;
 	}

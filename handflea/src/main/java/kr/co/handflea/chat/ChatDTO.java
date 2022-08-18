@@ -9,6 +9,7 @@ public class ChatDTO {
 	private String chat_date;
 	private String chat_photo;
 	private String chat_photopath;
+	private String chat_contents;
 	
 	private String other_no;
 	private String other_name;
@@ -62,6 +63,12 @@ public class ChatDTO {
 	}
 	public void setChat_photopath(String chat_photopath) {
 		this.chat_photopath = chat_photopath;
+	}
+	public String getChat_contents() {
+		return chat_contents;
+	}
+	public void setChat_contents(String chat_contents) {
+		this.chat_contents = chat_contents;
 	}
 	public String getOther_no() {
 		return other_no;
