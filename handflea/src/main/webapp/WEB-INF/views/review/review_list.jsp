@@ -2,7 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
 <title>list</title>
+<link type="text/css" rel="stylesheet" href="css/reset.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="css/js-load.css" media="screen" />
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/js-load.js"></script>
 </head>
     <div class="myList">
         <table border="1" summary="">
@@ -85,14 +92,10 @@
 				<td class="subject"></td>
             </tr>
         </tbody>
-			<div module="board_paging_[seq]">
-    <p><a href="{$param_prev}"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/common/btn_page_prev.gif" alt="이전 페이지" /></a></p>
-    <ol>
-        <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
-        <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
-    </ol>
-    <p><a href="{$param_next}"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/common/btn_page_next.gif" alt="다음 페이지" /></a></p>
-</div>
+
+				
+
+			
         </table>
     </div>
 </html>
