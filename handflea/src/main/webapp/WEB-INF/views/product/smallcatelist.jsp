@@ -34,7 +34,7 @@
 	height: 450px;
 }
 .item-detail {
-	border-top: 1px solid #cecece;
+	
 }
 .item-detail > p {
 	font-size: small;
