@@ -15,6 +15,12 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public int option_update(ProductDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.update("ProductMapper.option_update", dto);
+		return successCount;
+	}//option_insert
+	
 	public int update(ProductDTO dto) {
 		int successCount = 0;
 		successCount = sqlSession.update("ProductMapper.update", dto);

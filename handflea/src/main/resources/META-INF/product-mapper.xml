@@ -5,12 +5,23 @@
  
 <mapper namespace="ProductMapper">
 	
+	<update id="option_update" parameterType="kr.co.handflea.product.ProductDTO">
+	update prdt_option set (prdt_no, option_contents)
+
+		<foreach item="item" collection="arr_option" separator=",">
+			( #{prdt_no}, #{item} )
+		</foreach>
+		
+		
+	</update>
+	
 	<update id="update" parameterType="kr.co.handflea.product.ProductDTO">
 	update product
 	set prdt_name = #{prdt_name}
 		, price = #{price}
 		, delivery_price = #{delivery_price}
 		, description = #{description}
+		, prdt_rdy = #{prdt_rdy}
 		<if test="thumbnail_name != null and thumbnail_name != ''">
 			, thumbnail_name = #{thumbnail_name}
 			, thumbnail_path = #{thumbnail_path}

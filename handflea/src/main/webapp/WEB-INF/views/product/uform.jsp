@@ -15,6 +15,9 @@
 			font-size : 0.7em;
 			color : red;
 		}
+		.prdt_img {
+			width: 100%;
+		}
 		</style>
 	</head>
 	<body>
@@ -40,7 +43,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th> 판 매 단 가 (*) </th>
+						<th> 판매 가격(단위 : 원) (*) </th>
 						<td>
 							<input type="text" id="price" name="price" class="form-control"
 									value="${detail_dto.price}">
@@ -54,11 +57,29 @@
 						</td>
 					</tr>
 					<tr>
+						<th> 주문 옵션  </th>
+						<td>
+							<button type="button" id="add_option_btn" class="mb-1"> 옵션 입력 추가 </button>
+							<label for="option_yes" id="option_yes_label" class="write_label"></label>
+							<div id="option_name_div">
+							</div>
+<!-- 							<input type="text" id="option_no" name="option_no" class="form-control" placeholder="옵션을 추가하세요."> -->
+						</td>
+					</tr>
+					<tr>
+						<th> 상품 준비 기간(단위 : 일) (*)  </th>
+						
+						<td>
+							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control">
+							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
+						</td>
+					</tr>
+					<tr>
 						<th> 썸 네 일 이 미 지 (*) </th>
 						<td class="text-center">
 							<c:choose>
 								<c:when test="${detail_dto.thumbnail_path != null && detail_dto.thumbnail_path != ''}">
-									<img src="${detail_dto.thumbnail_path}">
+									<img class="prdt_img" src="${detail_dto.thumbnail_path}">
 									<button id="thumbnail_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.thumbnail_path}">
 										이미지 삭제
 									</button>
@@ -73,7 +94,7 @@
 						<td class="text-center">
 							<c:choose>
 								<c:when test="${detail_dto.prdt_img_path != null && detail_dto.prdt_img_path != ''}">
-									<img src="${detail_dto.prdt_img_path}">
+									<img class="prdt_img" src="${detail_dto.prdt_img_path}">
 									<button id="prdt_img_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.prdt_img_path}">
 										이미지 삭제
 									</button>
@@ -90,7 +111,7 @@
 						<td class="text-center">
 							<c:choose>
 								<c:when test="${detail_dto.desc_img_path != null && detail_dto.desc_img_path != ''}">
-									<img src="${detail_dto.desc_img_path}">
+									<img class="prdt_img" src="${detail_dto.desc_img_path}">
 									<button id="desc_img_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.desc_img_path}">
 										이미지 삭제
 									</button>
@@ -117,14 +138,14 @@
 		
 		<button id="write_btn" class="btn btn-primary float-right"> 상품 수정 완료 </button>
 		<a href="${pageContext.request.contextPath}/product/sellerlist">
-			<button class="btn btn-warning"> 상품 수정 취소 </button>
+			<button id="updatecancel_btn" class="btn btn-warning"> 상품 수정 취소 </button>
 		</a>
 		<hr>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 	<script type="text/javascript">
 	let onlyNum = /^[0-9]+$/;
-
+	
 	$(document).ready(function() {
 		$(".delete_btn").click(function() {
 			$.get(
@@ -145,10 +166,23 @@
 			);//get
 		});//click
 	});//ready
-
+	
+	/*
 	$(document).ready(function() {
+		let tmpForm = new FormDate();
+	});//ready
+	사진 삭제하고 뒤로갈때*/
+	
+	$(document).ready(function() {
+		
 		$("#write_btn").click(function() {
 
+			let tmpArr2 = $("input[id^='option_no']");
+			let arr_option2 = new Array();
+			for( let i=0; i < tmpArr2.length; i++ ){
+				arr_option2.push( tmpArr2[i].value );
+			}
+			
 			if( $.trim( $("#prdt_name").val() ) == "" ){
 				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
@@ -163,6 +197,11 @@
 				$("#delivery_price_label").text("배송비를 입력하세요, 숫자만 허용 됩니다.");
 				return;
 			} else { $("#delivery_price_label").text(""); }
+			
+			if( $("#prdt_rdy").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#prdt_rdy_label").text("상품 준비 기간을 입력하세요, 숫자만 허용 됩니다.");
+				return;
+			} else { $("#product_prepare_label").text("해당 기간 내에 출고가 되지 않을 경우, 구매자가 환불을 요청할 수 있습니다."); }
 
 			if( "${detail_dto.thumbnail_name}" == "" || $.trim($("#thumbnail").val()) != "" ){
 				let tmp1 = $("#thumbnail").val().substring($("#thumbnail").val().length-3);
@@ -197,6 +236,7 @@
 			let form = new FormData( document.getElementById( "write_form" ) );
 			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
 			form.append( "prdt_no", ${detail_dto.prdt_no} );
+			form.append( "arr_option", arr_option2 );
 
 			$.ajax({
 					type : "POST"
@@ -218,5 +258,26 @@
 		});//click
 	});//ready
 	</script>
+	
+	<script type="text/javascript">
+		let optionNo = 0;
+		$(document).ready(function() {
+			$("#add_option_btn").click(function() {
+				$("#option_name_div").append(
+					'<div class="input-group" id="div_option_no'+optionNo+'">'
+					+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요.">'
+					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+					+ '</div>'
+				);//append
+				$("#option_remove_btn"+optionNo).on("click", function(){
+					//alert( $(this).attr("id") );
+					//alert( $(this).parent().attr("id") );
+					$(this).parent().remove();
+				});//on
+				optionNo++;
+			});//click
+		});//ready
+		</script>
+	
 	</body>
 </html>

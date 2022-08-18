@@ -18,6 +18,10 @@ public class ProductService {
 	public int update(ProductDTO dto) {
 		int successCount = 0;
 		successCount = dao.update( dto );
+		if(successCount < 1) return successCount;
+		if (dto.getArr_option() != null && dto.getArr_option().length > 0) {
+			successCount = dao.option_insert(dto);
+		}
 		return successCount;
 	}//update
 	
