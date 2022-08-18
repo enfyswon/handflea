@@ -287,6 +287,7 @@
 				},
 				function(data, status) {
 					if (data >= 1) {
+						$("#write_chat").val("");
 						ChatContentsList(chat_roomno, other_no);
 						ChatList();
 					} else if (data == 0) {
