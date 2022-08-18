@@ -60,7 +60,7 @@
 		<main>
 			<div id="product">
 				<div class="product-list">
-					<h3>${dto.bigcate_name}</h3>
+					<h3>&nbsp;&nbsp;${list[0].smallcate_name}</h3><br>
 					<div class="item-box">
 					<c:forEach var="dto" items="${list}">
 						<div class="item-card">

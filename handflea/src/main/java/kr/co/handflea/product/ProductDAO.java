@@ -27,12 +27,17 @@ public class ProductDAO {
 		return dto;
 	}//detail
 	
-	
-	public List<ProductDTO> list(String bigcate_no) {
+	public List<ProductDTO> smallcatelist(String smallcate_no) {
 		List<ProductDTO> list = null;
-		list = sqlSession.selectList("ProductMapper.list", bigcate_no);
+		list = sqlSession.selectList("ProductMapper.smallcatelist", smallcate_no);
 		return list;
-	}
+	}//smallcatelist
+	
+	public List<ProductDTO> bigcatelist(String bigcate_no) {
+		List<ProductDTO> list = null;
+		list = sqlSession.selectList("ProductMapper.bigcatelist", bigcate_no);
+		return list;
+	}//bigcatelist
 	
 	public void incrementViewCnt( String prdt_no ) {
 		sqlSession.update("ProductMapper.incrementViewCnt", prdt_no);

@@ -60,15 +60,25 @@ public class ProductController {
 		return "/product/detail";//jsp file name
 	}//detail
 	
+	@RequestMapping( value = "/smallcatelist", method = RequestMethod.GET)
+	public String smallcatelist( Model model, String smallcate_no ) {
+		
+		List<ProductDTO> list = null;
+		list = service.smallcatelist( smallcate_no );
+		model.addAttribute("list", list);
+		return "/product/smallcatelist";//jsp file name
+		
+	}//smallcatelist
+	
 	@RequestMapping( value = "/bigcatelist", method = RequestMethod.GET)
 	public String bigcatelist( Model model, String bigcate_no ) {
 		
 		List<ProductDTO> list = null;
-		list = service.list( bigcate_no );
+		list = service.bigcatelist( bigcate_no );
 		model.addAttribute("list", list);
 		return "/product/bigcatelist";//jsp file name
 		
-	}//list
+	}//bigcatelist
 	
 //	@RequestMapping( value = "/main", method = RequestMethod.GET )
 //	public String main( Model model, String userWantPage, SearchDTO dto ) {

@@ -29,11 +29,17 @@ public class ProductService {
 		return dto;
 	}//detail
 	
-	public List<ProductDTO> list(String bigcate_no) {
+	public List<ProductDTO> smallcatelist(String smallcate_no) {
 		List<ProductDTO> list = null;
-		list = dao.list( bigcate_no );
+		list = dao.smallcatelist( smallcate_no );
 		return list;
-	}//list
+	}//smallcatelist
+	
+	public List<ProductDTO> bigcatelist(String bigcate_no) {
+		List<ProductDTO> list = null;
+		list = dao.bigcatelist( bigcate_no );
+		return list;
+	}//bigcatelist
 	
 	public List<ProductDTO> main( SearchDTO dto ) {
 		List<ProductDTO> list = null;
