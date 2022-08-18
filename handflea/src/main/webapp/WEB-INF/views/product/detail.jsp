@@ -91,25 +91,26 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 	
+		<input type="text" id="prdt_no" value="${detail_dto.prdt_no}" hidden="hidden">
 		<main>
 			<div id="prdt-outline">
 				<div id="prdt-img">
-					<img alt="product_pic" src="${pageContext.request.contextPath}/resources/img/lemon.jpg">
+					<img alt="product_pic" src="${detail_dto.thumbnail_path}">
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
 						<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
-						<p>seller_name</p>
+						<p>${detail_dto.mem_email}</p>
 					</div>
 					<div>
-						<h3>상품명 (prdt_name)</h3>
+						<h3>${detail_dto.prdt_name}</h3>
 					</div>
 					<div class="prdt-element">
 						<div class="element-label">
 							판매가
 						</div>
 						<div class="element-value">
-							<p id="price">15,000</p> <p>원</p>
+							<p id="price">${detail_dto.price}</p> <p>원</p>
 						</div>
 					</div>
 					<div class="prdt-element">
@@ -117,7 +118,7 @@
 							배송비
 						</div>
 						<div class="element-value">
-							<p id="delivery">3,000</p> <p>원</p>
+							<p id="delivery">${detail_dto.delivery_price}</p> <p>원</p>
 						</div>
 					</div>
 					<div class="prdt-element">
@@ -125,7 +126,7 @@
 							상품 준비 기간
 						</div>
 						<div class="element-value">
-							<p id="price">7</p> <p>일</p>
+							<p id="price">${detail_dto.prdt_rdy}</p> <p>일</p>
 						</div>
 					</div>
 					<div class="prdt-element">
@@ -140,9 +141,9 @@
 						<div class="element-label">
 							옵션
 						</div>
-						<div class="element-values">
-							<select>
-								<option>--선택하세요--</option>
+						<div class="element-value">
+							<select id="option_no" name="option_no">
+								<option value="0" selected="selected">옵션을 선택하세요.</option>
 							</select>
 						</div>
 					</div>
@@ -172,7 +173,20 @@
 				상품 후기
 			</div>
 		</main>
-	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/option"
+					, { prdt_no : $("#prdt_no").val() }
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#option_no").append("<option value='" + dto.option_no + "'>" + dto.option_contents + "</option>");
+						});//each
+					}//call back function
+		);//get
+	});//ready
+	</script>
+	
 	</body>
 </html>

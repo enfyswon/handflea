@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 상품 목록 </title>
+<title> MainPage </title>
 <style type="text/css">
 #product {
 	width: 100%;
@@ -57,29 +57,10 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		
 		<main>
 			<div id="product">
 				<div class="product-list">
-					<h3>&nbsp;&nbsp;&nbsp;BEST</h3><br>
-					<div class="item-box">
-					<c:forEach var="dto" items="${list}">
-						<div class="item-card">
-							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
-								<img alt="product_img" src="${dto.thumbnail_path}">
-								<div class="item-detail">
-									<div>
-										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.mem_email}</p>
-									</div>
-									<h4>${dto.prdt_name}</h4>
-									<p>${dto.price}원</p>
-									<p>별점</p>
-								</div>
-							</a>
-						</div>
-					</c:forEach>	
-					</div>
-					<h3>&nbsp;&nbsp;&nbsp;NEW</h3><br>
+					<h3>&nbsp;&nbsp;${list[0].bigcate_name}</h3><br>
 					<div class="item-box">
 					<c:forEach var="dto" items="${list}">
 						<div class="item-card">
@@ -102,5 +83,8 @@
 		</main>
 		
 	<%@ include file="/WEB-INF/views/footer.jsp" %>	
+	<script type="text/javascript">
+	
+	</script>
 </body>
 </html>

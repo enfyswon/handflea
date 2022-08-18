@@ -15,15 +15,35 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
-	public List<ProductDTO> list() {
+	public List<ProductDTO> option_contents(String prdt_no) {
 		List<ProductDTO> list = null;
-		list = dao.list();
+		list = dao.option_contents(prdt_no);
 		return list;
-	}
+	}//option_contents
 	
-	public List<ProductDTO> searchList( SearchDTO dto ) {
+	public ProductDTO detail( String prdt_no ) {
+		dao.incrementViewCnt( prdt_no );
+
+		ProductDTO dto = null;
+		dto = dao.detail( prdt_no );
+		return dto;
+	}//detail
+	
+	public List<ProductDTO> smallcatelist(String smallcate_no) {
 		List<ProductDTO> list = null;
-		list = dao.searchList( dto );
+		list = dao.smallcatelist( smallcate_no );
+		return list;
+	}//smallcatelist
+	
+	public List<ProductDTO> bigcatelist(String bigcate_no) {
+		List<ProductDTO> list = null;
+		list = dao.bigcatelist( bigcate_no );
+		return list;
+	}//bigcatelist
+	
+	public List<ProductDTO> main( SearchDTO dto ) {
+		List<ProductDTO> list = null;
+		list = dao.main( dto );
 		return list;
 	}//searchList
 

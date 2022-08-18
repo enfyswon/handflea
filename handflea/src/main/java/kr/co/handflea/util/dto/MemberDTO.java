@@ -1,7 +1,5 @@
 package kr.co.handflea.util.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class MemberDTO {
 
 	private String mem_no;
@@ -12,7 +10,6 @@ public class MemberDTO {
 	private String mdate;
 	private String mem_photo;
 	private String mem_photopath;
-	private MultipartFile profile;
 
 	private String tel1;
 	private String tel2;
@@ -89,7 +86,7 @@ public class MemberDTO {
 	public void setMdate(String mdate) {
 		this.mdate = mdate;
 	}
-	
+
 	public String getMem_photo() {
 		return mem_photo;
 	}
@@ -104,14 +101,6 @@ public class MemberDTO {
 
 	public void setMem_photopath(String mem_photopath) {
 		this.mem_photopath = mem_photopath;
-	}
-	
-	public MultipartFile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(MultipartFile profile) {
-		this.profile = profile;
 	}
 
 	public String getTel1() {
@@ -161,7 +150,7 @@ public class MemberDTO {
 	public void setAdd_2(String add_2) {
 		this.add_2 = add_2;
 	}
-	
+
 	public String getSeller_yn() {
 		return seller_yn;
 	}

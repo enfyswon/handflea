@@ -24,6 +24,7 @@ public class LoginController {
 	@RequestMapping( value = "/logout", method = RequestMethod.GET )
 	public String logout( HttpSession session ) {
 		session.invalidate();
+		
 		return "redirect:/main";//jsp file name
 	}//logout
 
