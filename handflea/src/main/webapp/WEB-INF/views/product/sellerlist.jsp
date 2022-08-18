@@ -22,9 +22,6 @@
 						<option value="prdt_name"
 							<c:if test="${search_dto.searchOption == 'prdt_name'}">selected="selected"</c:if>
 						> 상 품 이 름 </option>
-						<option value="mid"
-							<c:if test="${search_dto.searchOption == 'mid'}">selected="selected"</c:if>
-						> 판 매 자 </option>
 					</select>
 				</div>
 				<input type="text" class="form-control" id="searchWord" name="searchWord"
@@ -45,7 +42,7 @@
 			<col class="col-1">
 			<thead>
 				<tr>
-					<th> 썸네일 </th>	<th> 상품명 </th>	<th> 가격 </th>	<th> 판매자 </th>
+					<th> 썸네일 </th>	<th> 상품명 </th>	<th> 가격 </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,12 +52,11 @@
 							<img src="${dto.thumbnail_path}" class="img-thumbnail">
 						</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+							<a href="${pageContext.request.contextPath}/product/sellerdetail?prdt_no=${dto.prdt_no}">
 								${dto.prdt_name}
 							</a>
 						</td>
 						<td>${dto.price} 원</td>
-						<td>${dto.mem_email}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

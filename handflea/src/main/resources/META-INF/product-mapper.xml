@@ -4,6 +4,65 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="ProductMapper">
+	
+	<update id="update" parameterType="kr.co.handflea.product.ProductDTO">
+	update product
+	set prdt_name = #{prdt_name}
+		, price = #{price}
+		, delivery_price = #{delivery_price}
+		, description = #{description}
+		<if test="thumbnail_name != null and thumbnail_name != ''">
+			, thumbnail_name = #{thumbnail_name}
+			, thumbnail_path = #{thumbnail_path}
+		</if>
+		<if test="prdt_img_name != null and prdt_img_name != ''">
+			, prdt_img_name = #{prdt_img_name}
+			, prdt_img_path = #{prdt_img_path}
+		</if>
+		<if test="desc_img_name != null and desc_img_name != ''">
+			, desc_img_name = #{desc_img_name}
+			, desc_img_path = #{desc_img_path}
+		</if>
+	where prdt_no = #{prdt_no}
+	and mem_no = #{mem_no}
+	</update>
+	
+	<update id="fileDelete" parameterType="kr.co.handflea.product.ProductDTO">
+	update product
+		<if test="thumbnail_name != null and thumbnail_name != ''">
+			set thumbnail_name = ''
+			, thumbnail_path = ''
+		</if>
+		<if test="prdt_img_name != null and prdt_img_name != ''">
+			set prdt_img_name = ''
+			, prdt_img_path = ''
+		</if>
+		<if test="desc_img_name != null and desc_img_name != ''">
+			set desc_img_name = ''
+			, desc_img_path = ''
+		</if>
+	where prdt_no = #{prdt_no}
+	and mem_no = #{mem_no}
+	</update>
+	
+	<update id="delete" parameterType="kr.co.handflea.product.ProductDTO">
+	update product
+	set del_yn = 1
+	, del_date = now()
+	where prdt_no = #{prdt_no}
+	and mem_no = #{mem_no}
+	</update>
+
+	<select id="sellerdetail" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
+	select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
+		, p.description, p.view_cnt, p.reg_date
+		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
+		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
+    	from product p, member m
+    	where p.prdt_no = #{prdt_no}
+		and del_yn = 0
+		and p.mem_no = m.mem_no
+	</select>
 
 	<select id="sellerlist" parameterType="kr.co.handflea.util.dto.SearchDTO"
 			resultType="kr.co.handflea.product.ProductDTO">
@@ -53,7 +112,7 @@
 	where prdt_no = #{prdt_no}
 	order by option_no
 	</select>
-
+	
 	<select id="detail" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
 	select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
@@ -122,7 +181,7 @@
 		</if>
 		and p.mem_no = m.mem_no
 		order by prdt_no desc
-		limit #{limitNum}, 10
+		limit #{limitNum}, 8
 	</select>
 	
 	<insert id="option_insert" parameterType="kr.co.handflea.product.ProductDTO">

@@ -31,7 +31,8 @@ public class ProductDTO {
 	private String smallcate_name;
 	
 	private String prdt_rdy;
-	private String delete_yn;
+	private String del_yn;
+	private String del_date;
 	
 	private String basket_no;
 	private String buy_qty;
@@ -278,12 +279,20 @@ public class ProductDTO {
 		this.prdt_rdy = prdt_rdy;
 	}
 
-	public String getDelete_yn() {
-		return delete_yn;
+	public String getDel_yn() {
+		return del_yn;
 	}
 
-	public void setDelete_yn(String delete_yn) {
-		this.delete_yn = delete_yn;
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+
+	public String getDel_date() {
+		return del_date;
+	}
+
+	public void setDel_date(String del_date) {
+		this.del_date = del_date;
 	}
 
 	public String getBasket_no() {

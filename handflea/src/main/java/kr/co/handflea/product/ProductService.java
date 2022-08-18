@@ -15,11 +15,35 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
+	public int update(ProductDTO dto) {
+		int successCount = 0;
+		successCount = dao.update( dto );
+		return successCount;
+	}//update
+	
+	public int fileDelete(ProductDTO dto) {
+		int successCount = 0;
+		successCount = dao.fileDelete( dto );
+		return successCount;
+	}//fileDelete
+	
+	public int delete(ProductDTO dto) {
+		int successCount = 0;
+		successCount = dao.delete( dto );
+		return successCount;
+	}//delete
+	
+	public ProductDTO sellerdetail(String prdt_no) {
+		ProductDTO dto = null;
+		dto = dao.sellerdetail( prdt_no );
+		return dto;
+	}//sellerdetail
+	
 	public List<ProductDTO> sellerlist(SearchDTO dto) {
 		List<ProductDTO> list = null;
 		list = dao.sellerlist( dto );
 		return list;
-	}
+	}//sellerlist
 	
 	public List<ProductDTO> option_contents(String prdt_no) {
 		List<ProductDTO> list = null;

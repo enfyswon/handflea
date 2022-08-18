@@ -39,6 +39,133 @@ public class ProductController {
 	@Autowired             
 	private ProductService service;
 	
+	@RequestMapping( value = "/update", method = RequestMethod.POST )
+	public void update( ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
+
+		Date today = new Date();
+		DateFormat nalja = new SimpleDateFormat("YYYYMMDD");
+		DateFormat sigan = new SimpleDateFormat("HHmmss");
+		String todayNalja = nalja.format(today);
+		String todaySigan = sigan.format(today);
+		
+		String mem_email = ( (MemberDTO) session.getAttribute("login_info") ).getMem_email();
+		File newFolder = new File("C:/upload/product/" + mem_email + "/");
+		if( newFolder.exists() == false ) newFolder.mkdirs();
+		
+		InputStream is = null;
+		FileOutputStream fos = null;
+
+		MultipartFile thumbnail = dto.getThumbnail();
+		if(thumbnail != null && !thumbnail.getOriginalFilename().equals("")) {
+			is = thumbnail.getInputStream();
+			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+														+ todaySigan + "_" + thumbnail.getOriginalFilename() );
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
+			dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+									+ todaySigan + "_" + thumbnail.getOriginalFilename());
+		}
+
+		MultipartFile prdt_img = dto.getPrdt_img();
+		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
+			is = prdt_img.getInputStream();
+			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
+			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+									+ todaySigan + "_" + prdt_img.getOriginalFilename());
+		}
+
+		MultipartFile desc_img = dto.getDesc_img();
+		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
+			is = desc_img.getInputStream();
+			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+										+ todaySigan + "_" + desc_img.getOriginalFilename() );
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			dto.setDesc_img_name(todayNalja + "_" + todaySigan + "_" + desc_img.getOriginalFilename());
+			dto.setDesc_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+									+ todaySigan + "_" + desc_img.getOriginalFilename());
+		}
+
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+
+		int successCount = 0;
+		successCount = service.update( dto );
+		out.print(successCount);
+		out.close();
+	}//update
+	
+	@RequestMapping( value = "/file/delete", method = RequestMethod.GET )
+	public void fileDelete( String id, String path, ProductDTO dto, HttpSession session, PrintWriter out ) {
+		File file = new File("C:" + path);
+		file.delete();
+
+		if(id.equals("thumbnail_btn")) {
+			dto.setThumbnail_name( path.substring(path.lastIndexOf("/") + 1) );
+			dto.setThumbnail_path(path);
+		} else if(id.equals("prdt_img_btn")) {
+			dto.setPrdt_img_name( path.substring(path.lastIndexOf("/") + 1) );
+			dto.setPrdt_img_path(path);
+		} else if(id.equals("desc_img_btn")) {
+			dto.setDesc_img_name( path.substring(path.lastIndexOf("/") + 1) );
+			dto.setDesc_img_path(path);
+		} 
+
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		
+		int successCount = 0;
+		successCount = service.fileDelete( dto );
+		out.print(successCount);
+		out.close();
+	}//fileDelete
+	
+	@RequestMapping( value = "/uform", method = RequestMethod.GET )
+	public String updateForm( String prdt_no, Model model ) {
+		ProductDTO dto = null;
+		dto = service.sellerdetail( prdt_no );
+		model.addAttribute("detail_dto", dto);
+		return "/product/uform";//jsp file name
+	}//updateForm
+	
+	@RequestMapping( value = "/delete", method = RequestMethod.GET )
+	public void delete( ProductDTO dto, HttpSession session, PrintWriter out ) {
+
+		if(!dto.getThumbnail_path().equals("")) {
+			File file = new File("C:" + dto.getThumbnail_path());
+			file.delete();
+		}
+		if(!dto.getPrdt_img_path().equals("")) {
+			File file = new File("C:" + dto.getPrdt_img_path());
+			file.delete();
+		}
+		if(!dto.getDesc_img_path().equals("")) {
+			File file = new File("C:" + dto.getDesc_img_path());
+			file.delete();
+		}
+
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+
+		int successCount = 0;
+		successCount = service.delete( dto );
+		out.print(successCount);
+		out.close();
+	}//delete
+	
+	@RequestMapping( value = "/sellerdetail", method = RequestMethod.GET )
+	public String sellerdetail( String prdt_no, Model model ) {
+		ProductDTO dto = null;
+		dto = service.sellerdetail( prdt_no );
+		model.addAttribute("detail_dto", dto);
+		return "/product/sellerdetail";//jsp file name
+	}//sellerdetail
+	
 	@RequestMapping( value = "/sellerlist", method = RequestMethod.GET )
 	public String sellerlist( Model model, String userWantPage, SearchDTO dto ) {
 		if( userWantPage == null || userWantPage.equals("") ) userWantPage = "1";
@@ -75,7 +202,7 @@ public class ProductController {
 		list = service.sellerlist( dto );
 		model.addAttribute("list", list);
 		model.addAttribute("search_dto", dto);
-		return "/sellerlist";//jsp file name
+		return "/product/sellerlist";//jsp file name
 }//sellerlist
 	
 	@RequestMapping( value = "/option", method = RequestMethod.GET)

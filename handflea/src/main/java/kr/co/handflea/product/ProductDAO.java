@@ -15,6 +15,30 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public int update(ProductDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.update("ProductMapper.update", dto);
+		return successCount;
+	}
+	
+	public int fileDelete(ProductDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.update("ProductMapper.fileDelete", dto);
+		return successCount;
+	}//fileDelete
+	
+	public int delete(ProductDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.update("ProductMapper.delete", dto);
+		return successCount;
+	}//delete
+	
+	public ProductDTO sellerdetail(String prdt_no) {
+		ProductDTO dto = null;
+		dto = sqlSession.selectOne("ProductMapper.sellerdetail", prdt_no);
+		return dto;
+	}//sellerdetail
+	
 	public List<ProductDTO> sellerlist(SearchDTO dto) {
 		List<ProductDTO> list = null;
 		list = sqlSession.selectList("ProductMapper.sellerlist", dto);
