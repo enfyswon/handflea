@@ -1,7 +1,6 @@
 package kr.co.handflea.chat;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,5 +30,29 @@ public class ChatDAO {
 		}
 		
 		return list;
+	}
+
+	public List<ChatDTO> chatDetail(ChatDTO dto) {
+		List<ChatDTO> list = null;
+		list = sqlSession.selectList("ChatMapper.chatDetail", dto);
+		sqlSession.update("ChatMapper.updateChat", dto);
+		
+		return list;
+	}
+
+	public int chatSend(ChatDTO dto) {
+		int exist = sqlSession.selectOne("ChatMapper.existChat", dto);
+		if (exist == 0) {
+			int max_room = sqlSession.selectOne("ChatMapper.maxRoomno", dto);
+			dto.setChat_roomno(Integer.toString(max_room + 1));
+		} else {
+			String chat_roomno = sqlSession.selectOne("ChatMapper.selectRoom", dto);
+			dto.setChat_roomno(chat_roomno);
+		}
+		
+		int insertYN = 0;
+		insertYN = sqlSession.insert("ChatMapper.chatSend", dto);
+		
+		return insertYN;
 	}
 }

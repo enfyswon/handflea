@@ -28,4 +28,30 @@
 		</otherwise>
 	</choose>
 	</select>
+	
+	<select id="chatDetail" parameterType="kr.co.handflea.chat.ChatDTO" resultType="kr.co.handflea.chat.ChatDTO">
+	select chat_no, chat_roomno, send_mem_no, recv_mem_no, chat_date, chat_photo, chat_photopath, chat_contents, chat_yn
+	from chat
+	<choose>
+		<when test="chat_roomno != 0">
+			where chat_roomno = #{chat_roomno}
+		</when>
+		<otherwise>
+			where (recv_mem_no = #{recv_mem_no} and send_mem_no = #{mem_no})
+			or (send_mem_no = #{recv_mem_no} and recv_mem_no = ${mem_no})
+		</otherwise>
+	</choose> 
+	</select>
+	
+	<update id="updateChat" parameterType="kr.co.handflea.chat.ChatDTO">
+	update chat set chat_yn = 1
+	<choose>
+		<when test="chat_roomno != 0">
+			where chat_roomno = #{chat_roomno} and chat_yn = 0 and recv_mem_no = #{mem_no}
+		</when>
+		<otherwise>
+			where send_mem_no = #{recv_mem_no} and chat_yn = 0 and recv_mem_no = #{mem_no}
+		</otherwise>
+	</choose>
+	</update>
 </mapper>

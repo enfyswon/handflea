@@ -17,4 +17,18 @@ public class ChatService {
 		
 		return list;
 	}
+
+	public List<ChatDTO> chatDetail(ChatDTO dto) {
+		List<ChatDTO> list = null;
+		list = dao.chatDetail(dto);
+		
+		return list;
+	}
+
+	public int chatSend(ChatDTO dto) {
+		int insertYN = 0;
+		insertYN = dao.chatSend(dto);
+		
+		return insertYN;
+	}
 }
