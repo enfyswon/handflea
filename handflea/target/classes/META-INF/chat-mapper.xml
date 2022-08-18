@@ -77,4 +77,8 @@
 	values (#{chat_roomno}, #{recv_mem_no}, #{send_mem_no}, now(), #{chat_photo}, #{chat_photopath}, #{chat_contents})
 	</insert>
 	
+	<select id="selectName" parameterType="java.lang.String" resultType="java.lang.String">
+	select mem_name from member
+	where mem_no = #{other_no}
+	</select>
 </mapper>

@@ -31,4 +31,11 @@ public class ChatService {
 		
 		return insertYN;
 	}
+
+	public String selectName(String other_no) {
+		String mem_name = null;
+		mem_name = dao.selectName(other_no);
+		
+		return mem_name;
+	}
 }

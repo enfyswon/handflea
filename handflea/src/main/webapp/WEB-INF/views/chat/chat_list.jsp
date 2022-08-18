@@ -21,6 +21,7 @@
 }
 #chat-list-box {
 	width : 30%;
+	border-right: 1px solid #cecece;
 }
 #list-title {
 	height: 50px;
@@ -34,6 +35,12 @@
 }
 #chat-list {
 	margin-top: 5px;
+}
+.chat-list-box :hover {
+	background-color: #C6E4FF;
+}
+.active-chat {
+	background-color: #ededed;
 }
 .chat-room {
 	border-bottom: 1px solid #cecece;
@@ -54,10 +61,15 @@
 	width: 80%;
 	margin: 0 5px;
 }
+.chat-ib > h6 {
+	margin: 0;
+	margin-top: 3px;
+}
 .chat-ib > h6 > span {
 	font-size: x-small;
 	color: #808080;
 	float: right;
+	font-weight: 300;
 }
 .chat-cnts {
 	width: 100%;
@@ -66,6 +78,7 @@
 	white-space: nowrap;
 	display: flex;
 	flex-direction: row;
+	padding-top: 5px;
 }
 .chat-cnts > p {
 	width: 85%;
@@ -84,7 +97,57 @@
 }
 #chat-detail {
 	width : 70%;
-	background-color: aqua;
+}
+#chat-history {
+	overflow-y: auto; 
+}
+#contents-title {
+	height: 50px;
+	box-shadow: 0 3px 3px -1px rgba(0, 0, 0, 0.06);
+	display: flex;
+	align-items: center;
+}
+#contents-title > img {
+	height: 100%;
+	margin: 0;
+}
+#contents-title > h5 {
+	width: 80%; 
+	margin: 0 5px;
+}
+.time_date {
+	color: #808080;
+	font-size: x-small;
+	font-weight: 300;
+}
+.received_chat {
+	width: 60%;
+	vertical-align: top;
+	margin: 0 0 0 10px;
+}
+.received_chat p {
+	background: #ededed none repeat scroll 0 0; 
+	margin: 0;
+	border-radius: 10px 10px 10px 0;
+	font-size: 15px;
+	padding: 5px;
+}
+.outgoing_chat {
+	overflow-x: auto;
+	width: 60%;
+	margin: 0 10px 0 0;
+	text-align: right;
+}
+.sent_chat {
+	margin: 0;
+}
+.outgoing_chat p {
+	background: #0F8BFF none repeat scroll 0 0; 
+	margin: 0;
+	border-radius: 10px 10px 0 10px;
+	color : white;
+	font-size: 15px;
+	padding: 5px;
 }
 		</style>
 	</head>
