@@ -20,7 +20,6 @@
         </colgroup>
         <thead module="board_listheader_[seq]">
             <tr style="{$list_bg_color} {$list_char_color}">
-                <th scope="col">번호</th>
               <th scope="col" class="thumb">상품정보</th>
                 <th scope="col">후기</th>
               <th scope="col" class="{$config.use_date|display}">작성일</th>
@@ -30,7 +29,6 @@
         <tbody module="board_notice_[seq]" class="notice">
 
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
                 <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
 
                 <td class="txtLess {$date_display|display}">{$review_contents}</td>
@@ -38,7 +36,6 @@
 				<td class="subject">${dto.star_point}</td>
             </tr>
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
                 <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
                 <td class="txtLess {$date_display|display}">{$review_contents}</td>
 				<td class="txtLess {$date_display|display}">{$write_date}</td>
@@ -49,7 +46,6 @@
         <tbody module="board_fixed_[seq]" class="notice">
 
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
                 <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
                 <td class="date {$date_display|display}">{$review_contents}</td>
 				<td class="txtLess {$date_display|display}">{$write_date}</td>
@@ -57,7 +53,6 @@
 
             </tr>
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
                 <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
                 <td class="date {$date_display|display}">{$review_contents}</td>
 				<td class="txtLess {$date_display|display}">{$write_date}</td>
@@ -67,7 +62,6 @@
         <tbody module="board_list_[seq]">
 
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
                 <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
 				<td class="txtLess {$hit_display|display}">{$review_contents}</td>
                 <td class="txtLess {$date_display|display}">{$write_date}</td>
@@ -75,7 +69,6 @@
                 </td>
             </tr>
             <tr style="{$list_bg_color} {$list_char_color}">
-                <td>{$no}</td>
                 <td class="thumb"><a href="/product/detail.html{$param_product}">{$product_img}<span>{$product_name}</span></a></td>
                 <td class="txtLess {$date_display|display}">{$review_contents}</td>
 				<td class="txtLess {$date_display|display}">{$write_date}</td>

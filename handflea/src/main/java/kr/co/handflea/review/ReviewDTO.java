@@ -4,6 +4,7 @@ public class ReviewDTO {
 	private String review_no;
 	private String mem_no;
 	private String order_no;
+	private String option_no;
 	private String review_contents;
 	private String review_photo;
 	private String review_photopath;
@@ -35,6 +36,14 @@ public class ReviewDTO {
 
 	public void setOrder_no(String order_no) {
 		this.order_no = order_no;
+	}
+
+	public String getOption_no() {
+		return option_no;
+	}
+
+	public void setOption_no(String option_no) {
+		this.option_no = option_no;
 	}
 
 	public String getReview_contents() {

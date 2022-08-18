@@ -6,8 +6,8 @@
 <mapper namespace="ReviewMapper"> 
 
 	<insert id="write" parameterType="kr.co.handflea.review.ReviewDTO">
-	insert into review (mem_no, order_no, review_contents, review_photo, review_photopath, star_point, reg_date)
-	values(#{mem_no}, #{order_no}, #{review_contents}, #{review_photo}, #{review_photopath}, #{star_point}, now());
+	insert into review (mem_no, order_no, option_no, review_contents, review_photo, review_photopath, star_point, reg_date)
+	values(#{mem_no}, #{order_no}, #{option_no}, #{review_contents}, #{review_photo}, #{review_photopath}, #{star_point}, now());
 	</insert>
 
 	<select id="list">

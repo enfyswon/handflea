@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 public class ReviewService {
 
 	@Autowired
-    private ReviewDAO reviewDAO;
+    private ReviewDAO dao;
 	
 	public int write( ReviewDTO dto ) {
 		int successCount = 0;
+		successCount = dao.write(dto);
 		return successCount;
 	}//write
 	
