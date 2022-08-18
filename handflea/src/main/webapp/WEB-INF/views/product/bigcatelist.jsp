@@ -31,6 +31,7 @@
 }
 .item-card > a > img {
 	width: 100%;
+	height: 450px;
 }
 .item-detail {
 	border-top: 1px solid #cecece;
@@ -56,11 +57,10 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		
 		<main>
 			<div id="product">
 				<div class="product-list">
-					<h3>NEW</h3>
+					<h3>${dto.bigcate_name}</h3>
 					<div class="item-box">
 					<c:forEach var="dto" items="${list}">
 						<div class="item-card">
@@ -83,5 +83,8 @@
 		</main>
 		
 	<%@ include file="/WEB-INF/views/footer.jsp" %>	
+	<script type="text/javascript">
+	
+	</script>
 </body>
 </html>

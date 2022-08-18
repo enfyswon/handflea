@@ -27,9 +27,10 @@ public class ProductDAO {
 		return dto;
 	}//detail
 	
-	public List<ProductDTO> list() {
+	
+	public List<ProductDTO> list(String bigcate_no) {
 		List<ProductDTO> list = null;
-		list = sqlSession.selectList("ProductMapper.list");
+		list = sqlSession.selectList("ProductMapper.list", bigcate_no);
 		return list;
 	}
 	

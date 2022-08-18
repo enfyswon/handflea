@@ -29,9 +29,9 @@ public class ProductService {
 		return dto;
 	}//detail
 	
-	public List<ProductDTO> list() {
+	public List<ProductDTO> list(String bigcate_no) {
 		List<ProductDTO> list = null;
-		list = dao.list();
+		list = dao.list( bigcate_no );
 		return list;
 	}//list
 	

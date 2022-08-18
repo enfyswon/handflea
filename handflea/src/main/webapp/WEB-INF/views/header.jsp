@@ -71,7 +71,7 @@
 				<div id="navMenu">
 					<ul id="big-menu">
 						<li>
-							<a href="${pageContext.request.contextPath}/list?bigcate_no=1">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=1">
 								<span>디저트</span>
 							</a>
 							<ul class="small-menu">
@@ -102,7 +102,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=2">
 								<span>니트/뜨개</span>
 							</a>
 							<ul class="small-menu">
@@ -133,7 +133,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=3">
 								<span>디자인/아트</span>
 							</a>
 							<ul class="small-menu">
@@ -164,7 +164,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=4">
 								<span>캔들/디퓨저</span>
 							</a>
 							<ul class="small-menu">
@@ -195,7 +195,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=5">
 								<span>가죽공예</span>
 							</a>
 							<ul class="small-menu">
@@ -226,7 +226,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=6">
 								<span>액세서리</span>
 							</a>
 							<ul class="small-menu">
@@ -257,7 +257,7 @@
 							</ul>
 						</li>			
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=7">
 								<span>잡화/기타</span>
 							</a>
 							<ul class="small-menu">

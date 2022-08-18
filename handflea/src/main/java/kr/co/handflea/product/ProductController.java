@@ -60,18 +60,18 @@ public class ProductController {
 		return "/product/detail";//jsp file name
 	}//detail
 	
-	@RequestMapping( value = "/list", method = RequestMethod.GET)
-	public String main( Model model ) {
+	@RequestMapping( value = "/bigcatelist", method = RequestMethod.GET)
+	public String bigcatelist( Model model, String bigcate_no ) {
 		
 		List<ProductDTO> list = null;
-		list = service.list();
+		list = service.list( bigcate_no );
 		model.addAttribute("list", list);
-		return "/product/list";//jsp file name
+		return "/product/bigcatelist";//jsp file name
 		
 	}//list
 	
 //	@RequestMapping( value = "/main", method = RequestMethod.GET )
-//	public String list( Model model, String userWantPage, SearchDTO dto ) {
+//	public String main( Model model, String userWantPage, SearchDTO dto ) {
 //		if( userWantPage == null || userWantPage.equals("") ) userWantPage = "1";
 //		int totalCount = 0, startPageNum = 1, endPageNum = 10, lastPageNum = 1;
 //		totalCount = service.searchListCount( dto );
