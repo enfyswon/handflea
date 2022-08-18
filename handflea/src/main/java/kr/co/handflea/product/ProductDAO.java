@@ -15,6 +15,12 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public List<ProductDTO> sellerlist(SearchDTO dto) {
+		List<ProductDTO> list = null;
+		list = sqlSession.selectList("ProductMapper.sellerlist", dto);
+		return list;
+	}
+	
 	public List<ProductDTO> option_contents(String prdt_no) {
 		List<ProductDTO> list = null;
 		list = sqlSession.selectList("ProductMapper.option_contents", prdt_no);

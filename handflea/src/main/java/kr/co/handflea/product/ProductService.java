@@ -15,6 +15,12 @@ public class ProductService {
 	@Autowired
 	private ProductDAO dao;
 	
+	public List<ProductDTO> sellerlist(SearchDTO dto) {
+		List<ProductDTO> list = null;
+		list = dao.sellerlist( dto );
+		return list;
+	}
+	
 	public List<ProductDTO> option_contents(String prdt_no) {
 		List<ProductDTO> list = null;
 		list = dao.option_contents(prdt_no);

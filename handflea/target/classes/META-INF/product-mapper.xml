@@ -5,6 +5,48 @@
  
 <mapper namespace="ProductMapper">
 
+	<select id="sellerlist" parameterType="kr.co.handflea.util.dto.SearchDTO"
+			resultType="kr.co.handflea.product.ProductDTO">
+		select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
+		, p.description, p.view_cnt, p.reg_date
+		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
+		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
+    	from product p, member m
+		where del_yn = 0
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'prdt_name'">
+					and p.prdt_name like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'mem_email'">
+					and m.mem_email like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+		and p.mem_no = m.mem_no
+		order by prdt_no desc
+		limit #{limitNum}, 10
+	</select>
+	
+	<select id="searchListCount" parameterType="kr.co.handflea.util.dto.SearchDTO" resultType="int">
+		select count(p.prdt_no) cnt
+		from product p, member m
+		where del_yn = 0
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'prdt_name'">
+					and p.prdt_name like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'mem_email'">
+					and mem_email like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+		and p.mem_no = m.mem_no
+	</select>
+
 	<select id="option_contents" resultType="kr.co.handflea.product.ProductDTO">
 	select option_no, prdt_no, option_contents
 	from prdt_option
@@ -80,27 +122,9 @@
 		</if>
 		and p.mem_no = m.mem_no
 		order by prdt_no desc
-		limit #{limitNum}, 8
+		limit #{limitNum}, 10
 	</select>
 	
-	<select id="searchListCount" parameterType="kr.co.handflea.util.dto.SearchDTO" resultType="int">
-		select count(p.prdt_no) cnt
-		from product p, member m
-		where del_yn = 0
-		<if test="searchOption != null and searchOption != ''
-					and searchWord != null and searchWord !=''">
-			<choose>
-				<when test="searchOption == 'prdt_name'">
-					and p.prdt_name like concat('%', #{searchWord}, '%')
-				</when>
-				<when test="searchOption == 'mem_email'">
-					and mem_email like concat('%', #{searchWord}, '%')
-				</when>
-			</choose>
-		</if>
-		and p.mem_no = m.mem_no
-	</select>
-
 	<insert id="option_insert" parameterType="kr.co.handflea.product.ProductDTO">
 	insert into prdt_option (prdt_no, option_contents)
 	values
