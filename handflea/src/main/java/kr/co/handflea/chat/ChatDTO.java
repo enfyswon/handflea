@@ -9,6 +9,7 @@ public class ChatDTO {
 	private String chat_date;
 	private String chat_photo;
 	private String chat_photopath;
+	
 	public String getChat_no() {
 		return chat_no;
 	}

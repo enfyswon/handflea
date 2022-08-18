@@ -44,5 +44,23 @@
 			</div>			
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<script type="text/javascript">
+	const MessageList = function() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/chat/list", 
+			method : "get", 
+			data : {
+			}, 
+			success : function(data) {
+				alert("메세지 리스트 로드");
+				$("#chat-list").html(data);
+			}
+		})
+	};
+	$(document).ready(function() {
+		MessageList();
+	});
+	
+	</script>
 	</body>
 </html>
