@@ -33,4 +33,12 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false" />
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage/*"/>
+			<mapping path="/cart/*" />
+			<mapping path="/product/form" />
+			<beans:bean class="kr.co.handflea.login.LoginCheckInterceptor" />
+		</interceptor>
+	</interceptors>	
 </beans:beans>

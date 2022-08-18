@@ -20,4 +20,18 @@ public class MyPageService {
 		
 		return list;
 	}
+
+	public MemberDTO infoSelect(String mem_no) {
+		MemberDTO dto = null;
+		dto = dao.infoSelect(mem_no);
+		
+		return dto;
+	}
+
+	public int infoUpdate(MemberDTO dto) {
+		int updateYN = 0;
+		updateYN = dao.infoUpdate(dto);
+		
+		return updateYN;
+	}
 }
