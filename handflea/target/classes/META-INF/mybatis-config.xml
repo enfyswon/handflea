@@ -5,7 +5,14 @@
 
 <configuration>
 	<mappers>
+<<<<<<< HEAD
 		<mapper resource="/META-INF/review-mapper.xml" />
+=======
+		<mapper resource="META-INF/product-mapper.xml" />
+		<mapper resource="META-INF/join-mapper.xml" />
+		<mapper resource="META-INF/login-mapper.xml" />
+		<mapper resource="META-INF/mypage-mapper.xml" />
+>>>>>>> origin/0816병합
 	</mappers>
 
 </configuration>
