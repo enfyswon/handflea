@@ -157,7 +157,7 @@
 					</div>
 					<div id="button-box">
 						<div id="left-button">
-							<button>문의하기</button>
+							<button id="chat_btn">문의하기</button>
 						</div>
 						<div id="right-button">
 							<button>장바구니</button>
@@ -168,6 +168,7 @@
 			</div>
 			<div>
 				상품 설명
+				<p>${detail_dto.description}</p>
 			</div>
 			<div>
 				상품 후기

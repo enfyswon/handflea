@@ -34,6 +34,7 @@
 		and p.smallcate_no = #{smallcate_no}
         and s.smallcate_no = #{smallcate_no}
         and b.bigcate_no = s.bigcate_no
+        and p.mem_no = m.mem_no
 		order by prdt_no desc
 	</select>
 
@@ -48,6 +49,7 @@
 		and p.bigcate_no = #{bigcate_no}
         and b.bigcate_no = #{bigcate_no}
         and b.bigcate_no = s.bigcate_no
+        and p.mem_no = m.mem_no 
 		order by prdt_no desc
 	</select>
 
