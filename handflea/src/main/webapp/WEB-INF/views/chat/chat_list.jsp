@@ -13,13 +13,74 @@
 		<style type="text/css">
 #chat {
 	width: 100%;
-	background-color: #ddd;
+	height: 500px;
+	max-height: 1000px;
+	display: flex;
+	flex-direction: row;
+	border: 1px solid #cecece;
+}
+#chat-list-box {
+	width : 30%;
+}
+#list-title {
+	height: 50px;
+	box-shadow: 0 3px 3px -1px rgba(0, 0, 0, 0.06);
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+#list-title > h5 {
+	margin: 0 auto;
+}
+#chat-list {
+	margin-top: 5px;
+}
+.chat-room {
+	border-bottom: 1px solid #cecece;
+	padding-top: 5px;
+}
+.chat-people {
 	display: flex;
 	flex-direction: row;
 }
-#chat-list {
-	width : 30%;
-	background-color: teal;
+.chat-img {
+	width: 15%;
+	margin: 0 5px;
+}
+.chat-img img {
+	width: 100%;
+}
+.chat-ib {
+	width: 80%;
+	margin: 0 5px;
+}
+.chat-ib > h6 > span {
+	font-size: x-small;
+	color: #808080;
+	float: right;
+}
+.chat-cnts {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: row;
+}
+.chat-cnts > p {
+	width: 85%;
+	font-size: small;
+	color: #808080;
+	margin: 0;
+}
+.badge {
+	width: 100%;
+	color: white;
+	font-weight: 300;
+	margin: 0;
+	padding-bottom: 5px;
+	border-radius: 45%;
+	float: right;
 }
 #chat-detail {
 	width : 70%;
@@ -30,9 +91,13 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 		<main>
-			<h1>채팅</h1>
 			<div id="chat">
-				<div id="chat-list">
+				<div id="chat-list-box">
+					<div id="list-title">
+						<h5>채팅 내역</h5>
+					</div>
+					<div id="chat-list">
+					</div>
 				</div>
 				<div id="chat-detail">
 					<div id="chat-history" name="contentsList">
@@ -53,7 +118,7 @@
 			success : function(data) {
 				$("#chat-list").html(data);
 				
-				$(".chat-list").on('click', function() {
+				$(".chat-room").on('click', function() {
 					let chat_roomno = $(this).attr('room');
 					let other_no = $(this).attr("other_no");
 					
@@ -91,7 +156,7 @@
 			success : function(data) {
 				$("#chat-list").html(data);
 				
-				$(".chat-list").on('click', function() {
+				$(".chat-room").on('click', function() {
 					let chat_roomno = $(this).attr('room');
 					let other_no = $(this).attr("other_no");
 					
