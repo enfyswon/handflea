@@ -43,7 +43,7 @@ public class ChatDAO {
 	public int chatSend(ChatDTO dto) {
 		int exist = sqlSession.selectOne("ChatMapper.existChat", dto);
 		if (exist == 0) {
-			int max_room = sqlSession.selectOne("ChatMapper.maxRoomno", dto);
+			int max_room = sqlSession.selectOne("ChatMapper.maxRoomno");
 			dto.setChat_roomno(Integer.toString(max_room + 1));
 		} else {
 			String chat_roomno = sqlSession.selectOne("ChatMapper.selectRoom", dto);

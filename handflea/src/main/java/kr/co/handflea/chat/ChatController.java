@@ -1,5 +1,6 @@
 package kr.co.handflea.chat;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,18 +57,19 @@ public class ChatController {
 		return "/chat/chat_contents";
 	}
 	
-	@RequestMapping(value = "/send", method=RequestMethod.GET)
-	public int chatSend(@RequestParam String chat_roomno, @RequestParam String other_no,
-			@RequestParam String content, HttpSession session) {
+	@RequestMapping(value = "/send", method=RequestMethod.POST)
+	public void chatSend(String chat_roomno, String other_no, String chat_contents, HttpSession session, PrintWriter out) {
+		System.out.println(chat_roomno + " : " + other_no + " : " + chat_contents);
 		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
 		ChatDTO dto = new ChatDTO();
 		dto.setChat_roomno(chat_roomno);
 		dto.setSend_mem_no(mem_no);
 		dto.setRecv_mem_no(other_no);
-		dto.setChat_contents(content);
+		dto.setChat_contents(chat_contents);
 		
-		int insertYN = service.chatSend(dto);
-		
-		return insertYN;
+		int insertYN = 0;
+		insertYN = service.chatSend(dto);
+		out.print(insertYN);
+		out.close();
 	}
 }

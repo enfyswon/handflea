@@ -11,23 +11,20 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<style type="text/css">
-			#chat {
-				width: 100%;
-				background-color: #ddd;
-				padding : 50px 0;
-			}
-			#chat-list {
-				display: inline-block;
-				width : 30%;
-				background-color: teal;
-				float: left;
-			}
-			#chat-detail {
-				display: inline-block;
-				width : 70%;
-				background-color: aqua;
-				float: right;
-			}
+#chat {
+	width: 100%;
+	background-color: #ddd;
+	display: flex;
+	flex-direction: row;
+}
+#chat-list {
+	width : 30%;
+	background-color: teal;
+}
+#chat-detail {
+	width : 70%;
+	background-color: aqua;
+}
 		</style>
 	</head>
 	<body>
@@ -38,7 +35,6 @@
 				<div id="chat-list">
 				</div>
 				<div id="chat-detail">
-					채팅내용
 					<div id="chat-history" name="contentsList">
 					</div>
 					<div id="send_form">
@@ -55,7 +51,6 @@
 			data : {
 			}, 
 			success : function(data) {
-				alert("메세지 리스트 로드");
 				$("#chat-list").html(data);
 				
 				$(".chat-list").on('click', function() {
@@ -77,7 +72,7 @@
 					send_msg += "	</div>";
 					send_msg += "</div>";
 					
-					$('#send_form').html(send_msg);
+					$("#send_form").html(send_msg);
 					$("#send_btn").on('click', function() {
 						SendChat(chat_roomno, other_no);
 					});
@@ -94,7 +89,6 @@
 			data : {
 			}, 
 			success : function(data) {
-				alert("메세지 리스트 로드");
 				$("#chat-list").html(data);
 				
 				$(".chat-list").on('click', function() {
@@ -136,7 +130,6 @@
 				other_no : other_no
 			},
 			success : function(data) {
-				alert("메세지 내용");
 				$("#chat-history").html(data);
 				$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
 			},
@@ -154,27 +147,47 @@
 		
 		if (content == "") {
 			alert("메세지를 입력하세요.");
-		} else {
-			$.ajax({
-				url : "${pageContext.request.contextPath}/chat/send",
-				method : "GET", 
-				data : {
+			return;
+		} 
+		
+		$.post(
+				"${pageContext.request.contextPath}/chat/send",
+				{
 					chat_roomno : chat_roomno,
 					other_no : other_no,
 					chat_contents : content
-				}, 
-				success : function(data) {
-					alert("메세지 전송 성공");
-					$("#write_chat").val("");
-					
-					ChatContentsList(chat_roomno, other_no);
-					ChatList();
-				}, 
-				error : function() {
-					alert("서버 에러");
+				},
+				function(data, status) {
+					if (data >= 1) {
+						ChatContentsList(chat_roomno, other_no);
+						ChatList();
+					} else if (data == 0) {
+						alert("메세지 전송 실패");
+					} else {
+						alert("서버 에러");
+					}
 				}
-			});
-		}
+		);
+		
+		/* $.ajax({
+			url : "${pageContext.request.contextPath}/chat/send",
+			method : "POST", 
+			data : {
+				chat_roomno : chat_roomno,
+				other_no : other_no,
+				chat_contents : content
+			}, 
+			success : function(data) {
+				alert("메세지 전송 성공");
+				$("#write_chat").val("");
+				
+				ChatContentsList(chat_roomno, other_no);
+				ChatList();
+			}, 
+			error : function() {
+				alert("서버 에러");
+			}
+		}) */
 	};
 	
 	$(document).ready(function() {

@@ -54,4 +54,27 @@
 		</otherwise>
 	</choose>
 	</update>
+	
+	<select id="existChat" parameterType="kr.co.handflea.chat.ChatDTO" resultType="Int">
+	select count(chat_no) from chat
+	where (recv_mem_no = #{recv_mem_no} and send_mem_no = #{send_mem_no})
+	or (send_mem_no = #{recv_mem_no} and recv_mem_no = #{send_mem_no})
+	</select>
+
+	<select id="maxRoomno" resultType="Int">
+	select max(chat_roomno) from chat
+	</select>
+	
+	<select id="selectRoom" parameterType="kr.co.handflea.chat.ChatDTO" resultType="java.lang.String">
+	select chat_roomno from chat
+	where (recv_mem_no = #{recv_mem_no} and send_mem_no = #{send_mem_no})
+	or (send_mem_no = #{recv_mem_no} and recv_mem_no = #{send_mem_no})
+	limit 0, 1
+	</select>
+	
+	<insert id="chatSend" parameterType="kr.co.handflea.chat.ChatDTO">
+	insert into chat (chat_roomno, recv_mem_no, send_mem_no, chat_date, chat_photo, chat_photopath, chat_contents)
+	values (#{chat_roomno}, #{recv_mem_no}, #{send_mem_no}, now(), #{chat_photo}, #{chat_photopath}, #{chat_contents})
+	</insert>
+	
 </mapper>

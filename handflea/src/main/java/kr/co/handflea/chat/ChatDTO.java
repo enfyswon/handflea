@@ -16,6 +16,14 @@ public class ChatDTO {
 	private String mem_no;
 	private int unread;
 	
+	public String toString() {
+		return getChat_no() + " : " + getChat_roomno() + " : " + 
+			   getRecv_mem_no() + " : " + getSend_mem_no() + " : " + 
+			   getChat_yn() + " : " + getChat_date() + " : " + 
+			   getChat_photo() + " : " + getChat_photopath() + " : " + 
+			   getOther_no() + " : " + getOther_name() + " : " + getMem_no();
+	}
+	
 	public String getChat_no() {
 		return chat_no;
 	}
