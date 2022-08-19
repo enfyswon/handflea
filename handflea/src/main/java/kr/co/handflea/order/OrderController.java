@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,8 @@ import kr.co.handflea.util.dto.MemberDTO;
 @Controller
 @RequestMapping( value = "/order")
 public class OrderController {
-
+	@Autowired
+	OrderService service;
 
 	@RequestMapping( value = "/order_list", method = RequestMethod.GET )
 	public String orderList( String [] arr_basket_no, ProductDTO dto, Model model, HttpSession session ) {

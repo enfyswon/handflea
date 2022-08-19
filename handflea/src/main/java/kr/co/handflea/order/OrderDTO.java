@@ -84,5 +84,16 @@ public class OrderDTO {
 	public void setOption_no(String option_no) {
 		this.option_no = option_no;
 	}
+	public Object getArr_cart_no() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Object getArr_basket_no() {
+		// TODO Auto-generated method stub
+		return null;
+
+	}
+	
+	
 
 }
