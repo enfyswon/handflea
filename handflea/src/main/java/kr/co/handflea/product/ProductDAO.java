@@ -109,4 +109,26 @@ public class ProductDAO {
 		return list;
 	}//bigcateSelect
 
+	public int optionCnt(String prdt_no) {
+		int cnt = 0;
+		cnt = sqlSession.selectOne("ProductMapper.optionCnt", prdt_no);
+		return cnt;
+	}
+
+	public int optionAllDelete(String prdt_no) {
+		return sqlSession.delete("ProductMapper.optionAllDelete", prdt_no);
+	}
+
+	public int updateOption(ProductDTO dto) {
+		return sqlSession.update("ProductMapper.updateOption", dto);
+	}
+
+	public int optionDelete(ProductDTO dto) {
+		return sqlSession.delete("ProductMapper.optionDelete", dto);
+	}
+
+	public int optionInsert(ProductDTO dto) {
+		return sqlSession.insert("ProductMapper.optionInsert", dto);
+	}
+
 }//class

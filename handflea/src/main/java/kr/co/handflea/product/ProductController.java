@@ -41,7 +41,14 @@ public class ProductController {
 	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update( ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
-
+		System.out.println(">>>>>>>>>> con : " + dto.getPrdt_no());
+		
+		dto.setOption_yn("0");
+		
+		if (dto.getArr_option().length > 0) {
+			dto.setOption_yn("1");
+		}//if
+		
 		Date today = new Date();
 		DateFormat nalja = new SimpleDateFormat("YYYYMMDD");
 		DateFormat sigan = new SimpleDateFormat("HHmmss");
