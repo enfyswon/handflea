@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.MemberDTO;
+import kr.co.handflea.util.dto.SellerDTO;
 
 @Repository
 public class MyPageDAO {
@@ -15,6 +16,12 @@ public class MyPageDAO {
 	@Autowired
 	SqlSession sqlSession;
 
+	public int sellerjoin(SellerDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.insert("MyPageMapper.sellerjoin", dto);
+		return successCount;
+	}//sellerjoin
+	
 	public List<BankDTO> bankSelect() {
 		List<BankDTO> list = null;
 		list = sqlSession.selectList("MyPageMapper.bankSelect");
@@ -34,4 +41,5 @@ public class MyPageDAO {
 		
 		return updateYN;
 	}
+
 }
