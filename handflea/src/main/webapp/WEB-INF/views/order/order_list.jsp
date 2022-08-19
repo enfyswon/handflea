@@ -6,6 +6,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>HandFlea</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<style type="text/css">
+table {
+	width: 100%;
+}
+th {
+	font-weight: 500;
+}
+</style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -82,7 +93,6 @@
 	</body>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		alert(${buyer_info.mem_name} + " : " + ${order_list.prdt_name});
 	});
 	</script>
 </html>

@@ -28,12 +28,11 @@ public class OrderController {
 		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		MemberDTO mdto = new MemberDTO();
 		mdto = service.buyerInfo(mem_no);
+		model.addAttribute("buyer_info", mdto);
 		
 		List<ProductDTO> list = null;
 		list = service.buyOrderList(dto);
-		
-		model.addAttribute("buyer_info", mdto);
-		model.addAttribute("order_list", list);
+		//model.addAttribute("order_list", list);
 		
 		return "/order/order_list";
 	}

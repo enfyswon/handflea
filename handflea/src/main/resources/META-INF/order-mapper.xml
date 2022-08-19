@@ -5,7 +5,7 @@
 
 <mapper namespace="OrderMapper">
 
-	<select id="buyOrderList" parameterType="kr.co.handflea.product.ProductDTO" resultType="kr.co.handflea.order.OrderDTO">
+	<select id="buyOrderList" parameterType="kr.co.handflea.product.ProductDTO" resultType="kr.co.handflea.product.ProductDTO">
 	select p.prdt_no, p.prdt_name, o.option_no, o.option_contents, p.price, 
 		   p.delivery_price, p.thumbnail_name, p.thumbnail_path,
 		   (p.price * #{buy_qty}) + p.delivery_price total_price, #{buy_qty} as buy_qty
