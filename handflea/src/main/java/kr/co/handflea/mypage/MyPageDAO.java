@@ -20,4 +20,18 @@ public class MyPageDAO {
 		list = sqlSession.selectList("MyPageMapper.bankSelect");
 		return list;
 	}
+
+	public MemberDTO infoSelect(String mem_no) {
+		MemberDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.infoSelect", mem_no);
+		
+		return dto;
+	}
+
+	public int infoUpdate(MemberDTO dto) {
+		int updateYN = 0;
+		updateYN = sqlSession.update("MyPageMapper.infoUpdate", dto);
+		
+		return updateYN;
+	}
 }

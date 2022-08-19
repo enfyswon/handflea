@@ -91,7 +91,8 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 	
-		<input type="text" id="prdt_no" value="${detail_dto.prdt_no}" hidden="hidden">
+		<input type="hidden" id="prdt_no" value="${detail_dto.prdt_no}">
+		<input type="hidden" id="mem_no" value="${detail_dto.mem_no}">
 		<main>
 			<div id="prdt-outline">
 				<div id="prdt-img">
@@ -157,7 +158,7 @@
 					</div>
 					<div id="button-box">
 						<div id="left-button">
-							<button>문의하기</button>
+							<button id="chat_btn">문의하기</button>
 						</div>
 						<div id="right-button">
 							<button>장바구니</button>
@@ -168,6 +169,7 @@
 			</div>
 			<div>
 				상품 설명
+				<p>${detail_dto.description}</p>
 			</div>
 			<div>
 				상품 후기
@@ -175,16 +177,19 @@
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$.get(
-					"${pageContext.request.contextPath}/product/option"
-					, { prdt_no : $("#prdt_no").val() }
-					, function(data, status) {
-						$.each(JSON.parse(data), function(idx, dto) { 
-							$("#option_no").append("<option value='" + dto.option_no + "'>" + dto.option_contents + "</option>");
-						});//each
-					}//call back function
+	$(document).ready(function() {
+		$.get(
+				"${pageContext.request.contextPath}/product/option"
+				, { prdt_no : $("#prdt_no").val() }
+				, function(data, status) {
+					$.each(JSON.parse(data), function(idx, dto) { 
+						$("#option_no").append("<option value='" + dto.option_no + "'>" + dto.option_contents + "</option>");
+					});//each
+				}//call back function
 		);//get
+		$("#chat_btn").click(function() {
+			alert($("#mem_no").val());
+		});
 	});//ready
 	</script>
 	
