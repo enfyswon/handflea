@@ -16,7 +16,7 @@
 			color : red;
 		}
 		.prdt_img {
-			width: 100%;
+			width: 30%;
 		}
 		</style>
 	</head>
@@ -49,6 +49,8 @@
 									value="${detail_dto.price}">
 							<label for="price" id="price_label" class="write_label"></label>
 						</td>
+					</tr>
+					<tr>
 						<th> 배송비(단위 : 원) (*)  </th>
 						<td>
 							<input type="text" id="delivery_price" name="delivery_price" class="form-control"
@@ -90,6 +92,8 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
+					</tr>
+					<tr>
 						<th> 상 품 상 세 이 미 지 </th>
 						<td class="text-center">
 							<c:choose>
@@ -171,7 +175,8 @@
 	$(document).ready(function() {
 		let tmpForm = new FormDate();
 	});//ready
-	사진 삭제하고 뒤로갈때*/
+	사진 삭제하고 뒤로갈때
+	*/
 	
 	$(document).ready(function() {
 		
