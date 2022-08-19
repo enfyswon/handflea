@@ -42,6 +42,8 @@ public class ProductDTO {
 	
 	private int limitNum;
 	
+	private String seller_name;
+	
 	@Override
 	public String toString() {
 		return prdt_no
@@ -333,6 +335,14 @@ public class ProductDTO {
 
 	public void setLimitNum(int limitNum) {
 		this.limitNum = limitNum;
+	}
+
+	public String getSeller_name() {
+		return seller_name;
+	}
+
+	public void setSeller_name(String seller_name) {
+		this.seller_name = seller_name;
 	}
 	
 }//class

@@ -56,15 +56,15 @@
 						</div>
 						<div class="input-box">
 							<div>
-								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="우편번호">
-								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
+								<input type="text" id="post_code" name="post_code" placeholder="우편번호">
+								<button type="button" id="addr_btn" name="addr_btn" onclick="DaumPostcode()">우편번호 검색</button>
 							</div>
 							<div>
-								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="도로명 주소">
+								<input type="text" id="seller_add_1" name="seller_add_1" placeholder=" 주소">
 							</div>
 							<div>
-								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="상세 주소">
-								<input type="text" id="seller_add_4" name="seller_add_4" placeholder="참고항목">
+								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소">
+								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="참고항목">
 							</div>
 						</div>
 					</div>
@@ -77,15 +77,15 @@
 								<select id="bank" name="bank">
 									<option value="0">--은행 선택--</option>
 								</select>
-								<button type="button" id="account_btn" name="account_btn">환불 계좌 가져오기</button> 
+								<!--  <button type="button" id="account_btn" name="account_btn">환불 계좌 가져오기</button> -->
 							</div>
 							<div>
-								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+								<input type="text" id="seller_account_no" name="seller_account_no" placeholder="계좌 번호">
 							</div>
 						</div>
 					</div>
 					<div class="input-block">
-						<button type="button" id="regist_btn" name="regist_btn">판매자 등록</button>
+						<button id="regist_btn" name="regist_btn">판매자 등록</button>
 					</div>
 				</div>
 			</div>
@@ -103,17 +103,64 @@
 				}
 		);
 	});
-	</script>
-	<script>
-	function pwd_ch() {
-		var userinput = prompt("비밀번호를 입력해주세요.");
-		if ("${login_info.mem_pwd}" == userinput) {
-			location.href="${pageContext.request.contextPath}/mypage/myinfo";
-		} else {
-			alert("비밀번호가 틀렸습니다.");
-			location.href="${pageContext.request.contextPath}/mypage/";
-		}
-	}
+	
+	
+	
+	let checkedID = "";
+	let onlyNum = /^[0-9]+$/;
+	let engLowerAndNum = /^[a-z0-9]+$/;
+	let onlyPwd = /^[a-z0-9~!@#$%^&*().]+$/;
+	let onlyEmail = /^[a-zA-Z0-9.@]+$/;
+
+	$(document).ready(function() {
+		$("#regist_btn").click(function() {
+			
+			if( $("#seller_name").val() == "" ){//null.
+				alert("마켓명을 입력해주세요.");
+				return;
+			}
+			if( $("#seller_add_2").val() == "") {
+				alert("주소를 입력해주세요.");
+				return;
+			} 
+			if( $("#post_code").val() == "") {
+				alert("주소를 입력해주세요.");
+				return;
+			} 
+			if( $("#bank").val() == "0" ){
+				alert("은행을 선택하세요.");
+				return;
+			} 
+			let seller_account_no = $.trim($("#seller_account_no").val());
+			
+			if (seller_account_no == "") {
+				alert("계좌 번호를 입력해주세요.");
+				return;
+			} 
+			$.post(
+					"${pageContext.request.contextPath}/mypage/sellerjoin"
+					, {
+						seller_name : $("#seller_name").val()
+						, bank_no : $("#bank").val()
+						, seller_account_no : $("#seller_account_no").val()
+						, post_code : $("#post_code").val()
+						, seller_add_1 : $("#seller_add_1").val()
+						, seller_add_2 : $("#seller_add_2").val() + ' ' + $("#seller_add_3").val()
+					}
+					, function(data, status) {
+						if(data == 1){
+							alert("판매자 등록에 성공 하셨습니다.");
+							location.href="${pageContext.request.contextPath}/main";
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}//call back function
+			);//post
+			
+		});//click
+	});//ready
+		
+	
 	function DaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -139,17 +186,18 @@
 						extraAddr = '(' + extraAddr + ')';
 					}
 					
-					document.getElementById("seller_add_4").value = extraAddr;
+					document.getElementById("seller_add_3").value = extraAddr;
 				} else {
-					document.getElementById("seller_add_4").value = '';
+					document.getElementById("seller_add_3").value = '';
 				}
 				
-				document.getElementById("seller_add_1").value = data.zonecode;
-				document.getElementById("seller_add_2").value = addr;
-				document.getElementById("seller_add_3").focus();
+				document.getElementById("post_code").value = data.zonecode;
+				document.getElementById("seller_add_1").value = addr;
+				document.getElementById("seller_add_2").focus();
 			}
 		}).open();
 	}
 	</script>
+	
 	</body>
 </html>

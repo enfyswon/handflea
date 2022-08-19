@@ -1,5 +1,7 @@
 package kr.co.handflea.util.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDTO {
 
 	private String mem_no;
@@ -10,6 +12,7 @@ public class MemberDTO {
 	private String mdate;
 	private String mem_photo;
 	private String mem_photopath;
+	private MultipartFile profile;
 
 	private String tel1;
 	private String tel2;
@@ -22,6 +25,12 @@ public class MemberDTO {
 	private String seller_yn;
 	private String bank_no;
 	private String account_no;
+	
+	private String seller_name;
+	private String seller_money;
+	private String seller_add_1;
+	private String seller_add_2;
+	
 
 	@Override
 	public String toString() {
@@ -103,6 +112,14 @@ public class MemberDTO {
 		this.mem_photopath = mem_photopath;
 	}
 
+	public MultipartFile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(MultipartFile profile) {
+		this.profile = profile;
+	}
+
 	public String getTel1() {
 		return tel1;
 	}
@@ -174,5 +191,38 @@ public class MemberDTO {
 	public void setAccount_no(String account_no) {
 		this.account_no = account_no;
 	}
+
+	public String getSeller_name() {
+		return seller_name;
+	}
+
+	public void setSeller_name(String seller_name) {
+		this.seller_name = seller_name;
+	}
+
+	public String getSeller_money() {
+		return seller_money;
+	}
+
+	public void setSeller_money(String seller_money) {
+		this.seller_money = seller_money;
+	}
+
+	public String getSeller_add_1() {
+		return seller_add_1;
+	}
+
+	public void setSeller_add_1(String seller_add_1) {
+		this.seller_add_1 = seller_add_1;
+	}
+
+	public String getSeller_add_2() {
+		return seller_add_2;
+	}
+
+	public void setSeller_add_2(String seller_add_2) {
+		this.seller_add_2 = seller_add_2;
+	}
+	
 	
 }//class

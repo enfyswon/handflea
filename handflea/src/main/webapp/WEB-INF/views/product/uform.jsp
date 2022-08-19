@@ -72,7 +72,7 @@
 						<th> 상품 준비 기간(단위 : 일) (*)  </th>
 						
 						<td>
-							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control">
+							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control" value="${detail_dto.prdt_rdy}">
 							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
 						</td>
 					</tr>

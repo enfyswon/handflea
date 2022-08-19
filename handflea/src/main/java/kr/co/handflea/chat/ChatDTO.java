@@ -2,24 +2,39 @@ package kr.co.handflea.chat;
 
 public class ChatDTO {
 	private String chat_no;
-	private String caht_roomno;
+	private String chat_roomno;
 	private String recv_mem_no;
 	private String send_mem_no;
 	private int chat_yn;
 	private String chat_date;
 	private String chat_photo;
 	private String chat_photopath;
+	private String chat_contents;
+	
+	private String other_no;
+	private String other_name;
+	private String mem_no;
+	private int unread;
+	
+	public String toString() {
+		return getChat_no() + " : " + getChat_roomno() + " : " + 
+			   getRecv_mem_no() + " : " + getSend_mem_no() + " : " + 
+			   getChat_yn() + " : " + getChat_date() + " : " + 
+			   getChat_photo() + " : " + getChat_photopath() + " : " + 
+			   getOther_no() + " : " + getOther_name() + " : " + getMem_no();
+	}
+	
 	public String getChat_no() {
 		return chat_no;
 	}
 	public void setChat_no(String chat_no) {
 		this.chat_no = chat_no;
 	}
-	public String getCaht_roomno() {
-		return caht_roomno;
+	public String getChat_roomno() {
+		return chat_roomno;
 	}
-	public void setCaht_roomno(String caht_roomno) {
-		this.caht_roomno = caht_roomno;
+	public void setChat_roomno(String chat_roomno) {
+		this.chat_roomno = chat_roomno;
 	}
 	public String getRecv_mem_no() {
 		return recv_mem_no;
@@ -56,5 +71,35 @@ public class ChatDTO {
 	}
 	public void setChat_photopath(String chat_photopath) {
 		this.chat_photopath = chat_photopath;
+	}
+	public String getChat_contents() {
+		return chat_contents;
+	}
+	public void setChat_contents(String chat_contents) {
+		this.chat_contents = chat_contents;
+	}
+	public String getOther_no() {
+		return other_no;
+	}
+	public void setOther_no(String other_no) {
+		this.other_no = other_no;
+	}
+	public String getOther_name() {
+		return other_name;
+	}
+	public void setOther_name(String other_name) {
+		this.other_name = other_name;
+	}
+	public String getMem_no() {
+		return mem_no;
+	}
+	public void setMem_no(String mem_no) {
+		this.mem_no = mem_no;
+	}
+	public int getUnread() {
+		return unread;
+	}
+	public void setUnread(int unread) {
+		this.unread = unread;
 	}
 }
