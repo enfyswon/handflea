@@ -10,11 +10,13 @@
 					<img src="${pageContext.request.contextPath}/resources/img/user.png" alt="profile">
 				</div>
 				<div class="chat-ib">
-					<h6>${tmp.other_name}<span class="chat_date">${tmp.chat_date}</span></h6>
+					<h4>${tmp.other_name}<span class="chat_date">${tmp.chat_date}</span></h4>
 					<div class="chat-cnts">
-						<p>${tmp.chat_contents}
+						<div class="chat-cnts-p">
+							<p>${tmp.chat_contents}
+						</div>
 						<c:if test="${tmp.unread > 0}">
-						<div class="unread${tmp.chat_roomno}">
+						<div class="unread${tmp.chat_roomno} unread">
 							<span class="badge bg-danger">${tmp.unread}</span>
 						</div>
 						</c:if>

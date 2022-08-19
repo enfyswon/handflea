@@ -7,13 +7,13 @@
 		<meta charset="UTF-8">
 		<title>Handflea</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<!-- 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">	-->
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<style type="text/css">
 #chat {
 	width: 100%;
-	height: 500px;
+	height: 900px;
 	max-height: 1000px;
 	display: flex;
 	flex-direction: row;
@@ -30,7 +30,7 @@
 	align-items: center;
 	text-align: center;
 }
-#list-title > h5 {
+#list-title > h3 {
 	margin: 0 auto;
 }
 #chat-list {
@@ -61,11 +61,10 @@
 	width: 80%;
 	margin: 0 5px;
 }
-.chat-ib > h6 {
+.chat-ib > h4 {
 	margin: 0;
-	margin-top: 3px;
 }
-.chat-ib > h6 > span {
+.chat-ib > h4 > span {
 	font-size: x-small;
 	color: #808080;
 	float: right;
@@ -73,27 +72,39 @@
 }
 .chat-cnts {
 	width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	display: flex;
 	flex-direction: row;
 	padding-top: 5px;
 }
-.chat-cnts > p {
+.chat-cnts-p {
 	width: 85%;
 	font-size: small;
 	color: #808080;
 	margin: 0;
 }
-.badge {
-	width: 100%;
-	color: white;
-	font-weight: 300;
+.chat-cnts-p > p {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 180px;
 	margin: 0;
-	padding-bottom: 5px;
-	border-radius: 45%;
+}
+.unread {
+	width: 8%;
+	margin: 0;
+}
+.badge {
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	color: white;
+	font-weight: 400;
+	font-size: small;
+	text-align: center;
+	margin: 0;
 	float: right;
+	background-color: #F41137;
+	border-radius: 50%;
 }
 #chat-detail {
 	width : 70%;
@@ -135,8 +146,8 @@
 .outgoing_chat {
 	overflow-x: auto;
 	width: 60%;
-	margin: 0 10px 0 0;
 	text-align: right;
+	padding-left: 35%;
 }
 .sent_chat {
 	margin: 0;
@@ -149,6 +160,16 @@
 	font-size: 15px;
 	padding: 5px;
 }
+#input-chat {
+	display: flex;
+	flex-direction: row;
+}
+#write_chat {
+	
+}
+#send_btn {
+
+}
 		</style>
 	</head>
 	<body>
@@ -157,7 +178,7 @@
 			<div id="chat">
 				<div id="chat-list-box">
 					<div id="list-title">
-						<h5>채팅 내역</h5>
+						<h3>채팅 내역</h3>
 					</div>
 					<div id="chat-list">
 					</div>
@@ -190,11 +211,11 @@
 					
 					let send_msg = "";
 					send_msg += "<div class='type_msg'>";
-					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-11'>";
+					send_msg += "	<div id='input-chat'>";
+					send_msg += "		<div>";
 					send_msg += "			<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
 					send_msg += "		</div>";
-					send_msg += "		<div class='col-1'>";
+					send_msg += "		<div>";
 					send_msg += "			<button id='send_btn' type='button'>전송</button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
@@ -228,11 +249,11 @@
 					
 					let send_msg = "";
 					send_msg += "<div class='type_msg'>";
-					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-11'>";
+					send_msg += "	<div id='input-chat'>";
+					send_msg += "		<div>";
 					send_msg += "			<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
 					send_msg += "		</div>";
-					send_msg += "		<div class='col-1'>";
+					send_msg += "		<div>";
 					send_msg += "			<button id='send_btn' type='button'>전송</button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";

@@ -8,6 +8,9 @@
 a {
 	text-decoration: none;
 }
+a :hover {
+	text-decoration: none;	
+}
 ul {
 	z-index: 999;
 }
@@ -123,7 +126,7 @@ button {
 	display: block;
 }
 #big-menu span:hover {
-	color : 0F8BFF;
+	color : #0F8BFF;
 }
 #big-menu span {
 	font-size : medium;
