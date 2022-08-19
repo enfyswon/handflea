@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< Updated upstream
-Built-By: ict01-27
-=======
-Built-By: ict01-01
->>>>>>> Stashed changes
+Built-By: artem
 Build-Jdk: 1.8.0_321
 Created-By: Maven Integration for Eclipse
 
