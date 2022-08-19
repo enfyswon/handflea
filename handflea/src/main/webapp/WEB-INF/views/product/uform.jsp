@@ -26,6 +26,7 @@
 		<h3> 판매자 상품 등록 </h3>
 		<hr>
 		<form id="write_form">
+			<input type="hidden" id="prdt_no" name="prdt_no" value="${detail_dto.prdt_no}">
 			<table class="table table-hover">
 				<tbody>
 					<tr>
@@ -181,6 +182,11 @@
 	$(document).ready(function() {
 		
 		$("#write_btn").click(function() {
+			let tmpArr1 = $("input[id^='no']");
+			let arr_option1 = new Array();
+			for (let i = 0; i < tmpArr1.length; i++) {
+				arr_option1.push( tmpArr1[i].value );
+			}
 
 			let tmpArr2 = $("input[id^='option_no']");
 			let arr_option2 = new Array();
@@ -240,8 +246,8 @@
 
 			let form = new FormData( document.getElementById( "write_form" ) );
 			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
-			form.append( "prdt_no", ${detail_dto.prdt_no} );
 			form.append( "arr_option", arr_option2 );
+			form.append( "arr_option_no", arr_option1 );
 
 			$.ajax({
 					type : "POST"
@@ -267,6 +273,26 @@
 	<script type="text/javascript">
 		let optionNo = 0;
 		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/option"
+					, { prdt_no : $("#prdt_no").val() }
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#option_name_div").append(
+									'<div class="input-group" id="div_option_no'+optionNo+'">'
+									+'<input type="hidden" id="no'+optionNo+'" value='+ dto.option_no +'>'
+									+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요." value='+ dto.option_contents +'>'
+									+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+									+ '</div>'
+								);//append
+								$("#option_remove_btn"+optionNo).on("click", function(){
+									$(this).parent().remove();
+								});//on
+								optionNo++;
+							//$("#option_no").append("<option value='" + dto.option_no + "'>" + dto.option_contents + "</option>");
+						});//each
+					}//call back function
+			);//get
 			$("#add_option_btn").click(function() {
 				$("#option_name_div").append(
 					'<div class="input-group" id="div_option_no'+optionNo+'">'

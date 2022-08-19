@@ -27,7 +27,12 @@ public class ChatController {
 	ChatService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String list() {
+	public String list(String other_no, HttpSession session) {
+		ChatDTO dto = new ChatDTO();
+		dto.setOther_no(other_no);
+		dto.setMem_no( ((MemberDTO)session.getAttribute("login_info")).getMem_no() );
+		//roomNo 찾아서 보내기
+		dto.setChat_roomno(service.setRoomNo(dto));
 		
 		return "/chat/chat_list";
 	}

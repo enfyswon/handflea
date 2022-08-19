@@ -342,6 +342,7 @@
 	
 	$(document).ready(function() {
 		FirstChatList();
+		ChatContentsList(null, '2');
 	});
 	
 	</script>

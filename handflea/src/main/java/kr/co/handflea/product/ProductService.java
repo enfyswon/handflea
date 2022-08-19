@@ -18,6 +18,45 @@ public class ProductService {
 	public int update(ProductDTO dto) {
 		int successCount = 0;
 		successCount = dao.update( dto );
+		if(successCount < 1) return successCount;
+		if (dto.getArr_option().length == 0 || dto.getArr_option() == null) {
+			successCount = dao.optionAllDelete(dto.getPrdt_no());
+		} else {
+			int cnt = dao.optionCnt(dto.getPrdt_no());
+			System.out.println(cnt + " : " + dto.getArr_option().length);
+			if (dto.getArr_option().length < cnt) {
+				for (int i = 0; i < dto.getArr_option().length; i++) {
+					String [] option_no = dto.getArr_option_no();
+					String [] option_contents = dto.getArr_option();
+					dto.setOption_no(option_no[i]);
+					dto.setOption_contents(option_contents[i]);
+					successCount = dao.updateOption(dto);
+				}
+				dto.setLimitNum(cnt - dto.getArr_option().length);
+				successCount = dao.optionDelete(dto);
+			} else if (dto.getArr_option().length == cnt) {
+				for (int i = 0; i < dto.getArr_option().length; i++) {
+					String [] option_no = dto.getArr_option_no();
+					String [] option_contents = dto.getArr_option();
+					dto.setOption_no(option_no[i]);
+					dto.setOption_contents(option_contents[i]);
+					successCount = dao.updateOption(dto);
+				}
+			} else {
+				for (int i = 0; i < cnt; i++) {
+					String [] option_no = dto.getArr_option_no();
+					String [] option_contents = dto.getArr_option();
+					dto.setOption_no(option_no[i]);
+					dto.setOption_contents(option_contents[i]);
+					successCount = dao.updateOption(dto);
+				}
+				for (int i = 0; i < (dto.getArr_option().length - cnt); i++) {
+					String [] option_contents = dto.getArr_option();
+					dto.setOption_contents(option_contents[cnt + i]);
+					successCount = dao.optionInsert(dto);
+				}
+			}
+		}
 		return successCount;
 	}//update
 	

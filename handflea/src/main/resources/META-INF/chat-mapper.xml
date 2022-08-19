@@ -81,4 +81,10 @@
 	select mem_name from member
 	where mem_no = #{other_no}
 	</select>
+	
+	<select id="setRoomNo" parameterType="kr.co.handflea.chat.ChatDTO" resultType="java.lang.String">
+	select distinct chat_roomno from chat
+	where (recv_mem_no = #{mem_no} and send_mem_no = #{other_no})
+	or (recv_mem_no = #{other_no} and send_mem_no = #{mem_no});
+	</select>
 </mapper>
