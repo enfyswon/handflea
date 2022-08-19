@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.gson.Gson;
 
 import kr.co.handflea.credit.CreditCardDTO;
+import kr.co.handflea.credit.CreditCardService;
 import kr.co.handflea.delivery.DeliveryDAO;
 import kr.co.handflea.delivery.DeliveryDTO;
 import kr.co.handflea.product.ProductDTO;
 import kr.co.handflea.util.dto.MemberDTO;
-
-
-
 
 @Controller
 @RequestMapping( value = "/order")
@@ -45,7 +40,7 @@ public class OrderController {
 		model.addAttribute("deliverylist", deliverylist);
 
 		List<CreditCardDTO> cardlist = null;
-		cardlist = creditCardService.list( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		cardlist = CreditCardService.list( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
 		model.addAttribute("cardlist", cardlist);
 
 		model.addAttribute( "arr_basket_no", new Gson().toJson( arr_basket_no ) );
