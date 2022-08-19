@@ -14,7 +14,7 @@
 #chat {
 	width: 100%;
 	height: 900px;
-	max-height: 1000px;
+	max-height: 600px;
 	display: flex;
 	flex-direction: row;
 	border: 1px solid #cecece;
@@ -110,7 +110,6 @@
 	width : 70%;
 }
 #chat-history {
-	overflow-y: auto; 
 }
 #contents-title {
 	height: 50px;
@@ -125,6 +124,10 @@
 #contents-title > h5 {
 	width: 80%; 
 	margin: 0 5px;
+}
+#chat-history-box {
+	overflow-y: auto; 
+	height: 500px;
 }
 .time_date {
 	color: #808080;
@@ -160,15 +163,34 @@
 	font-size: 15px;
 	padding: 5px;
 }
+#send_form {
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid #cecece;
+}
 #input-chat {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	height: 100%;
+	margin: 0;
+}
+#input-text {
+	width: 70%;
+}
+#input-btn {
+	width: 20%;
 }
 #write_chat {
-	
+	width: 100%;
+	padding: 5px;
 }
 #send_btn {
-
+	width: 100%;
+	color: white;
+	background-color: #0F8BFF;
+	padding: 5px;
+	border-radius: 5px;
 }
 		</style>
 	</head>
@@ -210,14 +232,12 @@
 					$(".chat-list-box" + chat_roomno).addClass("active-chat");
 					
 					let send_msg = "";
-					send_msg += "<div class='type_msg'>";
-					send_msg += "	<div id='input-chat'>";
-					send_msg += "		<div>";
-					send_msg += "			<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
-					send_msg += "		</div>";
-					send_msg += "		<div>";
-					send_msg += "			<button id='send_btn' type='button'>전송</button>";
-					send_msg += "		</div>";
+					send_msg += "<div id='input-chat'>";
+					send_msg += "	<div id='input-text'>";
+					send_msg += "		<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
+					send_msg += "	</div>";
+					send_msg += "	<div id='input-btn'>";
+					send_msg += "		<button id='send_btn' type='button'>전송</button>";
 					send_msg += "	</div>";
 					send_msg += "</div>";
 					
@@ -248,14 +268,12 @@
 					$(".chat-list-box" + chat_roomno).addClass("active-chat");
 					
 					let send_msg = "";
-					send_msg += "<div class='type_msg'>";
-					send_msg += "	<div id='input-chat'>";
-					send_msg += "		<div>";
-					send_msg += "			<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
-					send_msg += "		</div>";
-					send_msg += "		<div>";
-					send_msg += "			<button id='send_btn' type='button'>전송</button>";
-					send_msg += "		</div>";
+					send_msg += "<div id='input-chat'>";
+					send_msg += "	<div id='input-text'>";
+					send_msg += "		<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
+					send_msg += "	</div>";
+					send_msg += "	<div id='input-btn'>";
+					send_msg += "		<button id='send_btn' type='button'>전송</button>";
 					send_msg += "	</div>";
 					send_msg += "</div>";
 					
@@ -280,7 +298,7 @@
 			},
 			success : function(data) {
 				$("#chat-history").html(data);
-				$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
+				$("#chat-history-box").scrollTop($("#chat-history-box")[0].scrollHeight);
 			},
 			error : function() {
 				alert("서버 에러");
@@ -342,7 +360,23 @@
 	
 	$(document).ready(function() {
 		FirstChatList();
-		ChatContentsList(null, '2');
+		if (${chat_send.other_no != null}) {
+			let send_msg = "";
+			send_msg += "<div id='input-chat'>";
+			send_msg += "	<div id='input-text'>";
+			send_msg += "		<input type='text' class='form-control' id='write_chat' placeholder='메세지 입력' />";
+			send_msg += "	</div>";
+			send_msg += "	<div id='input-btn'>";
+			send_msg += "		<button id='send_btn' type='button'>전송</button>";
+			send_msg += "	</div>";
+			send_msg += "</div>";
+			
+			$('#send_form').html(send_msg);
+			$("#send_btn").on('click', function() {
+				SendChat("${chat_send.chat_roomno}", "${chat_send.other_no}");
+			});
+			ChatContentsList("${chat_send.chat_roomno}", "${chat_send.other_no}");
+		}
 	});
 	
 	</script>
