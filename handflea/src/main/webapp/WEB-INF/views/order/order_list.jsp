@@ -12,7 +12,8 @@
 	
 	<main>
 		<h3>주문 페이지</h3>
-	
+		<c:forEach var="dto" items="${order_list}">
+		</c:forEach>
 	</main>
 	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>

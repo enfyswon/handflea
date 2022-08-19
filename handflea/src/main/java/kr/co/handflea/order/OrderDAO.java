@@ -13,6 +13,13 @@ public class OrderDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	public List<OrderDTO> orderList(OrderDTO dto) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("OrderMapper.orderList", dto);
+		
+		return list;
+	}
+
 	/*
 	 * public int updateDeliveryAddrUsedDate( OrderDTO dto ) { int successCount = 0;
 	 * successCount = sqlSession.update("OrderMapper.updateDeliveryAddrUsedDate",

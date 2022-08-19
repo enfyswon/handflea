@@ -5,6 +5,10 @@
 
 <mapper namespace="OrderMapper">
 
+	<select id="orderList" parameterType="kr.co.handflea.order.OrderDTO" resultType="kr.co.handflea.order.OrderDTO">
+	
+	</select>
+
 	<!-- <update id="updateDeliveryAddrUsedDate" parameterType="kr.co.handflea.order.OrderDTO">
 	update delivery_address
 	set used_date = now()

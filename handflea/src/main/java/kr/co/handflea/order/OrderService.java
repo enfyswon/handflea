@@ -12,6 +12,13 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDAO dao;
+
+	public List<OrderDTO> orderList(OrderDTO dto) {
+		List<OrderDTO> list = null;
+		list = dao.orderList(dto);
+		
+		return list;
+	}
 	
 	/*
 	 * @Transactional public int insert ( OrderDTO dto, int buyNowYN) { int

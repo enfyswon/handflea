@@ -4,26 +4,26 @@ public class OrderDTO {
 
 	private String order_no;
 	private String mem_no;
-	private String product_no;
+	private String prdt_no;
 	private String pay_info;
 	private String delivery_c_no;
 	private String delivery_no;
 	private String product_con;
 	private String delivery_yn;
-	private String product_qty;
+	private String buy_qty;
 	private String option_no;
 		
 		@Override
 		public String toString() {
 			return order_no
 				+ " : " +mem_no
-				+ " : " +product_no
+				+ " : " +prdt_no
 				+ " : " +pay_info
 				+ " : " +delivery_c_no
 				+ " : " +delivery_no
 				+ " : " +product_con
 				+ " : " +delivery_yn
-				+ " : " +product_qty
+				+ " : " +buy_qty
 				+ " : " +option_no
 				+ " : " +mem_no;
 	}
@@ -36,11 +36,11 @@ public class OrderDTO {
 	public void setMem_no(String mem_no) {
 		this.mem_no = mem_no;
 	}
-	public String getProduct_no() {
-		return product_no;
+	public String getPrdt_no() {
+		return prdt_no;
 	}
-	public void setProduct_no(String product_no) {
-		this.product_no = product_no;
+	public void setPrdt_no(String prdt_no) {
+		this.prdt_no = prdt_no;
 	}
 	public String getPay_info() {
 		return pay_info;
@@ -72,11 +72,11 @@ public class OrderDTO {
 	public void setDelivery_yn(String delivery_yn) {
 		this.delivery_yn = delivery_yn;
 	}
-	public String getProduct_qty() {
-		return product_qty;
+	public String getBuy_qty() {
+		return buy_qty;
 	}
-	public void setProduct_qty(String product_qty) {
-		this.product_qty = product_qty;
+	public void setBuy_qty(String buy_qty) {
+		this.buy_qty = buy_qty;
 	}
 	public String getOption_no() {
 		return option_no;

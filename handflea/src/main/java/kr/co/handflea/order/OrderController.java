@@ -25,6 +25,20 @@ public class OrderController {
 	@Autowired
 	OrderService service;
 
+	@RequestMapping(value = "/order_list", method = RequestMethod.POST)
+	public String orderList(OrderDTO dto, HttpSession session, Model model) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		dto.setMem_no(mem_no);
+		
+		List<OrderDTO> list = null;
+		
+		// 수령인, 전화번호, 배송지 주소, 상품 정보 (상품 이름, 수량, 상품 금액, 배송비, 총 주문 금액) 가져오기 
+		// 구매자 mem_no, 상품 번호 prdt_no, 구매수량 buy_qty 가지고 있음
+		list = service.orderList(dto);
+		
+		model.addAttribute("order_list", list);
+		return "order/order_list";
+	}
 	/*
 	 * @RequestMapping( value = "/order_list", method = RequestMethod.GET ) public
 	 * String orderList( String [] arr_basket_no, ProductDTO dto, Model model,

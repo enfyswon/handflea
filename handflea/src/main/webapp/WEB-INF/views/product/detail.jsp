@@ -231,9 +231,15 @@
 				alert("구매 수량을 선택 하세요.");
 				return;
 			}
-
-			$("#buy_now_form").attr("action", "${pageContext.request.contextPath}/order/order_list");
-			$("#buy_now_form").submit();
+			
+			$.post(
+					"${pageContext.request.contextPath}/order/order_list",
+					{
+						prdt_no : ${detail_dto.prdt_no},
+						buy_qty : $("#buy_qty").val()
+					}
+			);
+			
 		});//click
 	});//ready
 	</script>
