@@ -2,9 +2,17 @@ package kr.co.handflea.cart;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import kr.co.handflea.product.ProductDTO;
 
+@Repository
 public class CartDAO {
+	
+	@Autowired
+	SqlSession sqlSession;
 
 	public List<ProductDTO> list(String mno) {
 		// TODO Auto-generated method stub

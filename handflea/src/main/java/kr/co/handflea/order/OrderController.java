@@ -25,30 +25,26 @@ public class OrderController {
 	@Autowired
 	OrderService service;
 
-	@RequestMapping( value = "/order_list", method = RequestMethod.GET )
-	public String orderList( String [] arr_basket_no, ProductDTO dto, Model model, HttpSession session ) {
-		List<ProductDTO> list = null;
-		if(arr_basket_no != null && arr_basket_no.length > 0) {//장바구니 -> 주문 목록
-			list = service.orderList( arr_basket_no );
-		} else {//상품 상세 화면 바로구매버튼 -> 주문 목록
-			list = service.buyNowOrderList( dto );
-			arr_basket_no = new String[1];
-			arr_basket_no[0] = "0";
-		}
-		model.addAttribute("list", list);
-
-		List<DeliveryDTO> deliverylist = null;
-		deliverylist = DeliveryDAO.list( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-		model.addAttribute("deliverylist", deliverylist);
-
-		List<CreditCardDTO> cardlist = null;
-		cardlist = CreditCardService.list( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-		model.addAttribute("cardlist", cardlist);
-
-		model.addAttribute( "arr_basket_no", new Gson().toJson( arr_basket_no ) );
-
-		return "/order/order_list";//jsp file name
-	}//orderList
-
+	/*
+	 * @RequestMapping( value = "/order_list", method = RequestMethod.GET ) public
+	 * String orderList( String [] arr_basket_no, ProductDTO dto, Model model,
+	 * HttpSession session ) { List<ProductDTO> list = null; if(arr_basket_no !=
+	 * null && arr_basket_no.length > 0) {//장바구니 -> 주문 목록 list = service.orderList(
+	 * arr_basket_no ); } else {//상품 상세 화면 바로구매버튼 -> 주문 목록 list =
+	 * service.buyNowOrderList( dto ); arr_basket_no = new String[1];
+	 * arr_basket_no[0] = "0"; } model.addAttribute("list", list);
+	 * 
+	 * List<DeliveryDTO> deliverylist = null; deliverylist = DeliveryDAO.list( (
+	 * (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+	 * model.addAttribute("deliverylist", deliverylist);
+	 * 
+	 * List<CreditCardDTO> cardlist = null; cardlist = CreditCardService.list( (
+	 * (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+	 * model.addAttribute("cardlist", cardlist);
+	 * 
+	 * model.addAttribute( "arr_basket_no", new Gson().toJson( arr_basket_no ) );
+	 * 
+	 * return "/order/order_list";//jsp file name }//orderList
+	 */
 }//class
 
