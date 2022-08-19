@@ -47,6 +47,7 @@
 							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
 								${dto.prdt_name}
 							</a>
+							<p>${dto.option_contents}</p>
 						</td>
 						<td> ${dto.price} 원 </td>
 						<td>

@@ -241,7 +241,7 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#jang_btn").click(function() {
-
+			let option_no = $("#option_no :selected").val();
 			if("${login_info.mem_no}" == ""){
 				alert("로그인 해주세요.");
 				return;
@@ -257,6 +257,7 @@
 					, {
 						prdt_no : ${detail_dto.prdt_no}
 						, buy_qty : $("#buy_qty").val()
+						, option_no : option_no
 					}
 					, function(data, status) {
 						if(data >= 1){
