@@ -60,10 +60,12 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
-    	from product p, member m
+		, s.seller_name
+    	from product p, member m, seller s
     	where p.prdt_no = #{prdt_no}
 		and del_yn = 0
 		and p.mem_no = m.mem_no
+		and s.mem_no = m.mem_no
 	</select>
 
 	<select id="sellerlist" parameterType="kr.co.handflea.util.dto.SearchDTO"
@@ -120,10 +122,12 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
-    	from product p, member m
+		, s.seller_name
+    	from product p, member m, seller s
     	where p.prdt_no = #{prdt_no}
 		and del_yn = 0
 		and p.mem_no = m.mem_no
+		and s.mem_no = m.mem_no
 	</select>
 
 	<select id="smallcatelist" parameterType="java.lang.String"  resultType="kr.co.handflea.product.ProductDTO">
@@ -131,13 +135,14 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
-		, p.bigcate_no, p.smallcate_no, s.smallcate_name
-    	from product p, member m, bigcate b, smallcate s
+		, p.bigcate_no, p.smallcate_no, s.smallcate_name, l.seller_name
+    	from product p, member m, bigcate b, smallcate s, seller l
 		where del_yn = 0
 		and p.smallcate_no = #{smallcate_no}
         and s.smallcate_no = #{smallcate_no}
         and b.bigcate_no = s.bigcate_no
         and p.mem_no = m.mem_no
+        and l.mem_no = m.mem_no
 		order by prdt_no desc
 	</select>
 
@@ -146,13 +151,14 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
-		, p.bigcate_no, p.smallcate_no, b.bigcate_name
-    	from product p, member m, bigcate b, smallcate s
+		, p.bigcate_no, p.smallcate_no, b.bigcate_name, l.seller_name
+    	from product p, member m, bigcate b, smallcate s, seller l
 		where del_yn = 0
 		and p.bigcate_no = #{bigcate_no}
         and b.bigcate_no = #{bigcate_no}
         and b.bigcate_no = s.bigcate_no
         and p.mem_no = m.mem_no
+        and l.mem_no = m.mem_no
 		order by prdt_no desc
 	</select>
 
@@ -168,7 +174,8 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
-    	from product p, member m
+		, s.seller_name
+    	from product p, member m, seller s
 		where del_yn = 0
 		<if test="searchOption != null and searchOption != ''
 					and searchWord != null and searchWord !=''">
@@ -182,6 +189,7 @@
 			</choose>
 		</if>
 		and p.mem_no = m.mem_no
+		and s.mem_no = m.mem_no
 		order by prdt_no desc
 		limit #{limitNum}, 8
 	</select>

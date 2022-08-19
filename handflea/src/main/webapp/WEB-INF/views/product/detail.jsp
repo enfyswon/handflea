@@ -101,7 +101,7 @@
 				<div id="prdt-detail">
 					<div id="profile">
 						<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
-						<p>${detail_dto.mem_email}</p>
+						<p>${detail_dto.seller_name}</p>
 					</div>
 					<div>
 						<h3>${detail_dto.prdt_name}</h3>
