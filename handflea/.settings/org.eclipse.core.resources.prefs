@@ -1,7 +1,7 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=origin/0816\u00EB\u00B3\u0091\u00ED\u0095\u00A9
 eclipse.preferences.version=1
-<<<<<<< HEAD
-encoding//src/main/webapp/WEB-INF/views/review/review_list.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/review/review_mylist.jsp=UTF-8
-=======
-encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
->>>>>>> origin/0816병합
+encoding//src/test/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/test/main/webapp/WEB-INF/views/review/review_list.jsp=UTF-8
+encoding//src/test/main/webapp/WEB-INF/views/review/review_mylist.jsp=UTF-8

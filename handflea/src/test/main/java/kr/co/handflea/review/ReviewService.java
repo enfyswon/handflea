@@ -1,7 +1,10 @@
 package kr.co.handflea.review;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
@@ -17,7 +20,15 @@ public class ReviewService {
 		return successCount;
 	}//write
 	
-	public List<ReviewDTO> getReviewList(){
+	SqlSession sql;
+	
+	public List<ReviewDTO> getReviewList(int start) throws Exception{
+		int cnt=8;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("cnt", cnt);
+		
 		List<ReviewDTO> list = null;
 		return list;
 	}//list

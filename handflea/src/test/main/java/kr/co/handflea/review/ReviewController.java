@@ -26,7 +26,8 @@ public class ReviewController {
 
 	
 	@RequestMapping( value = "/list", method = RequestMethod.GET )
-	public void getList(Model model) {
+	public String getList(Model model) throws Exception {
+		return "/review/review_list";
 	}
 	
 	@RequestMapping(value = "/write_form", method = RequestMethod.GET)
@@ -46,3 +47,12 @@ public class ReviewController {
 	}//write
 	
 }//class
+
+
+
+
+
+
+
+
+
