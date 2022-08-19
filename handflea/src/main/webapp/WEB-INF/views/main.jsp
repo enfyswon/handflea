@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+`<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 }
 .item-card > a > img {
 	width: 100%;
-	height: 400px;
+	height: 450px;
 }
 .item-detail {
 	
@@ -69,7 +69,7 @@
 								<img alt="product_img" src="${dto.thumbnail_path}">
 								<div class="item-detail">
 									<div>
-										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.seller_name}</p>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.mem_email}</p>
 									</div>
 									<h4>${dto.prdt_name}</h4>
 									<p>${dto.price}원</p>
@@ -87,7 +87,7 @@
 								<img alt="product_img" src="${dto.thumbnail_path}">
 								<div class="item-detail">
 									<div>
-										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.seller_name}</p>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.mem_email}</p>
 									</div>
 									<h4>${dto.prdt_name}</h4>
 									<p>${dto.price}원</p>
