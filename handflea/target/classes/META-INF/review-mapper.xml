@@ -5,13 +5,23 @@
 
 <mapper namespace="ReviewMapper"> 
 
-	<insert id="write" parameterType="kr.co.ictedu.board.free.FreeBoardDTO">
-	insert into review (title, writer, contents, write_date)
-	values( #{writer}, #{contents}, now() );
+	<insert id="write" parameterType="kr.co.handflea.review.ReviewDTO">
+	insert into review (order_no, mem_no, option_no, review_contents, review_photo, review_photopath, star_point, reg_date)
+	values(#{order_no}, #{mem_no}, #{option_no}, #{review_contents}, #{review_photo}, #{review_photopath}, #{star_point}, #{reg_date} now());
 	</insert>
 
-	<select id="list" resultType="kr.co.ictedu.board.free.FreeBoardDTO">
-	select board_no, writer, contents, write_date from review
+	<select id="getList" parameterType="int" resultType="kr.co.handflea.review.ReviewDTO">
+	select review_no,
+	    order_no,
+	    mem_no,
+	    option_no,
+	    review_contents,
+	    review_photo,
+	    review_photopath,
+	    star_point,
+	    reg_date
+	from review
+	limit #{startNum}, 10
 	</select>
 
 </mapper>

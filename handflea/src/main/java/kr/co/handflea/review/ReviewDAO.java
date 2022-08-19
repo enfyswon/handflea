@@ -14,7 +14,8 @@ public class ReviewDAO {
 	
 	public int write( ReviewDTO dto ) {
 		int successCount = 0;
-		successCount = sqlSession.insert("review_write", dto);
+		successCount = sqlSession.insert("ReviewMapper.write", dto);
+		
 		return successCount;
 	}//write
 
@@ -23,5 +24,13 @@ public class ReviewDAO {
 		list = sqlSession.selectList("review_list");
 		return list;
 	}//list
+
+	public List<ReviewDTO> getList(int startNum) {
+		List<ReviewDTO> list = null;
+		System.out.println(startNum);
+		list = sqlSession.selectList("ReviewMapper.getList", startNum);
+		System.out.println(list);
+		return list;
+	}
 	
 }

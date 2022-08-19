@@ -3,14 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>클릭 시 작성창 팝업</title>
-</head>
-<body>
-	<input type="button" value="후기 작성" onclick="showPopup();" />
-</body>
-</html>
-	
-<html><head>
 		<meta charset="UTF-8">
 		<title>상품 후기 작성창</title>
 	
@@ -32,6 +24,7 @@
     background: #aaa;
   }
   </style>
+<link href="${pageContext.request.contextPath}/resources/rev/star.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -42,7 +35,6 @@
 	      <h9>작성하신 후기는 다른 회원이 상품 구매에 참고 할 수 있도록 상품 후기란에 공개 됩니다.</h9>
 		  <hr>
 		  
-<link href="${pageContext.request.contextPath}/resources/rv/star.css" rel="stylesheet"/>
 
  	<form class="mb-3" name="myform" id="myform" method="post">
 	<fieldset>
@@ -60,7 +52,7 @@
 </form>	
 			
 			
-	        <form action="writeAction" method = "POST" enctype="multipart/form-data">
+	        <form method = "POST" enctype="multipart/form-data">
 			    <div class="form-group">
 			      
 				<input type="file" onchange="readURL(this);"> 
@@ -72,12 +64,36 @@
 				
 			    <h9>상품에 대한 평가를 15자 이상, 50자 이내로 작성해 주세요.</h9>
 			    <div class="form-group">
-				  <textarea class="form-control" rows="5" id="contents" name = "contents"></textarea>
+				  <textarea class="form-control" rows="5" id="contents" name = "contents" maxlength='50'></textarea>
 				<div class="jumbotron text-center" style="margin-bottom:0">
-			    <button type="submit" class="btn btn-primary">등록</button>
+			    <button type="submit" id="submit_btn" class="btn btn-primary">등록</button>
 			  </form>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#submit_btn").click(function() {
+		var star = $("input[name='reviewStar']:checked").val();
+		$.post(
+				"${pageContext.request.contextPath}/review/write", 
+				{
+					star_point : star,
+					review_contents : $("#contents").val()
+				},
+				function(data, status) {
+					if (data >= 1) {
+						alert("등록에 성공했습니다.");
+						location.href="${pageContext.request.contextPath}/main";
+					} else if (data == 0) {
+						alert("등록에 실패했습니다.");
+					} else {
+						alert("서버 오류");
+					}
+				}
+		);
+	});
+});
+</script>
 </body>
 </html>
