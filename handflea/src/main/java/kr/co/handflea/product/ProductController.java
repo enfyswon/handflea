@@ -41,7 +41,6 @@ public class ProductController {
 	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update( ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
-		System.out.println(">>>>>>>>>> con : " + dto.getPrdt_no());
 		
 		dto.setOption_yn("0");
 		
