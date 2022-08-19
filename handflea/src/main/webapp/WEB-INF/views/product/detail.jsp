@@ -158,7 +158,9 @@
 					</div>
 					<div id="button-box">
 						<div id="left-button">
-							<button id="chat_btn">문의하기</button>
+							<a href="${pageContext.request.contextPath}/chat/?other_no=${detail_dto.mem_no}">
+								<button id="chat_btn">문의하기</button>
+							</a>
 						</div>
 						<div id="right-button">
 							<button>장바구니</button>
@@ -187,9 +189,6 @@
 					});//each
 				}//call back function
 		);//get
-		$("#chat_btn").click(function() {
-			alert($("#mem_no").val());
-		});
 	});//ready
 	</script>
 	
