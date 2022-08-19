@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.MemberDTO;
+import kr.co.handflea.util.dto.SellerDTO;
 
 @Controller
 @RequestMapping(value = "/mypage")
@@ -37,16 +38,26 @@ public class MyPageController {
 	@Autowired
 	MyPageService service;
 	
+	@RequestMapping( value = "/sellerjoin", method = RequestMethod.POST )
+	public void sellerjoin(	SellerDTO dto , PrintWriter out, HttpSession session ) {
+		
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		int successCount = 0;
+		System.out.println(dto.toString());
+		successCount = service.sellerjoin( dto );
+		out.print(successCount);
+		out.close();
+	}//sellerjoin
+	
+	@RequestMapping(value = "/regist", method = RequestMethod.GET)
+	public String seller_regist(PrintWriter out) {
+		return "/mypage/seller_regist";
+	}//seller_regist
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String myPage() {
 		
 		return "/mypage/mypage";
-	}
-	
-	@RequestMapping(value = "/regist", method = RequestMethod.GET)
-	public String seller_regist(PrintWriter out) {
-		
-		return "/mypage/seller_regist";
 	}
 	
 	@RequestMapping(value = "/bank", method = RequestMethod.GET)

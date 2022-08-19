@@ -7,12 +7,20 @@ import org.springframework.stereotype.Service;
 
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.MemberDTO;
+import kr.co.handflea.util.dto.SellerDTO;
 
 @Service
 public class MyPageService {
 
 	@Autowired
 	MyPageDAO dao;
+	
+	public int sellerjoin(SellerDTO dto) {
+		int successCount = 0;
+		successCount = dao.sellerjoin( dto );
+		dao.updateSellerYN(dto.getMem_no());
+		return successCount;
+	}//sellerjoin
 	
 	public List<BankDTO> bankSelect() {
 		List<BankDTO> list = null;
@@ -34,4 +42,5 @@ public class MyPageService {
 		
 		return updateYN;
 	}
+
 }
