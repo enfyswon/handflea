@@ -10,6 +10,7 @@ public class SellerDTO {
 	private String seller_add_1;
 	private String seller_add_2;
 	private String post_code;
+	private String seller_yn;
 	
 	public String toString() {
 		return	 mem_no
@@ -69,6 +70,14 @@ public class SellerDTO {
 	}
 	public void setPost_code(String post_code) {
 		this.post_code = post_code;
+	}
+
+	public String getSeller_yn() {
+		return seller_yn;
+	}
+
+	public void setSeller_yn(String seller_yn) {
+		this.seller_yn = seller_yn;
 	}
 	
 	

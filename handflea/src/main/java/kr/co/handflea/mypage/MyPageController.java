@@ -40,6 +40,7 @@ public class MyPageController {
 	
 	@RequestMapping( value = "/sellerjoin", method = RequestMethod.POST )
 	public void sellerjoin(	SellerDTO dto , PrintWriter out, HttpSession session ) {
+		
 		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
 		int successCount = 0;
 		System.out.println(dto.toString());

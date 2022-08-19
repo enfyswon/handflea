@@ -42,4 +42,8 @@ public class MyPageDAO {
 		return updateYN;
 	}
 
+	public void updateSellerYN(String mem_no) {
+		sqlSession.update("MyPageMapper.updateSellerYN", mem_no);
+	}
+
 }

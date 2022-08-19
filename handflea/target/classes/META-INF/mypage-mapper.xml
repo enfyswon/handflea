@@ -5,6 +5,11 @@
 
 <mapper namespace="MyPageMapper">
 
+	<update id="updateSellerYN">
+	update member set seller_yn = '1'
+	where mem_no = #{mem_no}
+	</update>
+	
 	<insert id="sellerjoin" parameterType="kr.co.handflea.util.dto.MemberDTO">
 	INSERT INTO seller ( mem_no ,bank_no, seller_name, seller_account_no, seller_add_1, seller_add_2
 		, post_code)

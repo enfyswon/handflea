@@ -18,6 +18,7 @@ public class MyPageService {
 	public int sellerjoin(SellerDTO dto) {
 		int successCount = 0;
 		successCount = dao.sellerjoin( dto );
+		dao.updateSellerYN(dto.getMem_no());
 		return successCount;
 	}//sellerjoin
 	
