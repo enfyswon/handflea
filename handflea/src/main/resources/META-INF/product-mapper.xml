@@ -55,6 +55,33 @@
 	and mem_no = #{mem_no}
 	</update>
 
+	<insert id="optionInsert" parameterType="kr.co.handflea.product.ProductDTO">
+	insert into prdt_option (prdt_no, option_contents)
+	values ( #{prdt_no}, #{option_contents} )
+	</insert>
+	
+	<delete id="optionDelete" parameterType="kr.co.handflea.product.ProductDTO">
+	delete from prdt_option
+	where prdt_no = #{prdt_no}
+	order by option_no desc
+	limit #{limitNum}
+	</delete>
+
+	<update id="updateOption" parameterType="kr.co.handflea.product.ProductDTO">
+	update prdt_option
+	set option_contents = #{option_contents}
+	where option_no = #{option_no}
+	</update>
+	
+	<delete id="optionAllDelete" parameterType="java.lang.String">
+	delete from prdt_option where prdt_no = #{prdt_no}
+	</delete>
+	
+	<select id="optionCnt" parameterType="java.lang.String" resultType="Int">
+	select count(option_no) cnt from prdt_option
+	where prdt_no = #{prdt_no};
+	</select>
+
 	<select id="sellerdetail" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
 	select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date

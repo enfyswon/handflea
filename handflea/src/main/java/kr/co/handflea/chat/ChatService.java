@@ -38,4 +38,11 @@ public class ChatService {
 		
 		return mem_name;
 	}
+
+	public String setRoomNo(ChatDTO dto) {
+		String chat_roomno = null;
+		chat_roomno = dao.setRoomNo(dto);
+		
+		return chat_roomno;
+	}
 }

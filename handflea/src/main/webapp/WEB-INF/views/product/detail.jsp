@@ -153,16 +153,32 @@
 							수량
 						</div>
 						<div class="element-value">
-							<input type="number" >
+							<input type="hidden" id="prdt_no" name="prdt_no" value="${detail_dto.prdt_no}">
+							<select id="buy_qty" name="buy_qty">
+								<option value="0"> 선 택 </option>
+								<c:forEach var="tmp_qty" begin="1" end="10">
+									<option value="${tmp_qty}"> ${tmp_qty} </option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
+					<div class="prdt-element">
+						<div class="element-label">
+							구매 가격
+						</div>
+						<div class="element-value">
+							<p id="tot_price_span">0</p> <p>원</p>
+						</div>
+					</div>	
 					<div id="button-box">
 						<div id="left-button">
-							<button id="chat_btn">문의하기</button>
+							<a href="${pageContext.request.contextPath}/chat/?other_no=${detail_dto.mem_no}">
+								<button id="chat_btn">문의하기</button>
+							</a>
 						</div>
 						<div id="right-button">
-							<button>장바구니</button>
-							<button>구매하기</button>
+							<button type="button" id="jang_btn">장바구니 담기</button>
+							<button type="button" id="buy_now_btn">바로 구매하기</button>
 						</div>
 					</div>
 				</div>
@@ -187,9 +203,72 @@
 					});//each
 				}//call back function
 		);//get
-		$("#chat_btn").click(function() {
-			alert($("#mem_no").val());
-		});
+	});//ready
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#buy_qty").change(function() {
+
+			$("#tot_price_span").text(
+					$("#buy_qty").val() * ${detail_dto.price}
+			);
+
+		});//change
+	});//ready
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#buy_now_btn").click(function() {
+
+			if("${login_info.mem_no}" == ""){
+				alert("로그인 해주세요.");
+				return;
+			}
+
+			if( $("#buy_qty").val() == 0 ){
+				alert("구매 수량을 선택 하세요.");
+				return;
+			}
+
+			$("#buy_now_form").attr("action", "${pageContext.request.contextPath}/order/order_list");
+			$("#buy_now_form").submit();
+		});//click
+	});//ready
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#jang_btn").click(function() {
+
+			if("${login_info.mem_no}" == ""){
+				alert("로그인 해주세요.");
+				return;
+			}
+
+			if( $("#buy_qty").val() == 0 ){
+				alert("구매 수량을 선택 하세요.");
+				return;
+			}
+
+			$.post(
+					"${pageContext.request.contextPath}/basket/insert"
+					, {
+						prdt_no : ${detail_dto.prdt_no}
+						, buy_qty : $("#buy_qty").val()
+					}
+					, function(data, status) {
+						if(data >= 1){
+							let tmp_bool = confirm("장바구니에 추가 하였습니다.\n장바구니로 이동 하시겠습니까?");
+							if( tmp_bool == true ) location.href="${pageContext.request.contextPath}/basket/list";
+						} else {
+							alert("장바구니 추가를 실패 하였습니다.");
+						}
+					}//call back function
+			);//post
+
+		});//click
 	});//ready
 	</script>
 	

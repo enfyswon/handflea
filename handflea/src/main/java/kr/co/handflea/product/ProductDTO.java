@@ -39,6 +39,7 @@ public class ProductDTO {
 	private String total_price;
 	
 	private String [] arr_option;
+	private String [] arr_option_no;
 	
 	private int limitNum;
 	
@@ -327,6 +328,14 @@ public class ProductDTO {
 
 	public void setArr_option(String[] arr_option) {
 		this.arr_option = arr_option;
+	}
+
+	public String[] getArr_option_no() {
+		return arr_option_no;
+	}
+
+	public void setArr_option_no(String[] arr_option_no) {
+		this.arr_option_no = arr_option_no;
 	}
 
 	public int getLimitNum() {
