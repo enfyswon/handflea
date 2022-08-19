@@ -43,6 +43,6 @@ public class ChatService {
 		String chat_roomno = null;
 		chat_roomno = dao.setRoomNo(dto);
 		
-		return null;
+		return chat_roomno;
 	}
 }

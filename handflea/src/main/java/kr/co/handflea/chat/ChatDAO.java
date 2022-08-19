@@ -66,6 +66,6 @@ public class ChatDAO {
 	public String setRoomNo(ChatDTO dto) {
 		String chat_roomno = null;
 		chat_roomno = sqlSession.selectOne("ChatMapper.setRoomNo", dto);
-		return null;
+		return chat_roomno;
 	}
 }
