@@ -8,83 +8,6 @@
 		<title>HandFlea</title>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
-<style type="text/css">
-.info {
-	margin-bottom: 2%;
-}
-.info-title {
-	display: inline-flex;
-	flex-direction: row;
-}
-.info-title > h2 {
-	margin-right: 7px;
-}
-.type {
-	color: #0F8BFF;
-}
-.info-line {
-	display: flex;
-	flex-direction: row;
-	border-top: 1px solid #595959;
-	padding: 10px 0 ;
-}
-.info-label {
-	width: 20%;
-	text-align: center;
-	display: flex;
-	align-items: center;
-}
-#info-guide {
-	font-size: small;
-	margin-left: 10%;
-}
-.info-contents {
-	width: 80%;
-}
-.info-contents > img {
-	width: 100px;
-}
-.info-contents input {
-	margin-top: 5px;
-	padding: 5px;
-}
-#mem_pwd {
-	display: block;
-	margin: 0;
-}
-.info-contents label {
-	font-size: small;
-	color: red;
-}
-#add_btn {
-	background-color: #0F8BFF;
-	color: white;
-	outline: 0;
-	border: 0;
-	width: 100px;
-	height: 30px;
-	border-radius: 4px;
-}
-#button-box {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-#button-box button {
-	margin: 0;
-	padding: 5px;
-	width: 100px;
-	border-radius: 4px;
-}
-#quit_btn {
-	background-color: #f4f4f4;
-}
-#save_btn {
-	background-color: #333333;
-	color: white;
-}
-</style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -108,7 +31,7 @@
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
-						<c:if test="false">
+						<c:if test="${login_info.seller_yn == 1}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
 						<a href="#">판매 내역</a>
@@ -214,7 +137,7 @@
 						</div>
 					</div>
 				</form>
-				<c:if test="${login_info.seller_yn}">
+				<c:if test="${login_info.seller_yn == 1}">
 				<div class="info">
 					<h2>판매자 정보</h2>
 					<div class="info-line">

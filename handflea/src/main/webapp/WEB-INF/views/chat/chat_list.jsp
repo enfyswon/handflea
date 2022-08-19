@@ -166,9 +166,9 @@
 #send_form {
 	width: 100%;
 	height: 40px;
-	border-top: 1px solid #cecece;
 }
 #input-chat {
+	border-top: 1px solid #cecece;
 	display: flex;
 	flex-direction: row;
 	align-items: center;

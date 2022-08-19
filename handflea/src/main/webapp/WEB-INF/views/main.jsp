@@ -56,7 +56,14 @@
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
+	<c:choose>
+		<c:when test="${login_info.mem_email == 'admin'}">
+			<%@include file="/WEB-INF/views/admin-header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/WEB-INF/views/header.jsp" %>
+		</c:otherwise>
+	</c:choose>
 		
 		<main>
 			<div id="product">
