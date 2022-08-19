@@ -26,6 +26,11 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 
+	@RequestMapping(value = "/mylist", method = RequestMethod.GET)
+	public String mylist() {
+		return "/review/review_mylist";
+	}
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list() {
 		return "/review/review_list";

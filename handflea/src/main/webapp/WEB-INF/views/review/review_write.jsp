@@ -80,6 +80,7 @@ $(document).ready(function() {
 				{
 					star_point : star,
 					review_contents : $("#contents").val()
+
 				},
 				function(data, status) {
 					if (data >= 1) {

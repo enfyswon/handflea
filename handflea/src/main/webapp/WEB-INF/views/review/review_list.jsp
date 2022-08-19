@@ -30,7 +30,7 @@
  
 <script>
 moreList(); //함수 호출
- 
+
 function moreList() {
  
     var startNum = $("#listBody tr").length;  //마지막 리스트 번호를 알아내기 위해서 tr태그의 length를 구함.
