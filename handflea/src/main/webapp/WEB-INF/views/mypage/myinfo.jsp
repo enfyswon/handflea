@@ -205,8 +205,8 @@
 								<p>환불 계좌</p>
 							</div>
 							<div class="info-contents">
-								<input id="bank_no" value="${myinfo.bank_no}" hidden="hidden">
-								<select id="bank" name="bank">
+								<input id="bank" value="${myinfo.bank_no}" hidden="hidden">
+								<select id="bank_no" name="bank_no">
 									<option value="0">--은행 선택--</option>
 								</select>
 								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호" value="${myinfo.account_no}">
@@ -275,21 +275,23 @@
 			$("#add_2").val(add2);
 			$("#add_3").val(extraaddr);
 		}
-		
-		if($("#bank_no").val() != 0) {
-			$("#bank").val($("#bank_no").val()).prop("selected", true);
-		}
+		 
 	});
 	$(document).ready(function() {
 		$.get(
 				"${pageContext.request.contextPath}/mypage/bank",
 				function(data, status) {
 					$.each(JSON.parse(data), function(idx, dto) {
-						$("#bank").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
-					})
-				}
+						$("#bank_no").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+					});
+					if($("#bank").val() != 0) {
+						$("#bank_no").val($("#bank").val()).prop("selected", true);
+					}
+				}//callback function
 		);
+		
 	});
+
 	$(document).ready(function() {
 		$.get(
 				"${pageContext.request.contextPath}/mypage/bank",

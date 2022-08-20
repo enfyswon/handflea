@@ -114,6 +114,7 @@ public class MyPageController {
 		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
 		
 		int updateYn = 0;
+		System.out.println(dto.toString());
 		updateYn = service.infoUpdate(dto);
 		out.print(updateYn);
 		out.close();
