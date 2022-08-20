@@ -215,7 +215,8 @@
 						</div>
 					</div>
 				</form>
-				<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
+		<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
+			<form id="seller_info">
 				<div class="info">
 					<h2>판매자 정보</h2>
 					<div class="info-line">
@@ -223,7 +224,7 @@
 							<p>마켓명</p>
 						</div>
 						<div class="info-contents">
-							<input type="text" id="seller_name" name="seller_name" maxlength="20">
+							<input type="text" id="seller_name" name="seller_name" maxlength="20" value="${myinfo.seller_name}">
 						</div>
 					</div>
 					<div class="info-line">
@@ -232,14 +233,14 @@
 						</div>
 						<div class="info-contents">
 							<div>
-								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly">
+								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly" value="${myinfo.seller_post_code}">
 								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
-								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly">
+								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly" value="${myinfo.seller_add_1}">
 							</div>
 							<div>
-								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소">
+								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소" value="${myinfo.seller_add_2}">
 								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="참고항목" readonly="readonly">
 							</div>
 						</div>
@@ -249,14 +250,16 @@
 							<p>인출계좌</p>
 						</div>
 						<div class="info-contents">
-							<select id="bank2" name="bank">
+							<input id="bank2" value="${myinfo.seller_bank_no}" hidden="hidden">
+							<select id="seller_bank_no" name="seller_bank_no">
 								<option value="0">--은행 선택--</option>
 							</select>
-							<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+							<input type="text" id="seller_account_no" name="seller_account_no" placeholder="계좌 번호" value="${myinfo.seller_account_no}">
 						</div>
 					</div>
 				</div>
-				</c:if>	
+			</form>
+		</c:if>	
 				<div id="button-box">
 					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
 					<button type="button" id="save_btn" name="save_btn">저장</button>
@@ -297,8 +300,11 @@
 				"${pageContext.request.contextPath}/mypage/bank",
 				function(data, status) {
 					$.each(JSON.parse(data), function(idx, dto) {
-						$("#bank2").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+						$("#seller_bank_no").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
 					})
+					if($("#bank2").val() != 0) {
+						$("#seller_bank_no").val($("#bank2").val()).prop("selected", true);
+					}
 				}
 		);
 	});
@@ -384,8 +390,36 @@
 					alert("잠시 후 다시 시도해주세요.");
 				}
 			});
-		});
-	});
+			
+			/*
+			let form = new FormData( document.getElementById( "seller_info" ) );
+			
+			let keys = form.keys();
+			for(key of keys) console.log(key);
+
+			let values = form.values();
+			for(value of values) console.log(value);
+			
+			$.ajax({
+				type : "POST" 
+				, encType : "multipart/form-data" 
+				, url : "${pageContext.request.contextPath}/mypage/sellerinfo_update" 
+				, data : form 
+				, processData : false
+				, contentType : false 
+				, cache : false 
+				, success : function(result) {
+					alert("회원 정보가 수정되었습니다.");
+					location.href = "${pageContext.request.contextPath}/mypage/myinfo";
+				}, 
+				error : function(xhr) {
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});
+			*/
+			
+		});//click
+	});//ready
 	</script>
 	<script>
 	function pwd_ch() {

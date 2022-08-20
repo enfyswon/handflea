@@ -31,7 +31,10 @@ public class MemberDTO {
 	private String seller_add_1;
 	private String seller_add_2;
 	
-
+	private String seller_account_no;
+	private String seller_bank_no;
+	private String seller_post_code;
+	
 	@Override
 	public String toString() {
 		return mem_no
@@ -176,6 +179,14 @@ public class MemberDTO {
 		this.seller_yn = seller_yn;
 	}
 
+	public String getSeller_account_no() {
+		return seller_account_no;
+	}
+
+	public void setSeller_account_no(String seller_account_no) {
+		this.seller_account_no = seller_account_no;
+	}
+
 	public String getBank_no() {
 		return bank_no;
 	}
@@ -222,6 +233,22 @@ public class MemberDTO {
 
 	public void setSeller_add_2(String seller_add_2) {
 		this.seller_add_2 = seller_add_2;
+	}
+
+	public String getSeller_bank_no() {
+		return seller_bank_no;
+	}
+
+	public void setSeller_bank_no(String seller_bank_no) {
+		this.seller_bank_no = seller_bank_no;
+	}
+
+	public String getSeller_post_code() {
+		return seller_post_code;
+	}
+
+	public void setSeller_post_code(String seller_post_code) {
+		this.seller_post_code = seller_post_code;
 	}
 	
 	

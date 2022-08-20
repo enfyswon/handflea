@@ -71,15 +71,33 @@ public class MyPageController {
 	
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
 	public String myInfo(Model model, HttpSession session) {
-		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		MemberDTO dto = null;
-		dto = service.infoSelect(mem_no);
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+		
+		if (seller_yn.equals("1")) {
+			dto = service.sellerInfoSelect(mem_no);
+		}else {
+			dto = service.infoSelect(mem_no);
+		}
 		
 		logger.info(dto.toString());
-		
+			
 		model.addAttribute("myinfo", dto);
 		
 		return "/mypage/myinfo";
+	}
+	
+	@RequestMapping(value = "/sellerinfo_update", method = RequestMethod.POST)
+	
+	public void sellerInfoUpdate( MemberDTO dto, HttpSession session, PrintWriter out) throws IOException {
+		
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		
+		int updateYn = 0;
+		updateYn = service.sellerInfoUpdate(dto);
+		out.print(updateYn);
+		out.close();
 	}
 	
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
