@@ -275,10 +275,6 @@
 			$("#add_2").val(add2);
 			$("#add_3").val(extraaddr);
 		}
-		let tmppnum = $("#pnum").val();
-		var tel = tmppnum.split('-');
-		let pnum = tel[0] + tel[1] + tel[2];
-		$("#pnum").val(pnum);
 		
 		if($("#bank_no").val() != 0) {
 			$("#bank").val($("#bank_no").val()).prop("selected", true);
@@ -306,7 +302,7 @@
 	});
 	$(document).ready(function() {
 		let pwd = ${login_info.mem_pwd};
-		let onlyPwd = /^[a-z0-9~!@#$%^&*-().]+$/;
+		let onlyPwd = /^[a-z0-9~!@#$%^&*().]+$/;
 		let onlyNum = /^[0-9]+$/;
 		$("#save_btn").click(function() {
 			if ($("#mem_pwd").val() != "") {
@@ -344,9 +340,6 @@
 				return;
 			} else { $("#pnum_label").text(""); }
 			
-			let tmptel1 = pnum.substring(0, 3);
-			let tmptel2 = pnum.substring(3, 7);
-			let tmptel3 = pnum.substring(7, 11);
 			
 			let account = $.trim($("#account_no").val());
 			
