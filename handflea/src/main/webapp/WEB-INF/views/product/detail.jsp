@@ -91,7 +91,6 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 	
-		<input type="hidden" id="prdt_no" value="${detail_dto.prdt_no}">
 		<input type="hidden" id="mem_no" value="${detail_dto.mem_no}">
 		<main>
 			<div id="prdt-outline">
@@ -138,30 +137,32 @@
 							<p>★★★★★</p>
 						</div>
 					</div>
-					<div class="prdt-element">
-						<div class="element-label">
-							옵션
+					<form id="buy_form">
+						<div class="prdt-element">
+							<div class="element-label">
+								옵션
+							</div>
+							<div class="element-value">
+								<select id="option_no" name="option_no">
+									<option value="0" selected="selected">옵션을 선택하세요.</option>
+								</select>
+							</div>
 						</div>
-						<div class="element-value">
-							<select id="option_no" name="option_no">
-								<option value="0" selected="selected">옵션을 선택하세요.</option>
-							</select>
+						<div class="prdt-element">
+							<div class="element-label">
+								수량
+							</div>
+							<div class="element-value">
+								<input type="hidden" id="prdt_no" name="prdt_no" value="${detail_dto.prdt_no}">
+								<select id="buy_qty" name="buy_qty">
+									<option value="0"> 선 택 </option>
+									<c:forEach var="tmp_qty" begin="1" end="10">
+										<option value="${tmp_qty}"> ${tmp_qty} </option>
+									</c:forEach>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div class="prdt-element">
-						<div class="element-label">
-							수량
-						</div>
-						<div class="element-value">
-							<input type="hidden" id="prdt_no" name="prdt_no" value="${detail_dto.prdt_no}">
-							<select id="buy_qty" name="buy_qty">
-								<option value="0"> 선 택 </option>
-								<c:forEach var="tmp_qty" begin="1" end="10">
-									<option value="${tmp_qty}"> ${tmp_qty} </option>
-								</c:forEach>
-							</select>
-						</div>
-					</div>
+					</form>
 					<div class="prdt-element">
 						<div class="element-label">
 							구매 가격
@@ -231,9 +232,9 @@
 				alert("구매 수량을 선택 하세요.");
 				return;
 			}
-
-			$("#buy_now_form").attr("action", "${pageContext.request.contextPath}/order/order_list");
-			$("#buy_now_form").submit();
+			
+			$("#buy_form").attr("action", "${pageContext.request.contextPath}/order/list");
+			$("#buy_form").submit();
 		});//click
 	});//ready
 	</script>
