@@ -93,7 +93,8 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+					<!-- ${pageContext.request.contextPath}/resources/img/user.png -->
+					<img alt="profile_photo" src="${myinfo.mem_photopath}">
 					<p>${myinfo.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${myinfo.mem_email}</p>
 				</div>
@@ -130,7 +131,7 @@
 									<p>프로필 사진</p>
 								</div>
 								<div class="info-contents">
-									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
+									<img alt="profile" src="${myinfo.mem_photopath}">
 									<input type="file" id="profile" name="profile">
 									<p>사진은 회원님의 게시물이나 리뷰 등에 사용됩니다.</p>
 								</div>
@@ -148,8 +149,8 @@
 									<label for="mem_pwd">비밀번호</label>
 								</div>
 								<div class="info-contents">
-									<input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호">
-									<input type="password" id="repwd" name="repwd" placeholder="비밀번호 확인">
+									<input type="password" id="mem_pwd" name="mem_pwd"  value="${myinfo.mem_pwd}">
+									<input type="password" id="repwd" name="repwd"  value="${myinfo.mem_pwd}">
 									<label for="mem_pwd" id="mem_pwd_label"></label>
 								</div>
 							</div>
@@ -185,7 +186,7 @@
 									<label for="pnum">휴대폰 번호</label>
 								</div>
 								<div class="info-contents">
-									<input type="text" id="pnum" name="pnum" value="${myinfo.pnum}" placeholder="휴대폰 번호 '-'없이 입력">
+									<input type="text" id="pnum" name="pnum" value="${myinfo.pnum}">
 									<label id="pnum_label" for="pnum"></label>
 								</div>
 							</div>
@@ -255,7 +256,7 @@
 						</div>
 					</div>
 				</div>
-				</c:if>
+				</c:if>	
 				<div id="button-box">
 					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
 					<button type="button" id="save_btn" name="save_btn">저장</button>
@@ -305,7 +306,7 @@
 	});
 	$(document).ready(function() {
 		let pwd = ${login_info.mem_pwd};
-		let onlyPwd = /^[a-z0-9~!@#$%^&*().]+$/;
+		let onlyPwd = /^[a-z0-9~!@#$%^&*-().]+$/;
 		let onlyNum = /^[0-9]+$/;
 		$("#save_btn").click(function() {
 			if ($("#mem_pwd").val() != "") {
@@ -353,7 +354,7 @@
 				$("#account_no_label").text("숫자만 허용됩니다.");
 				return;
 			} else { $("#account_no_label").text(''); }
-			
+			/*
 			let form = new FormData();
 			form.set("profile", $("#profile").val());
 			form.set("mem_pwd", pwd);
@@ -363,6 +364,8 @@
 			form.set("pnum", tmptel1 + "-" + tmptel2 + "-" + tmptel3);
 			form.set("bank_no", $("#bank").val());
 			form.set("account_no", account);
+			*/
+			let form = new FormData( document.getElementById( "user_info" ) );
 			
 			let keys = form.keys();
 			for(key of keys) console.log(key);
@@ -371,14 +374,14 @@
 			for(value of values) console.log(value);
 			
 			$.ajax({
-				type : "POST", 
-				encType : "multipart/form-data", 
-				url : "${pageContext.request.contextPath}/mypage/info_update", 
-				data : form, 
-				processData : false, 
-				contentType : false, 
-				cache : false, 
-				success : function(result) {
+				type : "POST" 
+				, encType : "multipart/form-data" 
+				, url : "${pageContext.request.contextPath}/mypage/info_update" 
+				, data : form 
+				, processData : false
+				, contentType : false 
+				, cache : false 
+				, success : function(result) {
 					alert("회원 정보가 수정되었습니다.");
 					location.href = "${pageContext.request.contextPath}/mypage/myinfo";
 				}, 

@@ -85,7 +85,6 @@ public class MyPageController {
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
 	
 	public void infoUpdate( MemberDTO dto, HttpSession session, PrintWriter out) throws IOException {
-		System.out.println(dto.toString());
 		Date today = new Date();
 		DateFormat nalja = new SimpleDateFormat("YYYYMMdd");
 		DateFormat sigan = new SimpleDateFormat("HHmmss");
