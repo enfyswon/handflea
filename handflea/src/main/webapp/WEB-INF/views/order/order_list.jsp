@@ -14,6 +14,7 @@
 table {
 	width: 100%;
 	border: 1px solid #cecece;
+	border-collapse: collapse;
 }
 th {
 	font-weight: 500;
@@ -28,11 +29,14 @@ main > div {
 #prdt-info-table {
 	text-align: center;
 }
-.table-title {
+#prdt-info-table th {
+	border-bottom: 1px solid #cecece;
+}
+#prdt-info-table td {
 	border-bottom: 1px solid #cecece;
 }
 .table-order {
-	height: 70px;
+	height: 80px;
 }
 .table-prdt {
 	width: 60%;
@@ -42,17 +46,22 @@ main > div {
 	display: flex;
 	flex-direction: row;
 	margin: 0;
+	align-items: center;
 }
 .order-prdt-img {
 	width: 15%;
+	display: flex;
+	align-items: center;
 }
 .order-prdt-img > img {
 	height: 70px;
+	width: auto;
+	overflow: hidden;
 }
 .order-prdt-outline {
 	width: 90%;
 	text-align: left;
-	magin-left: 5px;
+	margin-left: 5px;
 }
 .order-prdt-outline a {
 	color: black;
@@ -85,6 +94,12 @@ main > div {
 }
 #order-btn-box {
 	text-align: center;
+}
+#order_btn {
+	background-color: #0F8BFF;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
 }
 </style>
 	</head>
@@ -133,8 +148,10 @@ main > div {
 						</tr>
 					</thead>
 					<tbody>
+						<c:set var="sum_prdt_qty" value="0" />
 						<c:set var="sum_total_price" value="0" />
 						<c:forEach var="order" items="${list}">
+						<c:set var="sum_prdt_qty" value="${sum_prdt_qty + 1}" />
 						<c:set var="sum_total_price" value="${sum_total_price + order.total_price}" />
 						<tr class="table-order">
 							<td class="table-prdt">
@@ -158,11 +175,21 @@ main > div {
 						</tr>
 						</c:forEach>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td>
+								상품수 : ${sum_prdt_qty}
+							</td>
+							<td colspan="4">
+								<fmt:parseNumber var="total_sum" integerOnly="true" type="number" value="${sum_total_price}" />
+								최종 결제 금액 : ${total_sum}
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>	
 			<div id="order-btn-box">
-				<fmt:parseNumber var="total_sum" integerOnly="true" type="number" value="${sum_total_price}" />
-				<button>${total_sum}원 결제하기</button>
+				<button id="order_btn">결제하기</button>
 			</div>
 		</main>
 		
@@ -170,6 +197,24 @@ main > div {
 	</body>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		$("#order_btn").click(function() {
+			$.post(
+					"${pageContext.request.contextPath}/order/insert",
+					{
+						
+					}, 
+					function(data, status) {
+						if (data >= 1) {
+							alert("주문 성공");
+							location.href="${pageContext.request.contextPath}/mypage/";
+						} else if (data == 0) {
+							alert("주문 실패");
+						} else {
+							alert("서버 에러");
+						}
+					}
+			);
+		});
 	});
 	</script>
 </html>

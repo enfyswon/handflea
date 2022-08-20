@@ -142,7 +142,7 @@
 				return;
 			}
 
-			location.href="${pageContext.request.contextPath}/order/order_list?arr_basket_no="+arr_basket_no;
+			location.href="${pageContext.request.contextPath}/order/list?arr_basket_no="+arr_basket_no;
 
 		});//click
 	});//ready

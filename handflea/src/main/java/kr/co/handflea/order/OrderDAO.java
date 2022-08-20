@@ -28,4 +28,11 @@ public class OrderDAO {
 		
 		return dto;
 	}
+
+	public List<ProductDTO> orderList(String[] arr_basket_no) {
+		List<ProductDTO> list = null;
+		list = sqlSession.selectList("OrderMapper.orderList", arr_basket_no);
+		
+		return list;
+	}
 }

@@ -28,4 +28,11 @@ public class OrderService {
 		return dto;
 	}
 
+	public List<ProductDTO> orderList(String[] arr_basket_no) {
+		List<ProductDTO> list = null;
+		list = dao.orderList(arr_basket_no);
+		
+		return list;
+	}
+
 }
