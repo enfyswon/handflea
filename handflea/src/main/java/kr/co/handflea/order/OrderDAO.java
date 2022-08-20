@@ -35,4 +35,32 @@ public class OrderDAO {
 		
 		return list;
 	}
+
+	public int insertOrder(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.insert("OrderMapper.insertOrder", dto);
+		
+		return successCnt;
+	}
+
+	public int insertBasketOrder(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.insert("OrderMapper.insertBasketOrder", dto);
+		
+		return successCnt;
+	}
+
+	public int deleteBasket(String[] arr_basket_no) {
+		int successCnt = 0;
+		successCnt = sqlSession.delete("OrderMapper.deleteBasket", arr_basket_no);
+		
+		return successCnt;
+	}
+
+	public int insertNowOrder(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.insert("OrderMapper.insertNowOrder", dto);
+		
+		return successCnt;
+	}
 }

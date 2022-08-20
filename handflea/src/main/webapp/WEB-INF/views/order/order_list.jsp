@@ -178,7 +178,7 @@ main > div {
 					<tfoot>
 						<tr>
 							<td>
-								상품수 : ${sum_prdt_qty}
+								<p>상품수 : <span id="span_sum_prdt_qty">${sum_prdt_qty}</span></p>
 							</td>
 							<td colspan="4">
 								<fmt:parseNumber var="total_sum" integerOnly="true" type="number" value="${sum_total_price}" />
@@ -196,12 +196,32 @@ main > div {
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 	<script type="text/javascript">
+	let arr_basket_no = ${arr_basket_no};
+	let str_basket_no = "";
+	$.each( ${arr_basket_no}, function(idx, str) {
+		if (idx == 0) {
+			str_basket_no = str_basket_no + str;
+		} else {
+			str_basket_no = str_basket_no + "," + str;
+		}
+	});
+	let buy_now_prdt_no = "${list[0].prdt_no}";
+	let buy_now_qty = "${list[0].buy_qty}";
+	let buy_now_option_no = "${list[0].option_no}"
+	</script>
+	
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#order_btn").click(function() {
 			$.post(
 					"${pageContext.request.contextPath}/order/insert",
 					{
-						
+						prdt_cnt : ${sum_prdt_qty}, 
+						total_price : ${total_sum},
+						str_basket_no : str_basket_no, 
+						buy_now_prdt_no : buy_now_prdt_no, 
+						buy_now_qty : buy_now_qty,
+						buy_now_option_no : buy_now_option_no
 					}, 
 					function(data, status) {
 						if (data >= 1) {

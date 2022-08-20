@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.handflea.product.ProductDTO;
 import kr.co.handflea.util.dto.MemberDTO;
@@ -35,4 +36,25 @@ public class OrderService {
 		return list;
 	}
 
+	@Transactional
+	public int insert(OrderDTO dto, int buyNowYN) {
+		int successCnt = 0;
+		successCnt = dao.insertOrder(dto);
+		if (successCnt < 1) {
+			return successCnt;
+		}
+		
+		if (buyNowYN == 0) {
+			successCnt = dao.insertBasketOrder(dto);
+			if (successCnt < 1) {
+				return successCnt;
+			}
+			
+			successCnt = dao.deleteBasket(dto.getArr_basket_no());
+		} else if (buyNowYN == 1) {
+			successCnt = dao.insertNowOrder(dto);
+		}
+		
+		return successCnt;
+	}
 }

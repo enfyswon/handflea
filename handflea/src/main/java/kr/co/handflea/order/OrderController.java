@@ -1,5 +1,6 @@
 package kr.co.handflea.order;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,7 @@ import kr.co.handflea.util.dto.MemberDTO;
 @Controller
 @RequestMapping(value = "/order")
 public class OrderController {
-	private final static Logger logger = LoggerFactory.getLogger(OrderController.class);
+	//private final static Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
 	@Autowired
 	private OrderService service;
@@ -44,5 +45,24 @@ public class OrderController {
 		model.addAttribute("arr_basket_no", new Gson().toJson(arr_basket_no));
 		
 		return "/order/order_list";
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void orderInsert(OrderDTO dto, HttpSession session, PrintWriter out) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		dto.setMem_no(mem_no);
+		
+		String [] tmpArr = dto.getStr_basket_no().split(",");
+		dto.setArr_basket_no(tmpArr);
+		
+		int successCnt = 0;
+		if (dto.getArr_basket_no().length == 1 && dto.getArr_basket_no()[0].equals("0")) {
+			successCnt = service.insert(dto, 1);
+		} else {
+			successCnt = service.insert(dto, 0);
+		}
+		
+		out.print(successCnt);
+		out.close();
 	}
 }

@@ -27,10 +27,46 @@
 		   from product p, prdt_option o, basket b
 		   where b.basket_no in 
 		   		<foreach item="basket_no" collection="array" open="(" close=")" separator=",">
-		   			#{basket_no}
+		   		#{basket_no}
 		   		</foreach>
            and p.prdt_no = o.prdt_no
            and p.prdt_no = b.prdt_no
            and b.option_no = o.option_no
+           order by b.reg_date desc
 	</select>
+	
+	<insert id="insertOrder" parameterType="kr.co.handflea.order.OrderDTO">
+	insert into order_main (mem_no, prdt_cnt, total_pay_amt, order_date) 
+	values (#{mem_no}, #{prdt_cnt}, #{total_pay_amt}, now());
+		<selectKey resultType="String" keyProperty="order_no" order="AFTER">
+		select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertBasketOrder" parameterType="kr.co.handflea.order.OrderDTO">
+	insert into order_detail (order_no, prdt_no, prdt_price, option_no, buy_qty, pay_amt) 
+	select #{order_no}, p.prdt_no, p.price, b.option_no, b.buy_qty, (p.price * b.buy_qty)
+	from product p, basket b
+	where b.basket_no in
+		<foreach item="basket_no" collection="arr_basket_no" open="(" close=")" separator=",">
+		#{basket_no}
+		</foreach>
+	and b.prdt_no = p.prdt_no
+	order by b.reg_date
+	</insert>
+	
+	<delete id="deleteBasket">
+	delete from basket b
+	where b.baskt_no in
+		<foreach item="basket_no" collection="array" open="(" close=")" separator=",">
+		#{basket_no}
+		</foreach>
+	</delete>
+	
+	<insert id="insertNowOrder" parameterType="kr.co.handflea.order.OrderDTO">
+	insert into order_detail (order_no, prdt_no, prdt_price, option_no, buy_qty, pay_amt)
+	select #{order_no}, p.prdt_no, p.price, #{buy_now_option_no}, #{buy_now_qty}, (#{buy_now_qty} * p.price)
+	from product p
+	where p.prdt_no = #{buy_now_prdt_no}
+	</insert>
 </mapper>
