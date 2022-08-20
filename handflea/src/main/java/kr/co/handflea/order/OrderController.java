@@ -32,7 +32,7 @@ public class OrderController {
 		
 		List<ProductDTO> list = null;
 		list = service.buyOrderList(dto);
-		//model.addAttribute("order_list", list);
+		model.addAttribute("list", list);
 		
 		return "/order/order_list";
 	}
