@@ -196,7 +196,6 @@ main > div {
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 	<script type="text/javascript">
-	let arr_basket_no = ${arr_basket_no};
 	let str_basket_no = "";
 	$.each( ${arr_basket_no}, function(idx, str) {
 		if (idx == 0) {
@@ -207,7 +206,7 @@ main > div {
 	});
 	let buy_now_prdt_no = "${list[0].prdt_no}";
 	let buy_now_qty = "${list[0].buy_qty}";
-	let buy_now_option_no = "${list[0].option_no}"
+	let buy_now_option_no = "${list[0].option_no}";
 	</script>
 	
 	<script type="text/javascript">
@@ -217,7 +216,7 @@ main > div {
 					"${pageContext.request.contextPath}/order/insert",
 					{
 						prdt_cnt : ${sum_prdt_qty}, 
-						total_price : ${total_sum},
+						total_pay_amt : ${total_sum},
 						str_basket_no : str_basket_no, 
 						buy_now_prdt_no : buy_now_prdt_no, 
 						buy_now_qty : buy_now_qty,

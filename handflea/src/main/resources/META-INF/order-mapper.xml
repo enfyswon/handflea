@@ -45,7 +45,7 @@
 	
 	<insert id="insertBasketOrder" parameterType="kr.co.handflea.order.OrderDTO">
 	insert into order_detail (order_no, prdt_no, prdt_price, option_no, buy_qty, pay_amt) 
-	select #{order_no}, p.prdt_no, p.price, b.option_no, b.buy_qty, (p.price * b.buy_qty)
+	select #{order_no}, p.prdt_no, p.price, b.option_no, b.buy_qty, (p.price * b.buy_qty + p.delivery_price)
 	from product p, basket b
 	where b.basket_no in
 		<foreach item="basket_no" collection="arr_basket_no" open="(" close=")" separator=",">
@@ -57,7 +57,7 @@
 	
 	<delete id="deleteBasket">
 	delete from basket b
-	where b.baskt_no in
+	where b.basket_no in
 		<foreach item="basket_no" collection="array" open="(" close=")" separator=",">
 		#{basket_no}
 		</foreach>
@@ -65,7 +65,7 @@
 	
 	<insert id="insertNowOrder" parameterType="kr.co.handflea.order.OrderDTO">
 	insert into order_detail (order_no, prdt_no, prdt_price, option_no, buy_qty, pay_amt)
-	select #{order_no}, p.prdt_no, p.price, #{buy_now_option_no}, #{buy_now_qty}, (#{buy_now_qty} * p.price)
+	select #{order_no}, p.prdt_no, p.price, #{buy_now_option_no}, #{buy_now_qty}, (#{buy_now_qty} * p.price + p.delivery_price)
 	from product p
 	where p.prdt_no = #{buy_now_prdt_no}
 	</insert>
