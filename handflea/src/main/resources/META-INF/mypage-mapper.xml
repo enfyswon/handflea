@@ -28,8 +28,17 @@
 	</select>
 	
 	<update id="infoUpdate" parameterType="kr.co.handflea.util.dto.MemberDTO">
-	update member set mem_pwd = #{mem_pwd}, post_code = #{post_code}, add_1 = #{add_1}, add_2 = #{add_2}, pnum = #{pnum}, 
-					  bank_no = #{bank_no}, account_no = #{account_no}, mem_photo = #{mem_photo}, mem_photopath = #{mem_photopath}
+	update member set mem_pwd = #{mem_pwd}
+					, post_code = #{post_code}
+					, add_1 = #{add_1}
+					, add_2 = #{add_2}
+					, pnum = #{pnum}
+					, bank_no = #{bank_no}
+					, account_no = #{account_no}
+					<if test="mem_photo != null and mem_photo != ''">
+						, mem_photo = #{mem_photo}
+						, mem_photopath = #{mem_photopath}
+					</if>
 	where mem_no = #{mem_no}
 	</update>
 </mapper>

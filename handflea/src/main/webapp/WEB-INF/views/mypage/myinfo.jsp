@@ -108,7 +108,7 @@
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
-						<c:if test="false">
+						<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
 						<a href="#">판매 내역</a>
@@ -214,9 +214,17 @@
 						</div>
 					</div>
 				</form>
-				<c:if test="${login_info.seller_yn}">
+				<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 				<div class="info">
 					<h2>판매자 정보</h2>
+					<div class="info-line">
+						<div class="info-label">
+							<p>마켓명</p>
+						</div>
+						<div class="info-contents">
+							<input type="text" id="seller_name" name="seller_name" maxlength="20">
+						</div>
+					</div>
 					<div class="info-line">
 						<div class="info-label">
 							<p>발송지</p>

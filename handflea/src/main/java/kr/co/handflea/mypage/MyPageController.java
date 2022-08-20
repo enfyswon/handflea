@@ -93,17 +93,17 @@ public class MyPageController {
 		String todaySigan = sigan.format(today);
 		
 		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
-		dto.setMem_no(mem_no);
-		System.out.println(mem_no);
+		File newFolder = new File("C:/upload/user/" + mem_no + "/");
+		if( newFolder.exists() == false ) newFolder.mkdirs();
+		
+		InputStream is = null;
+		FileOutputStream fos = null;
+		
 		MultipartFile profile = dto.getProfile();
-		if (profile != null && profile.getOriginalFilename().equals("")) {
-			File newFolder = new File("C:/upload/user/" + mem_no + "/");
-			if ( !newFolder.exists() ) {
-				newFolder.mkdirs();
-			}
+		if (profile != null && !profile.getOriginalFilename().equals("")) {
 			
-			InputStream is = profile.getInputStream();
-			FileOutputStream fos = new FileOutputStream("C:/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename() );
+			is = profile.getInputStream();
+			fos = new FileOutputStream("C:/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename() );
 			
 			FileCopyUtils.copy(is, fos);
 			is.close();
@@ -111,6 +111,8 @@ public class MyPageController {
 			dto.setMem_photo(todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename());
 			dto.setMem_photopath("/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename());
 		}
+		
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
 		
 		int updateYn = 0;
 		updateYn = service.infoUpdate(dto);
