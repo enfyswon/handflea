@@ -124,4 +124,11 @@ public class MyPageDAO {
 		
 		return list;
 	}
+
+	public MemberDTO getSellerOrderCnt(String mem_no) {
+		MemberDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.getSellerOrderCnt", mem_no);
+		
+		return dto;
+	}
 }

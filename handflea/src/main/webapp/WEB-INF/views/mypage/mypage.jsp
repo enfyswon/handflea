@@ -60,7 +60,7 @@
 					</div>
 					<div class="order-cnts">
 						<p>인출 가능 금액</p>
-						<h4>0 원</h4>
+						<h4>${seller_order_cnt.seller_money} 원</h4>
 					</div>
 					</c:if>
 				</div>

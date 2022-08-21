@@ -153,4 +153,8 @@
 	<select id="deliverySelect"	resultType="kr.co.handflea.util.dto.DeliveryDTO">
 	select delivery_c_no, delivery_c_name from delivery
 	</select>
+	
+	<select id="getSellerOrderCnt" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
+	select seller_money from seller where mem_no = #{mem_no}
+	</select>
 </mapper>

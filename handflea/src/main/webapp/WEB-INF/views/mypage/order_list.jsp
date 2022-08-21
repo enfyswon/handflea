@@ -51,9 +51,12 @@
 							<td class="order-delivery">운송장 번호</td>
 							<td class="order-con">주문 상태</td>
 						</tr>
-						<c:forEach var="list" items="${order_list}">
+						<c:forEach var="list" items="${order_list}" varStatus="status">
 						<tr class="order-list">
-							<td class="order-no">${list.detail_no}</td>	
+							<td class="order-no">
+								<input type="hidden" id="detail_no${status.index}" name="detail_no${status.index}" value="${list.detail_no}">
+								${list.detail_no}
+							</td>	
 							<td class="order-prdt">
 								<div class="order-prdt-box">
 									<div class="order-prdt-img">
@@ -91,7 +94,7 @@
 								<c:when test="${list.prdt_con == 1}">
 								${list.code_name}<br>
 								<button>배송 조회</button>
-								<button>수령 완료</button>
+								<button class="receipt_btn" value="${list.detail_no}">수령 완료</button>
 								</c:when>
 								<c:when test="${list.prdt_con == 2}">
 								${list.code_name}<br>
@@ -119,5 +122,27 @@
 		</main>	
 	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(".receipt_btn").click(function() {
+			var receipt = confirm("물품을 수령하셨습니까?");
+			if (receipt) {
+				$.get(
+						"${pageContext.request.contextPath}/order/receive",
+						{
+							detail_no : $(this).val()
+						},
+						function(data, status) {
+							if (data >= 1) {
+								location.href="${pageContext.request.contextPath}/mypage/order";
+							} else {
+								alert("에러");
+							}
+						}
+				);
+			}
+		});
+	});
+	</script>
 	</body>
 </html>

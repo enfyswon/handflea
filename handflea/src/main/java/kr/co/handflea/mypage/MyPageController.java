@@ -71,8 +71,12 @@ public class MyPageController {
 		model.addAttribute("order_cnt", olist.size());
 		
 		if (seller_yn.equals("1")) {
+			MemberDTO dto = null;
+			dto = service.getSellerOrderCnt(mem_no);
+			model.addAttribute("seller_order_cnt", dto);
 			List<OrderDTO> slist = null;
 			slist = service.recentSellOrder(mem_no);
+			
 			model.addAttribute("recent_sell_list", slist);
 			model.addAttribute("sell_cnt", slist.size());
 		}

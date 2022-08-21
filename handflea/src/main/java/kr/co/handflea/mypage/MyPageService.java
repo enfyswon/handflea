@@ -116,4 +116,11 @@ public class MyPageService {
 		return list;
 	}
 
+	public MemberDTO getSellerOrderCnt(String mem_no) {
+		MemberDTO dto = null;
+		dto = dao.getSellerOrderCnt(mem_no);
+		
+		return dto;
+	}
+
 }
