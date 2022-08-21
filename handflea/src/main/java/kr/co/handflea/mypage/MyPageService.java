@@ -46,7 +46,6 @@ public class MyPageService {
 	public int sellerInfoUpdate(MemberDTO dto) {
 		int updateYN = 0;
 		updateYN = dao.sellerInfoUpdate(dto);
-		
 		return updateYN;
 	}
 	

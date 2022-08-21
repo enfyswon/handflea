@@ -79,25 +79,19 @@ public class MyPageController {
 			dto = service.sellerInfoSelect(mem_no);
 		}else {
 			dto = service.infoSelect(mem_no);
+			dto.setSeller_bank_no("0");
+			dto.setSeller_account_no("0");
+			dto.setSeller_post_code("0");
+			dto.setSeller_add_1("0");
+			dto.setSeller_add_2("0");
+			dto.setSeller_name("0");
 		}
 		
 		logger.info(dto.toString());
-			
+		
 		model.addAttribute("myinfo", dto);
 		
 		return "/mypage/myinfo";
-	}
-	
-	@RequestMapping(value = "/sellerinfo_update", method = RequestMethod.POST)
-	
-	public void sellerInfoUpdate( MemberDTO dto, HttpSession session, PrintWriter out) throws IOException {
-		
-		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-		
-		int updateYn = 0;
-		updateYn = service.sellerInfoUpdate(dto);
-		out.print(updateYn);
-		out.close();
 	}
 	
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
@@ -128,12 +122,16 @@ public class MyPageController {
 			dto.setMem_photo(todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename());
 			dto.setMem_photopath("/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename());
 		}
-		
-		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-		
 		int updateYn = 0;
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+		
+		if (seller_yn.equals("1")) {
+			updateYn = service.sellerInfoUpdate(dto);
+		}else {
+			updateYn = service.infoUpdate(dto);
+		}
 		System.out.println(dto.toString());
-		updateYn = service.infoUpdate(dto);
 		out.print(updateYn);
 		out.close();
 	}

@@ -65,6 +65,15 @@
 	height: 30px;
 	border-radius: 4px;
 }
+#seller_add_btn{
+	background-color: #0F8BFF;
+	color: white;
+	outline: 0;
+	border: 0;
+	width: 100px;
+	height: 30px;
+	border-radius: 4px;
+}
 #button-box {
 	display: flex;
 	flex-direction: row;
@@ -214,9 +223,8 @@
 							</div>
 						</div>
 					</div>
-				</form>
-		<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
-			<form id="seller_info">
+				
+			<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 				<div class="info">
 					<h2>판매자 정보</h2>
 					<div class="info-line">
@@ -234,7 +242,7 @@
 						<div class="info-contents">
 							<div>
 								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly" value="${myinfo.seller_post_code}">
-								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
+								<button type="button" id="seller_add_btn" name="add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
 								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly" value="${myinfo.seller_add_1}">
@@ -258,8 +266,8 @@
 						</div>
 					</div>
 				</div>
-			</form>
 		</c:if>	
+			</form>
 				<div id="button-box">
 					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
 					<button type="button" id="save_btn" name="save_btn">저장</button>
@@ -355,17 +363,7 @@
 				$("#account_no_label").text("숫자만 허용됩니다.");
 				return;
 			} else { $("#account_no_label").text(''); }
-			/*
-			let form = new FormData();
-			form.set("profile", $("#profile").val());
-			form.set("mem_pwd", pwd);
-			form.set("post_code", $("#post_code").val());
-			form.set("add_1", $("#add_1").val());
-			form.set("add_2", add2);
-			form.set("pnum", tmptel1 + "-" + tmptel2 + "-" + tmptel3);
-			form.set("bank_no", $("#bank").val());
-			form.set("account_no", account);
-			*/
+			
 			let form = new FormData( document.getElementById( "user_info" ) );
 			
 			let keys = form.keys();
@@ -391,33 +389,6 @@
 				}
 			});
 			
-			/*
-			let form = new FormData( document.getElementById( "seller_info" ) );
-			
-			let keys = form.keys();
-			for(key of keys) console.log(key);
-
-			let values = form.values();
-			for(value of values) console.log(value);
-			
-			$.ajax({
-				type : "POST" 
-				, encType : "multipart/form-data" 
-				, url : "${pageContext.request.contextPath}/mypage/sellerinfo_update" 
-				, data : form 
-				, processData : false
-				, contentType : false 
-				, cache : false 
-				, success : function(result) {
-					alert("회원 정보가 수정되었습니다.");
-					location.href = "${pageContext.request.contextPath}/mypage/myinfo";
-				}, 
-				error : function(xhr) {
-					alert("잠시 후 다시 시도해주세요.");
-				}
-			});
-			*/
-			
 		});//click
 	});//ready
 	</script>
@@ -431,7 +402,12 @@
 			location.href="${pageContext.request.contextPath}/mypage/";
 		}
 	}
-	function DaumPostcode() {
+	$(document).ready(function() {
+		$("#seller_add_btn"),click(function() {
+			
+		});//click
+	});//ready
+	function sellerDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
 				let addr = '';
@@ -464,6 +440,43 @@
 				document.getElementById("seller_post_code").value = data.zonecode;
 				document.getElementById("seller_add_1").value = addr;
 				document.getElementById("seller_add_2").focus();
+			}
+		}).open();
+	}
+	
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				let addr = '';
+				let extraAddr = '';
+				
+				if(data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
+				
+				if(data.userSelectedType === 'R') {
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					
+					if(data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== ''?', ' + data.buildingName : data.buildingName);
+					}
+					
+					if(extraAddr !== '') {
+						extraAddr = '(' + extraAddr + ')';
+					}
+					
+					document.getElementById("add_3").value = extraAddr;
+				} else {
+					document.getElementById("add_3").value = '';
+				}
+				
+				document.getElementById("post_code").value = data.zonecode;
+				document.getElementById("add_1").value = addr;
+				document.getElementById("add_2").focus();
 			}
 		}).open();
 	}
