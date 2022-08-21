@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
@@ -44,6 +45,13 @@ public class MyPageDAO {
 
 	public void updateSellerYN(String mem_no) {
 		sqlSession.update("MyPageMapper.updateSellerYN", mem_no);
+	}
+
+	public List<OrderDTO> recentOrder(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.recentOrder", mem_no);
+		
+		return list;
 	}
 
 }

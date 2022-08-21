@@ -12,6 +12,7 @@ public class OrderDTO {
 	private String option_no;
 	private int buy_qty;
 	private int prdt_price;
+	private int pay_amt;
 	private String prdt_con;
 	private String delivery_c_no;
 	private String delivery_no;
@@ -25,6 +26,7 @@ public class OrderDTO {
 	private String buy_now_prdt_no;
 	private String buy_now_qty;
 	private String buy_now_option_no;
+	private String code_name;
 	
 	public String getOrder_no() {
 		return order_no;
@@ -85,6 +87,12 @@ public class OrderDTO {
 	}
 	public void setPrdt_price(int prdt_price) {
 		this.prdt_price = prdt_price;
+	}
+	public int getPay_amt() {
+		return pay_amt;
+	}
+	public void setPay_amt(int pay_amt) {
+		this.pay_amt = pay_amt;
 	}
 	public String getPrdt_con() {
 		return prdt_con;
@@ -157,5 +165,11 @@ public class OrderDTO {
 	}
 	public void setBuy_now_option_no(String buy_now_option_no) {
 		this.buy_now_option_no = buy_now_option_no;
+	}
+	public String getCode_name() {
+		return code_name;
+	}
+	public void setCode_name(String code_name) {
+		this.code_name = code_name;
 	}
 }	

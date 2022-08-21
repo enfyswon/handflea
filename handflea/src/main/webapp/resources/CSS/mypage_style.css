@@ -95,6 +95,28 @@ main {
 .list-box td {
 	padding: 5px 0;
 }
+.order-date {
+	width: 15%;
+}
+.order-no {
+	width: 10%;
+}
+.order-prdt {
+	width: 40%;
+}
+.order-prdt > a {
+	color: black;
+}
+.order-prdt > a :hover {
+	color: #0F8BFF;
+}
+.order-amt {
+	width: 20%;
+}
+.order-con {
+	width: 15%;
+}
+.order_
 #regist-box {
 	background-color: #f4f4f4;
 	border: 1px solid #cecece;

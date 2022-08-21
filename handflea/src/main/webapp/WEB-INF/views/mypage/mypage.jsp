@@ -69,21 +69,25 @@
 					<div class="list-box">
 						<table>
 							<tr class="list-top">
-								<td>결제일</td>	<td>주문번호</td>	<td>상품명</td>
-								<td>주문금액</td>	<td>상태</td>
+								<td class="order-no">주문번호</td>
+								<td class="order-prdt">상품명</td>
+								<td class="order-amt">주문금액</td>
+								<td class="order-con">상태</td>
+								<td class="order-date">결제일</td>
 							</tr>
+							<c:forEach var="olist" items="${recent_order_list}">
 							<tr>
-								<td>결제일</td>	<td>주문번호</td>	<td>상품명</td>
-								<td>주문금액</td>	<td>상태</td>
+								<td class="order-no">${olist.detail_no}</td>	
+								<td class="order-prdt">
+									<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${olist.prdt_no}">
+										<p>${olist.prdt_name}</p>
+									</a>
+								</td>
+								<td class="order-amt">${olist.pay_amt}</td>
+								<td class="order-con">${olist.code_name}</td>
+								<td class="order-date">${olist.order_date}</td>
 							</tr>
-							<tr>
-								<td>결제일</td>	<td>주문번호</td>	<td>상품명</td>
-								<td>주문금액</td>	<td>상태</td>
-							</tr>
-							<tr>
-								<td>결제일</td>	<td>주문번호</td>	<td>상품명</td>
-								<td>주문금액</td>	<td>상태</td>
-							</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</div>

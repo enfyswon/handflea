@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
@@ -41,6 +42,13 @@ public class MyPageService {
 		updateYN = dao.infoUpdate(dto);
 		
 		return updateYN;
+	}
+
+	public List<OrderDTO> recentOrder(String mem_no) {
+		List<OrderDTO> list = null;
+		list = dao.recentOrder(mem_no);
+		
+		return list;
 	}
 
 }

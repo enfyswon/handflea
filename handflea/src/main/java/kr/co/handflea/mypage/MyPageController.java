@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
@@ -55,7 +56,12 @@ public class MyPageController {
 	}//seller_regist
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String myPage() {
+	public String myPage(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		
+		List<OrderDTO> olist = null;
+		olist = service.recentOrder(mem_no);
+		model.addAttribute("recent_order_list", olist);
 		
 		return "/mypage/mypage";
 	}

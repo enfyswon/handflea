@@ -32,4 +32,16 @@
 					  bank_no = #{bank_no}, account_no = #{account_no}, mem_photo = #{mem_photo}, mem_photopath = #{mem_photopath}
 	where mem_no = #{mem_no}
 	</update>
+	
+	<select id="recentOrder" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select date_format(om.order_date, '%Y-%m-%d') order_date, od.detail_no, od.prdt_no, 
+		   p.prdt_name, od.pay_amt, od.prdt_con, c.code_name
+	from order_main om, order_detail od, product p, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.prdt_con = c.code_no
+	and om.mem_no = #{mem_no}
+	order by od.detail_no desc
+	limit 5;
+	</select>
 </mapper>
