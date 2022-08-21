@@ -23,7 +23,7 @@
 				<div id="menu-box">
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
-						<a href="#">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
 						<a href="#">Q&A 문의 내역</a>

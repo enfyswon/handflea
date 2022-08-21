@@ -40,27 +40,39 @@
 				</div>
 			</div>
 			<div id="main-content">
-				<h2>주문 받은 상품 목록</h2>
+				<h2>주문 내역</h2>
 				<div class="list-box">
 					<table>
 						<tr class="list-top">
-							<td class="sale-no">주문 번호</td>
-							<td class="sale-prdt">상품명</td>
-							<td class="sale-opt-qty">옵션/수량</td>
-							<td class="sale-delivery">운송장 번호</td>
-							<td class="sale-delivery-con">배송 상태</td>
-							<td class="sale-refund">환불 여부</td>
+							<td class="order-no">주문 번호</td>
+							<td class="order-prdt">상품 정보</td>
+							<td class="order-date">결제일</td>
+							<td class="order-amt">결제 금액</td>
+							<td class="order-delivery">운송장 번호</td>
+							<td class="order-con">주문 상태</td>
 						</tr>
-						<c:forEach var="list" items="${sale_list}">
-						<tr class="sale-list">
-							<td class="sale-no">${list.detail_no}</td>	
-							<td class="sale-prdt">
-								<a href="${pageContext.request.contextPath}/mypage/detail?detail_no=${list.detail_no}">
-									<p>${list.prdt_name}</p>
-								</a>
+						<c:forEach var="list" items="${order_list}">
+						<tr class="order-list">
+							<td class="order-no">${list.detail_no}</td>	
+							<td class="order-prdt">
+								<div class="order-prdt-box">
+									<div class="order-prdt-img">
+										<img alt="product_img" src="${list.thumbnail_path}">
+									</div>
+									<div class="order-prdt-outline">
+										<a href="${pageContext.request.contextPath}/mypage/detail?detail_no=${list.detail_no}">
+											<p>${list.prdt_name}</p>
+										</a>
+										<div class="order-opt-qty">
+											<p><span>옵션</span>${list.option_contents}</p>
+											<p><span>수량</span>${list.buy_qty}</p>
+										</div>
+									</div>
+								</div>
 							</td>
-							<td class="sale-opt-qty">${list.option_contents}/${list.buy_qty}</td>
-							<td class="sale-delivery">
+							<td class="order-date">${list.order_date}</td>
+							<td class="order-amt">${list.pay_amt} 원</td>
+							<td class="order-delivery">
 							<c:choose>
 								<c:when test="${list.prdt_con == 1 || list.prdt_con == 2}">
 								<p>${list.delivery_c_name}</p>
@@ -71,29 +83,32 @@
 								</c:otherwise>
 							</c:choose>
 							</td>
-							<td class="sale-delivery-con">
+							<td class="order-con">
 							<c:choose>
-								<c:when test="${list.prdt_con == 3 || list.prdt_con == 4}">
-								상품 준비 중
+								<c:when test="${list.prdt_con == 0}">
+								결제 완료
+								</c:when>
+								<c:when test="${list.prdt_con == 1}">
+								${list.code_name}<br>
+								<button>배송 조회</button>
+								<button>수령 완료</button>
+								</c:when>
+								<c:when test="${list.prdt_con == 2}">
+								${list.code_name}<br>
+								<button>후기 작성</button>
+								</c:when>
+								<c:when test="${list.prdt_con == 3}">
+								결제 완료<br>
+								<button>환불 요청</button>
 								</c:when>
 								<c:otherwise>
 								${list.code_name}
-								</c:otherwise>
-							</c:choose>
-							</td>
-							<td class="sale-refund">
-							<c:choose>
-								<c:when test="${list.prdt_con == 3 || list.prdt_con == 4}">
-								${list.code_name}
-								</c:when>
-								<c:otherwise>
-								-
 								</c:otherwise>
 							</c:choose>
 							</td>
 						</tr>
 						</c:forEach>
-						<c:if test="${sale_cnt == 0}">
+						<c:if test="${order_cnt == 0}">
 						<tr>
 							<td colspan="6">주문 내역이 없습니다.</td>
 						</tr>

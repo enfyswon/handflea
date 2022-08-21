@@ -133,7 +133,7 @@ public class MyPageController {
 		out.close();
 	}
 	
-	@RequestMapping(value = "/sale")
+	@RequestMapping(value = "/sale", method = RequestMethod.GET)
 	public String saleList(HttpSession session, Model model) {
 		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
 		
@@ -142,8 +142,18 @@ public class MyPageController {
 		model.addAttribute("sale_list", list);
 		model.addAttribute("sale_cnt", list.size());
 		
-		
-		
 		return "/mypage/sale_list";
+	}
+	
+	@RequestMapping(value = "/order", method = RequestMethod.GET)
+	public String orderList(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
+		
+		List<OrderDTO> list = null; 
+		list = service.orderList(mem_no);
+		model.addAttribute("order_list", list);
+		model.addAttribute("order_cnt", list.size());
+		
+		return "/mypage/order_list";
 	}
 }

@@ -95,25 +95,25 @@ main {
 .list-box td {
 	padding: 5px 0;
 }
-.order-date {
+.rorder-date {
 	width: 15%;
 }
-.order-no {
+.rorder-no {
 	width: 10%;
 }
-.order-prdt {
+.rorder-prdt {
 	width: 40%;
 }
-.order-prdt > a {
+.rorder-prdt > a {
 	color: black;
 }
-.order-prdt > a :hover {
+.rorder-prdt > a :hover {
 	color: #0F8BFF;
 }
-.order-amt {
+.rorder-amt {
 	width: 20%;
 }
-.order-con {
+.rorder-con {
 	width: 15%;
 }
 .sell-no {
@@ -298,4 +298,62 @@ main {
 }
 .sale-refund {
 	width: 10%;
+}
+.order-list {
+	height: 70px;
+}
+.order-no {
+	width: 10%;
+}
+.order-prdt {
+	width: 35%;
+}
+.order-prdt-box {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.order-prdt-img {
+	width: 25%;
+}
+.order-prdt-img img {
+	width: 50px;
+	height: 70px;
+	object-fit: cover;
+}
+.order-prdt-outline {
+	width: 85%;
+	align-items: center;
+	text-align: left;
+}
+.order-prdt-outline a {
+	color: black;
+}
+.order-prdt-outline a :hover {
+	color: #0F8BFF;
+}
+.order-opt-qty {
+	display: flex;
+	flex-direction: row;
+}
+.order-opt-qty p {
+	margin: 0;
+	font-size: small;
+}
+.order-opt-qty span {
+	background-color: #808080;
+	color: white;
+}
+.order-date {
+	width: 10%;
+}
+.order-amt {
+	width: 15%;
+}
+.order-delivery {
+	width: 15%;
+}
+.order-con {
+	width: 15%;
 }

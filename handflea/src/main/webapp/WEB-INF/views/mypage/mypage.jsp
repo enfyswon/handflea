@@ -22,7 +22,7 @@
 				<div id="menu-box">
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
-						<a href="#">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
 						<a href="#">Q&A 문의 내역</a>
@@ -69,23 +69,23 @@
 					<div class="list-box">
 						<table>
 							<tr class="list-top">
-								<td class="order-no">주문 번호</td>
-								<td class="order-prdt">상품명</td>
-								<td class="order-amt">주문 금액</td>
-								<td class="order-con">상품 상태</td>
-								<td class="order-date">결제일</td>
+								<td class="rorder-no">주문 번호</td>
+								<td class="rorder-prdt">상품명</td>
+								<td class="rorder-amt">주문 금액</td>
+								<td class="rorder-con">상품 상태</td>
+								<td class="rorder-date">결제일</td>
 							</tr>
 							<c:forEach var="olist" items="${recent_order_list}">
 							<tr>
-								<td class="order-no">${olist.detail_no}</td>	
-								<td class="order-prdt">
+								<td class="rorder-no">${olist.detail_no}</td>	
+								<td class="rorder-prdt">
 									<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${olist.prdt_no}">
 										<p>${olist.prdt_name}</p>
 									</a>
 								</td>
-								<td class="order-amt">${olist.pay_amt}</td>
-								<td class="order-con">${olist.code_name}</td>
-								<td class="order-date">${olist.order_date}</td>
+								<td class="rorder-amt">${olist.pay_amt}</td>
+								<td class="rorder-con">${olist.code_name}</td>
+								<td class="rorder-date">${olist.order_date}</td>
 							</tr>
 							</c:forEach>
 							<c:if test="${order_cnt == 0}">

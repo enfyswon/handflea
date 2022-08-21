@@ -75,4 +75,17 @@ public class MyPageDAO {
 		return dto;
 	}
 
+	public List<OrderDTO> orderList(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.orderList", mem_no);
+		
+		return list;
+	}
+
+	public OrderDTO orderDeliveryList(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.orderDeliveryList", detail_no);
+		
+		return dto;
+	}
 }

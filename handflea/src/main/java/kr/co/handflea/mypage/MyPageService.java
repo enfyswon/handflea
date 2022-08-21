@@ -73,4 +73,19 @@ public class MyPageService {
 		return list;
 	}
 
+	public List<OrderDTO> orderList(String mem_no) {
+		List<OrderDTO> list = null;
+		list = dao.orderList(mem_no);
+		
+		for (int i = 0; i < list.size(); i++) {
+			OrderDTO dto = list.get(i);
+			if (dto.getPrdt_con().equals("1") || dto.getPrdt_con().equals("2")) {
+				dto = dao.orderDeliveryList(dto.getDetail_no());
+				list.set(i, dto);
+			}
+		}
+		
+		return list;
+	}
+
 }
