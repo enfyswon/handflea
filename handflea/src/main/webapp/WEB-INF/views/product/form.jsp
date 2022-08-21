@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title> 판매자 상품 등록 </title>
+		<title>판매 상품 등록</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -12,23 +13,23 @@
 		<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
 		<style type="text/css">
 		.write_label {
-			font-size : 0.7em;
+			font-size : 0.9em;
 			color : red;
 		}
 		</style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> 판매자 상품 등록 </h3>
-		<hr>
+		<br>
+		<h3 style="margin-left : 12%;"> 판매 상품 등록 </h3>
+		<br>
 		<form id="write_form">
 			<table class="table table-hover">
 				<tbody>
 					<tr>
 						<th> 상 품 명 (*) </th>
 						<td colspan="3">
-							<input type="text" id="prdt_name" name="prdt_name" maxlength="20"
+							<input type="text" id="prdt_name" name="prdt_name" maxlength="40"
 									class="form-control">
 							<label for="prdt_name" id="prdt_name_label" class="write_label"></label>
 						</td>
@@ -36,24 +37,50 @@
 					<tr>
 						<th> 판 매 자 </th>
 						<td>
-							${login_info.mid}
-						</td>
-						<th> 재 고 수 량 (*) </th>
-						<td>
-							<input type="text" id="qty" name="qty" class="form-control">
-							<label for="qty" id="qty_label" class="write_label"></label>
+							${login_info.mem_email}
 						</td>
 					</tr>
 					<tr>
-						<th> 판 매 단 가 (*) </th>
+						<th> 카테고리 (*)  </th>
+						<td colspan="3">
+							<select id="bigcate_no" name="bigcate_no">
+								<option value="0" selected="selected">대분류 선택</option>
+							</select>
+							>
+							<select id="smallcate_no" name="smallcate_no">
+								<option value="0" selected="selected">소분류 선택</option>
+							</select>
+							<label for="smallcate_no" id="smallcate_no_label" class="write_label"></label>
+						</td>
+					</tr>
+					<tr>
+						<th> 판매 가격(단위 : 원) (*)  </th>
 						<td>
 							<input type="text" id="price" name="price" class="form-control">
 							<label for="price" id="price_label" class="write_label"></label>
 						</td>
-						<th> 할 인 율 (*) </th>
+						<th> 배송비(단위 : 원) (*)  </th>
 						<td>
-							<input type="text" id="discount" name="discount" class="form-control">
-							<label for="discount" id="discount_label" class="write_label"></label>
+							<input type="text" id="delivery_price" name="delivery_price" class="form-control">
+							<label for="delivery_price" id="delivery_price_label" class="write_label"></label>
+						</td>
+					</tr>
+					<tr>
+						<th> 주문 옵션  </th>
+						<td>
+							<button type="button" id="add_option_btn" class="mb-1"> 옵션 입력 추가 </button>
+							<label for="option_yes" id="option_yes_label" class="write_label"></label>
+							<div id="option_name_div">
+							</div>
+<!-- 							<input type="text" id="option_no" name="option_no" class="form-control" placeholder="옵션을 추가하세요."> -->
+						</td>
+					</tr>
+					<tr>
+						<th> 상품 준비 기간(단위 : 일) (*)  </th>
+						
+						<td>
+							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control">
+							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
@@ -74,13 +101,9 @@
 							<input type="file" id="desc_img" name="desc_img" class="form-control">
 							<label for="desc_img" id="desc_img_label" class="write_label"></label>
 						</td>
-						<th> 첨 부 문 서 </th>
-						<td>
-							<input type="file" id="add_file" name="add_file" class="form-control">
-						</td>
 					</tr>
 					<tr>
-						<th> 상 품 설 명 </th>
+						<th> 상품 상세 설명   </th>
 						<td colspan="3">
 							<textarea class="form-contol" id="desc_txt" name="desc_txt"></textarea>
 							<script type="text/javascript">
@@ -90,40 +113,50 @@
 					</tr>
 				</tbody>
 			</table>
-		</form>
+		</form>		
 		<button id="write_btn" class="btn btn-primary float-right"> 상품 등록 완료 </button>
 		<a href="${pageContext.request.contextPath}/product/list">
 			<button class="btn btn-warning"> 상품 등록 취소 </button>
 		</a>
 		<hr>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
+		<%@ include file="/WEB-INF/views/footer.jsp" %>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 	let onlyNum = /^[0-9]+$/;
 
 	$(document).ready(function() {
 		$("#write_btn").click(function() {
+			let tmpArr2 = $("input[id^='option_no']");
+			let arr_option2 = new Array();
+			for( let i=0; i < tmpArr2.length; i++ ){
+				arr_option2.push( tmpArr2[i].value );
+			}
 
 			if( $.trim( $("#prdt_name").val() ) == "" ){
 				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
 			} else { $("#prdt_name_label").text(""); }
 
-			if( $("#qty").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
-				$("#qty_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
+			if( $("#smallcate_no").val() == "0" ){
+				$("#smallcate_no_label").text("카테고리를 선택하세요");
 				return;
-			} else { $("#qty_label").text(""); }
-
+			} else { $("#smallcate_no_label").text(""); }
+			
 			if( $("#price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
 				$("#price_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
 				return;
 			} else { $("#price_label").text(""); }
-
-			if( $("#discount").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
-				$("#discount_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
+		
+			if( $("#delivery_price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#delivery_price_label").text("배송비를 입력하세요, 숫자만 허용 됩니다.");
 				return;
-			} else { $("#discount_label").text(""); }
-
+			} else { $("#delivery_price_label").text(""); }
+			
+			if( $("#prdt_rdy").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#prdt_rdy_label").text("상품 준비 기간을 입력하세요, 숫자만 허용 됩니다.");
+				return;
+			} else { $("#product_prepare_label").text("해당 기간 내에 출고가 되지 않을 경우, 구매자가 환불을 요청할 수 있습니다."); }
+			
 			let tmp1 = $("#thumbnail").val().substring($("#thumbnail").val().length-3);
 			let tmp1_boolean = (tmp1 == "jpg" || tmp1 == "jpeg" || tmp1 == "gif" || tmp1 == "png"
 								|| tmp1 == "JPG" || tmp1 == "JPEG" || tmp1 == "GIF" || tmp1 == "PNG");
@@ -150,34 +183,85 @@
 
 			let form = new FormData( document.getElementById( "write_form" ) );
 			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
+			form.append( "arr_option", arr_option2 );
 			
 			let keys = form.keys();
 			for(key of keys) console.log(key);
-			
+
 			let values = form.values();
 			for(value of values) console.log(value);
 
-			
 			$.ajax({
-					type : "POST"
-					, encType : "multipart/form-data"
-					, url : "${pageContext.request.contextPath}/product/insert"
-					, data : form
-					, processData : false
-					, contentType : false
-					, cache : false
-					, success : function(result) {
-						alert("상품이 등록 되었습니다.");
-						location.href = "${pageContext.request.contextPath}/product/list";
-					}//call back function
-					, error : function(xhr) {
-						alert("잠시 후 다시 시도해 주세요.");
-					}//call back function//xhr : xml http request/response
-			});//ajax
-
+				type : "POST"
+				, encType : "multipart/form-data"
+				, url : "${pageContext.request.contextPath}/product/insert"
+				, data : form
+				, processData : false
+				, contentType : false
+				, cache : false
+				, success : function(result) {
+					alert("상품이 등록 되었습니다.");
+					location.href = "${pageContext.request.contextPath}/main";
+				}//call back function
+				, error : function(xhr) {
+					alert("잠시 후 다시 시도해 주세요.");
+				}//call back function//xhr : xml http request/response
+		});//ajax	
 		});//click
 	});//ready
 	</script>
 
+		<script type="text/javascript">
+		let optionNo = 0;
+		$(document).ready(function() {
+			$("#add_option_btn").click(function() {
+				$("#option_name_div").append(
+					'<div class="input-group" id="div_option_no'+optionNo+'">'
+					+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요.">'
+					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+					+ '</div>'
+				);//append
+				$("#option_remove_btn"+optionNo).on("click", function(){
+					//alert( $(this).attr("id") );
+					//alert( $(this).parent().attr("id") );
+					$(this).parent().remove();
+				});//on
+				optionNo++;
+			});//click
+		});//ready
+		</script>
+
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			$("#bigcate_no").change(function() {
+				$.get(
+						"${pageContext.request.contextPath}/product/smallcate"
+						, { bigcate_no : $("#bigcate_no").val() }
+						, function(data, status) { 
+							$("#smallcate_no").empty();
+							$("#smallcate_no").append("<option value='0'>선택하세요</option>");
+							$.each(JSON.parse(data), function(idx, dto) {
+								$("#smallcate_no").append("<option value='" + dto.smallcate_no + "'>" + dto.smallcate_name + "</option>");
+							});//each
+						}//call back function
+				);//get
+			});//change
+		});//ready
+		
+		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/bigcate"
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#bigcate_no").append("<option value='" + dto.bigcate_no + "'>" + dto.bigcate_name + "</option>");
+						});//each
+					}//call back function
+			);//get
+		});//ready
+		</script>	
+		
+		
+		
 	</body>
 </html>

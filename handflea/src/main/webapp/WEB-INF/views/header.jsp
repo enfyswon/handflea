@@ -22,9 +22,9 @@
 			<div id="top-header">
 				<c:choose>
 					<c:when test="${login_info != null && login_info.mem_email != null}">
-						<a class="top-item" href="${pageContext.request.contextPath}/logout""> 로그아웃 </a>
-						<a class="top-item" href="${pageContext.request.contextPath}/basket/list"> 마이페이지 </a>
-						<span class="top-item" style="color:lime;">${login_info.mem_name}님</span>
+						<a class="top-item" href="${pageContext.request.contextPath}/logout"> 로그아웃 </a>
+						<a class="top-item" href="${pageContext.request.contextPath}/mypage/"> 마이페이지 </a>
+						<span class="top-item" style="color: #F2EEA7;">${login_info.mem_name}님</span>
 					</c:when>
 					<c:otherwise>
 					<a class="top-item" href="${pageContext.request.contextPath}/login_form">로그인</a>
@@ -34,7 +34,7 @@
 			</div>
 			<div id="middle-header">
 				<div id="logo-bar">
-					<a href="${pageContext.request.contextPath}/">
+					<a href="${pageContext.request.contextPath}/main">
 						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>
@@ -58,7 +58,7 @@
 							<p class="icon_cnts">채팅</p>
 						</div>
 					</a>
-					<a href="${pageContext.request.contextPath}/cart/">
+					<a href="${pageContext.request.contextPath}/basket/list">
 						<div class="icon">
 							<img class="icon_img" alt="cart" src="${pageContext.request.contextPath}/resources/img/cart.png">
 							<p class="icon_cnts">장바구니</p>
@@ -71,30 +71,30 @@
 				<div id="navMenu">
 					<ul id="big-menu">
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=1">
 								<span>디저트</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">빵</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=1">빵</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">청</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=2">청</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">떡</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=3">떡</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">잼</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=4">잼</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">캔디류</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=5">캔디류</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">초콜릿</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=6">초콜릿</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=7">기타</a>
 								</li>
 								<li class="smallcate">
 									<a class="nonecate">test</a>
@@ -102,30 +102,30 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=2">
 								<span>니트/뜨개</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">장갑</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=8">장갑</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">목도리</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=9">목도리</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">모자</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=10">모자</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">코스터</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=11">코스터</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">수세미</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=12">수세미</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">매트</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=13">매트</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=14">기타</a>
 								</li>
 								<li class="smallcate">
 									<a class="nonecate">test</a>
@@ -133,49 +133,49 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=3">
 								<span>디자인/아트</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">프로필</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=15">프로필</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">배너</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=16">배너</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">스티커</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=17">스티커</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">이모티콘</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=18">이모티콘</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">카톡테마</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=19">카톡테마</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">배경화면</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=20">배경화면</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">템플릿</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=21">템플릿</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=22">기타</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=4">
 								<span>캔들/디퓨저</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">캔들</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=23">캔들</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">디퓨저</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=24">디퓨저</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=25">기타</a>
 								</li>
 								<li class="smallcate">
 									<a class="nonecate">test</a>
@@ -195,21 +195,21 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=5">
 								<span>가죽공예</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">지갑</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=26">지갑</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">소품</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=27">소품</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">가방</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=28">가방</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=29">기타</a>
 								</li>
 								<li class="smallcate">
 									<a class="nonecate">test</a>
@@ -226,27 +226,27 @@
 							</ul>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=6">
 								<span>액세서리</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">귀걸이</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=30">귀걸이</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">목걸이</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=31">목걸이</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">반지</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=32">반지</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">팔찌</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=33">팔찌</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">발찌</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=34">발찌</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=35">기타</a>
 								</li>
 								<li class="smallcate">
 									<a class="nonecate">test</a>
@@ -257,15 +257,15 @@
 							</ul>
 						</li>			
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/product/bigcatelist?bigcate_no=7">
 								<span>잡화/기타</span>
 							</a>
 							<ul class="small-menu">
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">잡화</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=36">잡화</a>
 								</li>
 								<li class="smallcate">
-									<a href="${pageContext.request.contextPath}/#">기타</a>
+									<a href="${pageContext.request.contextPath}/product/smallcatelist?smallcate_no=37">기타</a>
 								</li>
 								<li class="smallcate">
 									<a class="nonecate">test</a>

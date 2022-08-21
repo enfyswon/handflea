@@ -15,6 +15,9 @@
 			font-size : 0.7em;
 			color : red;
 		}
+		.prdt_img {
+			width: 30%;
+		}
 		</style>
 	</head>
 	<body>
@@ -23,6 +26,7 @@
 		<h3> 판매자 상품 등록 </h3>
 		<hr>
 		<form id="write_form">
+			<input type="hidden" id="prdt_no" name="prdt_no" value="${detail_dto.prdt_no}">
 			<table class="table table-hover">
 				<tbody>
 					<tr>
@@ -36,27 +40,41 @@
 					<tr>
 						<th width="25%"> 판 매 자 </th>
 						<td width="25%">
-							${login_info.mid}
-						</td>
-						<th width="25%"> 재 고 수 량 (*) </th>
-						<td width="25%">
-							<input type="text" id="qty" name="qty" class="form-control"
-									value="${detail_dto.qty}">
-							<label for="qty" id="qty_label" class="write_label"></label>
+							${login_info.mem_email}
 						</td>
 					</tr>
 					<tr>
-						<th> 판 매 단 가 (*) </th>
+						<th> 판매 가격(단위 : 원) (*) </th>
 						<td>
 							<input type="text" id="price" name="price" class="form-control"
 									value="${detail_dto.price}">
 							<label for="price" id="price_label" class="write_label"></label>
 						</td>
-						<th> 할 인 율 (*) </th>
+					</tr>
+					<tr>
+						<th> 배송비(단위 : 원) (*)  </th>
 						<td>
-							<input type="text" id="discount" name="discount" class="form-control"
-									value="${detail_dto.discount}">
-							<label for="discount" id="discount_label" class="write_label"></label>
+							<input type="text" id="delivery_price" name="delivery_price" class="form-control"
+									value="${detail_dto.delivery_price}">
+							<label for="delivery_price" id="delivery_price_label" class="write_label"></label>
+						</td>
+					</tr>
+					<tr>
+						<th> 주문 옵션  </th>
+						<td>
+							<button type="button" id="add_option_btn" class="mb-1"> 옵션 입력 추가 </button>
+							<label for="option_yes" id="option_yes_label" class="write_label"></label>
+							<div id="option_name_div">
+							</div>
+<!-- 							<input type="text" id="option_no" name="option_no" class="form-control" placeholder="옵션을 추가하세요."> -->
+						</td>
+					</tr>
+					<tr>
+						<th> 상품 준비 기간(단위 : 일) (*)  </th>
+						
+						<td>
+							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control" value="${detail_dto.prdt_rdy}">
+							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
@@ -64,8 +82,8 @@
 						<td class="text-center">
 							<c:choose>
 								<c:when test="${detail_dto.thumbnail_path != null && detail_dto.thumbnail_path != ''}">
-									<img src="${detail_dto.thumbnail_path}">
-									<button id="thumbnail_btn" type="button" class="btn btn-danger  delete_btn" value="${detail_dto.thumbnail_path}">
+									<img class="prdt_img" src="${detail_dto.thumbnail_path}">
+									<button id="thumbnail_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.thumbnail_path}">
 										이미지 삭제
 									</button>
 								</c:when>
@@ -75,12 +93,14 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
+					</tr>
+					<tr>
 						<th> 상 품 상 세 이 미 지 </th>
 						<td class="text-center">
 							<c:choose>
 								<c:when test="${detail_dto.prdt_img_path != null && detail_dto.prdt_img_path != ''}">
-									<img src="${detail_dto.prdt_img_path}">
-									<button id="prdt_img_btn" type="button" class="btn btn-danger  delete_btn" value="${detail_dto.prdt_img_path}">
+									<img class="prdt_img" src="${detail_dto.prdt_img_path}">
+									<button id="prdt_img_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.prdt_img_path}">
 										이미지 삭제
 									</button>
 								</c:when>
@@ -96,30 +116,14 @@
 						<td class="text-center">
 							<c:choose>
 								<c:when test="${detail_dto.desc_img_path != null && detail_dto.desc_img_path != ''}">
-									<img src="${detail_dto.desc_img_path}">
-									<button id="desc_img_btn" type="button" class="btn btn-danger  delete_btn" value="${detail_dto.desc_img_path}">
+									<img class="prdt_img" src="${detail_dto.desc_img_path}">
+									<button id="desc_img_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.desc_img_path}">
 										이미지 삭제
 									</button>
 								</c:when>
 								<c:otherwise>
 									<input type="file" id="desc_img" name="desc_img" class="form-control">
 									<label for="desc_img" id="desc_img_label" class="write_label"></label>
-								</c:otherwise>
-							</c:choose>
-						</td>
-						<th> 첨 부 문 서 </th>
-						<td class="text-center">
-							<c:choose>
-								<c:when test="${detail_dto.add_file_path != null && detail_dto.add_file_path != ''}">
-									<a href="${pageContext.request.contextPath}/file/download?path=${detail_dto.add_file_path}">
-										${detail_dto.add_file_name}
-									</a>
-									<button id="add_file_btn" type="button" class="btn btn-danger  delete_btn" value="${detail_dto.add_file_path}">
-										첨부 문서 삭제
-									</button>
-								</c:when>
-								<c:otherwise>
-									<input type="file" id="add_file" name="add_file" class="form-control">
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -138,14 +142,15 @@
 		</form>
 		
 		<button id="write_btn" class="btn btn-primary float-right"> 상품 수정 완료 </button>
-		<a href="${pageContext.request.contextPath}/product/list">
-			<button class="btn btn-warning"> 상품 수정 취소 </button>
+		<a href="${pageContext.request.contextPath}/product/sellerlist">
+			<button id="updatecancel_btn" class="btn btn-warning"> 상품 수정 취소 </button>
 		</a>
 		<hr>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
+
 	<script type="text/javascript">
 	let onlyNum = /^[0-9]+$/;
-
+	
 	$(document).ready(function() {
 		$(".delete_btn").click(function() {
 			$.get(
@@ -166,29 +171,48 @@
 			);//get
 		});//click
 	});//ready
-
+	
+	/*
 	$(document).ready(function() {
+		let tmpForm = new FormDate();
+	});//ready
+	사진 삭제하고 뒤로갈때
+	*/
+	
+	$(document).ready(function() {
+		
 		$("#write_btn").click(function() {
+			let tmpArr1 = $("input[id^='no']");
+			let arr_option1 = new Array();
+			for (let i = 0; i < tmpArr1.length; i++) {
+				arr_option1.push( tmpArr1[i].value );
+			}
 
+			let tmpArr2 = $("input[id^='option_no']");
+			let arr_option2 = new Array();
+			for( let i=0; i < tmpArr2.length; i++ ){
+				arr_option2.push( tmpArr2[i].value );
+			}
+			
 			if( $.trim( $("#prdt_name").val() ) == "" ){
 				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
 			} else { $("#prdt_name_label").text(""); }
 
-			if( $("#qty").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
-				$("#qty_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
-				return;
-			} else { $("#qty_label").text(""); }
-
 			if( $("#price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
 				$("#price_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
 				return;
 			} else { $("#price_label").text(""); }
-
-			if( $("#discount").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
-				$("#discount_label").text("필수 입력 사항이며, 숫자만 허용 됩니다.");
+			
+			if( $("#delivery_price").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#delivery_price_label").text("배송비를 입력하세요, 숫자만 허용 됩니다.");
 				return;
-			} else { $("#discount_label").text(""); }
+			} else { $("#delivery_price_label").text(""); }
+			
+			if( $("#prdt_rdy").val().match(onlyNum) == null ){//허용되지 않은 글자는 null.
+				$("#prdt_rdy_label").text("상품 준비 기간을 입력하세요, 숫자만 허용 됩니다.");
+				return;
+			} else { $("#product_prepare_label").text("해당 기간 내에 출고가 되지 않을 경우, 구매자가 환불을 요청할 수 있습니다."); }
 
 			if( "${detail_dto.thumbnail_name}" == "" || $.trim($("#thumbnail").val()) != "" ){
 				let tmp1 = $("#thumbnail").val().substring($("#thumbnail").val().length-3);
@@ -222,7 +246,8 @@
 
 			let form = new FormData( document.getElementById( "write_form" ) );
 			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
-			form.append( "prdt_no", ${detail_dto.prdt_no} );
+			form.append( "arr_option", arr_option2 );
+			form.append( "arr_option_no", arr_option1 );
 
 			$.ajax({
 					type : "POST"
@@ -234,7 +259,7 @@
 					, cache : false
 					, success : function(result) {
 						alert("상품이 수정 되었습니다.");
-						location.href="${pageContext.request.contextPath}/product/detail?prdt_no=${detail_dto.prdt_no}";
+						location.href="${pageContext.request.contextPath}/product/sellerdetail?prdt_no=${detail_dto.prdt_no}";
 					}//call back function
 					, error : function(xhr) {
 						alert("잠시 후 다시 시도해 주세요.");
@@ -244,5 +269,46 @@
 		});//click
 	});//ready
 	</script>
+	
+	<script type="text/javascript">
+		let optionNo = 0;
+		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/option"
+					, { prdt_no : $("#prdt_no").val() }
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#option_name_div").append(
+									'<div class="input-group" id="div_option_no'+optionNo+'">'
+									+'<input type="hidden" id="no'+optionNo+'" value='+ dto.option_no +'>'
+									+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요." value='+ dto.option_contents +'>'
+									+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+									+ '</div>'
+								);//append
+								$("#option_remove_btn"+optionNo).on("click", function(){
+									$(this).parent().remove();
+								});//on
+								optionNo++;
+							//$("#option_no").append("<option value='" + dto.option_no + "'>" + dto.option_contents + "</option>");
+						});//each
+					}//call back function
+			);//get
+			$("#add_option_btn").click(function() {
+				$("#option_name_div").append(
+					'<div class="input-group" id="div_option_no'+optionNo+'">'
+					+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요.">'
+					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+					+ '</div>'
+				);//append
+				$("#option_remove_btn"+optionNo).on("click", function(){
+					//alert( $(this).attr("id") );
+					//alert( $(this).parent().attr("id") );
+					$(this).parent().remove();
+				});//on
+				optionNo++;
+			});//click
+		});//ready
+		</script>
+	
 	</body>
 </html>

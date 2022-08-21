@@ -1,107 +1,106 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<style type="text/css">
-	.parent{
-
-    width: 100%;
-
-    margin: 10px auto;
-
+<head>
+<meta charset="UTF-8">
+<title> 상품 목록 </title>
+<style type="text/css">
+#product {
+	width: 100%;
+}
+.product-list {
+	width: 100%;
+	padding: 20px 0;
+}
+.item-box {
+	width: 100%;
 	display: flex;
-
+	flex-direction: row;
+	margin: 10px 0;
+	flex-wrap: wrap;
 }
-
-
-
-	.first {
-
-    flex:1;
-
-    width:25%;
-
-    box-sizing: border-box;
-
+.item-card {
+	width: 23%;
+	border: 1px solid #cecece;
+	margin-bottom: 30px;
 }
-
-
-
-	.second{
-
-    flex:1;
-
-    margin-left: 5%;
-
-    width:25%;
-
-    box-sizing: border-box;
-
+.item-card > a {
+	color: black;
 }
-
-
-
-	.third{
-
-    flex:1;
-
-    margin-left: 5%;
-
-    width:25%;
-
-    box-sizing: border-box;
-
+.item-card > a > img {
+	width: 100%;
+	height: 450px;
 }
-
-	.force{ 
-
-    flex:1;
-
-	margin-left: 5%;
-
-    width:25%;
-
-    box-sizing: border-box;
-
+.item-detail {
+	
 }
-		</style>
-	</head>
-	<body>
+.item-detail > p {
+	font-size: small;
+}
+.item-detail > div {
+	display: flex;
+	flex-direction: row;
+}
+.item-detail > div > img {
+	width: 18px;
+	margin: 0;
+}
+.item-detail > div > p {
+	font-size: small;
+	margin: 0;
+	margin-left: 3px;
+	color: #595959;
+}
+</style>
+</head>
+<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<br>
-		<h3 style="margin-left : 12%;"> 판매 상품 리스트 </h3>
-		<br>
-	<div class="parent">
-
-        <div class="first">
-        	<div className="product_img_div"><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MjdfMTg5%2FMDAxNjU4OTAxMDIzNTkx.0FCyJsaY8VubqA3EVb2fxTTL8iTZo5YfYKDaPUwiPRUg.FF5sqh0PqeqWbfQ_9rHlH9NRkRrqSv7VPRwBc_MBaeMg.JPEG.atelier517%2FKakaoTalk_20220727_142641229_12.jpg&type=a340" className="product_img"/></div>
-            <p className="product_seller"> 판매자명</p>
-            <h5 className="product_title"> 상품 제목</h5>
-            <div className="product_mon"> 월 : 15,000원</div>
-        </div>
-
-        <div class="second">
-			<div className="product_img_div"><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MjdfMTg5%2FMDAxNjU4OTAxMDIzNTkx.0FCyJsaY8VubqA3EVb2fxTTL8iTZo5YfYKDaPUwiPRUg.FF5sqh0PqeqWbfQ_9rHlH9NRkRrqSv7VPRwBc_MBaeMg.JPEG.atelier517%2FKakaoTalk_20220727_142641229_12.jpg&type=a340" className="product_img"/></div>
-            <p className="product_seller"> 판매자명</p>
-            <h5 className="product_title"> 상품 제목</h5>
-            <div className="product_mon"> 월 : 15,000원</div>
-        </div>    
-        <div class="third">
-			<div className="product_img_div"><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MjdfMTg5%2FMDAxNjU4OTAxMDIzNTkx.0FCyJsaY8VubqA3EVb2fxTTL8iTZo5YfYKDaPUwiPRUg.FF5sqh0PqeqWbfQ_9rHlH9NRkRrqSv7VPRwBc_MBaeMg.JPEG.atelier517%2FKakaoTalk_20220727_142641229_12.jpg&type=a340" className="product_img"/></div>
-            <p className="product_seller"> 판매자명</p>
-            <h5 className="product_title"> 상품 제목</h5>
-            <div className="product_mon"> 월 : 15,000원</div>
-        </div>    
-        <div class="force">
-			<div className="product_img_div"><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MjdfMTg5%2FMDAxNjU4OTAxMDIzNTkx.0FCyJsaY8VubqA3EVb2fxTTL8iTZo5YfYKDaPUwiPRUg.FF5sqh0PqeqWbfQ_9rHlH9NRkRrqSv7VPRwBc_MBaeMg.JPEG.atelier517%2FKakaoTalk_20220727_142641229_12.jpg&type=a340" className="product_img"/></div>
-            <p className="product_seller"> 판매자명</p>
-            <h5 className="product_title"> 상품 제목</h5>
-            <div className="product_mon"> 월 : 15,000원</div>
-        </div>    
-    </div>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
-	</body>
+		
+		<main>
+			<div id="product">
+				<div class="product-list">
+					<h3>&nbsp;&nbsp;&nbsp;BEST</h3><br>
+					<div class="item-box">
+					<c:forEach var="dto" items="${list}">
+						<div class="item-card">
+							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+								<img alt="product_img" src="${dto.thumbnail_path}">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${myinfo.mem_photopath}"> <p>${dto.seller_name}</p>
+									</div>
+									<h4>${dto.prdt_name}</h4>
+									<p>${dto.price}원</p>
+									<p>별점</p>
+								</div>
+							</a>
+						</div>
+					</c:forEach>	
+					</div>
+					<h3>&nbsp;&nbsp;&nbsp;NEW</h3><br>
+					<div class="item-box">
+					<c:forEach var="dto" items="${list}">
+						<div class="item-card">
+							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+								<img alt="product_img" src="${dto.thumbnail_path}">
+								<div class="item-detail">
+									<div>
+										<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.mem_email}</p>
+									</div>
+									<h4>${dto.prdt_name}</h4>
+									<p>${dto.price}원</p>
+									<p>별점</p>
+								</div>
+							</a>
+						</div>
+					</c:forEach>	
+					</div>
+				</div>
+			</div>	
+		</main>
+		
+	<%@ include file="/WEB-INF/views/footer.jsp" %>	
+</body>
 </html>
