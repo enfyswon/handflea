@@ -45,10 +45,10 @@
 					</div>
 				</div>
 				<div id="icon-bar">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/QnA/list">
 						<div class="icon">
-							<img class="icon_img" alt="Q&A" src="${pageContext.request.contextPath}/resources/img/qna.png">
-							<p class="icon_cnts">Q&A</p>
+							<img class="icon_img" alt="QnA" src="${pageContext.request.contextPath}/resources/img/qna.png">
+							<p class="icon_cnts">QnA</p>
 						</div>
 					</a>
 					<c:if test="true">
@@ -64,6 +64,7 @@
 							<p class="icon_cnts">장바구니</p>
 						</div>
 					</a>
+					
 					</c:if>
 				</div>
 			</div>
