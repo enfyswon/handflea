@@ -27,7 +27,7 @@ public class QnAController {
 	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update (QnADTO dto, HttpSession session, PrintWriter out) {
-		MemberDTO mDto (MemberDTO) session.getAttribute("login_info");
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
 		dto.setMem_no(mDto.getMem_no());
 	
 		int successCount = 0;
@@ -45,7 +45,7 @@ public class QnAController {
 
 	@RequestMapping( value = "/delete", method = RequestMethod.GET )
 	public void delete( QnADTO dto, HttpSession session, PrintWriter out) {
-		QnADTO qDto= (QnADTO) session.getAttribute("login_info");
+		QnADTO qDto = (QnADTO) session.getAttribute("login_info");
 		
 
 		int successCount = 0;
