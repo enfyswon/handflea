@@ -34,7 +34,7 @@
 				<tr>
 					<th> 작 성 자 </th>
 					<td>
-						${login_info.mid}
+						${login_info.mem_name}
 					</td>
 				</tr>
 				<tr>
@@ -49,9 +49,9 @@
 				</tr>
 			</tbody>
 		</table>
-		<button id="write_btn" class="btn btn-primary float-right"> 글 작성 완료 </button>
+		<button id="write_btn" class="btn btn-primary float-right"> QnA 작성 완료 </button>
 		<a href="${pageContext.request.contextPath}/QnA/list">
-			<button class="btn btn-warning"> 글 작성 취소 </button>
+			<button class="btn btn-warning"> QnA 작성 취소 </button>
 		</a>
 		<hr>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
@@ -70,7 +70,7 @@
 			}
 
 			$.post(
-					"${pageContext.request.contextPath}/QnA/write_form"
+					"${pageContext.request.contextPath}/QnA/write"
 					, {
 						title : $("#title").val()
 						, contents : CKEDITOR.instances.contents.getData()
@@ -84,10 +84,10 @@
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}
-					}//call back function
-			);//post
-		});//click
-	});//ready
+					}
+			);
+		});
+	});
 	</script>
 	</body>
 </html>

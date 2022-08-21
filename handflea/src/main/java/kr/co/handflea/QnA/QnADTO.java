@@ -2,21 +2,20 @@ package kr.co.handflea.QnA;
 
 public class QnADTO {
 
-	private String QnA_no;
+	private String qna_no;
 	private String title;
 	private String mem_no;
-	private String mid;
 	private String contents;
 	private String view_cnt;
 	private String write_date;
 	private String answer_yn;
 	private String answer, mem_name;
 		
-	public String getQnA_no() {
-		return QnA_no;
+	public String getqna_no() {
+		return qna_no;
 	}
 	public void setQnA_no(String QnA_no) {
-		QnA_no = QnA_no;
+		qna_no = qna_no;
 	}
 	public String getTitle() {
 		return title;
@@ -29,12 +28,7 @@ public class QnADTO {
 	}
 	public void setMem_no(String mem_no) {
 		this.mem_no = mem_no;
-	}
-	public String getMid() {
-		return mid;
-	}
-	public void setMid(String mid) {
-		this.mid = mid;
+
 	}
 	public String getContents() {
 		return contents;

@@ -18,11 +18,11 @@
 		<table class="">
 			<tbody>
 				<tr>
-					<th> QnA 번 호 </th>	<td>${detail_dto.QnA_no}</td>
+					<th> QnA 번 호 </th>	<td>${detail_dto.qna_no}</td>
 					<th> 제 목 </th>		<td>${detail_dto.title}</td>
 				</tr>
 				<tr>
-					<th> 작 성 자 </th>	<td>${detail_dto.mid}</td>
+					<th> 작 성 자 </th>	<td>${detail_dto.meme_name}</td>
 					<th> 작 성 일 </th>	<td>${detail_dto.write_date}</td>
 				</tr>
 				<tr>
@@ -33,7 +33,7 @@
 		<hr>
 		<c:if test="${detail_dto.mem_no == login_info.mem_no}">
 			<button id="btn_delete" class="btn btn-danger"> QnA 삭제 </button>
-			<a href="${pageContext.request.contextPath}/QnA/update_form?QnA_no=${detail_dto.QnA_no}">
+			<a href="${pageContext.request.contextPath}/QnA/update_form?qna_no=${detail_dto.qna_no}">
 				<button class="btn btn-primary"> QnA 수정하러 가기 </button>
 			</a>
 			<hr>
@@ -46,7 +46,7 @@
 			$.get(
 					"${pageContext.request.contextPath}/QnA/delete"
 					, {
-						QnA_no : ${detail_dto.QnA_no}
+						qna_no : ${detail_dto.qna_no}
 					}
 					, function(data, status) {
 						if( data >= 1 ){

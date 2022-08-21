@@ -39,6 +39,7 @@
 			<mapping path="/cart/*" />
 			<mapping path="/product/form" />
 			<mapping path="/chat/*"/>
+			<mapping path="/QnA/*"/>
 			<beans:bean class="kr.co.handflea.login.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>	
