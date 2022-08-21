@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MyPageMapper">
+
+	<update id="updateSellerYN">
+	update member set seller_yn = '1'
+	where mem_no = #{mem_no}
+	</update>
+	
+	<insert id="sellerjoin" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	INSERT INTO seller ( mem_no ,bank_no, seller_name, seller_account_no, seller_add_1, seller_add_2
+		, post_code)
+	VALUES ( #{mem_no}, #{bank_no}, #{seller_name}, #{seller_account_no}, #{seller_add_1}, #{seller_add_2}
+		,#{post_code} )
+	</insert>
+
+	<select id="bankSelect"	resultType="kr.co.handflea.util.dto.BankDTO">
+	select bank_no, bank_name from bank;
+	</select>
+	
+	<select id="infoSelect" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
+	select mem_no, mem_email, mem_name, mem_pwd, mem_photo, mem_photopath, post_code, add_1, add_2, pnum, bank_no, account_no
+	from member
+	where mem_no = #{mem_no}
+	</select>
+	
+	<update id="infoUpdate" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	update member set mem_pwd = #{mem_pwd}, post_code = #{post_code}, add_1 = #{add_1}, add_2 = #{add_2}, pnum = #{pnum}, 
+					  bank_no = #{bank_no}, account_no = #{account_no}, mem_photo = #{mem_photo}, mem_photopath = #{mem_photopath}
+	where mem_no = #{mem_no}
+	</update>
+</mapper>

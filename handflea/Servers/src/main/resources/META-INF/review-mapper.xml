@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReviewMapper"> 
+
+	<insert id="write" parameterType="kr.co.handflea.review.ReviewDTO">
+	insert into review (order_no, mem_no, review_contents, star_point, reg_date)
+	values(#{order_no}, #{mem_no}, #{review_contents}, #{star_point}, #{reg_date} now());
+	</insert>
+
+	<select id="getList" parameterType="int" resultType="kr.co.handflea.review.ReviewDTO">
+	select review_no,
+	    order_no,
+	    mem_no,
+	    option_no,
+	    review_contents,
+	    review_photo,
+	    review_photopath,
+	    star_point,
+	    reg_date
+	from review
+	limit #{startNum}, 8
+	</select>
+
+	<select id="myList" parameterType="int" resultType="kr.co.handflea.review.ReviewDTO">
+	select review_no,
+	    order_no,
+	    mem_no,
+	    option_no,
+	    review_contents,
+	    review_photo,
+	    review_photopath,
+	    star_point,
+	    reg_date
+	from review
+	limit #{startNum}, 8
+	</select>
+
+
+</mapper>
