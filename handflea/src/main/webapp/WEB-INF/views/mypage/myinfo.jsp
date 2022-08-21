@@ -391,7 +391,7 @@
 			
 		});//click
 	});//ready
-	/*
+	
 	$(document).ready(function() {
 		$("#quit_btn").click(function() {
 			
@@ -414,7 +414,7 @@
 			
 		});//click
 	});//ready
-	*/
+	
 	</script>
 	<script>
 	function pwd_ch() {

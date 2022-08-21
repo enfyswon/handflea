@@ -22,10 +22,8 @@
 	</select>
 	
 	<delete id="sellerDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
-	delete from member m, right join seller s
+	delete from m,s using member m right join seller s on m.mem_no = s.mem_no
 	where m.mem_no = #{mem_no}
-	and s.mem_no = #{mem_no}
-	and m.mem_no = s.mem_no
 	</delete>
 	
 	<delete id="memDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
