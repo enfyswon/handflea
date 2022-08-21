@@ -52,8 +52,19 @@ public class MyPageService {
 	public int infoUpdate(MemberDTO dto) {
 		int updateYN = 0;
 		updateYN = dao.infoUpdate(dto);
-		
 		return updateYN;
+	}
+
+	public int sellerDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = dao.sellerDelete(dto);
+		return deleteYn;
+	}
+
+	public int memDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = dao.memDelete(dto);
+		return deleteYn;
 	}
 
 }

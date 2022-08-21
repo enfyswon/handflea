@@ -21,6 +21,18 @@
 	select bank_no, bank_name from bank;
 	</select>
 	
+	<delete id="sellerDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	delete from member m, right join seller s
+	where m.mem_no = #{mem_no}
+	and s.mem_no = #{mem_no}
+	and m.mem_no = s.mem_no
+	</delete>
+	
+	<delete id="memDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	delete from member
+	where mem_no = #{mem_no}
+	</delete>
+	
 	<select id="sellerInfoSelect" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
 	select m.mem_no, m.mem_email, m.mem_name, m.mem_pwd, m.mem_photo, m.mem_photopath, m.post_code, m.add_1, m.add_2, m.pnum, m.bank_no, m.account_no
 	, s.bank_no seller_bank_no, s.seller_name, s.seller_money, s.seller_account_no, s.seller_add_1, s.seller_add_2, s.post_code seller_post_code
@@ -54,7 +66,7 @@
     , s.seller_add_1 = #{seller_add_1}
     , s.seller_add_2 = #{seller_add_2}
     , s.post_code = #{post_code}
- where m.mem_no = 1					
+ 	where m.mem_no = #{mem_no}			
 	</update>
 	
 	<update id="infoUpdate" parameterType="kr.co.handflea.util.dto.MemberDTO">

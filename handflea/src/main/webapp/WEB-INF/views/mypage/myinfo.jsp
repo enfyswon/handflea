@@ -391,6 +391,30 @@
 			
 		});//click
 	});//ready
+	/*
+	$(document).ready(function() {
+		$("#quit_btn").click(function() {
+			
+			$.get(
+					"${pageContext.request.contextPath}/mypage/memdelete"
+					, {
+						mem_no : ${login_info.mem_no}
+					}
+					, function() {
+						if( data >= 1 ){
+							alert("회원탈퇴가 완료되었습니다.");
+							location.href="${pageContext.request.contextPath}/mypage/myinfo";
+						} else if( data <= 0 ) {
+							alert("회원탈퇴를 실패 하였습니다.");
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}
+			)
+			
+		});//click
+	});//ready
+	*/
 	</script>
 	<script>
 	function pwd_ch() {
