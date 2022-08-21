@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.BankDTO;
+import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
 
@@ -84,6 +85,33 @@ public class MyPageService {
 				list.set(i, dto);
 			}
 		}
+		
+		return list;
+	}
+
+	public OrderDTO orderDetail(String detail_no) {
+		OrderDTO dto = null;
+		String delivery_no = dao.deliveryChk(detail_no);
+		
+		if (delivery_no == null || delivery_no == "") {
+			dto = dao.orderDetail(detail_no);
+		} else {
+			dto = dao.orderDeliveryDetial(detail_no);
+		}
+		
+		return dto;
+	}
+
+	public String sellerNo(String detail_no) {
+		String seller_no = null;
+		seller_no = dao.sellerNo(detail_no);
+		
+		return seller_no;
+	}
+
+	public List<DeliveryDTO> deliverySelect() {
+		List<DeliveryDTO> list = null;
+		list = dao.deliverySelect();
 		
 		return list;
 	}

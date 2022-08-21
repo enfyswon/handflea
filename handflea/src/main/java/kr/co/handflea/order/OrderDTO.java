@@ -30,6 +30,11 @@ public class OrderDTO {
 	private String code_name;
 	private String deadline;
 	private String delivery_c_name;
+	private String pnum;
+	private String post_code;
+	private String add_1;
+	private String add_2;
+	private String mem_name;
 	
 	public String getOrder_no() {
 		return order_no;
@@ -192,5 +197,35 @@ public class OrderDTO {
 	}
 	public void setDelivery_c_name(String delivery_c_name) {
 		this.delivery_c_name = delivery_c_name;
+	}
+	public String getPnum() {
+		return pnum;
+	}
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+	public String getPost_code() {
+		return post_code;
+	}
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
+	}
+	public String getAdd_1() {
+		return add_1;
+	}
+	public void setAdd_1(String add_1) {
+		this.add_1 = add_1;
+	}
+	public String getAdd_2() {
+		return add_2;
+	}
+	public void setAdd_2(String add_2) {
+		this.add_2 = add_2;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 }	

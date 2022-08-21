@@ -69,4 +69,9 @@
 	from product p
 	where p.prdt_no = #{buy_now_prdt_no}
 	</insert>
+	
+	<update id="deliveryUpdate" parameterType="kr.co.handflea.order.OrderDTO">
+	update order_detail set delivery_c_no = #{delivery_c_no}, delivery_no = #{delivery_no}, prdt_con = #{prdt_con}
+	where detail_no = #{detail_no}
+	</update>
 </mapper>

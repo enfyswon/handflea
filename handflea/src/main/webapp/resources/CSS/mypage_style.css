@@ -357,3 +357,7 @@ main {
 .order-con {
 	width: 15%;
 }
+#delivery-input {
+	display: flex;
+	flex-direction: row;
+}

@@ -57,4 +57,11 @@ public class OrderService {
 		
 		return successCnt;
 	}
+
+	public int deliveryUpdate(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = dao.deliveryUpdate(dto);
+		
+		return successCnt;
+	}
 }

@@ -27,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.co.handflea.order.OrderDTO;
+import kr.co.handflea.order.OrderService;
 import kr.co.handflea.util.dto.BankDTO;
+import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
 
@@ -38,6 +40,9 @@ public class MyPageController {
 	
 	@Autowired
 	MyPageService service;
+	
+	@Autowired
+	OrderService oservice;
 	
 	@RequestMapping( value = "/sellerjoin", method = RequestMethod.POST )
 	public void sellerjoin(	SellerDTO dto , PrintWriter out, HttpSession session ) {
@@ -155,5 +160,26 @@ public class MyPageController {
 		model.addAttribute("order_cnt", list.size());
 		
 		return "/mypage/order_list";
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String orderDetail(String detail_no, Model model) {
+		OrderDTO dto = null;
+		dto = service.orderDetail(detail_no);
+		String seller_no = service.sellerNo(detail_no);
+		
+		model.addAttribute("order_detail", dto);
+		model.addAttribute("seller_no", seller_no);
+		
+		return "mypage/detail";
+	}
+	
+	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
+	public void deliverySelect(PrintWriter out) {
+		List<DeliveryDTO> list = null;
+		list = service.deliverySelect();
+		
+		out.print( new Gson().toJson( list ) );
+		out.close();	
 	}
 }

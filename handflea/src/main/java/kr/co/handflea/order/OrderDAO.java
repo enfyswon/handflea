@@ -63,4 +63,11 @@ public class OrderDAO {
 		
 		return successCnt;
 	}
+
+	public int deliveryUpdate(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("OrderMapper.deliveryUpdate", dto);
+		
+		return successCnt;
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.BankDTO;
+import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
 
@@ -87,5 +88,40 @@ public class MyPageDAO {
 		dto = sqlSession.selectOne("MyPageMapper.orderDeliveryList", detail_no);
 		
 		return dto;
+	}
+
+	public String deliveryChk(String detail_no) {
+		String delivery_no = null;
+		delivery_no = sqlSession.selectOne("MyPageMapper.deliveryChk", detail_no);
+		
+		return delivery_no;
+	}
+
+	public OrderDTO orderDetail(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.orderDetail", detail_no);
+		
+		return dto;
+	}
+
+	public OrderDTO orderDeliveryDetial(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.orderDeliveryDetial", detail_no);
+		
+		return dto;
+	}
+
+	public String sellerNo(String detail_no) {
+		String seller_no = null;
+		seller_no = sqlSession.selectOne("MyPageMapper.sellerNo", detail_no);
+		
+		return seller_no;
+	}
+
+	public List<DeliveryDTO> deliverySelect() {
+		List<DeliveryDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.deliverySelect");
+		
+		return list;
 	}
 }

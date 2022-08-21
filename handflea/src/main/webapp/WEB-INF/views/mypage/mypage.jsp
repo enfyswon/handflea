@@ -79,7 +79,7 @@
 							<tr>
 								<td class="rorder-no">${olist.detail_no}</td>	
 								<td class="rorder-prdt">
-									<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${olist.prdt_no}">
+									<a href="${pageContext.request.contextPath}/mypage/detail?detail_no=${olist.detail_no}">
 										<p>${olist.prdt_name}</p>
 									</a>
 								</td>
@@ -138,7 +138,7 @@
 								<tr>
 									<td class="sell-no">${slist.detail_no}</td>
 									<td class="sell-prdt">
-										<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${slist.prdt_no}">
+										<a href="${pageContext.request.contextPath}/mypage/detail?detail_no=${slist.detail_no}">
 											${slist.prdt_name}
 										</a>
 									</td>
