@@ -56,4 +56,31 @@
 	order by od.detail_no desc
 	limit 5;
 	</select>
+	
+	<select id="saleList" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, od.prdt_no, p.prdt_name, od.option_no, o.option_contents, od.buy_qty, od.pay_amt, od.prdt_delivery_price, 
+	od.delivery_c_no, od.delivery_no, od.prdt_con, c.code_name, date_format(om.order_date, '%Y-%m-%d') order_date, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline
+	from order_main om, order_detail od, product p, prdt_option o, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+	and p.mem_no = #{mem_no}
+	order by od.detail_no desc
+	</select>
+	
+	<select id="saleDeliveryList" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, od.prdt_no, p.prdt_name, od.option_no, o.option_contents, od.buy_qty, 
+	od.pay_amt, od.prdt_delivery_price, od.delivery_c_no, d.delivery_c_name, od.delivery_no, od.prdt_con,
+    c.code_name, date_format(om.order_date, '%Y-%m-%d') order_date, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline
+	from order_main om, order_detail od, product p, prdt_option o, con_code c, delivery d
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+    and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+    and od.delivery_c_no = d.delivery_c_no
+	and od.detail_no = #{detail_no}
+	</select>
 </mapper>

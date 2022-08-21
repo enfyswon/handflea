@@ -272,3 +272,30 @@ main {
 	background-color: #333333;
 	color: white;
 }
+.sale-list {
+	height: 60px;
+}
+.sale-no {
+	width: 10%;
+}
+.sale-prdt {
+	width: 30%;
+}
+.sale-prdt a {
+	color: black;
+}
+.sale-prdt a :hover {
+	color: #0F8BFF;
+}
+.sale-opt-qty {
+	width: 15%;
+}
+.sale-delivery {
+	width: 20%;
+}
+.sale-delivery-con {
+	width: 15%;
+}
+.sale-refund {
+	width: 10%;
+}

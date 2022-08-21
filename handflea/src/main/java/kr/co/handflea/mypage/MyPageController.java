@@ -132,4 +132,18 @@ public class MyPageController {
 		out.print(updateYn);
 		out.close();
 	}
+	
+	@RequestMapping(value = "/sale")
+	public String saleList(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
+		
+		List<OrderDTO> list = null; 
+		list = service.saleList(mem_no);
+		model.addAttribute("sale_list", list);
+		model.addAttribute("sale_cnt", list.size());
+		
+		
+		
+		return "/mypage/sale_list";
+	}
 }
