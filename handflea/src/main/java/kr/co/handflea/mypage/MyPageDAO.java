@@ -54,4 +54,11 @@ public class MyPageDAO {
 		return list;
 	}
 
+	public List<OrderDTO> recentSellOrder(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.recentSellOrder", mem_no);
+		
+		return list;
+	}
+
 }

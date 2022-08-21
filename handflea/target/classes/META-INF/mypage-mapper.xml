@@ -44,4 +44,16 @@
 	order by od.detail_no desc
 	limit 5;
 	</select>
+	
+	<select id="recentSellOrder" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select date_format(om.order_date, '%Y-%m-%d') order_date, od.detail_no, od.prdt_no, p.prdt_name, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline, od.prdt_con, c.code_name
+	from order_main om, order_detail od, product p, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.prdt_con = c.code_no
+	and p.mem_no = #{mem_no}
+	order by od.detail_no desc
+	limit 5;
+	</select>
 </mapper>

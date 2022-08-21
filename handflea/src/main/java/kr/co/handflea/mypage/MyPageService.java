@@ -51,4 +51,11 @@ public class MyPageService {
 		return list;
 	}
 
+	public List<OrderDTO> recentSellOrder(String mem_no) {
+		List<OrderDTO> list = null;
+		list = dao.recentSellOrder(mem_no);
+		
+		return list;
+	}
+
 }

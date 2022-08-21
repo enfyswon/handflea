@@ -27,6 +27,7 @@ public class OrderDTO {
 	private String buy_now_qty;
 	private String buy_now_option_no;
 	private String code_name;
+	private String deadline;
 	
 	public String getOrder_no() {
 		return order_no;
@@ -171,5 +172,11 @@ public class OrderDTO {
 	}
 	public void setCode_name(String code_name) {
 		this.code_name = code_name;
+	}
+	public String getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(String deadline) {
+		this.deadline = deadline;
 	}
 }	

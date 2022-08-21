@@ -58,10 +58,19 @@ public class MyPageController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String myPage(HttpSession session, Model model) {
 		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
 		
 		List<OrderDTO> olist = null;
 		olist = service.recentOrder(mem_no);
 		model.addAttribute("recent_order_list", olist);
+		model.addAttribute("order_cnt", olist.size());
+		
+		if (seller_yn.equals("1")) {
+			List<OrderDTO> slist = null;
+			slist = service.recentSellOrder(mem_no);
+			model.addAttribute("recent_sell_list", slist);
+			model.addAttribute("sell_cnt", slist.size());
+		}
 		
 		return "/mypage/mypage";
 	}

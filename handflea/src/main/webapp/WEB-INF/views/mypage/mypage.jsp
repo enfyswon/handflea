@@ -69,10 +69,10 @@
 					<div class="list-box">
 						<table>
 							<tr class="list-top">
-								<td class="order-no">주문번호</td>
+								<td class="order-no">주문 번호</td>
 								<td class="order-prdt">상품명</td>
-								<td class="order-amt">주문금액</td>
-								<td class="order-con">상태</td>
+								<td class="order-amt">주문 금액</td>
+								<td class="order-con">상품 상태</td>
 								<td class="order-date">결제일</td>
 							</tr>
 							<c:forEach var="olist" items="${recent_order_list}">
@@ -88,32 +88,70 @@
 								<td class="order-date">${olist.order_date}</td>
 							</tr>
 							</c:forEach>
+							<c:if test="${order_cnt == 0}">
+							<tr>
+								<td colspan="5">주문 내역이 없습니다.</td>
+							</tr>
+							</c:if>
 						</table>
 					</div>
 				</div>
-				<div class="record">
-					<h4>나의 문의 내역</h4>
-					<div class="list-box">
-						<table>
-							<tr class="list-top">
-								<td>번호</td>	<td>문의제목</td>
-								<td>문의날짜</td>	<td>상태</td>
-							</tr>
-							<tr>
-								<td>번호</td>	<td>문의제목</td>
-								<td>문의날짜</td>	<td>상태</td>
-							</tr>
-							<tr>
-								<td>번호</td>	<td>문의제목</td>
-								<td>문의날짜</td>	<td>상태</td>
-							</tr>
-							<tr>
-								<td>번호</td>	<td>문의제목</td>
-								<td>문의날짜</td>	<td>상태</td>
-							</tr>
-						</table>
+				<c:choose>
+					<c:when test="${login_info.seller_yn == 0}">
+					<div class="record">
+						<h4>나의 문의 내역</h4>
+						<div class="list-box">
+							<table>
+								<tr class="list-top">
+									<td>번호</td>	<td>문의제목</td>
+									<td>문의날짜</td>	<td>상태</td>
+								</tr>
+								<tr>
+									<td>번호</td>	<td>문의제목</td>
+									<td>문의날짜</td>	<td>상태</td>
+								</tr>
+								<tr>
+									<td>번호</td>	<td>문의제목</td>
+									<td>문의날짜</td>	<td>상태</td>
+								</tr>
+								<tr>
+									<td>번호</td>	<td>문의제목</td>
+									<td>문의날짜</td>	<td>상태</td>
+								</tr>
+							</table>
+						</div>
 					</div>
-				</div>
+					</c:when>
+					<c:otherwise>
+					<div class="record">
+						<h4>최근 판매 내역</h4>
+						<div class="list-box">
+							<table>
+								<tr class="list-top">
+									<td class="sell-no">주문 번호</td>
+									<td class="sell-prdt">상품명</td>
+									<td class="sell-date">결제일</td>
+									<td class="sell-deadline">배송 마감일</td>
+									<td class="sell-con">상품 상태</td>
+								</tr>
+								<c:forEach var="slist" items="${recent_sell_list}">
+								<tr>
+									<td class="sell-no">${slist.detail_no}</td>
+									<td class="sell-prdt">
+										<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${slist.prdt_no}">
+											${slist.prdt_name}
+										</a>
+									</td>
+									<td class="sell-date">${slist.order_date}</td>
+									<td class="sell-deadline">${slist.deadline}</td>
+									<td class="sell-con">${slist.code_name}</td>
+								</tr>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</main>	
 	

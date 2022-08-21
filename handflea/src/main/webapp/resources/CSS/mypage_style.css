@@ -116,7 +116,27 @@ main {
 .order-con {
 	width: 15%;
 }
-.order_
+.sell-no {
+	width: 10%;
+}
+.sell-prdt {
+	width: 45%;
+}
+.sell-prdt > a {
+	color: black;
+}
+.sell-prdt > a :hover {
+	color: #0F8BFF;
+}
+.sell-date {
+	width: 15%;
+}
+.sell-deadline {
+	width: 15%;
+}
+.sell-con {
+	width: 15%;
+}
 #regist-box {
 	background-color: #f4f4f4;
 	border: 1px solid #cecece;
