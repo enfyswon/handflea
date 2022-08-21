@@ -38,7 +38,6 @@
 
 	<select id="selectList" parameterType="kr.co.handflea.util.dto.SearchDTO"
 			resultType="kr.co.handflea.QnA.QnADTO">
-	selectList
 	select q.QnA_no, q.title, m.mem_name, q.view_cnt, q.write_date
 	from QnA q, member m
 	where q.mem_no = m.mem_no
@@ -46,10 +45,10 @@
 	               and searchWord != null and searchWord != ''">
 	         <choose>
 	            <when test="searchOption == 'title'">
-	               and handflea.title like concat('%', #{searchWord}, '%')
+	               and q.title like concat('%', #{searchWord}, '%')
 	            </when>
 	            <when test="searchOption == 'writer'">
-	               and handflea.mid like concat('%', #{searchWord}, '%')
+	               and m.mem_name like concat('%', #{searchWord}, '%')
 	            </when>
 	         </choose>
 	      </if>

@@ -70,7 +70,7 @@
 			}
 
 			$.post(
-					"${pageContext.request.contextPath}/QnA/write"
+					"${pageContext.request.contextPath}/QnA/write_form"
 					, {
 						title : $("#title").val()
 						, contents : CKEDITOR.instances.contents.getData()
