@@ -77,6 +77,16 @@ public class MyPageController {
 		model.addAttribute("recent_order_list", olist);
 		model.addAttribute("order_cnt", olist.size());
 		
+		MemberDTO memdto = new MemberDTO();
+		int basketCnt = service.getBasketCnt(mem_no);
+		model.addAttribute("basket_cnt", basketCnt);
+		
+		int memOrderCnt = service.getmemOrderCnt(mem_no);
+		model.addAttribute("memorder_cnt", memOrderCnt);
+		
+		int paybackCnt = service.getPaybackCnt(mem_no);
+		model.addAttribute("payback_cnt", paybackCnt);
+		
 		if (seller_yn.equals("1")) {
 			MemberDTO dto = null;
 			dto = service.getSellerOrderCnt(mem_no);

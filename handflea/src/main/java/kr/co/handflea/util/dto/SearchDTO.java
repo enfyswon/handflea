@@ -5,6 +5,7 @@ public class SearchDTO {
 	private String searchOption;
 	private String searchWord;
 	private int limitNum;
+	private String mem_no;
 
 	@Override
 	public String toString() {
@@ -28,6 +29,14 @@ public class SearchDTO {
 	}
 	public void setLimitNum(int limitNum) {
 		this.limitNum = limitNum;
+	}
+
+	public String getMem_no() {
+		return mem_no;
+	}
+
+	public void setMem_no(String mem_no) {
+		this.mem_no = mem_no;
 	}
 
 }//class

@@ -12,6 +12,8 @@ public class SellerDTO {
 	private String post_code;
 	private String seller_yn;
 	
+	private int cnt;
+	
 	public String toString() {
 		return	 mem_no
 				+ " : " + bank_no
@@ -78,6 +80,14 @@ public class SellerDTO {
 
 	public void setSeller_yn(String seller_yn) {
 		this.seller_yn = seller_yn;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 	

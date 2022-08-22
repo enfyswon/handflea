@@ -115,6 +115,7 @@
 			</choose>
 		</if>
 		and p.mem_no = m.mem_no
+		and p.mem_no = #{mem_no}
 		order by prdt_no desc
 		limit #{limitNum}, 10
 	</select>

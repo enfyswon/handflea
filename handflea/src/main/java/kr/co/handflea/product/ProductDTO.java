@@ -45,6 +45,8 @@ public class ProductDTO {
 	
 	private String seller_name;
 	
+	private int cnt;
+	
 	@Override
 	public String toString() {
 		return prdt_no
@@ -352,6 +354,14 @@ public class ProductDTO {
 
 	public void setSeller_name(String seller_name) {
 		this.seller_name = seller_name;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 }//class
