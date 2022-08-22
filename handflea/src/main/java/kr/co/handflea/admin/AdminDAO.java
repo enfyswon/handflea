@@ -42,4 +42,11 @@ public class AdminDAO {
 		return list;
 	}
 
+	public int replyInsert(QnADTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.update("AdminMapper.replyInsert", dto);
+		return successCount;
+	}
+
+
 }

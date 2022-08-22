@@ -15,6 +15,13 @@ public class AdminService {
 	@Autowired
    private AdminDAO dao;
 
+	public int replyInsert(QnADTO dto) {
+		int successCount = 0;
+		dto.setAnswer_yn("1");
+		successCount = dao.replyInsert( dto );
+		return successCount;
+	}
+	
    public List<MemberDTO> memberList(String mem_no) {
       List<MemberDTO> list = null;
       list = dao.memberList(mem_no);
@@ -41,7 +48,5 @@ public class AdminService {
 		return list;
 		
 	}
-
-
 
 }

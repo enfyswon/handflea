@@ -51,7 +51,7 @@
 		<hr>
 		<c:if test="${login_info.mem_email == 'admin' && detail_dto.answer_yn == 0}">
 			<h4>답변</h4>
-			<textarea rows="5" cols="100"></textarea>
+			<textarea id="answer" name="answer" rows="5" cols="100"></textarea>
 			<button id="btn_reply">답변 작성</button>
 		</c:if>
 		<c:if test="${detail_dto.answer_yn == 1}">
@@ -83,6 +83,27 @@
 			);
 		});
 	});
+	$(document).ready(function() {
+		$("#btn_reply").click(function() {
+			$.post(
+					"${pageContext.request.contextPath}/admin/reply_insert"
+					, {
+						qna_no : ${detail_dto.qna_no}
+						, answer : $("#answer").val()
+					}
+					, function(data, status) {
+						if( data == 1 ){
+							alert("답변이 작성되었습니다.");
+							location.href="${pageContext.request.contextPath}/QnA/detail?qna_no=${detail_dto.qna_no}";
+						} else if( data == 0 ) {
+							alert("답변 작성을 실패 하였습니다.");
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}
+			);
+		});//click
+	});//ready
 	</script>
 	</body>
 </html>

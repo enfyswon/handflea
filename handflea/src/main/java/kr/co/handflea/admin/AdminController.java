@@ -26,6 +26,19 @@ public class AdminController {
    @Autowired
    private AdminService service;
    
+   @RequestMapping( value = "/reply_insert", method = RequestMethod.POST )
+	public void replyInsert( QnADTO dto, HttpSession session, PrintWriter out ) {
+	   
+	   dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+
+		int successCount = 0;
+		successCount = service.replyInsert( dto );
+
+		out.print(successCount);
+		out.close();
+
+	}//replyInsert
+   
    @RequestMapping( value = "/ad_list", method = RequestMethod.GET )
 	public String list( Model model, String userWantPage, SearchDTO dto) {
 		if(userWantPage == null || userWantPage.equals("")) userWantPage = "1";
