@@ -30,7 +30,7 @@
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
-						<c:if test="${login_info.seller_yn == 1}">
+						<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/sellerlist">상품 등록 / 관리</a>
 						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
@@ -53,7 +53,7 @@
 						<p>장바구니</p>
 						<h4>0 건</h4>
 					</div>
-					<c:if test="${login_info.seller_yn == 1}">
+					<c:if test="false">
 					<div class="order-cnts">
 						<p>판매중인 주문</p>
 						<h4>0 건</h4>

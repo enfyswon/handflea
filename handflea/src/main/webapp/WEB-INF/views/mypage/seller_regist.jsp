@@ -149,8 +149,8 @@
 					}
 					, function(data, status) {
 						if(data == 1){
-							alert("판매자 등록에 성공 하셨습니다.");
-							location.href="${pageContext.request.contextPath}/main";
+							alert("판매자 등록에 성공 하였습니다");
+							location.href="${pageContext.request.contextPath}/mypage/";
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}
@@ -198,6 +198,16 @@
 		}).open();
 	}
 	</script>
-	
+	<script>
+	function pwd_ch() {
+		var userinput = prompt("비밀번호를 입력해주세요.");
+		if ("${login_info.mem_pwd}" == userinput) {
+			location.href="${pageContext.request.contextPath}/mypage/myinfo";
+		} else {
+			alert("비밀번호가 틀렸습니다.");
+			location.href="${pageContext.request.contextPath}/mypage/";
+		}
+	}
+	</script>
 	</body>
 </html>

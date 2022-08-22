@@ -21,15 +21,64 @@
 	select bank_no, bank_name from bank;
 	</select>
 	
+	<delete id="sellerDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	delete from m,s using member m right join seller s on m.mem_no = s.mem_no
+	where m.mem_no = #{mem_no}
+	</delete>
+	
+	<delete id="memDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	delete from member
+	where mem_no = #{mem_no}
+	</delete>
+	
+	<select id="sellerInfoSelect" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
+	select m.mem_no, m.mem_email, m.mem_name, m.mem_pwd, m.mem_photo, m.mem_photopath, m.post_code, m.add_1, m.add_2, m.pnum, m.bank_no, m.account_no
+	, s.bank_no seller_bank_no, s.seller_name, s.seller_money, s.seller_account_no, s.seller_add_1, s.seller_add_2, s.post_code seller_post_code
+	from member m, seller s
+	where  m.mem_no = s.mem_no
+    and m.mem_no = #{mem_no}
+	</select>
+	
 	<select id="infoSelect" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
 	select mem_no, mem_email, mem_name, mem_pwd, mem_photo, mem_photopath, post_code, add_1, add_2, pnum, bank_no, account_no
 	from member
 	where mem_no = #{mem_no}
 	</select>
 	
+	<update id="sellerInfoUpdate" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	update member m right join seller s on (m.mem_no = s.mem_no)
+ 	set m.mem_pwd = #{mem_pwd}
+	, m.post_code = #{post_code}
+    , m.add_1 = #{add_1}
+    , m.add_2 = #{add_2}
+    , m.pnum = #{pnum}
+    , m.bank_no = #{bank_no}
+    , m.account_no = #{account_no}
+    <if test="mem_photo != null and mem_photo != ''">
+	, m.mem_photo = #{mem_photo}
+	, m.mem_photopath = #{mem_photopath}
+	</if>
+    , s.bank_no = #{seller_bank_no}
+    , s.seller_name = #{seller_name}
+    , s.seller_account_no = #{seller_account_no}
+    , s.seller_add_1 = #{seller_add_1}
+    , s.seller_add_2 = #{seller_add_2}
+    , s.post_code = #{seller_post_code}
+ 	where m.mem_no = #{mem_no}			
+	</update>
+	
 	<update id="infoUpdate" parameterType="kr.co.handflea.util.dto.MemberDTO">
-	update member set mem_pwd = #{mem_pwd}, post_code = #{post_code}, add_1 = #{add_1}, add_2 = #{add_2}, pnum = #{pnum}, 
-					  bank_no = #{bank_no}, account_no = #{account_no}, mem_photo = #{mem_photo}, mem_photopath = #{mem_photopath}
+	update member set mem_pwd = #{mem_pwd}
+					, post_code = #{post_code}
+					, add_1 = #{add_1}
+					, add_2 = #{add_2}
+					, pnum = #{pnum}
+					, bank_no = #{bank_no}
+					, account_no = #{account_no}
+					<if test="mem_photo != null and mem_photo != ''">
+						, mem_photo = #{mem_photo}
+						, mem_photopath = #{mem_photopath}
+					</if>
 	where mem_no = #{mem_no}
 	</update>
 	
