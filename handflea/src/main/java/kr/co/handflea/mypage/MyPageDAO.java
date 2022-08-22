@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.handflea.order.OrderDTO;
+import kr.co.handflea.util.dto.AdjustDTO;
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
@@ -182,4 +183,45 @@ public class MyPageDAO {
 		return cnt;
 	}
 
+	public int insertWithdraw(AdjustDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.insert("MyPageMapper.insertWithdraw", dto);
+		
+		return successCnt;
+	}
+
+	public int updateSellerMoney(AdjustDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("MyPageMapper.updateSellerMoney", dto);
+		
+		return successCnt;
+	}
+
+	public List<AdjustDTO> selectAdjust(String mem_no) {
+		List<AdjustDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.selectAdjust", mem_no);
+		
+		return list;
+	}
+
+	public int completeCnt(String mem_no) {
+		int completeCnt = 0;
+		completeCnt = sqlSession.selectOne("MyPageMapper.completeCnt", mem_no);
+		
+		return completeCnt;
+	}
+
+	public MemberDTO getSellerAdjust(String mem_no) {
+		MemberDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.getSellerAdjust", mem_no);
+		
+		return dto;
+	}
+
+	public AdjustDTO selectAdjustDetail(String detail_no) {
+		AdjustDTO dto = new AdjustDTO();
+		dto = sqlSession.selectOne("MyPageMapper.selectAdjustDetail", detail_no);
+		
+		return dto;
+	}
 }

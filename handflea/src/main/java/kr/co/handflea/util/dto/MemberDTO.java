@@ -34,6 +34,7 @@ public class MemberDTO {
 	private String seller_account_no;
 	private String seller_bank_no;
 	private String seller_post_code;
+	private String bank_name;
 	
 	private int cnt;
 	
@@ -260,6 +261,13 @@ public class MemberDTO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	
-	
+
+	public String getBank_name() {
+		return bank_name;
+	}
+
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+
 }//class

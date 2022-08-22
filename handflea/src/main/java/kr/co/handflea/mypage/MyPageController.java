@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 
 import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.order.OrderService;
+import kr.co.handflea.util.dto.AdjustDTO;
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
@@ -236,5 +237,36 @@ public class MyPageController {
 		
 		out.print( new Gson().toJson( list ) );
 		out.close();	
+	}
+	
+	@RequestMapping(value = "/adjust", method = RequestMethod.GET)
+	public String adjustList(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		
+		int completeCnt = 0;
+		completeCnt = service.completeCnt(mem_no);
+		model.addAttribute("complete_order", completeCnt);
+		
+		MemberDTO dto = service.getSellerAdjust(mem_no);
+		model.addAttribute("seller_dto", dto);
+		
+		List<AdjustDTO> list = null;
+		list = service.selectAdjust(mem_no);
+		model.addAttribute("adjust_list", list);
+		model.addAttribute("total_adjust", list.size());
+		
+		return "/mypage/adjust";
+	}
+	
+	@RequestMapping(value = "/withdraw", method = RequestMethod.POST)
+	public void withdraw(AdjustDTO dto, PrintWriter out, HttpSession session) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		dto.setMem_no(mem_no);
+		
+		int successCnt = 0;
+		successCnt = service.withdraw(dto);
+		
+		out.print(successCnt);
+		out.close();
 	}
 }
