@@ -37,7 +37,7 @@ public class QnAController {
 	}
 	
 	@RequestMapping( value = "/update_form", method = RequestMethod.GET )
-	public String updateForm( String QnA_no,Model model) {
+	public String updateForm( String qna_no,Model model) {
 		QnADTO dto = null;
 		model.addAttribute("detail_dto",dto);
 		return "/QnA/update_form";
@@ -56,9 +56,9 @@ public class QnAController {
 	}
 
 	@RequestMapping( value = "/detail", method = RequestMethod.GET )
-	public String detail (String QnA_no, Model model) {
+	public String detail (String qna_no, Model model) {
 		QnADTO dto = null;
-		dto = service.detail(QnA_no);
+		dto = service.detail(qna_no);
 		model.addAttribute("detail_dto",dto);
 		return"/QnA/detail";
 	}

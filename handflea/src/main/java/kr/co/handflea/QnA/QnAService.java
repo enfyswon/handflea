@@ -25,11 +25,11 @@ public class QnAService {
 		return successCount;
 	
 	}
-	public QnADTO detail( String QnA_no) {
-		dao.incrementViewCnt( QnA_no);
+	public QnADTO detail( String qna_no) {
+		dao.incrementViewCnt( qna_no);
 		
 		QnADTO dto = null;
-		dto = dao.detail( QnA_no);
+		dto = dao.detail( qna_no);
 		return dto;
 	}
  

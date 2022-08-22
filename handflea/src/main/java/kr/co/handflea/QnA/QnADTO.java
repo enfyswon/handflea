@@ -14,7 +14,7 @@ public class QnADTO {
 	public String getqna_no() {
 		return qna_no;
 	}
-	public void setQnA_no(String QnA_no) {
+	public void setQnA_no(String qna_no) {
 		qna_no = qna_no;
 	}
 	public String getTitle() {

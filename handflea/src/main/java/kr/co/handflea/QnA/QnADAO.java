@@ -24,13 +24,13 @@ public class QnADAO {
 		successCount = sqlSession.delete("QnAMapper.delete", dto);
 		return successCount;
 	}
-	public void incrementViewCnt( String board_no ) {
-		sqlSession.update("QnAMapper.incrementViewCnt", board_no);
+	public void incrementViewCnt( String qna_no ) {
+		sqlSession.update("QnAMapper.incrementViewCnt", qna_no);
 	}
 
-	public QnADTO detail( String board_no ) {
+	public QnADTO detail( String qna_no ) {
 		QnADTO dto = null;
-		dto = sqlSession.selectOne("QnAMapper.detail", board_no);
+		dto = sqlSession.selectOne("QnAMapper.detail", qna_no);
 		return dto;
 	}
 
