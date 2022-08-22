@@ -65,4 +65,26 @@ public class OrderController {
 		out.print(successCnt);
 		out.close();
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public void orderUpdate(OrderDTO dto, PrintWriter out) {
+		dto.setPrdt_con("1");
+		int successCnt = 0;
+		successCnt = service.deliveryUpdate(dto);
+		
+		out.print(successCnt);
+		out.close();
+	}
+	
+	@RequestMapping(value = "/receive", method = RequestMethod.GET)
+	public void prdtReceive(String detail_no, PrintWriter out) {
+		OrderDTO dto = new OrderDTO();
+		dto.setDetail_no(detail_no);
+		dto.setPrdt_con("2");
+		int successCnt = 0;
+		successCnt = service.prdtReceive(dto);
+		
+		out.print(successCnt);
+		out.close();
+	}
 }
