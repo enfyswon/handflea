@@ -89,19 +89,4 @@ public class AdminController {
       return "/admin/refund";
    }
    
-   @RequestMapping(value = "qna", method = RequestMethod.GET)
-   public String qnaList(Model model) {
-	   String answer_yn = "0";
-	   List<QnADTO> readyList = null;
-	   readyList = service.readyList(answer_yn);
-	   
-	   answer_yn = "1";
-	   List<QnADTO> completeList = null;
-	   completeList = service.completeList(answer_yn);
-	   
-	   model.addAttribute("readyList", readyList);
-	   model.addAttribute("completeList", completeList);
-	
-	   return "/admin/qna_ad_list";
-   }
 }

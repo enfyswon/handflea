@@ -29,26 +29,19 @@ public class AdminService {
       return successCnt;
    }
 
-public List<QnADTO> readyList(String answer_yn) {
+	public int searchListCount(SearchDTO dto) {
+		int totalCount = 0;
+		totalCount = dao.searchListCount( dto );
+		return totalCount;
+	}
 	
-	return null;
-}
+	public List<QnADTO> searchList(SearchDTO dto) {
+		List<QnADTO>list=null;
+		list = dao.searchList(dto);
+		return list;
+		
+	}
 
-public List<QnADTO> completeList(String answer_yn) {
-	
-	return null;
-}
 
-public int searchListCount(SearchDTO dto) {
-	int totalCount = 0;
-	totalCount = dao.searchListCount( dto );
-	return totalCount;
-}
-
-public List<QnADTO> searchList(SearchDTO dto) {
-	List<QnADTO> list= null;
-	list = dao.searchList( dto);
-	return list;
-}
 
 }

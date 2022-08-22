@@ -12,44 +12,25 @@
 	
 	</head>
 	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> QnA 게시판 목록 </h3>
-		<hr>
-		<form action="${pageContext.request.contextPath}/admin/ad_list" method="get">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<select class="form-control" id="searchOption" name="searchOption">
-						<option value="title"
-							<c:if test="${search_dto.searchOption == 'title'}">selected="selected"</c:if>
-						> 제 목 </option>
-						<option value="writer"
-							<c:if test="${search_dto.searchOption == 'writer'}">selected="selected"</c:if>
-						> 작 성 자 </option>
-					</select>
-				</div>
-				<input type="text" class="form-control" id="searchWord" name="searchWord"
-						value="${search_dto.searchWord}">
-				<div class="input-group-append">
-					<button type="submit" class="btn btn-primary"> 검 색 </button>
-				</div>
-			</div>
-		</form>
+	<%@ include file="/WEB-INF/views/admin-header.jsp" %>
 		<hr>
 		
 		<hr>
 		<table class="table table-hover">
 			<thead>
+				<h3> QnA 답변 대기 목록 </h3>
 				<tr>
 					<th> QnA번호 </th>	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="dto" items="${list}">
+				<c:if test="${dto.answer_yn == 0}">
+					
 					<tr>
 						<td>${dto.qna_no}</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/admin/ad_detail?qna_no=${dto.qna_no}">
+							<a href="${pageContext.request.contextPath}/QnA/detail?qna_no=${dto.qna_no}">
 								${dto.title}
 							</a>
 						</td>
@@ -57,9 +38,40 @@
 						<td>${dto.view_cnt}</td>
 						<td>${dto.write_date}</td>
 					</tr>
+					
+					</c:if>
+				</c:forEach>
+			</tbody>
+		</table>	
+		
+		<table class="table table-hover">
+			<thead>
+				<h3> QnA 답변 완료 목록 </h3>
+				<tr>
+					<th> QnA번호 </th>	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th>
+				</tr>		
+			</thead>
+			<tbody>
+			<c:forEach var="dto" items="${list}">
+				<c:if test="${dto.answer_yn == 1}">
+					
+					<tr>
+						<td>${dto.qna_no}</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/QnA/detail?qna_no=${dto.qna_no}">
+								${dto.title}
+							</a>
+						</td>
+						<td>${dto.mem_name}</td>
+						<td>${dto.view_cnt}</td>
+						<td>${dto.write_date}</td>
+					</tr>
+					
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
+		
 		<hr>
 		<ul class="pagination">
 			<c:if test="${startPageNum > 10}">

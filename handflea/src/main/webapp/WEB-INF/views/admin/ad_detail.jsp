@@ -29,19 +29,16 @@
 				<tr>
 					<th> 내 용 </th>		<td colspan="1">${detail_dto.contents}</td>
 					<th> 조회수 </th>		<td colspan="1">${detail_dto.view_cnt}</td>
-				</tr>
+					</tr>
 			</tbody>
 		</table>
+		<hr>
 		
-	
 		
-	
+		
+			);
+		});
 
-
-
-
-
-
-
-
-
+	</script>
+	</body>
+</html>

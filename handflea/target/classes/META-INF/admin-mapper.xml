@@ -14,14 +14,7 @@
    update member set seller_yn = '0'
    where mem_no = #{mem_no}
    </update>
-	
-	<update id="modify">
-	update QnA q.title=#{q.title}, q.contents=#{q.contents} where qno_no=#{qno_no}
-	</update>
-	
-	<update id="reply">
-	update QnA q.title=#{q.title}, q.contents=#{q.contents},q.reply=#{q.reply} where qno_no=#{qno_no}
-	</update>
+
 
 	<update id="incrementViewCnt" parameterType="java.lang.String">
 	update QnA

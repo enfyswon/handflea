@@ -11,7 +11,14 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
+	<c:choose>
+		<c:when test="${login_info.mem_email == 'admin'}">
+			<%@include file="/WEB-INF/views/admin-header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/WEB-INF/views/header.jsp" %>
+		</c:otherwise>
+	</c:choose>
 		<hr>
 		<h3> QnA 상세 보기 </h3>
 		<hr>
@@ -42,10 +49,14 @@
 		</c:if>
 		
 		<hr>
-		<c:if test="${login_info.mem_email == 'admin'}">
+		<c:if test="${login_info.mem_email == 'admin' && detail_dto.answer_yn == 0}">
 			<h4>답변</h4>
 			<textarea rows="5" cols="100"></textarea>
 			<button id="btn_reply">답변 작성</button>
+		</c:if>
+		<c:if test="${detail_dto.answer_yn == 1}">
+			<h4>답변</h4>
+			<p>${detail_dto.answer}</p>
 		</c:if>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">

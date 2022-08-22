@@ -41,4 +41,5 @@ public class AdminDAO {
 		list = sqlSession.selectList("AdminMapper.selectList", dto);
 		return list;
 	}
+
 }

@@ -59,10 +59,7 @@
 	$(document).ready(function() {
 		$("#write_btn").click(function() {
 
-			if( $.trim( $("#title").val() ) == "" ){
-				$("#title_label").text("제목을 입력 하세요.");
-				return;
-			}
+			
 
 			if( CKEDITOR.instances.contents.getData() == "" ){
 				$("#contents_label").text("답변을 입력 하세요.");
@@ -72,8 +69,7 @@
 			$.post(
 					"${pageContext.request.contextPath}/admin/ad_write_form"
 					, {
-						title : $("#title").val()
-						, contents : CKEDITOR.instances.contents.getData()
+						contents : CKEDITOR.instances.contents.getData()
 					}
 					, function(data, status) {
 						if(data >= 1){
