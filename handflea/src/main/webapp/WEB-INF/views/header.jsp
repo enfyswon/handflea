@@ -58,7 +58,7 @@
 							<p class="icon_cnts">채팅</p>
 						</div>
 					</a>
-					<a href="${pageContext.request.contextPath}/cart/">
+					<a href="${pageContext.request.contextPath}/basket/list">
 						<div class="icon">
 							<img class="icon_img" alt="cart" src="${pageContext.request.contextPath}/resources/img/cart.png">
 							<p class="icon_cnts">장바구니</p>

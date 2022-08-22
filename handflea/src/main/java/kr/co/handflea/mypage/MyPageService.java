@@ -28,6 +28,13 @@ public class MyPageService {
 		
 		return list;
 	}
+	
+	public MemberDTO sellerInfoSelect(String mem_no) {
+		MemberDTO dto = null;
+		dto = dao.sellerInfoSelect(mem_no);
+		
+		return dto;
+	}
 
 	public MemberDTO infoSelect(String mem_no) {
 		MemberDTO dto = null;
@@ -36,11 +43,28 @@ public class MyPageService {
 		return dto;
 	}
 
+	public int sellerInfoUpdate(MemberDTO dto) {
+		int updateYN = 0;
+		updateYN = dao.sellerInfoUpdate(dto);
+		return updateYN;
+	}
+	
 	public int infoUpdate(MemberDTO dto) {
 		int updateYN = 0;
 		updateYN = dao.infoUpdate(dto);
-		
 		return updateYN;
+	}
+
+	public int sellerDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = dao.sellerDelete(dto);
+		return deleteYn;
+	}
+
+	public int memDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = dao.memDelete(dto);
+		return deleteYn;
 	}
 
 }
