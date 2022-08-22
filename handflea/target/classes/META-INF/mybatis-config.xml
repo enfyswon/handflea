@@ -13,6 +13,7 @@
 		<mapper resource="META-INF/chat-mapper.xml" />
 		<mapper resource="META-INF/basket-mapper.xml" />
 		<mapper resource="META-INF/QnA-mapper.xml" />
+		<mapper resource="META-INF/Admin-mapper.xml" />
 	</mappers>
 
 </configuration>

@@ -60,6 +60,7 @@ public class QnAController {
 		QnADTO dto = null;
 		dto = service.detail(qna_no);
 		model.addAttribute("detail_dto",dto);
+		logger.info(dto.toString());
 		return"/QnA/detail";
 	}
 	

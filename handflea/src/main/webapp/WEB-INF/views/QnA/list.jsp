@@ -53,7 +53,7 @@
 					<tr>
 						<td>${dto.qna_no}</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/QnA/detail?QnA_no=${dto.qna_no}">
+							<a href="${pageContext.request.contextPath}/QnA/detail?qna_no=${dto.qna_no}">
 								${dto.title}
 							</a>
 						</td>
