@@ -21,6 +21,7 @@ public class MyPageService {
 		int successCount = 0;
 		successCount = dao.sellerjoin( dto );
 		dao.updateSellerYN(dto.getMem_no());
+		
 		return successCount;
 	}//sellerjoin
 	
@@ -122,5 +123,29 @@ public class MyPageService {
 		
 		return dto;
 	}
+	
+	public MemberDTO sellerInfoSelect(String mem_no) {
+		MemberDTO dto = null;
+		dto = dao.sellerInfoSelect(mem_no);
+		
+		return dto;
+	}
 
+	public int sellerInfoUpdate(MemberDTO dto) {
+		int updateYN = 0;
+		updateYN = dao.sellerInfoUpdate(dto);
+		return updateYN;
+	}
+	
+	public int sellerDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = dao.sellerDelete(dto);
+		return deleteYn;
+	}
+
+	public int memDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = dao.memDelete(dto);
+		return deleteYn;
+	}
 }

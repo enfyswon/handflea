@@ -233,6 +233,7 @@
 						</div>
 						<div class="info-contents">
 							<input type="text" id="seller_name" name="seller_name" maxlength="20" value="${myinfo.seller_name}">
+							<label id="seller_name_label" for="seller_name"></label>
 						</div>
 					</div>
 					<div class="info-line">
@@ -250,6 +251,7 @@
 							<div>
 								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소" value="${myinfo.seller_add_2}">
 								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="참고항목" readonly="readonly">
+								<label id="seller_add_label" for="seller_add_2"></label>
 							</div>
 						</div>
 					</div>
@@ -263,6 +265,7 @@
 								<option value="0">--은행 선택--</option>
 							</select>
 							<input type="text" id="seller_account_no" name="seller_account_no" placeholder="계좌 번호" value="${myinfo.seller_account_no}">
+							<label id="seller_account_no_label" for="seller_account_no"></label>
 						</div>
 					</div>
 				</div>
@@ -334,6 +337,16 @@
 				pwd = $("#mem_pwd").val();
 			} else { $("#mem_pwd_label").text(""); }
 			
+			if( $("#seller_name").val() == "") {
+				$("#seller_name_label").text("마켓명을 입력해주세요.");
+				return;
+			} else { $("#seller_name_label").text(""); }
+			
+			if( $("#seller_account_no").val() == "") {
+				$("#seller_account_no_label").text("계좌번호를 입력해주세요.");
+				return;
+			} else { $("#seller_account_no_label").text(""); }
+			
 			if( $("#add_2").val() == "") {
 				$("#add_label").text("상세주소를 입력해주세요.");
 				return;
@@ -342,6 +355,16 @@
 			let add2 = $("#add_2").val();
 			if ($("#add_3").val() != "") {
 				add2 = add2 + " " + $("#add_3").val();
+			}
+			
+			if( $("#seller_add_2").val() == "") {
+				$("#seller_add_label").text("상세주소를 입력해주세요.");
+				return;
+			} else { $("#seller_add_label").text(""); }
+
+			let seller_add2 = $("#seller_add_2").val();
+			if ($("#seller_add_3").val() != "") {
+				seller_add2 = seller_add2 + " " + $("#seller_add_3").val();
 			}
 			
 			let pnum = $.trim($("#pnum").val());
@@ -363,6 +386,14 @@
 				$("#account_no_label").text("숫자만 허용됩니다.");
 				return;
 			} else { $("#account_no_label").text(''); }
+			
+			
+			let seller_account = $.trim($("#seller_account_no").val());
+			
+			if (seller_account != "" && seller_account.match(onlyNum) == null) {
+				$("#seller_account_no_label").text("숫자만 허용됩니다.");
+				return;
+			} else { $("#seller_account_no_label").text(''); }
 			
 			let form = new FormData( document.getElementById( "user_info" ) );
 			
