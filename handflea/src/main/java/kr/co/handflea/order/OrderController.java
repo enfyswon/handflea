@@ -1,9 +1,12 @@
 package kr.co.handflea.order;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,53 +15,54 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
-import kr.co.handflea.credit.CreditCardDTO;
-import kr.co.handflea.credit.CreditCardService;
-import kr.co.handflea.delivery.DeliveryDAO;
-import kr.co.handflea.delivery.DeliveryDTO;
 import kr.co.handflea.product.ProductDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 
 @Controller
-@RequestMapping( value = "/order")
+@RequestMapping(value = "/order")
 public class OrderController {
+	//private final static Logger logger = LoggerFactory.getLogger(OrderController.class);
+	
 	@Autowired
-	OrderService service;
-
-	@RequestMapping(value = "/order_list", method = RequestMethod.POST)
-	public String orderList(OrderDTO dto, HttpSession session, Model model) {
+	private OrderService service;
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String orderList(String [] arr_basket_no, ProductDTO dto, Model model, HttpSession session) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		MemberDTO mdto = new MemberDTO();
+		mdto = service.buyerInfo(mem_no);
+		model.addAttribute("buyer_info", mdto);
+		
+		List<ProductDTO> list = null;
+		if (arr_basket_no != null && arr_basket_no.length > 0) {
+			list = service.orderList(arr_basket_no);
+		} else {
+			list = service.buyOrderList(dto);
+			arr_basket_no = new String[1];
+			arr_basket_no[0] = "0";
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("arr_basket_no", new Gson().toJson(arr_basket_no));
+		
+		return "/order/order_list";
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void orderInsert(OrderDTO dto, HttpSession session, PrintWriter out) {
 		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		dto.setMem_no(mem_no);
 		
-		List<OrderDTO> list = null;
+		String [] tmpArr = dto.getStr_basket_no().split(",");
+		dto.setArr_basket_no(tmpArr);
 		
-		// 수령인, 전화번호, 배송지 주소, 상품 정보 (상품 이름, 수량, 상품 금액, 배송비, 총 주문 금액) 가져오기 
-		// 구매자 mem_no, 상품 번호 prdt_no, 구매수량 buy_qty 가지고 있음
-		list = service.orderList(dto);
+		int successCnt = 0;
+		if (dto.getArr_basket_no().length == 1 && dto.getArr_basket_no()[0].equals("0")) {
+			successCnt = service.insert(dto, 1);
+		} else {
+			successCnt = service.insert(dto, 0);
+		}
 		
-		model.addAttribute("order_list", list);
-		return "order/order_list";
+		out.print(successCnt);
+		out.close();
 	}
-	/*
-	 * @RequestMapping( value = "/order_list", method = RequestMethod.GET ) public
-	 * String orderList( String [] arr_basket_no, ProductDTO dto, Model model,
-	 * HttpSession session ) { List<ProductDTO> list = null; if(arr_basket_no !=
-	 * null && arr_basket_no.length > 0) {//장바구니 -> 주문 목록 list = service.orderList(
-	 * arr_basket_no ); } else {//상품 상세 화면 바로구매버튼 -> 주문 목록 list =
-	 * service.buyNowOrderList( dto ); arr_basket_no = new String[1];
-	 * arr_basket_no[0] = "0"; } model.addAttribute("list", list);
-	 * 
-	 * List<DeliveryDTO> deliverylist = null; deliverylist = DeliveryDAO.list( (
-	 * (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-	 * model.addAttribute("deliverylist", deliverylist);
-	 * 
-	 * List<CreditCardDTO> cardlist = null; cardlist = CreditCardService.list( (
-	 * (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
-	 * model.addAttribute("cardlist", cardlist);
-	 * 
-	 * model.addAttribute( "arr_basket_no", new Gson().toJson( arr_basket_no ) );
-	 * 
-	 * return "/order/order_list";//jsp file name }//orderList
-	 */
-}//class
-
+}

@@ -7,46 +7,54 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.handflea.product.ProductDTO;
+import kr.co.handflea.util.dto.MemberDTO;
+
 @Service
 public class OrderService {
 	
 	@Autowired
 	private OrderDAO dao;
 
-	public List<OrderDTO> orderList(OrderDTO dto) {
-		List<OrderDTO> list = null;
-		list = dao.orderList(dto);
+	public List<ProductDTO> buyOrderList(ProductDTO dto) {
+		List<ProductDTO> list = null;
+		list = dao.buyOrderList(dto);
 		
 		return list;
 	}
-	
-	/*
-	 * @Transactional public int insert ( OrderDTO dto, int buyNowYN) { int
-	 * successCount= 0; successCount = dao.insertOrder(dto); //insertOrderMain을
-	 * 수행하면서 selectKey가 dto에 order_no 값을 입력한다. if(successCount < 1) return
-	 * successCount;
-	 * 
-	 * if(buyNowYN == 0) { successCount =
-	 * dao.insertOrderDetail(dto);//insertOrderDetail을 호출하는 시점에서는 dto에 order_no 값이
-	 * 있다. if(successCount < 1) return successCount;
-	 * 
-	 * successCount = dao.deleteBasketByArray(dto.getArr_basket_no()); } else
-	 * if(buyNowYN == 1) {//장바구니 테이블에 데이터가 없는 바로 주문 successCount =
-	 * dao.insertBuyNowOrderDetail(dto); } if(successCount < 1) return successCount;
-	 * 
-	 * successCount = dao.updateCreditCardUsedDate(dto); if(successCount < 1) return
-	 * successCount;
-	 * 
-	 * successCount = dao.updateDeliveryAddrUsedDate(dto); if(successCount < 1)
-	 * return successCount;
-	 * 
-	 * return successCount; }
-	 * 
-	 * public List<ProductDTO> orderList(String[] arr_basket_no) { // TODO
-	 * Auto-generated method stub return null; }
-	 * 
-	 * public List<ProductDTO> buyNowOrderList(ProductDTO dto) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
 
+	public MemberDTO buyerInfo(String mem_no) {
+		MemberDTO dto = new MemberDTO();
+		dto = dao.buyerInfo(mem_no);
+		
+		return dto;
+	}
+
+	public List<ProductDTO> orderList(String[] arr_basket_no) {
+		List<ProductDTO> list = null;
+		list = dao.orderList(arr_basket_no);
+		
+		return list;
+	}
+
+	@Transactional
+	public int insert(OrderDTO dto, int buyNowYN) {
+		int successCnt = 0;
+		successCnt = dao.insertOrder(dto);
+		if (successCnt < 1) {
+			return successCnt;
+		}
+		
+		if (buyNowYN == 0) {
+			successCnt = dao.insertBasketOrder(dto);
+			if (successCnt < 1) {
+				return successCnt;
+			}
+			
+			successCnt = dao.deleteBasket(dto.getArr_basket_no());
+		} else if (buyNowYN == 1) {
+			successCnt = dao.insertNowOrder(dto);
+		}
+		
+		return successCnt;
+	}
 }

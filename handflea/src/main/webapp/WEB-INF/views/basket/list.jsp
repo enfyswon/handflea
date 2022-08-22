@@ -28,11 +28,13 @@
 				<c:set var="sum_product_class_qty" value="0" />
 				<c:set var="sum_buy_amt" value="0" />
 				<c:set var="sum_delivery_amt" value="0" />
+				<c:set var="sum_buy_allamt" value="0" />
 				
 				<c:forEach var="dto" items="${list}" varStatus="status">
 					<c:set var="sum_product_class_qty" value="${sum_product_class_qty + 1}" />
 					<c:set var="sum_buy_amt" value="${sum_buy_amt + (dto.price * dto.buy_qty)}" />
 					<c:set var="sum_delivery_amt" value="${sum_delivery_amt + dto.delivery_price}" />
+					<c:set var="sum_buy_allamt" value="${sum_buy_allamt + (dto.price * dto.buy_qty) + dto.delivery_price}" />
 					<tr>
 						<td>
 							<input type="checkbox" class="order_check_box form-control" checked="checked" id="${dto.price}" name="${dto.price}" value="${dto.buy_qty}">
@@ -45,6 +47,7 @@
 							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
 								${dto.prdt_name}
 							</a>
+							<p>${dto.option_contents}</p>
 						</td>
 						<td> ${dto.price} 원 </td>
 						<td>
@@ -80,11 +83,11 @@
 			</tr>
 			<tr>
 				<th> 배 송 비 </th>
-				<td class="text-right text-danger"> <span id="span_sum_delivery_amt"> -${sum_delivery_amt} </span> 원 </td>
+				<td class="text-right"> <span id="span_sum_delivery_amt"> ${sum_delivery_amt} </span> 원 </td>
 			</tr>
 			<tr>
 				<th> <h1>총 주 문 금 액</h1> </th>
-				<td class="text-right"> <h1><span id="span_sum_total_buy_amt"> ${sum_buy_amt}</span> 원</h1> </td>
+				<td class="text-right text-danger"> <h1><span id="span_sum_total_buy_allamt"> ${sum_buy_allamt}</span> 원</h1> </td>
 			</tr>
 		</table>
 		<hr>
@@ -139,7 +142,7 @@
 				return;
 			}
 
-			location.href="${pageContext.request.contextPath}/order/order_list?arr_basket_no="+arr_basket_no;
+			location.href="${pageContext.request.contextPath}/order/list?arr_basket_no="+arr_basket_no;
 
 		});//click
 	});//ready

@@ -124,13 +124,11 @@ button {
 #big-menu span {
 	color : black;
 	display: block;
+	font-size : medium;
+	font-weight: bold;
 }
 #big-menu span:hover {
 	color : #0F8BFF;
-}
-#big-menu span {
-	font-size : medium;
-	font-weight: bold;
 }
 .small-menu {
 	position : absolute;
@@ -200,4 +198,18 @@ main {
 	font-weight : bold;
 	color : #0F8BFF;
 	margin-bottom : 8px;
+}
+#admin-big-menu > li {
+	float : left;
+	width : 25%;
+	line-height: 40px;
+}
+#admin-big-menu span {
+	color : black;
+	display: block;
+	font-size : medium;
+	font-weight: bold;
+}
+#admin-big-menu span:hover {
+	color : #0F8BFF;
 }

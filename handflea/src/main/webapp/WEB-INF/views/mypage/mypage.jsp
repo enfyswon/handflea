@@ -30,12 +30,12 @@
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
-						
+						<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/sellerlist">상품 등록 / 관리</a>
 						<a href="#">판매 내역</a>
 						<a href="#">정산</a>
-						
+						</c:if>
 					</div>
 				</div>
 			</div>

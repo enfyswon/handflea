@@ -71,9 +71,21 @@ public class MyPageController {
 	
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
 	public String myInfo(Model model, HttpSession session) {
-		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		MemberDTO dto = null;
-		dto = service.infoSelect(mem_no);
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+		
+		if (seller_yn.equals("1")) {
+			dto = service.sellerInfoSelect(mem_no);
+		}else {
+			dto = service.infoSelect(mem_no);
+			dto.setSeller_bank_no("0");
+			dto.setSeller_account_no("0");
+			dto.setSeller_post_code("0");
+			dto.setSeller_add_1("0");
+			dto.setSeller_add_2("0");
+			dto.setSeller_name("0");
+		}
 		
 		logger.info(dto.toString());
 		
@@ -85,7 +97,6 @@ public class MyPageController {
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
 	
 	public void infoUpdate( MemberDTO dto, HttpSession session, PrintWriter out) throws IOException {
-		System.out.println(dto.toString());
 		Date today = new Date();
 		DateFormat nalja = new SimpleDateFormat("YYYYMMdd");
 		DateFormat sigan = new SimpleDateFormat("HHmmss");
@@ -93,17 +104,17 @@ public class MyPageController {
 		String todaySigan = sigan.format(today);
 		
 		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
-		dto.setMem_no(mem_no);
-		System.out.println(mem_no);
+		File newFolder = new File("C:/upload/user/" + mem_no + "/");
+		if( newFolder.exists() == false ) newFolder.mkdirs();
+		
+		InputStream is = null;
+		FileOutputStream fos = null;
+		
 		MultipartFile profile = dto.getProfile();
-		if (profile != null && profile.getOriginalFilename().equals("")) {
-			File newFolder = new File("C:/upload/user/" + mem_no + "/");
-			if ( !newFolder.exists() ) {
-				newFolder.mkdirs();
-			}
+		if (profile != null && !profile.getOriginalFilename().equals("")) {
 			
-			InputStream is = profile.getInputStream();
-			FileOutputStream fos = new FileOutputStream("C:/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename() );
+			is = profile.getInputStream();
+			fos = new FileOutputStream("C:/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename() );
 			
 			FileCopyUtils.copy(is, fos);
 			is.close();
@@ -111,9 +122,16 @@ public class MyPageController {
 			dto.setMem_photo(todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename());
 			dto.setMem_photopath("/upload/user/" + mem_no + "/" + todayNalja + "_" + todaySigan + "_" + profile.getOriginalFilename());
 		}
-		
 		int updateYn = 0;
-		updateYn = service.infoUpdate(dto);
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+		
+		if (seller_yn.equals("1")) {
+			updateYn = service.sellerInfoUpdate(dto);
+		}else {
+			updateYn = service.infoUpdate(dto);
+		}
+		System.out.println(dto.toString());
 		out.print(updateYn);
 		out.close();
 	}
