@@ -18,7 +18,7 @@
 		</if>
 		and p.mem_no = m.mem_no
 		order by prdt_no desc
-		limit #{limitNum}, 10
+		
 	</select>
 
 	<select id="searchListCount" parameterType="kr.co.handflea.util.dto.SearchDTO" resultType="int">
