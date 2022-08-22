@@ -53,7 +53,7 @@
                      <p class="icon_cnts">QnA</p>
                   </div>
                </a>
-               <c:if test="true">
+               <c:if test="${login_info.mem_no != null}">
                <a href="${pageContext.request.contextPath}/chat/">
                   <div class="icon">
                      <img class="icon_img" alt="chatting" src="${pageContext.request.contextPath}/resources/img/chat.png">
