@@ -216,3 +216,13 @@ main {
 #admin-big-menu span:hover {
    color : #0F8BFF;
 }
+hr {
+	height: 1px;
+	background: #bbbbbb;
+	background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
+	background-image: -moz-linear-gradient(left, #eee, #777, #eee);
+	background-image: -ms-linear-gradient(left, #eee, #777, #eee);
+	background-image: -o-linear-gradient(left, #eee, #777, #eee);
+	border: 0;
+	margin: 20px 0;
+}

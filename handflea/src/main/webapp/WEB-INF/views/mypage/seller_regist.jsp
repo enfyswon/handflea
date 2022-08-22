@@ -34,7 +34,7 @@
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
 						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
-						<a href="#">정산</a>
+						<a href="${pageContext.request.contextPath}/mypage/adjust">정산</a>
 						</c:if>
 					</div>
 				</div>
