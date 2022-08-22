@@ -15,6 +15,7 @@
 		<mapper resource="META-INF/admin-mapper.xml" />
 		<mapper resource="META-INF/order-mapper.xml" />
 		<mapper resource="META-INF/search-mapper.xml" />
+		<mapper resource="META-INF/QnA-mapper.xml" />
 	</mappers>
 
 </configuration>

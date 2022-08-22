@@ -35,10 +35,17 @@
 		<hr>
 		<c:if test="${detail_dto.mem_no == login_info.mem_no}">
 			<button id="btn_delete" class="btn btn-danger"> QnA 삭제 </button>
-			<a href="${pageContext.request.contextPath}/QnA/update_form?qna_no=${detail_dto.qna_no}">
-				<button class="btn btn-primary"> QnA 수정하러 가기 </button>
-			</a>
+			<c:if test="${detail_dto.answer_yn == 0}">
+				<button id="btn_update" class="btn btn-primary"> QnA 수정하러 가기 </button>
+			</c:if>
 			<hr>
+		</c:if>
+		
+		<hr>
+		<c:if test="${login_info.mem_email == 'admin'}">
+			<h4>답변</h4>
+			<textarea rows="5" cols="100"></textarea>
+			<button id="btn_reply">답변 작성</button>
 		</c:if>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
@@ -48,14 +55,17 @@
 			$.get(
 					"${pageContext.request.contextPath}/QnA/delete"
 					, {
-						qna_no : ${detail_dto.qna_no}
+						qna_no : ${detail_dto.qna_no},
+						mem_no : ${detail_dto.mem_no}
 					}
 					, function(data, status) {
-						if( data >= 1 ){
+						if( data == 1 ){
 							alert("QnA가 삭제 되었습니다.");
 							location.href="${pageContext.request.contextPath}/QnA/list";
-						} else if( data <= 0 ) {
+						} else if( data == 0 ) {
 							alert("QnA 삭제를 실패 하였습니다.");
+						} else if ( data == 3){
+							alert("다른 사람의 게시글을 삭제할 수 없습니다.")
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}

@@ -65,7 +65,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/admin/qna">
 								<span>Q&A</span>
 							</a>
 						</li>

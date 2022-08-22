@@ -51,6 +51,9 @@ button {
 #logo {
 	height : 100px;
 }
+#middle-header form {
+	margin: 0;
+}
 #search-bar {
 	width: 50%;
 	height : 100%;
@@ -61,14 +64,14 @@ button {
 	width : 100%;
 	text-align: center;	
 }
-#search > input {
+#search input {
 	width : 60%;
 	line-heigth : 30px;
 	padding : 5.5px;
 	margin : 0;
 	font-size: medium;
 }	
-#search > button {
+#search button {
 	text-align : center;
 	text-decoration : none;
 	font-size : medium;

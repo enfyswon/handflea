@@ -37,18 +37,30 @@ public class QnAController {
 	}
 	
 	@RequestMapping( value = "/update_form", method = RequestMethod.GET )
-	public String updateForm( String qna_no,Model model) {
+	public String updateForm( String qna_no, Model model, HttpSession session) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		QnADTO dto = null;
-		model.addAttribute("detail_dto",dto);
-		return "/QnA/update_form";
+		dto = service.detail(qna_no);
+		
+		if (!mem_no.equals(dto.getMem_no())) {
+			return "/QnA/list";
+		} else {
+			model.addAttribute("detail_dto",dto);
+			return "/QnA/update_form";
+		}
 	}
 
 	@RequestMapping( value = "/delete", method = RequestMethod.GET )
 	public void delete( QnADTO dto, HttpSession session, PrintWriter out) {
-		QnADTO qDto = (QnADTO) session.getAttribute("login_info");
-		
-
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		int successCount = 0;
+
+		if (!dto.getMem_no().equals(mem_no)) {
+			successCount = 3;
+			out.print(successCount);
+			return;
+		}
+
 		successCount = service.delete( dto );
 		out.print(successCount);
 		out.close();
