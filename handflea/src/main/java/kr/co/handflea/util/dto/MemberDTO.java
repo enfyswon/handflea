@@ -34,6 +34,7 @@ public class MemberDTO {
 	private String seller_account_no;
 	private String seller_bank_no;
 	private String seller_post_code;
+	private String bank_name;
 	
 	@Override
 	public String toString() {
@@ -250,6 +251,12 @@ public class MemberDTO {
 	public void setSeller_post_code(String seller_post_code) {
 		this.seller_post_code = seller_post_code;
 	}
-	
-	
+
+	public String getBank_name() {
+		return bank_name;
+	}
+
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
 }//class

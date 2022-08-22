@@ -8,6 +8,10 @@ public class AdjustDTO {
 	private int withdraw;
 	private int balance;
 	private String reg_date;
+	private String detail_no;
+	
+	private String prdt_name;
+	
 	public String getAdjust_no() {
 		return adjust_no;
 	}
@@ -49,5 +53,17 @@ public class AdjustDTO {
 	}
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+	public String getDetail_no() {
+		return detail_no;
+	}
+	public void setDetail_no(String detail_no) {
+		this.detail_no = detail_no;
+	}
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
 	}
 }

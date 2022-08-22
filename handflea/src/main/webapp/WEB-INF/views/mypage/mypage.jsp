@@ -34,7 +34,7 @@
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/sellerlist">상품 등록 / 관리</a>
 						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
-						<a href="#">정산</a>
+						<a href="${pageContext.request.contextPath}/mypage/adjust">정산</a>
 						</c:if>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 						<p>장바구니</p>
 						<h4>0 건</h4>
 					</div>
-					<c:if test="false">
+					<c:if test="${login_info.seller_yn == 1}">
 					<div class="order-cnts">
 						<p>판매중인 주문</p>
 						<h4>0 건</h4>

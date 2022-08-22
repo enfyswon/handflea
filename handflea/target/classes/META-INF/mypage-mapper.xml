@@ -206,4 +206,44 @@
 	<select id="getSellerOrderCnt" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
 	select seller_money from seller where mem_no = #{mem_no}
 	</select>
+	
+	<insert id="insertWithdraw" parameterType="kr.co.handflea.util.dto.AdjustDTO">
+	insert adjustment (mem_no, fundage, withdraw, reg_date)
+	values (#{mem_no}, #{fundage}, #{withdraw}, now())
+	</insert>
+	
+	<update id="updateSellerMoney" parameterType="kr.co.handflea.util.dto.AdjustDTO">
+	update seller set seller_money = #{fundage} - #{withdraw}
+	where mem_no = #{mem_no}
+	</update>
+	
+	<select id="selectAdjust" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.AdjustDTO">
+	select adjust_no, mem_no, fundage, deposit, withdraw, balance, reg_date, detail_no
+	from adjustment
+	where mem_no = #{mem_no}
+	order by reg_date desc 
+	</select>
+	
+	<select id="completeCnt" parameterType="java.lang.String" resultType="Int">
+	select count(adjust_no) cnt 
+	from adjustment
+	where deposit > 0
+	and mem_no = #{mem_no}
+	</select>
+	
+	<select id="getSellerAdjust" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
+	select s.mem_no, s.seller_money, s.bank_no, b.bank_name, s.seller_account_no
+	from seller s, bank b
+	where s.mem_no = #{mem_no}
+	and s.bank_no = b.bank_no;
+	</select>
+	
+	<select id="selectAdjustDetail" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.AdjustDTO">
+	select a.adjust_no, a.mem_no, a.fundage, a.deposit, a.withdraw, a.balance, a.reg_date, a.detail_no,
+		   p.prdt_name 
+	from adjustment a, order_detail od, product p
+	where a.detail_no = #{detail_no}
+	and a.detail_no = od.detail_no
+	and od.prdt_no = p.prdt_no
+	</select>
 </mapper>

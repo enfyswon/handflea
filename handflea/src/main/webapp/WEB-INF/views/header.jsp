@@ -38,14 +38,14 @@
 						<img id="logo" alt="LOGO" src="${pageContext.request.contextPath}/resources/img/logo.png">
 					</a>
 				</div>
-			<form action="${pageContext.request.contextPath}/search/searchlist" method="get">
 				<div id="search-bar">
 					<div id="search">
-						<input type="text" placeholder="검색 키워드" id="searchWord" name="searchWord" value="${search_dto.searchWord}">
-						<button  type="submit">검 색</button>
+						<form action="${pageContext.request.contextPath}/search/searchlist" method="get">
+							<input type="text" placeholder="검색 키워드" id="searchWord" name="searchWord" value="${search_dto.searchWord}">
+							<button  type="submit">검 색</button>
+						</form>
 					</div>
 				</div>
-			</form>
 				<div id="icon-bar">
 					<a href="#">
 						<div class="icon">

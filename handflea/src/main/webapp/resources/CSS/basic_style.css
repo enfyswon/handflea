@@ -61,14 +61,14 @@ button {
 	width : 100%;
 	text-align: center;	
 }
-#search > input {
+#search > form > input {
 	width : 60%;
 	line-heigth : 30px;
 	padding : 5.5px;
 	margin : 0;
 	font-size: medium;
 }	
-#search > button {
+#search > form > button {
 	text-align : center;
 	text-decoration : none;
 	font-size : medium;
@@ -212,4 +212,14 @@ main {
 }
 #admin-big-menu span:hover {
 	color : #0F8BFF;
+}
+hr {
+	height: 1px;
+	background: #bbbbbb;
+	background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
+	background-image: -moz-linear-gradient(left, #eee, #777, #eee);
+	background-image: -ms-linear-gradient(left, #eee, #777, #eee);
+	background-image: -o-linear-gradient(left, #eee, #777, #eee);
+	border: 0;
+	margin: 20px 0;
 }

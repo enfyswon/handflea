@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.handflea.order.OrderDTO;
+import kr.co.handflea.util.dto.AdjustDTO;
 import kr.co.handflea.util.dto.BankDTO;
 import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
@@ -147,5 +148,46 @@ public class MyPageService {
 		int deleteYn = 0;
 		deleteYn = dao.memDelete(dto);
 		return deleteYn;
+	}
+
+	public int withdraw(AdjustDTO dto) {
+		int successCnt = 0;
+		successCnt = dao.insertWithdraw(dto);
+		
+		if (successCnt < 1) {
+			return successCnt;
+		}
+		successCnt = dao.updateSellerMoney(dto);
+		
+		return successCnt;
+	}
+
+	public List<AdjustDTO> selectAdjust(String mem_no) {
+		List<AdjustDTO> list = null;
+		list = dao.selectAdjust(mem_no);
+		
+		for (int i = 0; i < list.size(); i++) {
+			AdjustDTO dto = list.get(i);
+			if (dto.getDetail_no() != null) {
+				dto = dao.selectAdjustDetail(dto.getDetail_no());
+			}
+			list.set(i, dto);
+		}
+		
+		return list;
+	}
+
+	public int completeCnt(String mem_no) {
+		int completeCnt = 0;
+		completeCnt = dao.completeCnt(mem_no);
+		
+		return completeCnt;
+	}
+
+	public MemberDTO getSellerAdjust(String mem_no) {
+		MemberDTO dto = null;
+		dto = dao.getSellerAdjust(mem_no);
+		
+		return dto;
 	}
 }
