@@ -12,6 +12,8 @@ public class OrderDTO {
 	private String option_no;
 	private int buy_qty;
 	private int prdt_price;
+	private int pay_amt;
+	private int prdt_delivery_price;
 	private String prdt_con;
 	private String delivery_c_no;
 	private String delivery_no;
@@ -25,6 +27,14 @@ public class OrderDTO {
 	private String buy_now_prdt_no;
 	private String buy_now_qty;
 	private String buy_now_option_no;
+	private String code_name;
+	private String deadline;
+	private String delivery_c_name;
+	private String pnum;
+	private String post_code;
+	private String add_1;
+	private String add_2;
+	private String mem_name;
 	
 	public String getOrder_no() {
 		return order_no;
@@ -85,6 +95,18 @@ public class OrderDTO {
 	}
 	public void setPrdt_price(int prdt_price) {
 		this.prdt_price = prdt_price;
+	}
+	public int getPay_amt() {
+		return pay_amt;
+	}
+	public void setPay_amt(int pay_amt) {
+		this.pay_amt = pay_amt;
+	}
+	public int getPrdt_delivery_price() {
+		return prdt_delivery_price;
+	}
+	public void setPrdt_delivery_price(int prdt_delivery_price) {
+		this.prdt_delivery_price = prdt_delivery_price;
 	}
 	public String getPrdt_con() {
 		return prdt_con;
@@ -157,5 +179,53 @@ public class OrderDTO {
 	}
 	public void setBuy_now_option_no(String buy_now_option_no) {
 		this.buy_now_option_no = buy_now_option_no;
+	}
+	public String getCode_name() {
+		return code_name;
+	}
+	public void setCode_name(String code_name) {
+		this.code_name = code_name;
+	}
+	public String getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(String deadline) {
+		this.deadline = deadline;
+	}
+	public String getDelivery_c_name() {
+		return delivery_c_name;
+	}
+	public void setDelivery_c_name(String delivery_c_name) {
+		this.delivery_c_name = delivery_c_name;
+	}
+	public String getPnum() {
+		return pnum;
+	}
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+	public String getPost_code() {
+		return post_code;
+	}
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
+	}
+	public String getAdd_1() {
+		return add_1;
+	}
+	public void setAdd_1(String add_1) {
+		this.add_1 = add_1;
+	}
+	public String getAdd_2() {
+		return add_2;
+	}
+	public void setAdd_2(String add_2) {
+		this.add_2 = add_2;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 }	

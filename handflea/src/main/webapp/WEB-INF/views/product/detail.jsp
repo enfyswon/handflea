@@ -9,84 +9,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	<style type="text/css">
-#prdt-outline {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-}
-#prdt-img {
-	width: 60%;
-	margin: 5px;
-	height: 450px;
-	text-align: center;
-}
-#prdt-img > img {
-	height: 100%;
-}
-#prdt-detail {
-	width: 40%;
-	height: 450px;
-	border: 2px solid #cecece;
-	margin: 10px;
-}
-#prdt-detail > div {
-	margin: 10px 15px;
-}
-#prdt-detail h3 {
-	padding: 5px 0;
-}
-#profile {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-#profile > img {
-	width: 30px;
-	height: 30px;
-	margin: 0;
-}
-#profile > p {
-	margin: 0 5px;
-}
-.prdt-element {
-	display: flex;
-	flex-direction: row;
-	padding-top: 10px;
-}
-.element-label {
-	width: 40%;
-	margin: 0;
-}
-.element-value {
-	width: 60%;
-	margin: 0;
-	display: flex;
-	flex-direction: row;
-}
-.element-value > p {
-	margin: 0;
-}
-.element-value > select {
-	margin: 0;
-}
-.element-value > input {
-	margin: 0;
-}
-#button-box {
-	display: flex;
-	flex-direction: row;
-	padding: 20px 0 ;
-}
-#button-box button {
-	margin: 0;
-}
-#left-button {
-	align-items: flex-start;
-}
-#right-button {
-}
-	</style>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -102,9 +25,7 @@
 						<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
 						<p>${detail_dto.seller_name}</p>
 					</div>
-					<div>
-						<h3>${detail_dto.prdt_name}</h3>
-					</div>
+					<h3>${detail_dto.prdt_name}</h3>
 					<div class="prdt-element">
 						<div class="element-label">
 							판매가
@@ -178,8 +99,8 @@
 							</a>
 						</div>
 						<div id="right-button">
+							<button type="button" id="buy_now_btn">구매하기</button>
 							<button type="button" id="jang_btn">장바구니 담기</button>
-							<button type="button" id="buy_now_btn">바로 구매하기</button>
 						</div>
 					</div>
 				</div>
@@ -188,8 +109,42 @@
 				상품 설명
 				<p>${detail_dto.description}</p>
 			</div>
-			<div>
-				상품 후기
+			<hr>
+			<div id="prdt-review">
+				<h4>상품 후기</h4>
+				<div id="review-list">
+					<div class="review-card">
+						<div class="review-top">
+							<div class="review-profile">
+								<div class="review-profile-img">
+									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
+								</div>
+								<div class="review-outline">
+									<p class="writer">작성자</p>
+									<p class="write-date">2022-08-22</p>
+								</div>
+							</div>
+							<div class="review-photo">
+							</div>
+						</div>
+						<div class="review-middle">
+							<p class="review-opt"><span>옵션</span>옵션 이름</p>
+							<p class="write-star">★★★★★</p>
+						</div>
+						<div class="review-bottom">
+							<p class="review-cnts">리뷰 내용 : 길게 늘어지는 내용일 경우 ...으로 생략 표시 확인용 테스트테스트테스트테스트</p>
+						</div>
+					</div>
+					<div class="review-card">
+						
+					</div>
+					<div class="review-card">
+						
+					</div>
+					<div class="review-card">
+						
+					</div>
+				</div>
 			</div>
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>

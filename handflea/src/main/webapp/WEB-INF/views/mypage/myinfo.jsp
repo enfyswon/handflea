@@ -110,7 +110,7 @@
 				<div id="menu-box">
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
-						<a href="#">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
 						<a href="#">Q&A 문의 내역</a>
@@ -121,7 +121,7 @@
 						<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
-						<a href="#">판매 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
 						<a href="#">정산</a>
 						</c:if>
 					</div>
