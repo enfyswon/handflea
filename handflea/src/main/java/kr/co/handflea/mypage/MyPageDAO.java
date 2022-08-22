@@ -150,10 +150,36 @@ public class MyPageDAO {
 		return list;
 	}
 
+	public int getmemOrderCnt(String mem_no) {
+		int cnt = sqlSession.selectOne("MyPageMapper.getmemOrderCnt", mem_no);
+		
+		return cnt;
+	}
+	
+	public int getPaybackCnt(String mem_no) {
+		int cnt = sqlSession.selectOne("MyPageMapper.getPaybackCnt", mem_no);
+		
+		return cnt;
+	}
+	
+	public int getBasketCnt(String mem_no) {
+		int cnt = sqlSession.selectOne("MyPageMapper.getBasketCnt", mem_no);
+		
+		return cnt;
+	}
+	
 	public MemberDTO getSellerOrderCnt(String mem_no) {
 		MemberDTO dto = null;
 		dto = sqlSession.selectOne("MyPageMapper.getSellerOrderCnt", mem_no);
 		
 		return dto;
 	}
+
+	public int getSellerOrderCount(String mem_no) {
+		int cnt = sqlSession.selectOne("MyPageMapper.getSellerOrderCount", mem_no);
+		//dto.setCnt(sqlSession.selectOne("MyPageMapper.getSellerOrderCount", mem_no));
+		
+		return cnt;
+	}
+
 }

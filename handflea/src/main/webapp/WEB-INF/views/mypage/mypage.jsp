@@ -43,20 +43,20 @@
 				<div id="order-box">
 					<div class="order-cnts">
 						<p>진행중인 주문</p>
-						<h4>0 건</h4>
+						<h4>${memorder_cnt} 건</h4>
 					</div>
 					<div class="order-cnts">
-						<p>환불</p>
-						<h4>0 건</h4>
+						<p>환불 가능 주문</p>
+						<h4>${payback_cnt} 건</h4>
 					</div>
 					<div class="order-cnts">
 						<p>장바구니</p>
-						<h4>0 건</h4>
+						<h4>${basket_cnt} 건</h4>
 					</div>
 					<c:if test="${login_info.seller_yn == 1}">
 					<div class="order-cnts">
 						<p>판매중인 주문</p>
-						<h4>0 건</h4>
+						<h4>${seller_order_cnt.cnt} 건</h4>
 					</div>
 					<div class="order-cnts">
 						<p>인출 가능 금액</p>
@@ -147,6 +147,11 @@
 									<td class="sell-con">${slist.code_name}</td>
 								</tr>
 								</c:forEach>
+								<c:if test="${sell_cnt == 0}">
+								<tr>
+									<td colspan="5">판매 내역이 없습니다.</td>
+								</tr>
+								</c:if>
 							</table>
 						</div>
 					</div>

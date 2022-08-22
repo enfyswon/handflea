@@ -203,6 +203,39 @@
 	select delivery_c_no, delivery_c_name from delivery
 	</select>
 	
+	<select id="getmemOrderCnt" parameterType="java.lang.String" resultType="Int">
+	select count(od.detail_no) cnt
+	from order_detail od, member m, order_main om
+	where od.prdt_con in (0, 1, 3)
+    and od.order_no = om.order_no
+    and om.mem_no = m.mem_no
+    and m.mem_no = #{mem_no};
+	</select>
+	
+	<select id="getPaybackCnt" parameterType="java.lang.String" resultType="Int">
+	select count(od.detail_no) cnt
+	from order_detail od, member m, order_main om
+	where od.prdt_con in (3)
+    and od.order_no = om.order_no
+    and om.mem_no = m.mem_no
+    and m.mem_no = #{mem_no};
+	</select>
+	
+	<select id="getBasketCnt" parameterType="java.lang.String" resultType="Int">
+	select count(b.basket_no) cnt 
+	from basket b, member m
+	where b.mem_no = #{mem_no}
+    and b.mem_no = m.mem_no;
+	</select>
+	
+	<select id="getSellerOrderCount" parameterType="java.lang.String" resultType="Int">
+	select count(od.detail_no) cnt 
+	from order_detail od, product p
+	where od.prdt_con in (0, 1)
+    and od.prdt_no = p.prdt_no
+	and p.mem_no = #{mem_no};
+	</select>
+	
 	<select id="getSellerOrderCnt" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
 	select seller_money from seller where mem_no = #{mem_no}
 	</select>

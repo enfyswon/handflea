@@ -117,9 +117,32 @@ public class MyPageService {
 		return list;
 	}
 
+	public int getmemOrderCnt(String mem_no) {
+		int cnt = 0;
+		cnt = dao.getmemOrderCnt(mem_no);
+		
+		return cnt;
+	}
+
+	public int getPaybackCnt(String mem_no) {
+		int cnt = 0;
+		cnt = dao.getPaybackCnt(mem_no);
+		
+		return cnt;
+	}
+	
+	public int getBasketCnt(String mem_no) {
+		int cnt = 0;
+		cnt = dao.getBasketCnt(mem_no);
+		
+		return cnt;
+	}
+	
 	public MemberDTO getSellerOrderCnt(String mem_no) {
 		MemberDTO dto = null;
 		dto = dao.getSellerOrderCnt(mem_no);
+		int cnt = dao.getSellerOrderCount(mem_no);
+		dto.setCnt(cnt);
 		
 		return dto;
 	}
@@ -148,4 +171,5 @@ public class MyPageService {
 		deleteYn = dao.memDelete(dto);
 		return deleteYn;
 	}
+
 }

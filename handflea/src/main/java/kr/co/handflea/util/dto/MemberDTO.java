@@ -35,6 +35,8 @@ public class MemberDTO {
 	private String seller_bank_no;
 	private String seller_post_code;
 	
+	private int cnt;
+	
 	@Override
 	public String toString() {
 		return mem_no
@@ -249,6 +251,14 @@ public class MemberDTO {
 
 	public void setSeller_post_code(String seller_post_code) {
 		this.seller_post_code = seller_post_code;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 	
