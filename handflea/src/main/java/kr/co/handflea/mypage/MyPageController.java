@@ -45,6 +45,13 @@ public class MyPageController {
 		int successCount = 0;
 		System.out.println(dto.toString());
 		successCount = service.sellerjoin( dto );
+		
+		if (successCount == 1) {
+			MemberDTO mdto = new MemberDTO();
+			mdto = (MemberDTO) session.getAttribute("login_info");
+			mdto.setSeller_yn("1");
+			session.setAttribute("login_info", mdto);
+		}
 		out.print(successCount);
 		out.close();
 	}//sellerjoin

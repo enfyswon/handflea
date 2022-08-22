@@ -149,8 +149,8 @@
 					}
 					, function(data, status) {
 						if(data == 1){
-							alert("판매자 등록에 성공 하였습니다. 다시 로그인 해주세요");
-							location.href="${pageContext.request.contextPath}/logout";
+							alert("판매자 등록에 성공 하였습니다");
+							location.href="${pageContext.request.contextPath}/mypage/";
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}

@@ -58,12 +58,12 @@
 	, m.mem_photo = #{mem_photo}
 	, m.mem_photopath = #{mem_photopath}
 	</if>
-    , s.bank_no = #{bank_no}
+    , s.bank_no = #{seller_bank_no}
     , s.seller_name = #{seller_name}
     , s.seller_account_no = #{seller_account_no}
     , s.seller_add_1 = #{seller_add_1}
     , s.seller_add_2 = #{seller_add_2}
-    , s.post_code = #{post_code}
+    , s.post_code = #{seller_post_code}
  	where m.mem_no = #{mem_no}			
 	</update>
 	

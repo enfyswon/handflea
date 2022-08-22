@@ -113,7 +113,7 @@ input[type="checkbox"] {
 				<input type="text" id="add_1" name="add_1" readonly="readonly" placeholder="주소">
 				<div id="add-box">
 					<input type="text" id="add_2" name="add_2" placeholder="상세주소">
-					<input type="text" id="add_3" name="add_3" placeholder="참고항목">
+					<input type="text" id="add_3" name="add_3" placeholder="참고항목" readonly="readonly">
 				</div>
 				<label for="add_2" id="add_2_label"></label>
 			</div>
