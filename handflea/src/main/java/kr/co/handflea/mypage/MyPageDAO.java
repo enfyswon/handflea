@@ -59,4 +59,16 @@ public class MyPageDAO {
 		return updateYN;
 	}
 
+	public int sellerDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = sqlSession.delete("MyPageMapper.sellerDelete", dto);
+		return deleteYn;
+	}
+
+	public int memDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = sqlSession.delete("MyPageMapper.memDelete", dto);
+		return deleteYn;
+	}
+
 }

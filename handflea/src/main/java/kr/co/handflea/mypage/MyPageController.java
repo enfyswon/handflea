@@ -45,6 +45,13 @@ public class MyPageController {
 		int successCount = 0;
 		System.out.println(dto.toString());
 		successCount = service.sellerjoin( dto );
+		
+		if (successCount == 1) {
+			MemberDTO mdto = new MemberDTO();
+			mdto = (MemberDTO) session.getAttribute("login_info");
+			mdto.setSeller_yn("1");
+			session.setAttribute("login_info", mdto);
+		}
 		out.print(successCount);
 		out.close();
 	}//sellerjoin
@@ -68,6 +75,22 @@ public class MyPageController {
 		out.print( new Gson().toJson( list ) );
 		out.close();		
 	}
+	
+	@RequestMapping(value = "/memdelete", method = RequestMethod.GET)
+	public void memdelete( MemberDTO dto, HttpSession session, PrintWriter out ) {
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+
+		int deleteYn = 0;
+		if (seller_yn.equals("1")) {
+			deleteYn = service.sellerDelete(dto);
+		}else {
+			deleteYn = service.memDelete(dto);
+		}
+		System.out.println(dto.toString());
+		out.print(deleteYn);
+		out.close();
+	};
 	
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
 	public String myInfo(Model model, HttpSession session) {
