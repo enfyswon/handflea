@@ -26,7 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import kr.co.handflea.order.OrderDTO;
+import kr.co.handflea.order.OrderService;
 import kr.co.handflea.util.dto.BankDTO;
+import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
 
@@ -38,6 +41,9 @@ public class MyPageController {
 	@Autowired
 	MyPageService service;
 	
+	@Autowired
+	OrderService oservice;
+	
 	@RequestMapping( value = "/sellerjoin", method = RequestMethod.POST )
 	public void sellerjoin(	SellerDTO dto , PrintWriter out, HttpSession session ) {
 		
@@ -45,6 +51,13 @@ public class MyPageController {
 		int successCount = 0;
 		System.out.println(dto.toString());
 		successCount = service.sellerjoin( dto );
+		
+		if (successCount == 1) {
+			MemberDTO mdto = new MemberDTO();
+			mdto = (MemberDTO) session.getAttribute("login_info");
+			mdto.setSeller_yn("1");
+			session.setAttribute("login_info", mdto);
+		}
 		out.print(successCount);
 		out.close();
 	}//sellerjoin
@@ -55,7 +68,25 @@ public class MyPageController {
 	}//seller_regist
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String myPage() {
+	public String myPage(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+		
+		List<OrderDTO> olist = null;
+		olist = service.recentOrder(mem_no);
+		model.addAttribute("recent_order_list", olist);
+		model.addAttribute("order_cnt", olist.size());
+		
+		if (seller_yn.equals("1")) {
+			MemberDTO dto = null;
+			dto = service.getSellerOrderCnt(mem_no);
+			model.addAttribute("seller_order_cnt", dto);
+			List<OrderDTO> slist = null;
+			slist = service.recentSellOrder(mem_no);
+			
+			model.addAttribute("recent_sell_list", slist);
+			model.addAttribute("sell_cnt", slist.size());
+		}
 		
 		return "/mypage/mypage";
 	}
@@ -68,6 +99,22 @@ public class MyPageController {
 		out.print( new Gson().toJson( list ) );
 		out.close();		
 	}
+	
+	@RequestMapping(value = "/memdelete", method = RequestMethod.GET)
+	public void memdelete( MemberDTO dto, HttpSession session, PrintWriter out ) {
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		String seller_yn = ((MemberDTO)session.getAttribute("login_info")).getSeller_yn();
+
+		int deleteYn = 0;
+		if (seller_yn.equals("1")) {
+			deleteYn = service.sellerDelete(dto);
+		}else {
+			deleteYn = service.memDelete(dto);
+		}
+		System.out.println(dto.toString());
+		out.print(deleteYn);
+		out.close();
+	};
 	
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
 	public String myInfo(Model model, HttpSession session) {
@@ -134,5 +181,50 @@ public class MyPageController {
 		System.out.println(dto.toString());
 		out.print(updateYn);
 		out.close();
+	}
+	
+	@RequestMapping(value = "/sale", method = RequestMethod.GET)
+	public String saleList(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
+		
+		List<OrderDTO> list = null; 
+		list = service.saleList(mem_no);
+		model.addAttribute("sale_list", list);
+		model.addAttribute("sale_cnt", list.size());
+		
+		return "/mypage/sale_list";
+	}
+	
+	@RequestMapping(value = "/order", method = RequestMethod.GET)
+	public String orderList(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
+		
+		List<OrderDTO> list = null; 
+		list = service.orderList(mem_no);
+		model.addAttribute("order_list", list);
+		model.addAttribute("order_cnt", list.size());
+		
+		return "/mypage/order_list";
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String orderDetail(String detail_no, Model model) {
+		OrderDTO dto = null;
+		dto = service.orderDetail(detail_no);
+		String seller_no = service.sellerNo(detail_no);
+		
+		model.addAttribute("order_detail", dto);
+		model.addAttribute("seller_no", seller_no);
+		
+		return "mypage/detail";
+	}
+	
+	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
+	public void deliverySelect(PrintWriter out) {
+		List<DeliveryDTO> list = null;
+		list = service.deliverySelect();
+		
+		out.print( new Gson().toJson( list ) );
+		out.close();	
 	}
 }

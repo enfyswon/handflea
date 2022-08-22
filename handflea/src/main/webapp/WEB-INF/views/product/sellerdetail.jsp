@@ -9,84 +9,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	<style type="text/css">
-#prdt-outline {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-}
-#prdt-img {
-	width: 60%;
-	margin: 5px;
-	height: 450px;
-	text-align: center;
-}
-#prdt-img > img {
-	height: 100%;
-}
-#prdt-detail {
-	width: 40%;
-	height: 450px;
-	border: 2px solid #cecece;
-	margin: 10px;
-}
-#prdt-detail > div {
-	margin: 10px 15px;
-}
-#prdt-detail h3 {
-	padding: 5px 0;
-}
-#profile {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-#profile > img {
-	width: 30px;
-	height: 30px;
-	margin: 0;
-}
-#profile > p {
-	margin: 0 5px;
-}
-.prdt-element {
-	display: flex;
-	flex-direction: row;
-	padding-top: 10px;
-}
-.element-label {
-	width: 40%;
-	margin: 0;
-}
-.element-value {
-	width: 60%;
-	margin: 0;
-	display: flex;
-	flex-direction: row;
-}
-.element-value > p {
-	margin: 0;
-}
-.element-value > select {
-	margin: 0;
-}
-.element-value > input {
-	margin: 0;
-}
-#button-box {
-	display: flex;
-	flex-direction: row;
-	padding: 20px 0 ;
-}
-#button-box button {
-	margin: 0;
-}
-#left-button {
-	align-items: flex-start;
-}
-#right-button {
-}
-	</style>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -139,16 +62,17 @@
 							</select>
 						</div>
 					</div>
-					<div>
-						<c:if test="${detail_dto.mem_no == login_info.mem_no}">
-							<div class="text-center">
-								<button id="delete_btn" class="btn btn-danger"> 상 품 삭 제 </button>
-								<a href="${pageContext.request.contextPath}/product/uform?prdt_no=${detail_dto.prdt_no}">
-									<button class="btn btn-primary"> 상 품 수 정 </button>
-								</a>
-							</div>
-							
-						</c:if>
+					<div id="button-box">
+					<c:if test="${detail_dto.mem_no == login_info.mem_no}">
+						<div id="left-button">
+							<button id="delete_btn" class="btn btn-danger"> 상 품 삭 제 </button>
+						</div>
+						<div id="right-button">
+							<a href="${pageContext.request.contextPath}/product/uform?prdt_no=${detail_dto.prdt_no}">
+								<button class="btn btn-primary"> 상 품 수 정 </button>
+							</a>
+						</div>
+					</c:if>
 					</div>
 				</div>
 			</div>		

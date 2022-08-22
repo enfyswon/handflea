@@ -6,7 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.BankDTO;
+import kr.co.handflea.util.dto.DeliveryDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SellerDTO;
 
@@ -59,4 +61,99 @@ public class MyPageDAO {
 		return updateYN;
 	}
 
+	public int sellerDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = sqlSession.delete("MyPageMapper.sellerDelete", dto);
+		return deleteYn;
+	}
+
+	public int memDelete(MemberDTO dto) {
+		int deleteYn = 0;
+		deleteYn = sqlSession.delete("MyPageMapper.memDelete", dto);
+		return deleteYn;
+	}
+
+	public List<OrderDTO> recentOrder(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.recentOrder", mem_no);
+		
+		return list;
+	}
+
+	public List<OrderDTO> recentSellOrder(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.recentSellOrder", mem_no);
+		
+		return list;
+	}
+
+	public List<OrderDTO> saleList(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.saleList", mem_no);
+		
+		return list;
+	}
+
+	public OrderDTO saleDeliveryList(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.saleDeliveryList", detail_no);
+		
+		return dto;
+	}
+
+	public List<OrderDTO> orderList(String mem_no) {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.orderList", mem_no);
+		
+		return list;
+	}
+
+	public OrderDTO orderDeliveryList(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.orderDeliveryList", detail_no);
+		
+		return dto;
+	}
+
+	public String deliveryChk(String detail_no) {
+		String delivery_no = null;
+		delivery_no = sqlSession.selectOne("MyPageMapper.deliveryChk", detail_no);
+		
+		return delivery_no;
+	}
+
+	public OrderDTO orderDetail(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.orderDetail", detail_no);
+		
+		return dto;
+	}
+
+	public OrderDTO orderDeliveryDetial(String detail_no) {
+		OrderDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.orderDeliveryDetial", detail_no);
+		
+		return dto;
+	}
+
+	public String sellerNo(String detail_no) {
+		String seller_no = null;
+		seller_no = sqlSession.selectOne("MyPageMapper.sellerNo", detail_no);
+		
+		return seller_no;
+	}
+
+	public List<DeliveryDTO> deliverySelect() {
+		List<DeliveryDTO> list = null;
+		list = sqlSession.selectList("MyPageMapper.deliverySelect");
+		
+		return list;
+	}
+
+	public MemberDTO getSellerOrderCnt(String mem_no) {
+		MemberDTO dto = null;
+		dto = sqlSession.selectOne("MyPageMapper.getSellerOrderCnt", mem_no);
+		
+		return dto;
+	}
 }

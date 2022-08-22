@@ -20,7 +20,7 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<br>
+		<main>
 		<h3 style="margin-left : 12%;"> 판매 상품 등록 </h3>
 		<br>
 		<form id="write_form">
@@ -119,6 +119,7 @@
 			<button class="btn btn-warning"> 상품 등록 취소 </button>
 		</a>
 		<hr>
+		</main>
 		<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 		<script type="text/javascript">

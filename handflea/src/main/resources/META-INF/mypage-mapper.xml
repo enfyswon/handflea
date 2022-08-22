@@ -21,6 +21,16 @@
 	select bank_no, bank_name from bank;
 	</select>
 	
+	<delete id="sellerDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	delete from m,s using member m right join seller s on m.mem_no = s.mem_no
+	where m.mem_no = #{mem_no}
+	</delete>
+	
+	<delete id="memDelete" parameterType="kr.co.handflea.util.dto.MemberDTO">
+	delete from member
+	where mem_no = #{mem_no}
+	</delete>
+	
 	<select id="sellerInfoSelect" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
 	select m.mem_no, m.mem_email, m.mem_name, m.mem_pwd, m.mem_photo, m.mem_photopath, m.post_code, m.add_1, m.add_2, m.pnum, m.bank_no, m.account_no
 	, s.bank_no seller_bank_no, s.seller_name, s.seller_money, s.seller_account_no, s.seller_add_1, s.seller_add_2, s.post_code seller_post_code
@@ -48,13 +58,13 @@
 	, m.mem_photo = #{mem_photo}
 	, m.mem_photopath = #{mem_photopath}
 	</if>
-    , s.bank_no = #{bank_no}
+    , s.bank_no = #{seller_bank_no}
     , s.seller_name = #{seller_name}
     , s.seller_account_no = #{seller_account_no}
     , s.seller_add_1 = #{seller_add_1}
     , s.seller_add_2 = #{seller_add_2}
-    , s.post_code = #{post_code}
- where m.mem_no = 1					
+    , s.post_code = #{seller_post_code}
+ 	where m.mem_no = #{mem_no}			
 	</update>
 	
 	<update id="infoUpdate" parameterType="kr.co.handflea.util.dto.MemberDTO">
@@ -71,4 +81,129 @@
 					</if>
 	where mem_no = #{mem_no}
 	</update>
+	
+	<select id="recentOrder" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select date_format(om.order_date, '%Y-%m-%d') order_date, od.detail_no, od.prdt_no, 
+		   p.prdt_name, od.pay_amt, od.prdt_con, c.code_name
+	from order_main om, order_detail od, product p, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.prdt_con = c.code_no
+	and om.mem_no = #{mem_no}
+	order by od.detail_no desc
+	limit 5;
+	</select>
+	
+	<select id="recentSellOrder" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select date_format(om.order_date, '%Y-%m-%d') order_date, od.detail_no, od.prdt_no, p.prdt_name, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline, od.prdt_con, c.code_name
+	from order_main om, order_detail od, product p, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.prdt_con = c.code_no
+	and p.mem_no = #{mem_no}
+	order by od.detail_no desc
+	limit 5;
+	</select>
+	
+	<select id="saleList" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, od.prdt_no, p.prdt_name, od.option_no, o.option_contents, od.buy_qty, od.pay_amt, od.prdt_delivery_price, 
+	od.delivery_c_no, od.delivery_no, od.prdt_con, c.code_name, date_format(om.order_date, '%Y-%m-%d') order_date, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline
+	from order_main om, order_detail od, product p, prdt_option o, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+	and p.mem_no = #{mem_no}
+	order by od.detail_no desc
+	</select>
+	
+	<select id="saleDeliveryList" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, od.prdt_no, p.prdt_name, od.option_no, o.option_contents, od.buy_qty, 
+	od.pay_amt, od.prdt_delivery_price, od.delivery_c_no, d.delivery_c_name, od.delivery_no, od.prdt_con,
+    c.code_name, date_format(om.order_date, '%Y-%m-%d') order_date, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline
+	from order_main om, order_detail od, product p, prdt_option o, con_code c, delivery d
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+    and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+    and od.delivery_c_no = d.delivery_c_no
+	and od.detail_no = #{detail_no}
+	</select>
+	
+	<select id="orderList" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, od.prdt_no, p.prdt_name, p.thumbnail_name, p.thumbnail_path, od.option_no, 
+	o.option_contents, od.buy_qty, od.pay_amt, od.prdt_delivery_price, od.delivery_c_no, od.delivery_no, 
+	od.prdt_con, c.code_name, date_format(om.order_date, '%Y-%m-%d') order_date, 
+	date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline
+	from order_main om, order_detail od, product p, prdt_option o, con_code c
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+	and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+	and om.mem_no = #{mem_no}
+	order by od.detail_no desc
+	</select>
+	
+	<select id="orderDeliveryList" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, od.prdt_no, p.prdt_name, p.thumbnail_name, p.thumbnail_path, od.option_no, 
+		o.option_contents, od.buy_qty, od.pay_amt, od.prdt_delivery_price, od.delivery_c_no, d.delivery_c_name, 
+		od.delivery_no, od.prdt_con, c.code_name, date_format(om.order_date, '%Y-%m-%d') order_date, 
+		date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline
+	from order_main om, order_detail od, product p, prdt_option o, con_code c, delivery d
+	where om.order_no = od.order_no
+	and od.prdt_no = p.prdt_no
+    and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+    and od.delivery_c_no = d.delivery_c_no
+	and od.detail_no = #{detail_no}
+	</select>
+	
+	<select id="deliveryChk" parameterType="java.lang.String" resultType="java.lang.String">
+	select delivery_no from order_detail where detail_no = #{detail_no}
+	</select>
+	
+	<select id="orderDetail" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, m.pnum, date_format(om.order_date, '%Y-%m-%d') order_date, m.post_code, m.add_1, m.add_2, m.mem_name,
+	   	p.prdt_name, o.option_contents, od.buy_qty, od.pay_amt, date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline,
+       	od.delivery_c_no, od.delivery_no, od.prdt_con, c.code_name
+	from order_detail od, member m, order_main om, product p, prdt_option o, con_code c
+	where od.detail_no = #{detail_no}
+	and od.order_no = om.order_no
+	and om.mem_no = m.mem_no
+	and od.prdt_no = p.prdt_no
+	and od.option_no = o.option_no
+	and od.prdt_con = c.code_no;
+	</select>
+	
+	<select id="orderDeliveryDetial" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, m.pnum, date_format(om.order_date, '%Y-%m-%d') order_date, m.post_code, m.add_1, m.add_2, m.mem_name,
+	   	p.prdt_name, o.option_contents, od.buy_qty, od.pay_amt, date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline,
+       	od.delivery_c_no, d.delivery_c_name, od.delivery_no, od.prdt_con, c.code_name
+	from order_detail od, member m, order_main om, product p, prdt_option o, con_code c, delivery d
+	where od.detail_no = #{detail_no}
+	and od.order_no = om.order_no
+	and om.mem_no = m.mem_no
+	and od.prdt_no = p.prdt_no
+	and od.option_no = o.option_no
+	and od.prdt_con = c.code_no
+    and od.delivery_c_no = d.delivery_c_no;
+	</select>
+	
+	<select id="sellerNo" parameterType="java.lang.String" resultType="java.lang.String">
+	select p.mem_no from member m, order_detail od, product p
+	where od.prdt_no = p.prdt_no
+	and p.mem_no = m.mem_no
+	and od.detail_no = #{detail_no};
+	</select>
+	
+	<select id="deliverySelect"	resultType="kr.co.handflea.util.dto.DeliveryDTO">
+	select delivery_c_no, delivery_c_name from delivery
+	</select>
+	
+	<select id="getSellerOrderCnt" parameterType="java.lang.String" resultType="kr.co.handflea.util.dto.MemberDTO">
+	select seller_money from seller where mem_no = #{mem_no}
+	</select>
 </mapper>
