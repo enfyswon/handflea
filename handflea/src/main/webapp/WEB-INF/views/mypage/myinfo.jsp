@@ -400,10 +400,10 @@
 					, {
 						mem_no : ${login_info.mem_no}
 					}
-					, function() {
+					, function(data, status) {
 						if( data >= 1 ){
 							alert("회원탈퇴가 완료되었습니다.");
-							location.href="${pageContext.request.contextPath}/mypage/myinfo";
+							location.href="${pageContext.request.contextPath}/logout";
 						} else if( data <= 0 ) {
 							alert("회원탈퇴를 실패 하였습니다.");
 						} else {
