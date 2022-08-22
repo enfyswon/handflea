@@ -6,54 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title> SearchPage </title>
-<style type="text/css">
-#product {
-	width: 100%;
-}
-.product-list {
-	width: 100%;
-	padding: 20px 0;
-}
-.item-box {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	margin: 10px 0;
-	flex-wrap: wrap;
-}
-.item-card {
-	width: 23%;
-	border: 1px solid #cecece;
-	margin-bottom: 30px;
-}
-.item-card > a {
-	color: black;
-}
-.item-card > a > img {
-	width: 100%;
-	height: 450px;
-}
-.item-detail {
-	
-}
-.item-detail > p {
-	font-size: small;
-}
-.item-detail > div {
-	display: flex;
-	flex-direction: row;
-}
-.item-detail > div > img {
-	width: 18px;
-	margin: 0;
-}
-.item-detail > div > p {
-	font-size: small;
-	margin: 0;
-	margin-left: 3px;
-	color: #595959;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
