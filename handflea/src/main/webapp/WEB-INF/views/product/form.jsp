@@ -20,7 +20,7 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<br>
+		<main>
 		<h3 style="margin-left : 12%;"> 판매 상품 등록 </h3>
 		<br>
 		<form id="write_form">
@@ -29,7 +29,7 @@
 					<tr>
 						<th> 상 품 명 (*) </th>
 						<td colspan="3">
-							<input type="text" id="prdt_name" name="prdt_name" maxlength="50"
+							<input type="text" id="prdt_name" name="prdt_name" maxlength="40"
 									class="form-control">
 							<label for="prdt_name" id="prdt_name_label" class="write_label"></label>
 						</td>
@@ -119,6 +119,7 @@
 			<button class="btn btn-warning"> 상품 등록 취소 </button>
 		</a>
 		<hr>
+		</main>
 		<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 		<script type="text/javascript">
@@ -131,7 +132,7 @@
 			for( let i=0; i < tmpArr2.length; i++ ){
 				arr_option2.push( tmpArr2[i].value );
 			}
-/*
+
 			if( $.trim( $("#prdt_name").val() ) == "" ){
 				$("#prdt_name_label").text("상품명을 입력 하세요.");
 				return;
@@ -180,7 +181,7 @@
 				$("#desc_img_label").text("상품이미지는 jpg/jpeg/gif/png 파일만 허용 됩니다.");
 				return;
 			} else { $("#desc_img_label").text(""); }
-*/
+
 			let form = new FormData( document.getElementById( "write_form" ) );
 			form.append( "description", CKEDITOR.instances.desc_txt.getData() );
 			form.append( "arr_option", arr_option2 );
@@ -201,34 +202,12 @@
 				, cache : false
 				, success : function(result) {
 					alert("상품이 등록 되었습니다.");
-					location.href = "${pageContext.request.contextPath}/product/list";
+					location.href = "${pageContext.request.contextPath}/main";
 				}//call back function
 				, error : function(xhr) {
 					alert("잠시 후 다시 시도해 주세요.");
 				}//call back function//xhr : xml http request/response
 		});//ajax	
-/*
-			let tmpArr = $("input[id^='option_no']");
-			for( let i=0; i < tmpArr.length; i++ ){
-				let arr_option = tmpArr[i].value;
-				alert(arr_option);
-				$.ajax({
-					type : "POST"
-					, encType : "multipart/form-data"
-					, url : "${pageContext.request.contextPath}/product/option_insert"
-					, data : form
-					, processData : false
-					, contentType : false
-					, cache : false
-					, success : function(result) {
-						alert("옵션이 등록 되었습니다.");
-					}//call back function
-					, error : function(xhr) {
-						alert("잠시 후 다시 시도해 주세요.");
-					}//call back function//xhr : xml http request/response
-			});//ajax
-		}//for
-*/
 		});//click
 	});//ready
 	</script>

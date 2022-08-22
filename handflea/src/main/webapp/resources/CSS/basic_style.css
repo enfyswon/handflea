@@ -8,11 +8,18 @@
 a {
 	text-decoration: none;
 }
+a :hover {
+	text-decoration: none;	
+}
 ul {
 	z-index: 999;
 }
 li {
 	list-style: none;
+}
+button {
+	outline: 0;
+	border: 0;
 }
 #header {
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
@@ -117,13 +124,11 @@ li {
 #big-menu span {
 	color : black;
 	display: block;
-}
-#big-menu span:hover {
-	color : 0F8BFF;
-}
-#big-menu span {
 	font-size : medium;
 	font-weight: bold;
+}
+#big-menu span:hover {
+	color : #0F8BFF;
 }
 .small-menu {
 	position : absolute;
@@ -160,8 +165,6 @@ main {
 	width: 80%;
 	margin-top : 20px;
 	margin-bottom: 20px;
-	display: flex;
-	flex-direction: row;
 }
 
 #footer {
@@ -170,18 +173,18 @@ main {
 #footer-main {
 	width: 80%;
 	padding-top : 20px;
+	display: flex;
+	flex-direction: row;
 }
 #footer-logo {
-	display: inline-block;
-	float : left;
+	width: 25%;
+	text-align: center;
 }
 #footer-logo>img {
 	width : 200px;
 }
 .footer-cnts {
-	display: inline-block;
-	margin : 0 5% 3% 5%;
-	float : left;
+	width: 35%;
 }
 .footer-cnts>p {
 	font-size: small;
@@ -195,4 +198,18 @@ main {
 	font-weight : bold;
 	color : #0F8BFF;
 	margin-bottom : 8px;
+}
+#admin-big-menu > li {
+	float : left;
+	width : 25%;
+	line-height: 40px;
+}
+#admin-big-menu span {
+	color : black;
+	display: block;
+	font-size : medium;
+	font-weight: bold;
+}
+#admin-big-menu span:hover {
+	color : #0F8BFF;
 }

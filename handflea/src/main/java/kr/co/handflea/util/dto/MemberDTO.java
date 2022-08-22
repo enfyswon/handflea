@@ -1,5 +1,7 @@
 package kr.co.handflea.util.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDTO {
 
 	private String mem_no;
@@ -8,6 +10,9 @@ public class MemberDTO {
 	private String mem_pwd;
 	private String pnum;
 	private String mdate;
+	private String mem_photo;
+	private String mem_photopath;
+	private MultipartFile profile;
 
 	private String tel1;
 	private String tel2;
@@ -16,7 +21,20 @@ public class MemberDTO {
 	private String post_code;
 	private String add_1;
 	private String add_2;
-
+	
+	private String seller_yn;
+	private String bank_no;
+	private String account_no;
+	
+	private String seller_name;
+	private String seller_money;
+	private String seller_add_1;
+	private String seller_add_2;
+	
+	private String seller_account_no;
+	private String seller_bank_no;
+	private String seller_post_code;
+	
 	@Override
 	public String toString() {
 		return mem_no
@@ -81,6 +99,30 @@ public class MemberDTO {
 		this.mdate = mdate;
 	}
 
+	public String getMem_photo() {
+		return mem_photo;
+	}
+
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
+	}
+
+	public String getMem_photopath() {
+		return mem_photopath;
+	}
+
+	public void setMem_photopath(String mem_photopath) {
+		this.mem_photopath = mem_photopath;
+	}
+
+	public MultipartFile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(MultipartFile profile) {
+		this.profile = profile;
+	}
+
 	public String getTel1() {
 		return tel1;
 	}
@@ -128,10 +170,86 @@ public class MemberDTO {
 	public void setAdd_2(String add_2) {
 		this.add_2 = add_2;
 	}
-	
 
-	
+	public String getSeller_yn() {
+		return seller_yn;
+	}
 
-	
+	public void setSeller_yn(String seller_yn) {
+		this.seller_yn = seller_yn;
+	}
 
+	public String getSeller_account_no() {
+		return seller_account_no;
+	}
+
+	public void setSeller_account_no(String seller_account_no) {
+		this.seller_account_no = seller_account_no;
+	}
+
+	public String getBank_no() {
+		return bank_no;
+	}
+
+	public void setBank_no(String bank_no) {
+		this.bank_no = bank_no;
+	}
+
+	public String getAccount_no() {
+		return account_no;
+	}
+
+	public void setAccount_no(String account_no) {
+		this.account_no = account_no;
+	}
+
+	public String getSeller_name() {
+		return seller_name;
+	}
+
+	public void setSeller_name(String seller_name) {
+		this.seller_name = seller_name;
+	}
+
+	public String getSeller_money() {
+		return seller_money;
+	}
+
+	public void setSeller_money(String seller_money) {
+		this.seller_money = seller_money;
+	}
+
+	public String getSeller_add_1() {
+		return seller_add_1;
+	}
+
+	public void setSeller_add_1(String seller_add_1) {
+		this.seller_add_1 = seller_add_1;
+	}
+
+	public String getSeller_add_2() {
+		return seller_add_2;
+	}
+
+	public void setSeller_add_2(String seller_add_2) {
+		this.seller_add_2 = seller_add_2;
+	}
+
+	public String getSeller_bank_no() {
+		return seller_bank_no;
+	}
+
+	public void setSeller_bank_no(String seller_bank_no) {
+		this.seller_bank_no = seller_bank_no;
+	}
+
+	public String getSeller_post_code() {
+		return seller_post_code;
+	}
+
+	public void setSeller_post_code(String seller_post_code) {
+		this.seller_post_code = seller_post_code;
+	}
+	
+	
 }//class

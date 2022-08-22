@@ -31,14 +31,20 @@ public class ProductDTO {
 	private String smallcate_name;
 	
 	private String prdt_rdy;
-	private String delete_yn;
+	private String del_yn;
+	private String del_date;
 	
 	private String basket_no;
 	private String buy_qty;
 	private String total_price;
 	
 	private String [] arr_option;
-
+	private String [] arr_option_no;
+	
+	private int limitNum;
+	
+	private String seller_name;
+	
 	@Override
 	public String toString() {
 		return prdt_no
@@ -276,12 +282,20 @@ public class ProductDTO {
 		this.prdt_rdy = prdt_rdy;
 	}
 
-	public String getDelete_yn() {
-		return delete_yn;
+	public String getDel_yn() {
+		return del_yn;
 	}
 
-	public void setDelete_yn(String delete_yn) {
-		this.delete_yn = delete_yn;
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
+
+	public String getDel_date() {
+		return del_date;
+	}
+
+	public void setDel_date(String del_date) {
+		this.del_date = del_date;
 	}
 
 	public String getBasket_no() {
@@ -314,6 +328,30 @@ public class ProductDTO {
 
 	public void setArr_option(String[] arr_option) {
 		this.arr_option = arr_option;
+	}
+
+	public String[] getArr_option_no() {
+		return arr_option_no;
+	}
+
+	public void setArr_option_no(String[] arr_option_no) {
+		this.arr_option_no = arr_option_no;
+	}
+
+	public int getLimitNum() {
+		return limitNum;
+	}
+
+	public void setLimitNum(int limitNum) {
+		this.limitNum = limitNum;
+	}
+
+	public String getSeller_name() {
+		return seller_name;
+	}
+
+	public void setSeller_name(String seller_name) {
+		this.seller_name = seller_name;
 	}
 	
 }//class

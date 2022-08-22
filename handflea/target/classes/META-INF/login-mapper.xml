@@ -7,7 +7,7 @@
 
 	<select id="login" parameterType="kr.co.handflea.util.dto.MemberDTO"
 						resultType="kr.co.handflea.util.dto.MemberDTO">
-	select mem_no, mem_name, mem_email, pnum
+	select mem_no, mem_name, mem_email, mem_pwd, mem_photo, mem_photopath, seller_yn
 	from member
 	where mem_email = #{mem_email} and mem_pwd = #{mem_pwd}
 	</select>
