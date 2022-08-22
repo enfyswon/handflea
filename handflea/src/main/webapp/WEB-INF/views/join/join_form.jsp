@@ -230,7 +230,7 @@ input[type="checkbox"] {
 
 			$.get(
 					"${pageContext.request.contextPath}/join/id_chk"
-					, { mid : $("#mem_email").val() }
+					, { mem_email : $("#mem_email").val() }
 					, function(data, status) {
 						if(data == 0){
 							$("#mem_email_label").text("사용 가능한 아이디 입니다.");
