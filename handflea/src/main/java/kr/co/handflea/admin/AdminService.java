@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import kr.co.handflea.QnA.QnADTO;
 import kr.co.handflea.util.dto.MemberDTO;
+import kr.co.handflea.util.dto.SearchDTO;
 
 @Service
 public class AdminService {
-   @Autowired
-   AdminDAO dao;
+  
+	@Autowired
+   private AdminDAO dao;
 
    public List<MemberDTO> memberList(String mem_no) {
       List<MemberDTO> list = null;
@@ -35,6 +37,18 @@ public List<QnADTO> readyList(String answer_yn) {
 public List<QnADTO> completeList(String answer_yn) {
 	
 	return null;
+}
+
+public int searchListCount(SearchDTO dto) {
+	int totalCount = 0;
+	totalCount = dao.searchListCount( dto );
+	return totalCount;
+}
+
+public List<QnADTO> searchList(SearchDTO dto) {
+	List<QnADTO> list= null;
+	list = dao.searchList( dto);
+	return list;
 }
 
 }

@@ -35,9 +35,9 @@
 		<hr>
 		<c:if test="${detail_dto.mem_no == login_info.mem_no}">
 			<button id="btn_delete" class="btn btn-danger"> QnA 삭제 </button>
-			<c:if test="${detail_dto.answer_yn == 0}">
-				<button id="btn_update" class="btn btn-primary"> QnA 수정하러 가기 </button>
-			</c:if>
+			<a href="${pageContext.request.contextPath}/QnA/update_form?qna_no=${detail_dto.qna_no}">
+				<button class="btn btn-primary"> QnA 수정하러 가기 </button>
+			</a>
 			<hr>
 		</c:if>
 		
@@ -51,7 +51,6 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#btn_delete").click(function() {
-
 			$.get(
 					"${pageContext.request.contextPath}/QnA/delete"
 					, {
@@ -76,17 +75,3 @@
 	</script>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
