@@ -42,7 +42,7 @@
 				<div id="search-bar">
 					<div id="search">
 						<input type="text" placeholder="검색 키워드" id="searchWord" name="searchWord" value="${search_dto.searchWord}">
-						<button type="submit">검 색</button>
+						<button  type="submit">검 색</button>
 					</div>
 				</div>
 			</form>
