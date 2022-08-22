@@ -53,7 +53,7 @@
 						<p>장바구니</p>
 						<h4>0 건</h4>
 					</div>
-					<c:if test="false">
+					<c:if test="${login_info.seller_yn == 1}">
 					<div class="order-cnts">
 						<p>판매중인 주문</p>
 						<h4>0 건</h4>
