@@ -45,6 +45,9 @@ public class ProductDTO {
 	
 	private String seller_name;
 	
+	private String mem_photopath;
+	private String mem_photo;
+	
 	private int cnt;
 	
 	@Override
@@ -362,6 +365,22 @@ public class ProductDTO {
 
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+
+	public String getMem_photopath() {
+		return mem_photopath;
+	}
+
+	public void setMem_photopath(String mem_photopath) {
+		this.mem_photopath = mem_photopath;
+	}
+
+	public String getMem_photo() {
+		return mem_photo;
+	}
+
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
 	}
 	
 }//class

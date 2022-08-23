@@ -13,6 +13,7 @@ public class ChatDTO {
 	
 	private String other_no;
 	private String other_name;
+	private String mem_photopath;
 	private String mem_no;
 	private int unread;
 	
@@ -101,5 +102,13 @@ public class ChatDTO {
 	}
 	public void setUnread(int unread) {
 		this.unread = unread;
+	}
+
+	public String getMem_photopath() {
+		return mem_photopath;
+	}
+
+	public void setMem_photopath(String mem_photopath) {
+		this.mem_photopath = mem_photopath;
 	}
 }

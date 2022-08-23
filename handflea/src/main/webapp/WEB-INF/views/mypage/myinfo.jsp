@@ -166,7 +166,7 @@
 						<div class="info-contents">
 							<div>
 								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly" value="${myinfo.seller_post_code}">
-								<button type="button" id="seller_add_btn" name="add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
+								<button type="button" id="seller_add_btn" name="seller_add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
 								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly" value="${myinfo.seller_add_1}">
@@ -380,11 +380,7 @@
 			location.href="${pageContext.request.contextPath}/mypage/";
 		}
 	}
-	$(document).ready(function() {
-		$("#seller_add_btn"),click(function() {
-			
-		});//click
-	});//ready
+	
 	function sellerDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {

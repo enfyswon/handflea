@@ -19,8 +19,10 @@ public class ChatDAO {
 			dto.setMem_no(mem_no);
 			int unread = sqlSession.selectOne("ChatMapper.unreadCnt", dto);
 			String other_name = sqlSession.selectOne("ChatMapper.getName", dto);
+			String mem_photopath = sqlSession.selectOne("ChatMapper.getProfilePhoto", dto);
 			dto.setUnread(unread);
 			dto.setOther_name(other_name);
+			dto.setMem_photopath(mem_photopath);
 			
 			if (mem_no.equals(dto.getSend_mem_no())) {
 				dto.setOther_no(dto.getRecv_mem_no());
@@ -73,5 +75,12 @@ public class ChatDAO {
 		String chat_roomno = null;
 		chat_roomno = sqlSession.selectOne("ChatMapper.setRoomNo", dto);
 		return chat_roomno;
+	}
+
+	public String selectPhotopath(String other_no) {
+		String mem_photopath = null;
+		mem_photopath = sqlSession.selectOne("ChatMapper.selectPhotopath", other_no);
+		
+		return mem_photopath;
 	}
 }

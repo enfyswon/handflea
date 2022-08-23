@@ -45,4 +45,11 @@ public class ChatService {
 		
 		return chat_roomno;
 	}
+
+	public String selectPhotopath(String other_no) {
+		String mem_photopath = null;
+		mem_photopath = dao.selectPhotopath(other_no);
+		
+		return mem_photopath;
+	}
 }

@@ -29,7 +29,8 @@
 									<img alt="product_img" src="${dto.thumbnail_path}">
 									<div class="item-detail">
 										<div>
-											<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.seller_name}</p>
+											<img alt="profile" src="${dto.mem_photopath}">
+											<p>${dto.seller_name}</p>
 										</div>
 										<h4>${dto.prdt_name}</h4>
 										<p>${dto.price}원</p>
@@ -47,7 +48,7 @@
 									<img alt="product_img" src="${dto.thumbnail_path}">
 									<div class="item-detail">
 										<div>
-											<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png"> <p>${dto.seller_name}</p>
+											<img alt="profile" src="${dto.mem_photopath}"> <p>${dto.seller_name}</p>
 										</div>
 										<h4>${dto.prdt_name}</h4>
 										<p>${dto.price}원</p>
