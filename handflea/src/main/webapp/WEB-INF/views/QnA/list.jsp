@@ -45,7 +45,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th> QnA번호 </th>	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th>
+					<th> QnA번호 </th>	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th> <th> 답변상태 </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,6 +60,15 @@
 						<td>${dto.mem_name}</td>
 						<td>${dto.view_cnt}</td>
 						<td>${dto.write_date}</td>
+						
+						<c:if test="${dto.answer_yn == 1}">
+						<td>답변 완료</td>
+						</c:if>
+						
+						<c:if test="${dto.answer_yn == 0}">
+						<td>답변 대기</td>
+						</c:if>
+						
 					</tr>
 				</c:forEach>
 			</tbody>
