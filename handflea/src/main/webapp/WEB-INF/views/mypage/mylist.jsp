@@ -49,8 +49,10 @@
 				</tr>
 			</thead>
 			<tbody>
+			
 				<c:forEach var="dto" items="${list}">
-					<tr>
+				<c:if test="${login_info.mem_no == dto.mem_no}"> 
+						<tr>
 						<td>${dto.qna_no}</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/QnA/detail?qna_no=${dto.qna_no}">
@@ -68,7 +70,7 @@
 						<c:if test="${dto.answer_yn == 0}">
 						<td>답변 대기</td>
 						</c:if>
-						
+				</c:if>		
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -26,7 +26,7 @@ public class QnAController {
 	private QnAService service;
 	
 	@RequestMapping(value = "/mylist", method = RequestMethod.GET)
-	public String mylist( Model model, String userWantPage, SearchDTO dto) {
+	public String mylist( Model model, String userWantPage, SearchDTO dto, HttpSession session) {
 		if(userWantPage == null || userWantPage.equals("")) userWantPage = "1";
 		int totalCount = 0, startPageNum = 1,endPageNum = 10, lastPageNum = 1;
 		totalCount = service.searchListCount(dto);
@@ -55,6 +55,8 @@ public class QnAController {
 		model.addAttribute("userWantPage", userWantPage);
 
 		dto.setLimitNum( ( Integer.parseInt(userWantPage) - 1 ) * 10  );
+		
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
 		
 		List<QnADTO> list = null;
 		list = service.searchList(dto);
