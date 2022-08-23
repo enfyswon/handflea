@@ -29,7 +29,12 @@
 			<tbody>
 				<c:forEach var="dto" items="${list}">
 					<tr>
-						<td>${dto.prdt_name}</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+								${dto.prdt_name}
+							</a>
+							<p>${dto.option_contents}</p>
+						</td>
 						<td>
 							${dto.review_contents}
 						</td>
