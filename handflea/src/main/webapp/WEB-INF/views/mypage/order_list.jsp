@@ -98,7 +98,7 @@
 								</c:when>
 								<c:when test="${list.prdt_con == 2}">
 								${list.code_name}<br>
-								<button>후기 작성</button>
+								<button class="review_btn" value="${list.detail_no}">후기 작성</button>
 								</c:when>
 								<c:when test="${list.prdt_con == 3}">
 								결제 완료<br>
@@ -140,6 +140,15 @@
 							}
 						}
 				);
+			}
+		});
+	});
+	$(document).ready(function() {
+		$(".review_btn").click(function() {
+			var review = confirm("후기를 작성하시겠습니까?");
+			var detail_no = $(this).val();
+			if (review) {
+				location.href="${pageContext.request.contextPath}/review/write_form?detail_no=" + detail_no;
 			}
 		});
 	});

@@ -113,6 +113,7 @@
 			<div id="prdt-review">
 				<h4>상품 후기</h4>
 				<div id="review-list">
+				<c:forEach var="dto" items="${reviewlist}">
 					<div class="review-card">
 						<div class="review-top">
 							<div class="review-profile">
@@ -120,21 +121,29 @@
 									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
 								</div>
 								<div class="review-outline">
-									<p class="writer">작성자</p>
-									<p class="write-date">2022-08-22</p>
+									<p class="writer">${dto.mem_name}</p>
+									<p class="write-date">${dto.reg_date}</p>
 								</div>
 							</div>
 							<div class="review-photo">
+								<img alt="review_photo" src="">
 							</div>
 						</div>
 						<div class="review-middle">
-							<p class="review-opt"><span>옵션</span>옵션 이름</p>
+							<c:if test="${dto.option_contents != null && dto.option_contents != '0'}">
+							<p class="review-opt"><span>${dto.option_contents}</span></p>
+							</c:if>
+							<c:if test="${dto.option_contents == null || dto.option_contents == '0'}">
+							<p class="review-opt"><span>옵션없음</span></p>
+							</c:if>
+							
 							<p class="write-star">★★★★★</p>
 						</div>
 						<div class="review-bottom">
-							<p class="review-cnts">리뷰 내용 : 길게 늘어지는 내용일 경우 ...으로 생략 표시 확인용 테스트테스트테스트테스트</p>
+							<p class="review-cnts">${dto.review_contents}</p>
 						</div>
 					</div>
+				</c:forEach>
 					<div class="review-card">
 						
 					</div>

@@ -190,6 +190,12 @@
 }
 .review-photo {
 	width: 30%;
+	max-height: 80%;
+	text-align: center;
+	align-items: center;
+}
+.review-photo img {
+	width: 80%;
 }
 .review-outline {
 	margin: 0;
