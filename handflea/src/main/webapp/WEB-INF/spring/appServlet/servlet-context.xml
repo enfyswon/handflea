@@ -46,6 +46,7 @@
 			<mapping path="/QnA/write_form" />
 			<mapping path="/QnA/update_uform" />
 			<mapping path="/admin/*" />
+			<mapping path="/review/*" />
 			<beans:bean class="kr.co.handflea.login.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>	

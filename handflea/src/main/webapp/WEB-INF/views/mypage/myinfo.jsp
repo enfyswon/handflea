@@ -16,12 +16,9 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<c:if test="${myinfo.mem_photopath != null && myinfo.mem_photopath != '0'}">
-					<img alt="profile_photo" src="${myinfo.mem_photopath}">
-					</c:if>
-					<c:if test="${myinfo.mem_photopath == null || myinfo.mem_photopath == '0'}">
-					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
-					</c:if>
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
 					<p>${myinfo.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${myinfo.mem_email}</p>
 				</div>
