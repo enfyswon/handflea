@@ -40,7 +40,7 @@
 							<c:set var="sum_buy_allamt" value="${sum_buy_allamt + (dto.price * dto.buy_qty) + dto.delivery_price}" />
 							<tr>
 								<td class="basket-chk">
-									<input type="checkbox" class="order_check_box form-control" checked="checked" id="${dto.price}" name="${dto.price}" value="${dto.buy_qty}">
+									<input type="checkbox" class="order_check_box form-control" checked="checked" id="${dto.price}" name="${dto.delivery_price}" value="${dto.buy_qty}">
 									<input type="hidden" id="basket_no${status.index}" name="basket_no${status.index}" value="${dto.basket_no}">
 								</td>
 								<td class="basket-prdt">
@@ -78,28 +78,26 @@
 				</table>
 			</div>
 			<div id="basket-total">
-				<table>
-					<tr>
-						<td rowspan="5"> <h1>전 체 합 계</h1> </td>
-						<th> 총 상 품 수 </th>
-						<td class="text-right"> <span id="span_sum_product_class_qty"> ${sum_product_class_qty}</span> 개 </td>
-					</tr>
-					<tr>
-						<th> 총 구 매 금 액 </th>
-						<td class="text-right"> <span id="span_sum_buy_amt"> ${sum_buy_amt}</span> 원 </td>
-					</tr>
-					<tr>
-						<th> 배 송 비 </th>
-						<td class="text-right"> <span id="span_sum_delivery_amt"> ${sum_delivery_amt} </span> 원 </td>
-					</tr>
-					<tr>
-						<th> <h1>총 주 문 금 액</h1> </th>
-						<td class="text-right text-danger"> <h1><span id="span_sum_total_buy_allamt"> ${sum_buy_allamt}</span> 원</h1> </td>
-					</tr>
-				</table>
-			</div>
-			<div class="text-center">
-				<button id="order_btn" class="btn btn-danger btn-large"> 주 문 하 기 </button>
+				<div id="chk-sum">
+					<div>
+						<p>선택 상품 금액</p>
+						<span id="span_sum_buy_amt"> ${sum_buy_amt}</span> 원 
+					</div>
+					<div>
+						<img alt="+" src="${pageContext.request.contextPath}/resources/img/plus.png">
+					</div>
+					<div>
+						<p>배송비</p>
+						<span id="span_sum_delivery_amt"> ${sum_delivery_amt} </span> 원
+					</div>
+				</div>
+				<div id="total-sum">
+					<p>총 주문 금액</p>
+					<span id="span_sum_total_buy_allamt"> ${sum_buy_allamt}</span> 원
+				</div>
+				<div id="basket-order">
+					<button id="order_btn" class="btn btn-danger btn-large"> 주문하기 </button>
+				</div>
 			</div>
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
@@ -184,26 +182,26 @@
 			//alert($(this).val() + " : " + $(this).attr("name") + " : " + $(this).attr("id"));
 
 			if( $(this).prop("checked") == true ) {
-				$("#span_sum_product_class_qty").text(
-					parseInt($("#span_sum_product_class_qty").text()) + 1
+				$("#span_sum_delivery_amt").text(
+					parseInt($("#span_sum_delivery_amt").text()) + parseInt($(this).attr("name"))
 				);
 				$("#span_sum_buy_amt").text(
 						parseInt($("#span_sum_buy_amt").text()) + ( $(this).attr("id")  * $(this).val() )
 				);
-				$("#span_sum_total_buy_amt").text(
-						parseInt($("#span_sum_total_buy_amt").text())
-						+ ( $(this).attr("name") * $(this).val() )
+				$("#span_sum_total_buy_allamt").text(
+						parseInt($("#span_sum_total_buy_allamt").text())
+						+ parseInt( parseInt($(this).attr("name")) + ($(this).attr("id") * $(this).val()))
 				);
 			} else if( $(this).prop("checked") == false ) {
-				$("#span_sum_product_class_qty").text(
-						$("#span_sum_product_class_qty").text() - 1
+				$("#span_sum_delivery_amt").text(
+						parseInt($("#span_sum_delivery_amt").text()) - parseInt($(this).attr("name"))
 				);
 				$("#span_sum_buy_amt").text(
 						$("#span_sum_buy_amt").text() - ( $(this).attr("id")  * $(this).val() )
 				);
-				$("#span_sum_total_buy_amt").text(
-						$("#span_sum_total_buy_amt").text()
-						- ( $(this).attr("name") * $(this).val() )
+				$("#span_sum_total_buy_allamt").text(
+						parseInt($("#span_sum_total_buy_allamt").text())
+						- parseInt( parseInt($(this).attr("name")) + ($(this).attr("id") * $(this).val()))
 				);
 			}//if
 
