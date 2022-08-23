@@ -22,7 +22,7 @@
 				<div id="menu-box">
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
-						<a href="#">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
 						<a href="#">Q&A 문의 내역</a>
@@ -30,11 +30,11 @@
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
-						<c:if test="false">
+						<c:if test="${login_info.seller_yn == 1}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
-						<a href="#">판매 내역</a>
-						<a href="#">정산</a>
+						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/adjust">정산</a>
 						</c:if>
 					</div>
 				</div>
@@ -149,8 +149,8 @@
 					}
 					, function(data, status) {
 						if(data == 1){
-							alert("판매자 등록에 성공 하셨습니다.");
-							location.href="${pageContext.request.contextPath}/main";
+							alert("판매자 등록에 성공 하였습니다");
+							location.href="${pageContext.request.contextPath}/mypage/";
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}
@@ -198,6 +198,16 @@
 		}).open();
 	}
 	</script>
-	
+	<script>
+	function pwd_ch() {
+		var userinput = prompt("비밀번호를 입력해주세요.");
+		if ("${login_info.mem_pwd}" == userinput) {
+			location.href="${pageContext.request.contextPath}/mypage/myinfo";
+		} else {
+			alert("비밀번호가 틀렸습니다.");
+			location.href="${pageContext.request.contextPath}/mypage/";
+		}
+	}
+	</script>
 	</body>
 </html>

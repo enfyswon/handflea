@@ -95,6 +95,48 @@ main {
 .list-box td {
 	padding: 5px 0;
 }
+.rorder-date {
+	width: 15%;
+}
+.rorder-no {
+	width: 10%;
+}
+.rorder-prdt {
+	width: 40%;
+}
+.rorder-prdt > a {
+	color: black;
+}
+.rorder-prdt > a :hover {
+	color: #0F8BFF;
+}
+.rorder-amt {
+	width: 20%;
+}
+.rorder-con {
+	width: 15%;
+}
+.sell-no {
+	width: 10%;
+}
+.sell-prdt {
+	width: 45%;
+}
+.sell-prdt > a {
+	color: black;
+}
+.sell-prdt > a :hover {
+	color: #0F8BFF;
+}
+.sell-date {
+	width: 15%;
+}
+.sell-deadline {
+	width: 15%;
+}
+.sell-con {
+	width: 15%;
+}
 #regist-box {
 	background-color: #f4f4f4;
 	border: 1px solid #cecece;
@@ -154,4 +196,223 @@ main {
 }
 #regist_btn {
 	font-size: medium;
+}
+.info {
+	margin-bottom: 2%;
+}
+.info-title {
+	display: inline-flex;
+	flex-direction: row;
+}
+.info-title > h2 {
+	margin-right: 7px;
+}
+.type {
+	color: #0F8BFF;
+}
+.info-line {
+	display: flex;
+	flex-direction: row;
+	border-top: 1px solid #595959;
+	padding: 10px 0 ;
+}
+.info-label {
+	width: 20%;
+	text-align: center;
+	display: flex;
+	align-items: center;
+}
+#info-guide {
+	font-size: small;
+	margin-left: 10%;
+}
+.info-contents {
+	width: 80%;
+}
+.info-contents > img {
+	width: 100px;
+}
+.info-contents input {
+	margin-top: 5px;
+	padding: 5px;
+}
+#mem_pwd {
+	display: block;
+	margin: 0;
+}
+.info-contents label {
+	font-size: small;
+	color: red;
+}
+#add_btn {
+	background-color: #0F8BFF;
+	color: white;
+	outline: 0;
+	border: 0;
+	width: 100px;
+	height: 30px;
+	border-radius: 4px;
+}
+#button-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+#button-box button {
+	margin: 0;
+	padding: 5px;
+	width: 100px;
+	border-radius: 4px;
+}
+#quit_btn {
+	background-color: #f4f4f4;
+}
+#save_btn {
+	background-color: #333333;
+	color: white;
+}
+.sale-list {
+	height: 60px;
+}
+.sale-no {
+	width: 10%;
+}
+.sale-prdt {
+	width: 30%;
+}
+.sale-prdt a {
+	color: black;
+}
+.sale-prdt a :hover {
+	color: #0F8BFF;
+}
+.sale-opt-qty {
+	width: 15%;
+}
+.sale-delivery {
+	width: 20%;
+}
+.sale-delivery-con {
+	width: 15%;
+}
+.sale-refund {
+	width: 10%;
+}
+.order-list {
+	height: 70px;
+}
+.order-no {
+	width: 10%;
+}
+.order-prdt {
+	width: 35%;
+}
+.order-prdt-box {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.order-prdt-img {
+	width: 25%;
+}
+.order-prdt-img img {
+	width: 50px;
+	height: 70px;
+	object-fit: cover;
+}
+.order-prdt-outline {
+	width: 85%;
+	align-items: center;
+	text-align: left;
+}
+.order-prdt-outline a {
+	color: black;
+}
+.order-prdt-outline a :hover {
+	color: #0F8BFF;
+}
+.order-opt-qty {
+	display: flex;
+	flex-direction: row;
+}
+.order-opt-qty p {
+	margin: 0;
+	font-size: small;
+}
+.order-opt-qty span {
+	background-color: #808080;
+	color: white;
+}
+.order-date {
+	width: 10%;
+}
+.order-amt {
+	width: 15%;
+}
+.order-delivery {
+	width: 15%;
+}
+.order-con {
+	width: 15%;
+}
+#delivery-input {
+	display: flex;
+	flex-direction: row;
+}
+#withdraw-info {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	margin: 20px auto;
+	align-items: center;
+}
+#withdraw-account {
+	width: 40%;
+}
+#withdraw-money {
+	width: 60%;
+	margin: 0;
+	text-align: right;
+}
+#withdraw-money > input {
+	width : 60%;
+	line-heigth : 30px;
+	padding : 5.5px;
+	margin : 0;
+	font-size: medium;
+}
+#withdraw-money > button {
+	text-align : center;
+	text-decoration : none;
+	font-size : medium;
+	width : 10%;
+	height : 35px;
+	background-color: #0F8BFF;
+	color : white;
+	border : 0;
+	outline : 0;
+	border-radius: 4px;
+}
+.adjust-box {
+	width: 95%;
+	margin-top: 20px;
+}
+.adjust-detail {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1px solid #cecece;
+}
+.adjust-prdt {
+	width: 60%;
+	text-align: left;
+	margin: 0;
+}
+.adjust-money {
+	width: 40%;
+	text-align: right;
+	margin: 0;
 }

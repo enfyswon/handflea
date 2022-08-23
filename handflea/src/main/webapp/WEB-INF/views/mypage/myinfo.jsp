@@ -8,83 +8,6 @@
 		<title>HandFlea</title>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
-<style type="text/css">
-.info {
-	margin-bottom: 2%;
-}
-.info-title {
-	display: inline-flex;
-	flex-direction: row;
-}
-.info-title > h2 {
-	margin-right: 7px;
-}
-.type {
-	color: #0F8BFF;
-}
-.info-line {
-	display: flex;
-	flex-direction: row;
-	border-top: 1px solid #595959;
-	padding: 10px 0 ;
-}
-.info-label {
-	width: 20%;
-	text-align: center;
-	display: flex;
-	align-items: center;
-}
-#info-guide {
-	font-size: small;
-	margin-left: 10%;
-}
-.info-contents {
-	width: 80%;
-}
-.info-contents > img {
-	width: 100px;
-}
-.info-contents input {
-	margin-top: 5px;
-	padding: 5px;
-}
-#mem_pwd {
-	display: block;
-	margin: 0;
-}
-.info-contents label {
-	font-size: small;
-	color: red;
-}
-#add_btn {
-	background-color: #0F8BFF;
-	color: white;
-	outline: 0;
-	border: 0;
-	width: 100px;
-	height: 30px;
-	border-radius: 4px;
-}
-#button-box {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-#button-box button {
-	margin: 0;
-	padding: 5px;
-	width: 100px;
-	border-radius: 4px;
-}
-#quit_btn {
-	background-color: #f4f4f4;
-}
-#save_btn {
-	background-color: #333333;
-	color: white;
-}
-</style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -93,14 +16,15 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+					<!-- ${pageContext.request.contextPath}/resources/img/user.png -->
+					<img alt="profile_photo" src="${myinfo.mem_photopath}">
 					<p>${myinfo.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${myinfo.mem_email}</p>
 				</div>
 				<div id="menu-box">
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
-						<a href="#">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
 						<a href="#">Q&A 문의 내역</a>
@@ -108,11 +32,11 @@
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
-						<c:if test="false">
+						<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
-						<a href="#">판매 내역</a>
-						<a href="#">정산</a>
+						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
+						<a href=${pageContext.request.contextPath}/mypage/adjust>정산</a>
 						</c:if>
 					</div>
 				</div>
@@ -130,7 +54,7 @@
 									<p>프로필 사진</p>
 								</div>
 								<div class="info-contents">
-									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
+									<img alt="profile" src="${myinfo.mem_photopath}">
 									<input type="file" id="profile" name="profile">
 									<p>사진은 회원님의 게시물이나 리뷰 등에 사용됩니다.</p>
 								</div>
@@ -148,8 +72,8 @@
 									<label for="mem_pwd">비밀번호</label>
 								</div>
 								<div class="info-contents">
-									<input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호">
-									<input type="password" id="repwd" name="repwd" placeholder="비밀번호 확인">
+									<input type="password" id="mem_pwd" name="mem_pwd"  value="${myinfo.mem_pwd}">
+									<input type="password" id="repwd" name="repwd"  value="${myinfo.mem_pwd}">
 									<label for="mem_pwd" id="mem_pwd_label"></label>
 								</div>
 							</div>
@@ -185,7 +109,7 @@
 									<label for="pnum">휴대폰 번호</label>
 								</div>
 								<div class="info-contents">
-									<input type="text" id="pnum" name="pnum" value="${myinfo.pnum}" placeholder="휴대폰 번호 '-'없이 입력">
+									<input type="text" id="pnum" name="pnum" value="${myinfo.pnum}">
 									<label id="pnum_label" for="pnum"></label>
 								</div>
 							</div>
@@ -204,8 +128,8 @@
 								<p>환불 계좌</p>
 							</div>
 							<div class="info-contents">
-								<input id="bank_no" value="${myinfo.bank_no}" hidden="hidden">
-								<select id="bank" name="bank">
+								<input id="bank" value="${myinfo.bank_no}" hidden="hidden">
+								<select id="bank_no" name="bank_no">
 									<option value="0">--은행 선택--</option>
 								</select>
 								<input type="text" id="account_no" name="account_no" placeholder="계좌 번호" value="${myinfo.account_no}">
@@ -213,25 +137,35 @@
 							</div>
 						</div>
 					</div>
-				</form>
-				<c:if test="${login_info.seller_yn}">
+				
+			<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 				<div class="info">
 					<h2>판매자 정보</h2>
+					<div class="info-line">
+						<div class="info-label">
+							<p>마켓명</p>
+						</div>
+						<div class="info-contents">
+							<input type="text" id="seller_name" name="seller_name" maxlength="20" value="${myinfo.seller_name}">
+							<label id="seller_name_label" for="seller_name"></label>
+						</div>
+					</div>
 					<div class="info-line">
 						<div class="info-label">
 							<p>발송지</p>
 						</div>
 						<div class="info-contents">
 							<div>
-								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly">
-								<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
+								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly" value="${myinfo.seller_post_code}">
+								<button type="button" id="seller_add_btn" name="add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
-								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly">
+								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly" value="${myinfo.seller_add_1}">
 							</div>
 							<div>
-								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소">
+								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소" value="${myinfo.seller_add_2}">
 								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="참고항목" readonly="readonly">
+								<label id="seller_add_label" for="seller_add_2"></label>
 							</div>
 						</div>
 					</div>
@@ -240,14 +174,17 @@
 							<p>인출계좌</p>
 						</div>
 						<div class="info-contents">
-							<select id="bank2" name="bank">
+							<input id="bank2" value="${myinfo.seller_bank_no}" hidden="hidden">
+							<select id="seller_bank_no" name="seller_bank_no">
 								<option value="0">--은행 선택--</option>
 							</select>
-							<input type="text" id="account_no" name="account_no" placeholder="계좌 번호">
+							<input type="text" id="seller_account_no" name="seller_account_no" placeholder="계좌 번호" value="${myinfo.seller_account_no}">
+							<label id="seller_account_no_label" for="seller_account_no"></label>
 						</div>
 					</div>
 				</div>
-				</c:if>
+		</c:if>	
+			</form>
 				<div id="button-box">
 					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
 					<button type="button" id="save_btn" name="save_btn">저장</button>
@@ -266,32 +203,33 @@
 			$("#add_2").val(add2);
 			$("#add_3").val(extraaddr);
 		}
-		let tmppnum = $("#pnum").val();
-		var tel = tmppnum.split('-');
-		let pnum = tel[0] + tel[1] + tel[2];
-		$("#pnum").val(pnum);
-		
-		if($("#bank_no").val() != 0) {
-			$("#bank").val($("#bank_no").val()).prop("selected", true);
-		}
+		 
 	});
 	$(document).ready(function() {
 		$.get(
 				"${pageContext.request.contextPath}/mypage/bank",
 				function(data, status) {
 					$.each(JSON.parse(data), function(idx, dto) {
-						$("#bank").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
-					})
-				}
+						$("#bank_no").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+					});
+					if($("#bank").val() != 0) {
+						$("#bank_no").val($("#bank").val()).prop("selected", true);
+					}
+				}//callback function
 		);
+		
 	});
+
 	$(document).ready(function() {
 		$.get(
 				"${pageContext.request.contextPath}/mypage/bank",
 				function(data, status) {
 					$.each(JSON.parse(data), function(idx, dto) {
-						$("#bank2").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
+						$("#seller_bank_no").append("<option value='" + dto.bank_no + "'>" + dto.bank_name + "</option>");
 					})
+					if($("#bank2").val() != 0) {
+						$("#seller_bank_no").val($("#bank2").val()).prop("selected", true);
+					}
 				}
 		);
 	});
@@ -313,6 +251,16 @@
 				pwd = $("#mem_pwd").val();
 			} else { $("#mem_pwd_label").text(""); }
 			
+			if( $("#seller_name").val() == "") {
+				$("#seller_name_label").text("마켓명을 입력해주세요.");
+				return;
+			} else { $("#seller_name_label").text(""); }
+			
+			if( $("#seller_account_no").val() == "") {
+				$("#seller_account_no_label").text("계좌번호를 입력해주세요.");
+				return;
+			} else { $("#seller_account_no_label").text(""); }
+			
 			if( $("#add_2").val() == "") {
 				$("#add_label").text("상세주소를 입력해주세요.");
 				return;
@@ -321,6 +269,16 @@
 			let add2 = $("#add_2").val();
 			if ($("#add_3").val() != "") {
 				add2 = add2 + " " + $("#add_3").val();
+			}
+			
+			if( $("#seller_add_2").val() == "") {
+				$("#seller_add_label").text("상세주소를 입력해주세요.");
+				return;
+			} else { $("#seller_add_label").text(""); }
+
+			let seller_add2 = $("#seller_add_2").val();
+			if ($("#seller_add_3").val() != "") {
+				seller_add2 = seller_add2 + " " + $("#seller_add_3").val();
 			}
 			
 			let pnum = $.trim($("#pnum").val());
@@ -335,9 +293,6 @@
 				return;
 			} else { $("#pnum_label").text(""); }
 			
-			let tmptel1 = pnum.substring(0, 3);
-			let tmptel2 = pnum.substring(3, 7);
-			let tmptel3 = pnum.substring(7, 11);
 			
 			let account = $.trim($("#account_no").val());
 			
@@ -346,15 +301,15 @@
 				return;
 			} else { $("#account_no_label").text(''); }
 			
-			let form = new FormData();
-			form.set("profile", $("#profile").val());
-			form.set("mem_pwd", pwd);
-			form.set("post_code", $("#post_code").val());
-			form.set("add_1", $("#add_1").val());
-			form.set("add_2", add2);
-			form.set("pnum", tmptel1 + "-" + tmptel2 + "-" + tmptel3);
-			form.set("bank_no", $("#bank").val());
-			form.set("account_no", account);
+			
+			let seller_account = $.trim($("#seller_account_no").val());
+			
+			if (seller_account != "" && seller_account.match(onlyNum) == null) {
+				$("#seller_account_no_label").text("숫자만 허용됩니다.");
+				return;
+			} else { $("#seller_account_no_label").text(''); }
+			
+			let form = new FormData( document.getElementById( "user_info" ) );
 			
 			let keys = form.keys();
 			for(key of keys) console.log(key);
@@ -363,14 +318,14 @@
 			for(value of values) console.log(value);
 			
 			$.ajax({
-				type : "POST", 
-				encType : "multipart/form-data", 
-				url : "${pageContext.request.contextPath}/mypage/info_update", 
-				data : form, 
-				processData : false, 
-				contentType : false, 
-				cache : false, 
-				success : function(result) {
+				type : "POST" 
+				, encType : "multipart/form-data" 
+				, url : "${pageContext.request.contextPath}/mypage/info_update" 
+				, data : form 
+				, processData : false
+				, contentType : false 
+				, cache : false 
+				, success : function(result) {
 					alert("회원 정보가 수정되었습니다.");
 					location.href = "${pageContext.request.contextPath}/mypage/myinfo";
 				}, 
@@ -378,8 +333,33 @@
 					alert("잠시 후 다시 시도해주세요.");
 				}
 			});
-		});
-	});
+			
+		});//click
+	});//ready
+	
+	$(document).ready(function() {
+		$("#quit_btn").click(function() {
+			
+			$.get(
+					"${pageContext.request.contextPath}/mypage/memdelete"
+					, {
+						mem_no : ${login_info.mem_no}
+					}
+					, function(data, status) {
+						if( data >= 1 ){
+							alert("회원탈퇴가 완료되었습니다.");
+							location.href="${pageContext.request.contextPath}/logout";
+						} else if( data <= 0 ) {
+							alert("회원탈퇴를 실패 하였습니다.");
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}
+			)
+			
+		});//click
+	});//ready
+	
 	</script>
 	<script>
 	function pwd_ch() {
@@ -391,7 +371,12 @@
 			location.href="${pageContext.request.contextPath}/mypage/";
 		}
 	}
-	function DaumPostcode() {
+	$(document).ready(function() {
+		$("#seller_add_btn"),click(function() {
+			
+		});//click
+	});//ready
+	function sellerDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
 				let addr = '';
@@ -424,6 +409,43 @@
 				document.getElementById("seller_post_code").value = data.zonecode;
 				document.getElementById("seller_add_1").value = addr;
 				document.getElementById("seller_add_2").focus();
+			}
+		}).open();
+	}
+	
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				let addr = '';
+				let extraAddr = '';
+				
+				if(data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
+				
+				if(data.userSelectedType === 'R') {
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					
+					if(data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== ''?', ' + data.buildingName : data.buildingName);
+					}
+					
+					if(extraAddr !== '') {
+						extraAddr = '(' + extraAddr + ')';
+					}
+					
+					document.getElementById("add_3").value = extraAddr;
+				} else {
+					document.getElementById("add_3").value = '';
+				}
+				
+				document.getElementById("post_code").value = data.zonecode;
+				document.getElementById("add_1").value = addr;
+				document.getElementById("add_2").focus();
 			}
 		}).open();
 	}

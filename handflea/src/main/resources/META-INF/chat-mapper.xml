@@ -61,7 +61,7 @@
 	or (send_mem_no = #{recv_mem_no} and recv_mem_no = #{send_mem_no})
 	</select>
 
-	<select id="maxRoomno" resultType="Int">
+	<select id="maxRoomno" resultType="java.lang.String">
 	select max(chat_roomno) from chat
 	</select>
 	

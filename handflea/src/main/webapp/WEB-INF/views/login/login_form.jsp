@@ -31,6 +31,7 @@
 			<div class="mem-input">
 				<a href="#" id="mem_search">아이디/비밀번호 찾기</a>
 			</div>
+			
 		</main>
 		
 	<script type="text/javascript">

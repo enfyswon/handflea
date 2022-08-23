@@ -6,6 +6,7 @@
 	<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
 	<h5>${other_name}</h5>
 </div>
+<div id="chat-history-box">
 <c:forEach var="tmp" items="${chat_detail}">
 	<c:choose>
 		<c:when test="${login_info.mem_no ne tmp.send_mem_no}">
@@ -26,3 +27,4 @@
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
+</div>
