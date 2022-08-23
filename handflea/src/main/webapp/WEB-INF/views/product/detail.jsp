@@ -130,7 +130,7 @@
 							<div class="review-photo">
 								<a href="${dto.review_photopath}" data-lightbox="image">
 									<img alt="review_photo" src="${dto.review_photopath}">
-								</a>	
+								</a>
 							</div>
 						</div>
 						<div class="review-middle">
@@ -241,8 +241,8 @@
             'wrapAround' : false,
             'disableScrolling' : false,
             'fitImagesInViewport' :false,
-            'maxWidth' : 700,
-            'maxHeight' : 700,
+            'maxWidth' : 600,
+            'maxHeight' : 600,
         })		
 	});//ready
 	</script>
