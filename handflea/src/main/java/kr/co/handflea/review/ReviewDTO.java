@@ -1,25 +1,50 @@
 package kr.co.handflea.review;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReviewDTO {
 	private String review_no;
+	private String detail_no;
 	private String mem_no;
-	private String order_no;
+	private String prdt_no;
 	private String option_no;
 	private String review_contents;
-	private String review_photo;
+	private MultipartFile review_photo;
+	private String review_photoname;
 	private String review_photopath;
 	private String star_point;
 	private String reg_date;
+	private String mem_name;
+	private String option_contents;
 	
 	public String toString() {
-		return review_no + " : " + review_photo  + " : " + review_contents + " : " + mem_no;
+		return review_no
+				+ " : " + detail_no  
+				+ " : " + mem_no
+				+ " : " + review_contents
+				+ " : " + prdt_no
+				+ " : " + option_no
+				+ " : " + review_contents
+				+ " : " + review_photoname
+				+ " : " + review_photopath
+				+ " : " + star_point
+				+ " : " + reg_date;
 	}
 
 	public String getReview_no() {
 		return review_no;
 	}
+
 	public void setReview_no(String review_no) {
 		this.review_no = review_no;
+	}
+
+	public String getDetail_no() {
+		return detail_no;
+	}
+
+	public void setDetail_no(String detail_no) {
+		this.detail_no = detail_no;
 	}
 
 	public String getMem_no() {
@@ -30,12 +55,12 @@ public class ReviewDTO {
 		this.mem_no = mem_no;
 	}
 
-	public String getOrder_no() {
-		return order_no;
+	public String getPrdt_no() {
+		return prdt_no;
 	}
 
-	public void setOrder_no(String order_no) {
-		this.order_no = order_no;
+	public void setPrdt_no(String prdt_no) {
+		this.prdt_no = prdt_no;
 	}
 
 	public String getOption_no() {
@@ -54,12 +79,20 @@ public class ReviewDTO {
 		this.review_contents = review_contents;
 	}
 
-	public String getReview_photo() {
+	public MultipartFile getReview_photo() {
 		return review_photo;
 	}
 
-	public void setReview_photo(String review_photo) {
+	public void setReview_photo(MultipartFile review_photo) {
 		this.review_photo = review_photo;
+	}
+
+	public String getReview_photoname() {
+		return review_photoname;
+	}
+
+	public void setReview_photoname(String review_photoname) {
+		this.review_photoname = review_photoname;
 	}
 
 	public String getReview_photopath() {
@@ -85,5 +118,23 @@ public class ReviewDTO {
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
+
+	public String getMem_name() {
+		return mem_name;
+	}
+
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+
+	public String getOption_contents() {
+		return option_contents;
+	}
+
+	public void setOption_contents(String option_contents) {
+		this.option_contents = option_contents;
+	}
+
+	
 	
 }

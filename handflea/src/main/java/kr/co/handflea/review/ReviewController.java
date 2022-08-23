@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 	
 @Controller
@@ -26,6 +27,18 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 
+	@RequestMapping(value = "/order", method = RequestMethod.GET)
+	public String orderList(HttpSession session, Model model) {
+		String mem_no = ((MemberDTO) session.getAttribute("login_info")).getMem_no();
+		
+		List<OrderDTO> list = null; 
+		list = service.getList(mem_no);
+		model.addAttribute(review_list", list);
+		model.addAttribute("order_cnt", list.size());
+		
+		return "/mypage/order_list";
+	}
+	
 	@RequestMapping(value = "/mylist", method = RequestMethod.GET)
 	public String mylist() {
 		return "/review/review_mylist";
@@ -53,7 +66,6 @@ public class ReviewController {
 	public void write( ReviewDTO dto, HttpSession session, PrintWriter out ) {
 		String mem_no = ((MemberDTO)session.getAttribute("login_info")).getMem_no();
 		dto.setMem_no(mem_no);
-		dto.setOrder_no("1");
 		int successCount = 0;
 		successCount = service.write(dto);
 		out.print(successCount);

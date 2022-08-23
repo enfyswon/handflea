@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.handflea.order.OrderDTO;
  
 @Service
 public class ReviewService {
@@ -38,7 +40,6 @@ public class ReviewService {
 		list = dao.getList(startNum);
 		return list;
 	}
-
 
 	
 }

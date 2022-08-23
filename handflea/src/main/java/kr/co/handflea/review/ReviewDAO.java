@@ -37,5 +37,11 @@ public class ReviewDAO {
 		System.out.println(list);
 		return list;
 	}
+
+	public List<ReviewDTO> reviewList(String prdt_no) {
+		List<ReviewDTO> list = null;
+		list = sqlSession.selectList("ReviewMapper.reviewList", prdt_no);		
+		return list;
+	}
 	
 }

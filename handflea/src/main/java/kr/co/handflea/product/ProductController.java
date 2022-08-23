@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.co.handflea.product.ProductDTO;
+import kr.co.handflea.review.ReviewDTO;
+import kr.co.handflea.review.ReviewService;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
 
@@ -38,6 +40,9 @@ public class ProductController {
 	
 	@Autowired             
 	private ProductService service;
+	
+	@Autowired
+	private ReviewService rsevice;
 	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update( ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
@@ -230,6 +235,11 @@ public class ProductController {
 		ProductDTO dto = null;
 		dto = service.detail( prdt_no );
 		model.addAttribute("detail_dto", dto);
+		
+		List<ReviewDTO> list = null;
+		list = rsevice.reviewList(prdt_no);
+		model.addAttribute("reviewlist", list);
+		
 		return "/product/detail";//jsp file name
 	}//detail
 	
@@ -392,44 +402,3 @@ public class ProductController {
 	}//bigcateSelect
 	
 }//class
-
-/*
-drop table product;
-
-CREATE TABLE `product` (
-  `prdt_no` int NOT NULL AUTO_INCREMENT,
-  `prdt_name` varchar(60) NOT NULL,
-  `mem_no` int NOT NULL,
-  `price` int NOT NULL,
-  `delivery_price` int NOT NULL,
-  `description` varchar(1500) DEFAULT NULL,
-  `view_cnt` int DEFAULT '0',
-  `reg_date` datetime DEFAULT NULL,
-  `del_yn` int DEFAULT '0',
-  `del_date` datetime DEFAULT NULL,
-  `thumbnail_name` varchar(100) NOT NULL,
-  `thumbnail_path` varchar(100) NOT NULL,
-  `prdt_img_name` varchar(100) DEFAULT NULL,
-  `prdt_img_path` varchar(100) DEFAULT NULL,
-  `desc_img_name` varchar(100) DEFAULT NULL,
-  `desc_img_path` varchar(100) DEFAULT NULL,
-  `prdt_rdy` int DEFAULT '0',
-  `option_yn` int DEFAULT '0',
-  `bigcate_no` int NOT NULL,
-  `smallcate_no` int NOT NULL,
-  PRIMARY KEY (`prdt_no`)
-);
-
-
-drop table option;
-
-CREATE TABLE `prdt_option` (
-  `option_no` int NOT NULL AUTO_INCREMENT,
-  `prdt_no` int NOT NULL,
-  `option_contents` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`option_no`)
-);
-
-강사님꺼에서 뺸거 : 파일 업로드, 디스카운트, 재고
-추가해야 할 것 : 옵션, 품절여부, 카테고리, 상품준비기간
-*/
