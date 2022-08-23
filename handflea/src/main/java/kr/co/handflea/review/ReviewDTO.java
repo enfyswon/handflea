@@ -17,6 +17,7 @@ public class ReviewDTO {
 	private String mem_name;
 	private String option_contents;
 	private String mem_photopath;
+	private String prdt_name;
 	
 	public String toString() {
 		return review_no
@@ -144,6 +145,12 @@ public class ReviewDTO {
 		this.mem_photopath = mem_photopath;
 	}
 
-	
-	
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
+	}
+
 }

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.handflea.util.dto.SearchDTO;
  
 @Service
 public class ReviewService {
@@ -44,7 +46,17 @@ public class ReviewService {
 		list = dao.reviewList(prdt_no);
 		return list;
 	}
+	public List<ReviewDTO> mylist(SearchDTO dto) {
+	      List<ReviewDTO> list= null;
+	      list = dao.searchList( dto);
+	      return list;
+	   }
 
+	   public int searchListCount(SearchDTO dto) {
+	      int totalCount = 0;
+	      totalCount = dao.searchListCount( dto );
+	      return totalCount;
+	   }
 
 	
 }
