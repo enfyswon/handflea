@@ -22,7 +22,7 @@
 	text-align: center;
 }
 .qna_title {
-	width: 50%;
+	width: 40%;
 }
 .qna_title a {
 	color: black;
@@ -45,6 +45,10 @@
 }
 thead .qna_date {
 	font-size: medium;
+}
+.qna_yn {
+	width: 10%;
+	text-align: center;
 }
 #qna-list td {
 	border-bottom: 1px solid #cecece;

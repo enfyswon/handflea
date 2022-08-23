@@ -7,75 +7,79 @@
       <title>HandFlea</title>
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
    </head>
    <body>
    <%@ include file="/WEB-INF/views/header.jsp" %>
-   
-      <hr>
-      <h3> 내가 쓴 리뷰 목록 </h3>
-      <hr>
-      
-      <table class="table table-hover">
-         <thead>
-            <tr>
-               <th> 상품정보 </th>      <th> 후기 </th>   <th> 평가 </th>   <th> 작성일 </th>
-            </tr>
-         </thead>
-         <tbody>
-            <c:forEach var="dto" items="${list}">
-            <c:if test="${login_info.mem_no == dto.mem_no}">
-               <tr>
-                  <td>${dto.prdt_name}</td>
-                  <td>
-                     ${dto.review_contents}
-                  </td>
-                  <td>★★★★★</td>
-                  <td>${dto.reg_date}</td>
-               </tr>
-            </c:if> 
-            </c:forEach>
-         </tbody>
-      </table>
-      <hr>
-      <ul class="pagination">
-         <c:if test="${startPageNum > 10}">
-            <li class="page-item">
-               <a class="page-link"
-                  href="${pageContext.request.contextPath}/review/mylist?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
-                  Previous
-               </a>
-            </li>
-         </c:if>
-         <c:forEach var="page_no" begin="${startPageNum}" end="${endPageNum}">
-            <c:choose>
-               <c:when test="${page_no == userWantPage}">
-                  <li class="page-item active">
-                     <a class="page-link">${page_no}</a>
-                  </li>
-               </c:when>
-               <c:otherwise>
-                  <li class="page-item">
-                     <a class="page-link"
-                        href="${pageContext.request.contextPath}/review/mylist?userWantPage=${page_no}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
-                        ${page_no}
-                     </a>
-                  </li>
-               </c:otherwise>
-            </c:choose>
-         </c:forEach>
-         <c:if test="${lastPageNum > endPageNum}">
-            <li class="page-item">
-               <a class="page-link"
-                  href="${pageContext.request.contextPath}/review/mylist?userWantPage=${endPageNum+1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
-                  Next
-               </a>
-            </li>
-         </c:if>
-      </ul>
-      <hr>
-   
-</body>
+		<main>
+			<div id="side">
+				<div id="profile">
+					<h3>My Page</h3>
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
+					<p>${login_info.mem_name} 님</p>
+					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
+				</div>
+				<div id="menu-box">
+					<div id="menu-link">
+						<h4>나의 쇼핑</h4>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
+						<h4>나의 활동</h4>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
+						<a href="#">내가 작성한 후기</a>
+						<h4>내 정보</h4>
+						<a onclick="pwd_ch()">회원정보 변경</a>
+						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
+						<c:if test="${login_info.seller_yn == 1}">
+						<h4>판매자 메뉴</h4>
+						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
+						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
+						<a href="${pageContext.request.contextPath}/mypage/adjust">정산</a>
+						</c:if>
+					</div>
+				</div>
+			</div>
+			<div id="main-content">
+				<h2>내가 작성한 후기</h2>
+				<div class="list-box">
+					<table class="table table-hover">
+		            	<tr class="list-top">
+			               <td class="review-prdt">상품정보</td>
+			               <td class="review-cnts">후기</td>
+			               <td class="review-point">평가</td>
+			               <td class="review-date">작성일</td>
+			            </tr>
+			        	<tbody>
+						<c:forEach var="dto" items="${list}">
+			            <c:if test="${login_info.mem_no == dto.mem_no}">
+			            	<tr class="review-list">
+			                	<td class="review-prdt">
+			                		<div class="review-prdt-box">
+			                			<div class="review-prdt-img">
+			                				<img alt="product" src="${dto.thumbnail_path}">
+			                			</div>
+				                		<div class="review-prdt-outline">
+				                			<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+					                			<p>${dto.prdt_name}</p>
+				                			</a>
+				                			<p class="review-prdt-opt"><span>옵션</span>${dto.option_contents}</p>
+				                		</div>
+			                		</div>
+			                	</td>
+			                	<td class="review-cnts">${dto.review_contents}</td>
+			                	<td class="review-point">★★★★★</td>
+			                	<td class="review-date">${dto.reg_date}</td>
+			               </tr>
+			            </c:if> 
+			            </c:forEach>
+			         </tbody>
+			      </table>
+				</div>
+			</div>
+		</main>   	
+	</body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title> 상품 목록 </title>
+	<title> HandFlea </title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
 	</head>
 	<body>
@@ -29,7 +29,9 @@
 									<img alt="product_img" src="${dto.thumbnail_path}">
 									<div class="item-detail">
 										<div>
-											<img alt="profile" src="${dto.mem_photopath}">
+											<div class="img-box">
+												<img class="seller-profile" alt="profile" src="${dto.mem_photopath}">
+											</div>
 											<p>${dto.seller_name}</p>
 										</div>
 										<h4>${dto.prdt_name}</h4>
@@ -48,7 +50,10 @@
 									<img alt="product_img" src="${dto.thumbnail_path}">
 									<div class="item-detail">
 										<div>
-											<img alt="profile" src="${dto.mem_photopath}"> <p>${dto.seller_name}</p>
+											<div class="img-box">
+												<img class="seller-profile" alt="profile" src="${dto.mem_photopath}">
+											</div>
+											<p>${dto.seller_name}</p>
 										</div>
 										<h4>${dto.prdt_name}</h4>
 										<p>${dto.price}원</p>

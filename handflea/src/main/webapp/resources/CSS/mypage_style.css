@@ -16,11 +16,18 @@ main {
 #profile > h3 {
 	margin-top: 10px;
 }
-#profile > img {
-	width: 50%;
-	height: 50%;
-	margin : 10px 0 5px 0;
-	border-radius: 100px;
+#profile > div {
+	width: 70px;
+	height: 70px;
+	border-radius: 70%;
+	overflow: hidden;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+#profile img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 #profile > p {
 	margin: 5px 0;
@@ -88,6 +95,7 @@ main {
 }
 .list-top {
 	background-color: #a8a8a8;
+	text-align: center;
 }
 .list-top > td {
 	font-weight: 500;
@@ -423,4 +431,67 @@ main {
 	width: 40%;
 	text-align: right;
 	margin: 0;
+}
+.review-list {
+	width: 100%;
+	height: 80px;
+	align-items: center;
+}
+.review-list td {
+	border-bottom: 1px solid #cecece;
+}
+.review-list .review-prdt {
+	text-align: left;
+}
+.review-list .review-cnts {
+	text-align: left;
+}
+.review-prdt-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0;
+}
+.review-prdt-img {
+	width: 30%;
+	height: 100%;
+}
+.review-prdt-img > img {
+	height: 70px;
+	width: 50px;
+	object-fit: cover;
+	margin-top: auto;
+	margin-left: 5px;
+}
+.review-prdt-outline {
+	width: 70%;
+}
+.review-prdt {
+	width: 30%;
+}
+.review-cnts {
+	width: 45%;
+}
+.review-point {
+	width: 10%;
+}
+.review-date {
+	width: 15%;
+}
+.review-prdt-outline a {
+	color: black;
+}
+.review-prdt-outline a :hover {
+	color: #0F8BFF;
+}
+.review-prdt-opt {
+	margin: 0;
+	font-size: small;
+	padding-top: 3px;
+}
+.review-prdt-opt span {
+	background-color: #808080;
+	color: white;
+	padding: 0 1px;
+	margin-right: 3px;
 }

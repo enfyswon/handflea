@@ -24,8 +24,12 @@
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
-						<img alt="profile" src="${detail_dto.mem_photopath}">
-						<p>${detail_dto.seller_name}</p>
+						<div>
+							<div class="detail-img-box">
+								<img class="detail-seller-profile" alt="profile" src="${detail_dto.mem_photopath}">
+							</div>
+							<p>${detail_dto.seller_name}</p>
+						</div>
 					</div>
 					<h3>${detail_dto.prdt_name}</h3>
 					<div class="prdt-element">
@@ -107,8 +111,8 @@
 					</div>
 				</div>
 			</div>
-			<div>
-				상품 설명
+			<div id="prdt-desc">
+				<h4>상품 설명</h4>
 				<p>${detail_dto.description}</p>
 			</div>
 			<hr>
@@ -128,9 +132,11 @@
 								</div>
 							</div>
 							<div class="review-photo">
+								<c:if test="${dto.review_photopath != null}">
 								<a href="${dto.review_photopath}" data-lightbox="image">
 									<img alt="review_photo" src="${dto.review_photopath}">
 								</a>
+								</c:if>
 							</div>
 						</div>
 						<div class="review-middle">
