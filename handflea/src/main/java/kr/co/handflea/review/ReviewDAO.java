@@ -5,11 +5,25 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.handflea.util.dto.SearchDTO;
+
 @Repository
 public class ReviewDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	public List<ReviewDTO> searchList(SearchDTO dto) {
+	      List<ReviewDTO> list = null;
+	      list = sqlSession.selectList("ReviewMapper.selectList", dto);
+	      return list;
+	   }
+
+	   public int searchListCount(SearchDTO dto) {
+	      int totalCount = 0;
+	      totalCount = sqlSession.selectOne("ReviewMapper.searchListCount", dto);
+	      return totalCount;
+	   }
 	
 	public int write( ReviewDTO dto ) {
 		int successCount = 0;

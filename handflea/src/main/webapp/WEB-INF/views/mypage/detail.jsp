@@ -92,7 +92,7 @@
 												<option value="0">--택배사 선택--</option>
 											</select>
 											<br>
-											<input type="text" id="delivery_no" name="delivery_no" placeholder="송장 번호를 '-'없이 입력"><br>
+											<input type="text" id="delivery_no" name="delivery_no" maxlength="10" placeholder="송장 번호를 '-'없이 입력"><br>
 											<label for="delivery_no" id="delivery_no_label"></label>
 										</div>
 										<div>
