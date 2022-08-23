@@ -14,8 +14,10 @@
    <body>
    <%@ include file="/WEB-INF/views/header.jsp" %>
    
+   
+   
       <hr>
-      <h3> 내가 쓴 리뷰 목록 </h3>
+      <h2>내가 작성한 후기</h2>
       <hr>
       
       <table class="table table-hover">
@@ -26,16 +28,19 @@
          </thead>
          <tbody>
             <c:forEach var="dto" items="${list}">
-            <c:if test="${login_info.mem_no == dto.mem_no}">
                <tr>
-                  <td>${dto.prdt_name}</td>
+                  <td>
+                     <a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+                        ${dto.prdt_name}
+                     </a>
+                     <p>${dto.option_contents}</p>
+                  </td>
                   <td>
                      ${dto.review_contents}
                   </td>
                   <td>★★★★★</td>
                   <td>${dto.reg_date}</td>
                </tr>
-            </c:if> 
             </c:forEach>
          </tbody>
       </table>
