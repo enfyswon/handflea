@@ -21,48 +21,27 @@
 		<main>
 			<div id="write-top">
 				<h2>QnA 글 작성</h2>
-				<a href="${pageContext.request.contextPath}/QnA/list">
-					<button class="btn btn-warning"> QnA 작성 취소 </button>
-				</a>
-				<button id="write_btn">작성</button>
+				<div id="write-button-box">
+					<a href="${pageContext.request.contextPath}/QnA/list">
+						<button>작성 취소</button>
+					</a>
+					<button id="write_btn">작성</button>
+				</div>
 			</div>
 			<hr>
 			<div id="write-box">
-			
+				<div id="write-title">
+					<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요">
+					<label for="title" id="title_label"></label>
+				</div>
+				<div id="write-contents">
+					<textarea id="contents" name="contents" placeholder="내용을 입력하세요."></textarea>
+					<script type="text/javascript">
+					CKEDITOR.replace("contents");
+					</script>
+					<label for="contents" id="contents_label" class="write_label"></label>
+				</div>
 			</div>
-
-		
-			<table class="table table-hover">
-				<tbody>
-					<tr>
-						<th> 제 목 </th>
-						<td>
-							<input type="text" id="title" name="title" maxlength="20">
-							<label for="title" id="title_label"></label>
-						</td>
-					</tr>
-					<tr>
-						<th> 작 성 자 </th>
-						<td>
-							${login_info.mem_name}
-						</td>
-					</tr>
-					<tr>
-						<th> 내 용 </th>
-						<td>
-							<textarea id="contents" name="contents" placeholder="내용을 입력하세요."></textarea>
-							<script type="text/javascript">
-							CKEDITOR.replace("contents");
-							</script>
-							<label for="contents" id="contents_label" class="write_label"></label>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<button id="write_btn" class="btn btn-primary float-right"> QnA 작성 완료 </button>
-			<a href="${pageContext.request.contextPath}/QnA/list">
-				<button class="btn btn-warning"> QnA 작성 취소 </button>
-			</a>
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">

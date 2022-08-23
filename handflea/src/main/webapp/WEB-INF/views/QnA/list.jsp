@@ -18,11 +18,11 @@
 				<table>
 					<thead>
 						<tr>
-							<th class="qna_no">번호</th>
-							<th class="qna_title">제목<th>
-							<th class="qna_writer">작성자</th>
-							<th class="qna_view">조회수</th>
-							<th class="qna_date">작성일</th>
+							<td class="qna_no">번호</td>
+							<td class="qna_title">제목</td>
+							<td class="qna_writer">작성자</td>
+							<td class="qna_view">조회수</td>
+							<td class="qna_date">작성일</td>
 						</tr>
 					</thead>
 					<tbody>
