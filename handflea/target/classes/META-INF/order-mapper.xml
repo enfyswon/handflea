@@ -91,4 +91,10 @@
 	update seller set seller_money = seller_money + (select od.pay_amt from order_detail od where od.detail_no = #{detail_no})
 	where mem_no = (select p.mem_no from product p, order_detail od where od.prdt_no = p.prdt_no and od.detail_no = #{detail_no})
 	</update>
+	
+	<update id="prdtRefund" parameterType="kr.co.handflea.order.OrderDTO">
+	update order_detail set prdt_con = #{prdt_con}
+	where detail_no = #{detail_no}
+	</update>
+	
 </mapper>

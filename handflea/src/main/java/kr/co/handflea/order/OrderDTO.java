@@ -35,6 +35,7 @@ public class OrderDTO {
 	private String add_1;
 	private String add_2;
 	private String mem_name;
+	private String seller_name;
 	
 	public String getOrder_no() {
 		return order_no;
@@ -227,5 +228,11 @@ public class OrderDTO {
 	}
 	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
+	}
+	public String getSeller_name() {
+		return seller_name;
+	}
+	public void setSeller_name(String seller_name) {
+		this.seller_name = seller_name;
 	}
 }	

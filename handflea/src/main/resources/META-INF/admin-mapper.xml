@@ -75,4 +75,29 @@
 		</if>
 	</select>
 	
+	<select id="refundList" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, p.prdt_name, od.buy_qty, od.pay_amt, m.mem_name, s.seller_name
+	from order_detail od, product p, order_main om, member m, seller s
+	where od.order_no = om.order_no
+	and od.prdt_no = p.prdt_no
+	and om.mem_no = m.mem_no
+	and p.mem_no = s.mem_no
+	and od.prdt_con = 4;
+	</select>
+   
+	<select id="refundCompleteList" resultType="kr.co.handflea.order.OrderDTO">
+	select od.detail_no, p.prdt_name, od.buy_qty, od.pay_amt, m.mem_name, s.seller_name
+	from order_detail od, product p, order_main om, member m, seller s
+	where od.order_no = om.order_no
+	and od.prdt_no = p.prdt_no
+	and om.mem_no = m.mem_no
+	and p.mem_no = s.mem_no
+	and od.prdt_con = 5;
+	</select>
+	
+	<update id="orderRefund" parameterType="java.lang.String">
+	update order_detail
+	set prdt_con = 5
+	where detail_no = #{detail_no}
+	</update>
 </mapper>

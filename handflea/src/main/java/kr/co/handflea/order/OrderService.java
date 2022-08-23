@@ -78,4 +78,11 @@ public class OrderService {
 		
 		return successCnt;
 	}
+
+	public int prdtRefund(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = dao.prdtRefund(dto);
+		
+		return successCnt;
+	}
 }

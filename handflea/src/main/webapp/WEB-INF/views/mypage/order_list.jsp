@@ -102,7 +102,7 @@
 								</c:when>
 								<c:when test="${list.prdt_con == 3}">
 								결제 완료<br>
-								<button>환불 요청</button>
+								<button class="refund_btn" value="${list.detail_no}">환불 요청</button>
 								</c:when>
 								<c:otherwise>
 								${list.code_name}
@@ -142,6 +142,25 @@
 				);
 			}
 		});
+		
+		$(".refund_btn").click(function() {
+			var refund = confirm("환불하시겠습니까?");
+			if (refund) {
+				$.get(
+						"${pageContext.request.contextPath}/order/refund",
+						{
+							detail_no : $(this).val()
+						}, 
+						function(data, status) {
+							if (data >= 1) {
+								location.href="${pageContext.request.contextPath}/mypage/order";
+							} else {
+								alert("에러");
+							}
+						}
+				);
+			}
+		})
 	});
 	</script>
 	</body>

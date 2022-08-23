@@ -13,9 +13,8 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
+		<main>
 		<h3> QnA 게시판 목록 </h3>
-		<hr>
 		<form action="${pageContext.request.contextPath}/QnA/list" method="get">
 			<div class="input-group">
 				<div class="input-group-prepend">
@@ -101,6 +100,7 @@
 			</c:if>
 		</ul>
 		<hr>
+		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 </html>
