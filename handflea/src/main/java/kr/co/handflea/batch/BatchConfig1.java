@@ -6,8 +6,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @EnableScheduling
-public class BatchConfig {
-	
+public class BatchConfig1 {
+
 	@Bean
 	public BatchController1 createBatchController1() {
 		return new BatchController1();

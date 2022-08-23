@@ -12,19 +12,17 @@ public class BatchService1 {
 	@Autowired
 	private BatchDAO1 dao;
 
-	public List<OrderDTO> updatePrdtconlist() {
+	public List<OrderDTO> updatePrdtconList() {
 		List<OrderDTO> list = null;
-		list = dao.updatePrdtconlist();
+		list = dao.updatePrdtconList();
 		
 		return list;
 	}
 
-	public int updatePrdtcon(OrderDTO dto) {
+	public int updatePrdtRefund(OrderDTO dto) {
 		int successCnt = 0;
-		successCnt = dao.updatePrdtcon(dto);
+		successCnt = dao.updatePrdtRefund(dto);
 		
 		return successCnt;
 	}
-	
-	
 }

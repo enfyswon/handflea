@@ -14,16 +14,16 @@ public class BatchDAO1 {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<OrderDTO> updatePrdtconlist() {
+	public List<OrderDTO> updatePrdtconList() {
 		List<OrderDTO> list = null;
-		list = sqlSession.selectList("Batch1Mapper.updatePrdtconlist");
+		list = sqlSession.selectList("Batch1Mapper.updatePrdtconList");
 		
 		return list;
 	}
 
-	public int updatePrdtcon(OrderDTO dto) {
+	public int updatePrdtRefund(OrderDTO dto) {
 		int successCnt = 0;
-		successCnt = sqlSession.update("Batch1Mapper.updatePrdtcon", dto);
+		successCnt = sqlSession.update("Batch1Mapper.updatePrdtRefund", dto);
 		
 		return successCnt;
 	}

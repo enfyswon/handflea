@@ -5,7 +5,7 @@
 
 <mapper namespace="Batch1Mapper">
 
-	<select id="updatePrdtconlist" resultType="kr.co.handflea.order.OrderDTO">
+	<select id="updatePrdtconList" resultType="kr.co.handflea.order.OrderDTO">
 	select od.detail_no
 	from order_detail od, order_main om, product p
 	where od.order_no = om.order_no
@@ -14,7 +14,7 @@
 	and date_format(now(), '%Y-%m-%d') = date_format(date_add(om.order_date, interval (p.prdt_rdy + 1) day), '%Y-%m-%d');
 	</select>
 	
-	<update id="updatePrdtcon" parameterType="kr.co.handflea.order.OrderDTO">
+	<update id="updatePrdtRefund" parameterType="kr.co.handflea.order.OrderDTO">
 	update order_detail
 	set prdt_con = #{prdt_con}
 	where detail_no = #{detail_no}

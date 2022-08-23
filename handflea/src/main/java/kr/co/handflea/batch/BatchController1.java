@@ -18,14 +18,14 @@ public class BatchController1 {
 	@Scheduled( cron = "0 0 0 * * *")
 	public void updatePrdtcon() {
 		List<OrderDTO> list = null;
-		list = service.updatePrdtconlist();
+		list = service.updatePrdtconList();
 		
 		for (int i = 0; i < list.size(); i++) {
 			OrderDTO dto = list.get(i);
 			dto.setPrdt_con("3");
 			list.set(i, dto);
 			int successCnt = 0;
-			successCnt = service.updatePrdtcon(dto);
+			successCnt = service.updatePrdtRefund(dto);
 		}
 	}
 }
