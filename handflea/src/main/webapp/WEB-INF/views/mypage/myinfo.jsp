@@ -16,8 +16,12 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<!-- ${pageContext.request.contextPath}/resources/img/user.png -->
+					<c:if test="${myinfo.mem_photopath != null && myinfo.mem_photopath != '0'}">
 					<img alt="profile_photo" src="${myinfo.mem_photopath}">
+					</c:if>
+					<c:if test="${myinfo.mem_photopath == null || myinfo.mem_photopath == '0'}">
+					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+					</c:if>
 					<p>${myinfo.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${myinfo.mem_email}</p>
 				</div>
@@ -54,7 +58,12 @@
 									<p>프로필 사진</p>
 								</div>
 								<div class="info-contents">
-									<img alt="profile" src="${myinfo.mem_photopath}">
+									<c:if test="${myinfo.mem_photopath != null && myinfo.mem_photopath != '0'}">
+									<img alt="profile_photo" src="${myinfo.mem_photopath}">
+									</c:if>
+									<c:if test="${myinfo.mem_photopath == null || myinfo.mem_photopath == '0'}">
+									<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+									</c:if>
 									<input type="file" id="profile" name="profile">
 									<p>사진은 회원님의 게시물이나 리뷰 등에 사용됩니다.</p>
 								</div>
