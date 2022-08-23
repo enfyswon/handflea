@@ -20,6 +20,7 @@ main {
 	width: 50%;
 	height: 50%;
 	margin : 10px 0 5px 0;
+	border-radius: 100px;
 }
 #profile > p {
 	margin: 5px 0;
@@ -245,6 +246,15 @@ main {
 	color: red;
 }
 #add_btn {
+	background-color: #0F8BFF;
+	color: white;
+	outline: 0;
+	border: 0;
+	width: 100px;
+	height: 30px;
+	border-radius: 4px;
+}
+#seller_add_btn {
 	background-color: #0F8BFF;
 	color: white;
 	outline: 0;

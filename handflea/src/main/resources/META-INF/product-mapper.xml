@@ -150,7 +150,7 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
-		, s.seller_name
+		, s.seller_name, m.mem_photopath
     	from product p, member m, seller s
     	where p.prdt_no = #{prdt_no}
 		and del_yn = 0
@@ -163,7 +163,7 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
-		, p.bigcate_no, p.smallcate_no, s.smallcate_name, l.seller_name
+		, p.bigcate_no, p.smallcate_no, s.smallcate_name, l.seller_name, m.mem_photopath
     	from product p, member m, bigcate b, smallcate s, seller l
 		where del_yn = 0
 		and p.smallcate_no = #{smallcate_no}
@@ -179,7 +179,7 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
-		, p.bigcate_no, p.smallcate_no, b.bigcate_name, l.seller_name
+		, p.bigcate_no, p.smallcate_no, b.bigcate_name, l.seller_name, m.mem_photopath
     	from product p, member m, bigcate b, smallcate s, seller l
 		where del_yn = 0
 		and p.bigcate_no = #{bigcate_no}
@@ -202,7 +202,7 @@
 		, p.description, p.view_cnt, p.reg_date
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
 		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
-		, s.seller_name
+		, s.seller_name, m.mem_photopath
     	from product p, member m, seller s
 		where del_yn = 0
 		<if test="searchOption != null and searchOption != ''

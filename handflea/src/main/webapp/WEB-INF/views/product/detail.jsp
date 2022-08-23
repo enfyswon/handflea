@@ -24,7 +24,7 @@
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
-						<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
+						<img alt="profile" src="${detail_dto.mem_photopath}">
 						<p>${detail_dto.seller_name}</p>
 					</div>
 					<h3>${detail_dto.prdt_name}</h3>
@@ -120,7 +120,7 @@
 						<div class="review-top">
 							<div class="review-profile">
 								<div class="review-profile-img">
-									<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
+									<img alt="profile" src="${dto.mem_photopath}">
 								</div>
 								<div class="review-outline">
 									<p class="writer">${dto.mem_name}</p>
