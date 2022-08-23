@@ -109,6 +109,7 @@
 			</div>
 			<div>
 				상품 설명
+				<img alt="product_pic" src="${detail_dto.desc_img_path}">
 				<p>${detail_dto.description}</p>
 			</div>
 			<hr>
