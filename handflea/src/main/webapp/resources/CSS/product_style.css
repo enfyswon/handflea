@@ -196,9 +196,11 @@
 }
 .review-photo img {
 	width: 80%;
+	height: 50px;
 }
 .review-outline {
 	margin: 0;
+	
 }
 .write-date {
 	font-size: small;

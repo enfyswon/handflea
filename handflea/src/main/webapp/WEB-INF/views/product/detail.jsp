@@ -10,6 +10,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -126,7 +128,9 @@
 								</div>
 							</div>
 							<div class="review-photo">
-								<img alt="review_photo" src="">
+								<a href="${dto.review_photopath}" data-lightbox="image">
+									<img alt="review_photo" src="${dto.review_photopath}">
+								</a>	
 							</div>
 						</div>
 						<div class="review-middle">
@@ -144,15 +148,7 @@
 						</div>
 					</div>
 				</c:forEach>
-					<div class="review-card">
-						
-					</div>
-					<div class="review-card">
-						
-					</div>
-					<div class="review-card">
-						
-					</div>
+					
 				</div>
 			</div>
 		</main>
@@ -237,6 +233,18 @@
 		});//click
 	});//ready
 	</script>
-	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		 //사진확대 
+        lightbox.option({
+            'resizeDuration' : 200,
+            'wrapAround' : false,
+            'disableScrolling' : false,
+            'fitImagesInViewport' :false,
+            'maxWidth' : 700,
+            'maxHeight' : 700,
+        })		
+	});//ready
+	</script>
 	</body>
 </html>
