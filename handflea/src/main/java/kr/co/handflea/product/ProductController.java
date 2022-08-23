@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.co.handflea.product.ProductDTO;
+import kr.co.handflea.review.ReviewDTO;
+import kr.co.handflea.review.ReviewService;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
 
@@ -38,6 +40,9 @@ public class ProductController {
 	
 	@Autowired             
 	private ProductService service;
+	
+	@Autowired
+	private ReviewService rsevice;
 	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update( ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
@@ -230,6 +235,11 @@ public class ProductController {
 		ProductDTO dto = null;
 		dto = service.detail( prdt_no );
 		model.addAttribute("detail_dto", dto);
+		
+		List<ReviewDTO> list = null;
+		list = rsevice.reviewList(prdt_no);
+		model.addAttribute("reviewlist", list);
+		
 		return "/product/detail";//jsp file name
 	}//detail
 	

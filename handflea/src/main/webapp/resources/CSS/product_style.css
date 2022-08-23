@@ -190,9 +190,17 @@
 }
 .review-photo {
 	width: 30%;
+	max-height: 80%;
+	text-align: center;
+	align-items: center;
+}
+.review-photo img {
+	width: 80%;
+	height: 50px;
 }
 .review-outline {
 	margin: 0;
+	
 }
 .write-date {
 	font-size: small;
