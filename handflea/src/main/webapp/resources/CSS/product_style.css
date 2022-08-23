@@ -197,6 +197,8 @@
 .review-photo img {
 	width: 80%;
 	height: 50px;
+	object-fit: cover;
+	margin: auto;
 }
 .review-outline {
 	margin: 0;

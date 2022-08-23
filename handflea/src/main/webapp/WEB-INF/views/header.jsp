@@ -42,7 +42,7 @@
                <div id="search">
                   <form action="${pageContext.request.contextPath}/search/searchlist" method="get">
                      <input type="text" placeholder="검색 키워드" id="searchWord" name="searchWord" value="${search_dto.searchWord}">
-                     <button  type="submit">검 색</button>
+                     <button type="submit">검 색</button>
                   </form>
                </div>
             </div>
@@ -53,7 +53,7 @@
                      <p class="icon_cnts">QnA</p>
                   </div>
                </a>
-               <c:if test="true">
+               <c:if test="${login_info.mem_no != null}">
                <a href="${pageContext.request.contextPath}/chat/">
                   <div class="icon">
                      <img class="icon_img" alt="chatting" src="${pageContext.request.contextPath}/resources/img/chat.png">

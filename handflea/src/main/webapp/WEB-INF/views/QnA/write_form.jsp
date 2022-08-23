@@ -6,10 +6,10 @@
 		<meta charset="UTF-8">
 		<title> QnA 글 쓰기 </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/qna_style.css">
 		<style type="text/css">
 		.write_label {
 			color : red;
@@ -18,42 +18,31 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> QnA 글 쓰기 </h3>
-		<hr>
-		<table class="table table-hover">
-			<tbody>
-				<tr>
-					<th> 제 목 </th>
-					<td>
-						<input type="text" id="title" name="title" maxlength="20"
-								class="form-control">
-						<label for="title" id="title_label" class="write_label"></label>
-					</td>
-				</tr>
-				<tr>
-					<th> 작 성 자 </th>
-					<td>
-						${login_info.mem_name}
-					</td>
-				</tr>
-				<tr>
-					<th> 내 용 </th>
-					<td>
-						<textarea class="form-contol" id="contents" name="contents"></textarea>
-						<script type="text/javascript">
-						CKEDITOR.replace("contents");
-						</script>
-						<label for="contents" id="contents_label" class="write_label"></label>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<button id="write_btn" class="btn btn-primary float-right"> QnA 작성 완료 </button>
-		<a href="${pageContext.request.contextPath}/QnA/list">
-			<button class="btn btn-warning"> QnA 작성 취소 </button>
-		</a>
-		<hr>
+		<main>
+			<div id="write-top">
+				<h2>QnA 글 작성</h2>
+				<div id="write-button-box">
+					<a href="${pageContext.request.contextPath}/QnA/list">
+						<button>작성 취소</button>
+					</a>
+					<button id="write_btn">작성</button>
+				</div>
+			</div>
+			<hr>
+			<div id="write-box">
+				<div id="write-title">
+					<input type="text" id="title" name="title" maxlength="20" placeholder="제목을 입력해주세요">
+					<label for="title" id="title_label"></label>
+				</div>
+				<div id="write-contents">
+					<textarea id="contents" name="contents" placeholder="내용을 입력하세요."></textarea>
+					<script type="text/javascript">
+					CKEDITOR.replace("contents");
+					</script>
+					<label for="contents" id="contents_label" class="write_label"></label>
+				</div>
+			</div>
+		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
 	$(document).ready(function() {
