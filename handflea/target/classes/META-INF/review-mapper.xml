@@ -23,6 +23,7 @@
 	where r.prdt_no = p.prdt_no
 	and m.mem_no = r.mem_no
 	and p.prdt_no = #{prdt_no}
+	order by r.review_no desc
 	</select>
 
 	<insert id="write" parameterType="kr.co.handflea.review.ReviewDTO" >
