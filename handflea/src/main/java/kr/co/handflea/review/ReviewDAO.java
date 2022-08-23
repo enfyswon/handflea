@@ -1,7 +1,6 @@
 package kr.co.handflea.review;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +18,12 @@ public class ReviewDAO {
 		return successCount;
 	}//write
 
+	public List<ReviewDTO> mylist() {
+		List<ReviewDTO> list = null;
+		list = sqlSession.selectList("review_mylist");
+		return list;
+	}//list
+	
 	public List<ReviewDTO> list() {
 		List<ReviewDTO> list = null;
 		list = sqlSession.selectList("review_list");
