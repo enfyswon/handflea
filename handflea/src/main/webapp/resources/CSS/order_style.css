@@ -114,16 +114,19 @@ main > div {
 .basket-delete {
 	width: 5%
 }
-#basket thaed {
+#basket th {
 	background-color: #b4b4b4;
 	text-align: center;
 	font-weight: 500;
+	padding: 5px;
 }
 #basket td {
 	border-bottom: 1px solid #cecece;
 }
 .qty_chg_btn {
-	
+	background-color: white;
+	border: 1px solid #0F8BFF;
+	border-radius: 2px;
 }
 .basket_delete_btn {
 	background-color: #C1000C;
