@@ -25,6 +25,47 @@ public class QnAController {
 	@Autowired
 	private QnAService service;
 	
+	@RequestMapping(value = "/mylist", method = RequestMethod.GET)
+	public String mylist( Model model, String userWantPage, SearchDTO dto, HttpSession session) {
+		if(userWantPage == null || userWantPage.equals("")) userWantPage = "1";
+		int totalCount = 0, startPageNum = 1,endPageNum = 10, lastPageNum = 1;
+		totalCount = service.searchListCount(dto);
+		
+		if(totalCount > 10) {
+			lastPageNum = (totalCount / 10) + (totalCount % 10 > 0 ? 1 : 0);
+			
+		}
+
+		if(userWantPage.length() >= 2) {
+			String frontNum = userWantPage.substring(0, userWantPage.length() - 1);
+			startPageNum = Integer.parseInt(frontNum) * 10 + 1;
+			endPageNum = ( Integer.parseInt(frontNum) + 1 ) * 10;
+			String backNum = userWantPage.substring(userWantPage.length() - 1, userWantPage.length());
+			if(backNum.equals("0")) {
+				startPageNum = startPageNum - 10;
+				endPageNum = endPageNum - 10;
+			}
+		}
+		
+		if(endPageNum > lastPageNum) endPageNum = lastPageNum;
+
+		model.addAttribute("startPageNum", startPageNum);
+		model.addAttribute("endPageNum", endPageNum);
+		model.addAttribute("lastPageNum", lastPageNum);
+		model.addAttribute("userWantPage", userWantPage);
+
+		dto.setLimitNum( ( Integer.parseInt(userWantPage) - 1 ) * 10  );
+		
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		
+		List<QnADTO> list = null;
+		list = service.searchList(dto);
+		model.addAttribute("list", list);
+		model.addAttribute("search_dto",dto);
+		
+		return"/mypage/mylist";
+	}
+	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update (QnADTO dto, HttpSession session, PrintWriter out) {
 		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");

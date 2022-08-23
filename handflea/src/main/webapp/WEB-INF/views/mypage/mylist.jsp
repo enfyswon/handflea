@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title> QnA 게시판 목록 </title>
+		<title> 내가 작성한 QnA </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -14,9 +14,9 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 		<hr>
-		<h3> QnA 게시판 목록 </h3>
+		<h3> 내가 작성한 QnA </h3>
 		<hr>
-		<form action="${pageContext.request.contextPath}/QnA/list" method="get">
+		<form action="${pageContext.request.contextPath}/mypage/mylist" method="get">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<select class="form-control" id="searchOption" name="searchOption">
@@ -37,7 +37,7 @@
 		</form>
 		<hr>
 		<div class="clearfix">
-			<a href="${pageContext.request.contextPath}/QnA/write_form">
+			<a href="${pageContext.request.contextPath}/mylist/write_form">
 				<button class="btn btn-primary float-right"> QnA 쓰러 가기 </button>
 			</a>
 		</div>
@@ -49,8 +49,10 @@
 				</tr>
 			</thead>
 			<tbody>
+			
 				<c:forEach var="dto" items="${list}">
-					<tr>
+				<c:if test="${login_info.mem_no == dto.mem_no}"> 
+						<tr>
 						<td>${dto.qna_no}</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/QnA/detail?qna_no=${dto.qna_no}">
@@ -68,7 +70,7 @@
 						<c:if test="${dto.answer_yn == 0}">
 						<td>답변 대기</td>
 						</c:if>
-						
+				</c:if>		
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -25,8 +25,13 @@
 						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
 						<h4>나의 활동</h4>
+<<<<<<< HEAD
 						<a href="#">Q&A 문의 내역</a>
 						<a href="${pageContext.request.contextPath}/review/mylist">내가 작성한 후기</a>
+=======
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
+						<a href="#">내가 작성한 후기</a>
+>>>>>>> 범진
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
