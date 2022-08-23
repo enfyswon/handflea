@@ -25,11 +25,13 @@
 						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
-						<a href="#">Q&A 문의 내역</a>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
+						<c:if test="${login_info.mem_name}">
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
+						</c:if>
 						<c:if test="${login_info.seller_yn == 1}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/sellerlist">상품 등록 / 관리</a>

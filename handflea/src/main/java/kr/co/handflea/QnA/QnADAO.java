@@ -52,4 +52,7 @@ public class QnADAO {
 		return totalCount;
 	}
 
+	
+	
+
 }

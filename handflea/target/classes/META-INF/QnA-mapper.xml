@@ -55,6 +55,14 @@
 	   order by q.qna_no desc
 	   limit #{limitNum}, 10
 	</select>
+	
+	<select id = "mylist" parameterType="kr.co.handflea.util.dto.SearchDTO" 
+			resultType="kr.co.handflea.QnA.QnADTO">
+	select q.qna_no, q.title, m.mem_name, q.view_cnt, q.write_date, q.answer_yn
+	from QnA q, member m
+	where q.mem_no = m.mem_no
+	  
+	</select>
 
 	<select id="searchListCount" parameterType="kr.co.handflea.util.dto.SearchDTO" resultType="int">
 		select count(qna_no) cnt

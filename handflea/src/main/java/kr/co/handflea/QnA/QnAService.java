@@ -51,6 +51,8 @@ public class QnAService {
 		return totalCount;
 	}
 
+	
+
 
 
 

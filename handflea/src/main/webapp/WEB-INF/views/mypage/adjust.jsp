@@ -25,7 +25,7 @@
 						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
 						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
 						<h4>나의 활동</h4>
-						<a href="#">Q&A 문의 내역</a>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
