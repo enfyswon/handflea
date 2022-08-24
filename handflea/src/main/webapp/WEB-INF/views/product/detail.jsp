@@ -121,9 +121,11 @@
 			</div>
 			<div id="prdt-desc">
 				<h4>상품 설명</h4>
+				<c:if test="${detail_dto.desc_img_path != null}">
 				<div id="prdt-desc-img">
 					<img alt="prdt_desc_img" src="${detail_dto.desc_img_path}">
 				</div>
+				</c:if>
 				<p>${detail_dto.description}</p>
 			</div>
 			<hr>
