@@ -253,4 +253,18 @@
 	from bigcate
 	order by bigcate_no
 	</select>
+	
+	<select id="reviewCnt" parameterType="java.lang.String" resultType="java.lang.String">
+	select count(review_no) count
+	from review
+	where prdt_no = #{prdt_no}
+	group by prdt_no
+	</select>
+	
+	<select id="reviewPoint" parameterType="java.lang.String" resultType="java.lang.String">
+	select avg(star_point) point
+	from review
+	where prdt_no = #{prdt_no}
+	group by prdt_no
+	</select>
 </mapper>

@@ -24,8 +24,12 @@
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
-						<img alt="profile" src="${detail_dto.mem_photopath}">
-						<p>${detail_dto.seller_name}</p>
+						<div>
+							<div class="detail-img-box">
+								<img class="detail-seller-profile" alt="profile" src="${detail_dto.mem_photopath}">
+							</div>
+							<p>${detail_dto.seller_name}</p>
+						</div>
 					</div>
 					<h3>${detail_dto.prdt_name}</h3>
 					<div class="prdt-element">
@@ -57,7 +61,15 @@
 							구매 후기
 						</div>
 						<div class="element-value">
-							<p>★★★★★</p>
+							<div class="prdt-review">
+								<c:forEach var="i" begin="1" end="${detail_dto.star_point}">
+								<p class="full-star">★</p>
+								</c:forEach>
+								<c:forEach var="i" begin="${detail_dto.star_point + 1}" end="5">
+								<p class="empty-star">★</p>
+								</c:forEach>
+								<p>&nbsp;(${detail_dto.cnt})</p>
+							</div>
 						</div>
 					</div>
 					<form id="buy_form">
@@ -107,9 +119,8 @@
 					</div>
 				</div>
 			</div>
-			<div>
-				상품 설명
-				<img alt="product_pic" src="${detail_dto.desc_img_path}">
+			<div id="prdt-desc">
+				<h4>상품 설명</h4>
 				<p>${detail_dto.description}</p>
 			</div>
 			<hr>
@@ -129,20 +140,28 @@
 								</div>
 							</div>
 							<div class="review-photo">
+								<c:if test="${dto.review_photopath != null}">
 								<a href="${dto.review_photopath}" data-lightbox="image">
 									<img alt="review_photo" src="${dto.review_photopath}">
-								</a>	
+								</a>
+								</c:if>
 							</div>
 						</div>
 						<div class="review-middle">
 							<c:if test="${dto.option_contents != null && dto.option_contents != '0'}">
-							<p class="review-opt"><span>${dto.option_contents}</span></p>
+							<p class="review-opt"><span>옵션</span>${dto.option_contents}</p>
 							</c:if>
 							<c:if test="${dto.option_contents == null || dto.option_contents == '0'}">
-							<p class="review-opt"><span>옵션없음</span></p>
+							<p class="review-opt"><span>옵션 없음</span></p>
 							</c:if>
-							
-							<p class="write-star">★★★★★</p>
+							<div class="write-star">
+								<c:forEach var="i" begin="1" end="${5 - dto.star_point}">
+								<p class="empty-star">★</p>
+								</c:forEach>
+								<c:forEach var="i" begin="${dto.star_point}" end="5">
+								<p class="full-star">★</p>
+								</c:forEach>
+							</div>
 						</div>
 						<div class="review-bottom">
 							<p class="review-cnts">${dto.review_contents}</p>
@@ -242,8 +261,8 @@
             'wrapAround' : false,
             'disableScrolling' : false,
             'fitImagesInViewport' :false,
-            'maxWidth' : 700,
-            'maxHeight' : 700,
+            'maxWidth' : 600,
+            'maxHeight' : 600,
         })		
 	});//ready
 	</script>

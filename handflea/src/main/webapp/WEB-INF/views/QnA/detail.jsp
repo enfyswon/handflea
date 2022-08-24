@@ -6,9 +6,9 @@
 		<meta charset="UTF-8">
 		<title> QnA 상세 보기 </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/qna_style.css">
 	</head>
 	<body>
 	<c:choose>
@@ -19,45 +19,80 @@
 			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</c:otherwise>
 	</c:choose>
-		<hr>
-		<h3> QnA 상세 보기 </h3>
-		<hr>
-		<table class="table table-hover">
-			<tbody>
-				<tr>
-					<th> QnA 번 호 </th>	<td>${detail_dto.qna_no}</td>
-					<th> 제 목 </th>		<td>${detail_dto.title}</td>
-				</tr>
-				<tr>
-					<th> 작 성 자 </th>	<td>${detail_dto.mem_name}</td>
-					<th> 작 성 일 </th>	<td>${detail_dto.write_date}</td>
-					
-				</tr>
-				<tr>
-					<th> 내 용 </th>		<td colspan="1">${detail_dto.contents}</td>
-					<th> 조회수 </th>		<td colspan="1">${detail_dto.view_cnt}</td>
-				</tr>
-			</tbody>
-		</table>
-		<hr>
-		<c:if test="${detail_dto.mem_no == login_info.mem_no}">
-			<button id="btn_delete" class="btn btn-danger"> QnA 삭제 </button>
-			<a href="${pageContext.request.contextPath}/QnA/update_form?qna_no=${detail_dto.qna_no}">
-				<button class="btn btn-primary"> QnA 수정하러 가기 </button>
-			</a>
-			<hr>
-		</c:if>
-		
-		<hr>
-		<c:if test="${login_info.mem_email == 'admin' && detail_dto.answer_yn == 0}">
-			<h4>답변</h4>
-			<textarea id="answer" name="answer" rows="5" cols="100"></textarea>
-			<button id="btn_reply">답변 작성</button>
-		</c:if>
-		<c:if test="${detail_dto.answer_yn == 1}">
-			<h4>답변</h4>
-			<p>${detail_dto.answer}</p>
-		</c:if>
+		<main>
+			<div id="qna-detail">
+				<div id="qna-question">
+					<div id="qna-top">
+						<h3>${detail_dto.title}</h3>
+						<p>${detail_dto.write_date}</p>
+					</div>
+					<div id="qna-middle">
+						<div id="qna-img">
+							<img alt="profile" src="${detail_dto.mem_photopath}" >
+						</div>
+						<div id="qna-profile">
+							<p>${detail_dto.mem_name}</p>
+						</div>
+					</div>
+					<div id="qna-bottom">
+						<p>${detail_dto.contents}</p>
+					</div>
+					<c:if test="${detail_dto.mem_no == login_info.mem_no}">
+						<div id="qna-button">
+							<button id="btn_delete" class="btn btn-danger"> 글 삭제 </button>
+							<c:if test="${detail_dto.answer_yn == 0}">
+							<a href="${pageContext.request.contextPath}/QnA/update_form?qna_no=${detail_dto.qna_no}">
+								<button class="btn btn-primary"> 글 수정 </button>
+							</a>
+							</c:if>
+						</div>
+					</c:if>
+				</div>
+				<div id="qna-reply">
+				<c:if test="${login_info.mem_email == 'admin' && detail_dto.answer_yn == 0}">
+					<div id="qna-reply-top">
+					<h3>답변 작성란</h3>
+					</div>
+					<div id="qna-reply-bottom">
+						<div id="qna-reply-admin">
+							<p>HandFlea<br>CS 담당자</p>
+						</div>
+						<div id="qna-reply-input">
+							<textarea id="answer" name="answer" rows="5" cols="100" placeholder="답변을 입력하세요."></textarea>
+							<button id="btn_reply">답변<br>등록</button>
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${detail_dto.answer_yn == 1}">
+					<div id="qna-reply-top">
+						<h3>답변</h3>
+					</div>
+					<div id="qna-reply-bottom">
+						<div id="qna-reply-admin">
+							<p>HandFlea<br>CS 담당자</p>
+						</div>
+						<div id="qna-reply-input">
+							<p>${detail_dto.answer}</p>
+						</div>
+					</div>
+				</c:if>
+				</div>
+			</div>
+			<div id="list-button">
+			<c:choose>
+				<c:when test="${login_info.mem_email == 'admin'}">
+				<a href="${pageContext.request.contextPath}/admin/ad_list">
+					<button>목록으로</button>
+				</a>
+				</c:when>
+				<c:otherwise>
+				<a href="${pageContext.request.contextPath}/QnA/list">
+					<button>목록으로</button>
+				</a>
+				</c:otherwise>
+			</c:choose>
+			</div>
+		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
 	$(document).ready(function() {

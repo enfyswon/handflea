@@ -1,5 +1,6 @@
 package kr.co.handflea.admin;
 
+import java.awt.geom.CubicCurve2D;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.handflea.QnA.QnADTO;
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.product.ProductDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
@@ -98,8 +100,25 @@ public class AdminController {
    }
    
    @RequestMapping(value = "/refund", method = RequestMethod.GET)
-   public String refundlist() {
+   public String refundlist(Model model, HttpSession session) {
+	   List<OrderDTO> rlist = null;
+	   rlist = service.refundList();
+	   
+	   List<OrderDTO> clist = null;
+	   clist = service.refundCompleteList();
+	   
+	   model.addAttribute("refund_list", rlist);
+	   model.addAttribute("refund_complete_list", clist);
+	   
       return "/admin/refund";
    }
    
+   @RequestMapping(value = "/orderrefund", method = RequestMethod.GET)
+   public void refund(String detail_no, PrintWriter out) {
+	   int successCnt = 0;
+	   successCnt = service.orderRefund(detail_no);
+	   
+	   out.print(successCnt);
+	   out.close();
+   }
 }
