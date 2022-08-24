@@ -412,6 +412,10 @@
 	margin-left: 15px;
 	font-size: medium;
 }
-#updatecancel_btn{
-	
+.review-guide {
+	font-size: small;
+	margin-top: 5px;
+}
+#rate1, #rate2, #rate3, #rate4, #rate5 {
+	font-size: medium;
 }

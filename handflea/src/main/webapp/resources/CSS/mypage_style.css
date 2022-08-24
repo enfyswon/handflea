@@ -356,6 +356,7 @@ main {
 .order-opt-qty p {
 	margin: 0;
 	font-size: small;
+	padding-right: 3px;
 }
 .order-opt-qty span {
 	background-color: #808080;

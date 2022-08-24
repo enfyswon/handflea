@@ -69,8 +69,8 @@
 											<p>${list.prdt_name}</p>
 										</a>
 										<div class="order-opt-qty">
-											<p><span>옵션</span>${list.option_contents}</p>
-											<p><span>수량</span>${list.buy_qty}</p>
+											<p><span>옵션</span> ${list.option_contents}</p>
+											<p><span>수량</span> ${list.buy_qty}</p>
 										</div>
 									</div>
 								</div>
@@ -166,10 +166,12 @@
 	});
 	$(document).ready(function() {
 		$(".review_btn").click(function() {
+			var url = "${pageContext.request.contextPath}/review/write_form?detail_no=" + detail_no;
 			var review = confirm("후기를 작성하시겠습니까?");
 			var detail_no = $(this).val();
 			if (review) {
-				location.href="${pageContext.request.contextPath}/review/write_form?detail_no=" + detail_no;
+				window.open(url, "후기 작성", "width = 500, height = 420, location = no, scrollbars = no");
+				//location.href="${pageContext.request.contextPath}/review/write_form?detail_no=" + detail_no;
 			}
 		});
 	});
