@@ -22,8 +22,12 @@
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
-						<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
-						<p>${detail_dto.seller_name}</p>
+						<div>
+							<div class="detail-img-box">
+								<img class="detail-seller-profile" alt="profile" src="${detail_dto.mem_photopath}">
+							</div>
+							<p>${detail_dto.seller_name}</p>
+						</div>
 					</div>
 					<div>
 						<h3>${detail_dto.prdt_name}</h3>
@@ -65,16 +69,23 @@
 					<div id="button-box">
 					<c:if test="${detail_dto.mem_no == login_info.mem_no}">
 						<div id="left-button">
-							<button id="delete_btn" class="btn btn-danger"> 상 품 삭 제 </button>
+							<button id="delete_btn"> 상 품 삭 제 </button>
 						</div>
 						<div id="right-button">
 							<a href="${pageContext.request.contextPath}/product/uform?prdt_no=${detail_dto.prdt_no}">
-								<button class="btn btn-primary"> 상 품 수 정 </button>
+								<button> 상 품 수 정 </button>
 							</a>
 						</div>
 					</c:if>
 					</div>
 				</div>
+			</div>
+			<div id="prdt-desc">
+				<h4>상품 설명</h4>
+				<div id="prdt-desc-img">
+					<img alt="prdt_desc_img" src="${detail_dto.desc_img_path}">
+				</div>
+				<p>${detail_dto.description}</p>
 			</div>		
 		</main>	
 		

@@ -7,10 +7,10 @@
 		<meta charset="UTF-8">
 		<title>판매 상품 등록</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
 		<style type="text/css">
 		.write_label {
 			font-size : 0.9em;
@@ -21,28 +21,24 @@
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
 		<main>
-		<h3 style="margin-left : 12%;"> 판매 상품 등록 </h3>
-		<br>
+		<h2> 판매 상품 등록 </h2>
 		<form id="write_form">
-			<table class="table table-hover">
-				<tbody>
+			<div id="prdt-input">
+				<table>
 					<tr>
-						<th> 상 품 명 (*) </th>
-						<td colspan="3">
-							<input type="text" id="prdt_name" name="prdt_name" maxlength="40"
-									class="form-control">
+						<td class="input-label">상품명 (*)</td>
+						<td colspan="3" class="input-cnts">
+							<input type="text" id="prdt_name" name="prdt_name" maxlength="40" placeholder="한글 최대 20자, 영문, 숫자 최대 60자">
 							<label for="prdt_name" id="prdt_name_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 판 매 자 </th>
-						<td>
-							${login_info.mem_email}
-						</td>
+						<td class="input-label">판매자</td>
+						<td colspan="3" class="input-cnts">${login_info.mem_email}</td>
 					</tr>
 					<tr>
-						<th> 카테고리 (*)  </th>
-						<td colspan="3">
+						<td class="input-label">카테고리 (*)</td>
+						<td colspan="3" class="input-cnts">
 							<select id="bigcate_no" name="bigcate_no">
 								<option value="0" selected="selected">대분류 선택</option>
 							</select>
@@ -52,73 +48,73 @@
 							</select>
 							<label for="smallcate_no" id="smallcate_no_label" class="write_label"></label>
 						</td>
+						</td>
 					</tr>
 					<tr>
-						<th> 판매 가격(단위 : 원) (*)  </th>
-						<td>
-							<input type="text" id="price" name="price" class="form-control">
+						<td class="input-label">판매 가격 (*)</td>
+						<td class="input-cnts">
+							<input type="text" id="price" name="price"> 원
 							<label for="price" id="price_label" class="write_label"></label>
 						</td>
-						<th> 배송비(단위 : 원) (*)  </th>
-						<td>
-							<input type="text" id="delivery_price" name="delivery_price" class="form-control">
+						<td class="input-label"> 배송비 (*)  </td>
+						<td class="input-cnts">
+							<input type="text" id="delivery_price" name="delivery_price"> 원
 							<label for="delivery_price" id="delivery_price_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 주문 옵션  </th>
-						<td>
+						<td class="input-label"> 주문 옵션  </td>
+						<td class="input-cnts" colspan="3">
 							<button type="button" id="add_option_btn" class="mb-1"> 옵션 입력 추가 </button>
 							<label for="option_yes" id="option_yes_label" class="write_label"></label>
 							<div id="option_name_div">
 							</div>
-<!-- 							<input type="text" id="option_no" name="option_no" class="form-control" placeholder="옵션을 추가하세요."> -->
 						</td>
 					</tr>
 					<tr>
-						<th> 상품 준비 기간(단위 : 일) (*)  </th>
-						
-						<td>
-							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control">
+						<td class="input-label">상품 준비 기간 (*)</td>
+						<td class="input-cnts" colspan="3">
+							<input type="text" id="prdt_rdy" name="prdt_rdy"> 일
 							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 썸 네 일 이 미 지 (*) </th>
-						<td>
-							<input type="file" id="thumbnail" name="thumbnail" class="form-control">
+						<td class="input-label"> 썸네일 이미지 (*) </td>
+						<td class="input-cnts">
+							<input type="file" id="thumbnail" name="thumbnail">
 							<label for="thumbnail" id="thumbnail_label" class="write_label"></label>
 						</td>
-						<th> 상 품 상 세 이 미 지 </th>
-						<td>
-							<input type="file" id="prdt_img" name="prdt_img" class="form-control">
+						<td class="input-label"> 상품 상세 이미지 </td>
+						<td class="input-cnts">
+							<input type="file" id="prdt_img" name="prdt_img">
 							<label for="prdt_img" id="prdt_img_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 상 품 설 명 이 미 지 </th>
-						<td>
+						<td class="input-label"> 상품 설명 이미지 </td>
+						<td class="input-cnts" colspan="3">
 							<input type="file" id="desc_img" name="desc_img" class="form-control">
 							<label for="desc_img" id="desc_img_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 상품 상세 설명   </th>
-						<td colspan="3">
+						<td class="input-label"> 상품 상세 설명   </td>
+						<td class="input-cnts" colspan="3">
 							<textarea class="form-contol" id="desc_txt" name="desc_txt"></textarea>
 							<script type="text/javascript">
 							CKEDITOR.replace("desc_txt");
 							</script>
 						</td>
 					</tr>
-				</tbody>
-			</table>
+				</table>
+			</div>
 		</form>		
-		<button id="write_btn" class="btn btn-primary float-right"> 상품 등록 완료 </button>
-		<a href="${pageContext.request.contextPath}/product/list">
-			<button class="btn btn-warning"> 상품 등록 취소 </button>
-		</a>
-		<hr>
+		<div id="prdt-button">
+			<a href="${pageContext.request.contextPath}/product/sellerlist">
+				<button> 상품 등록 취소 </button>
+			</a>
+			<button id="write_btn"> 상품 등록 </button>
+		</div>
 		</main>
 		<%@ include file="/WEB-INF/views/footer.jsp" %>
 
@@ -217,9 +213,9 @@
 		$(document).ready(function() {
 			$("#add_option_btn").click(function() {
 				$("#option_name_div").append(
-					'<div class="input-group" id="div_option_no'+optionNo+'">'
-					+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요.">'
-					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+					'<div id="div_option_no'+optionNo+'" class="div_option">'
+					+'<input type="text" id="option_no'+optionNo+'" class="option_no" placeholder="옵션을 입력하세요.">'
+					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove_btn"> X </button>'
 					+ '</div>'
 				);//append
 				$("#option_remove_btn"+optionNo).on("click", function(){
