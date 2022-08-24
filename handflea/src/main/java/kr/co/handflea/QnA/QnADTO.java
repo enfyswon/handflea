@@ -11,6 +11,7 @@ public class QnADTO {
 	private String answer_yn;
 	private String answer;
 	private String mem_name;
+	private String mem_photopath;
 	
 	@Override
 	public String toString() {
@@ -96,7 +97,13 @@ public class QnADTO {
 	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
 	}
-	
-	
 
+	public String getMem_photopath() {
+		return mem_photopath;
+	}
+
+	public void setMem_photopath(String mem_photopath) {
+		this.mem_photopath = mem_photopath;
+	}
+	
 }
