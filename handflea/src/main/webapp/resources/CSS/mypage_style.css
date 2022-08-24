@@ -432,6 +432,16 @@ main {
 	text-align: right;
 	margin: 0;
 }
+.withdraw {
+	color: #C1000C;
+}
+.deposit {
+	color: #3018CC;
+}
+.balance {
+	font-size: small;
+	color: #a8a8a8;
+}
 .review-list {
 	width: 100%;
 	height: 80px;

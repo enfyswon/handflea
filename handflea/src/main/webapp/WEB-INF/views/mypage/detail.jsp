@@ -59,7 +59,7 @@
 								<td class="list-top">결제일</td>
 								<td>${order_detail.order_date}</td>
 								<td class="list-top">배송지</td>
-								<td>(${order_detail.post_code})${order_detail.add_1} ${order_detail.add_2}</td>
+								<td>${order_detail.delivery_addr}</td>
 							</tr>
 							<tr>
 								<td class="list-top">수령인</td>

@@ -166,7 +166,7 @@
 	</select>
 	
 	<select id="orderDetail" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
-	select od.detail_no, m.pnum, date_format(om.order_date, '%Y-%m-%d') order_date, m.post_code, m.add_1, m.add_2, m.mem_name,
+	select od.detail_no, m.pnum, date_format(om.order_date, '%Y-%m-%d') order_date, om.delivery_addr, m.mem_name,
 	   	p.prdt_name, o.option_contents, od.buy_qty, od.pay_amt, date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline,
        	od.delivery_c_no, od.delivery_no, od.prdt_con, c.code_name
 	from order_detail od, member m, order_main om, product p, prdt_option o, con_code c
@@ -179,7 +179,7 @@
 	</select>
 	
 	<select id="orderDeliveryDetial" parameterType="java.lang.String" resultType="kr.co.handflea.order.OrderDTO">
-	select od.detail_no, m.pnum, date_format(om.order_date, '%Y-%m-%d') order_date, m.post_code, m.add_1, m.add_2, m.mem_name,
+	select od.detail_no, m.pnum, date_format(om.order_date, '%Y-%m-%d') order_date, om.delivery_addr, m.mem_name,
 	   	p.prdt_name, o.option_contents, od.buy_qty, od.pay_amt, date_format(date_add(om.order_date, interval p.prdt_rdy day), '%Y-%m-%d') deadline,
        	od.delivery_c_no, d.delivery_c_name, od.delivery_no, od.prdt_con, c.code_name
 	from order_detail od, member m, order_main om, product p, prdt_option o, con_code c, delivery d
