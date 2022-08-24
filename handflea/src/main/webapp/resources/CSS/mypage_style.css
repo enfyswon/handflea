@@ -474,6 +474,19 @@ main {
 }
 .review-point {
 	width: 10%;
+	font-size: 14px;
+}
+.review-point > div {
+	display: flex;
+	flex-direction: row;
+}
+.full-star {
+	margin: 0;
+	color: #FFDC2D;
+}
+.empty-star {
+	margin: 0;
+	color: #cecece;
 }
 .review-date {
 	width: 15%;

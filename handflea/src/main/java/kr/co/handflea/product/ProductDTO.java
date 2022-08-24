@@ -49,6 +49,7 @@ public class ProductDTO {
 	private String mem_photo;
 	
 	private int cnt;
+	private int star_point;
 	
 	@Override
 	public String toString() {
@@ -381,6 +382,14 @@ public class ProductDTO {
 
 	public void setMem_photo(String mem_photo) {
 		this.mem_photo = mem_photo;
+	}
+
+	public int getStar_point() {
+		return star_point;
+	}
+
+	public void setStar_point(int star_point) {
+		this.star_point = star_point;
 	}
 	
 }//class

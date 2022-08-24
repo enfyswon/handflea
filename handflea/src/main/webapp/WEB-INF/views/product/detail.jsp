@@ -61,7 +61,15 @@
 							구매 후기
 						</div>
 						<div class="element-value">
-							<p>★★★★★</p>
+							<div class="prdt-review">
+								<c:forEach var="i" begin="1" end="${detail_dto.star_point}">
+								<p class="full-star">★</p>
+								</c:forEach>
+								<c:forEach var="i" begin="${detail_dto.star_point + 1}" end="5">
+								<p class="empty-star">★</p>
+								</c:forEach>
+								<p>&nbsp;(${detail_dto.cnt})</p>
+							</div>
 						</div>
 					</div>
 					<form id="buy_form">
@@ -141,13 +149,19 @@
 						</div>
 						<div class="review-middle">
 							<c:if test="${dto.option_contents != null && dto.option_contents != '0'}">
-							<p class="review-opt"><span>${dto.option_contents}</span></p>
+							<p class="review-opt"><span>옵션</span>${dto.option_contents}</p>
 							</c:if>
 							<c:if test="${dto.option_contents == null || dto.option_contents == '0'}">
-							<p class="review-opt"><span>옵션없음</span></p>
+							<p class="review-opt"><span>옵션 없음</span></p>
 							</c:if>
-							
-							<p class="write-star">★★★★★</p>
+							<div class="write-star">
+								<c:forEach var="i" begin="1" end="${5 - dto.star_point}">
+								<p class="empty-star">★</p>
+								</c:forEach>
+								<c:forEach var="i" begin="${dto.star_point}" end="5">
+								<p class="full-star">★</p>
+								</c:forEach>
+							</div>
 						</div>
 						<div class="review-bottom">
 							<p class="review-cnts">${dto.review_contents}</p>
