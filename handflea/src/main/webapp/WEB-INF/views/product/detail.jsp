@@ -121,6 +121,9 @@
 			</div>
 			<div id="prdt-desc">
 				<h4>상품 설명</h4>
+				<div id="prdt-desc-img">
+					<img alt="prdt_desc_img" src="${detail_dto.desc_img_path}">
+				</div>
 				<p>${detail_dto.description}</p>
 			</div>
 			<hr>
@@ -168,7 +171,6 @@
 						</div>
 					</div>
 				</c:forEach>
-					
 				</div>
 			</div>
 		</main>

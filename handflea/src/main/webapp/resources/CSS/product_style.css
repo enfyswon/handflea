@@ -292,3 +292,126 @@
 	word-wrap: break-word;
 	line-height: 25px;
 }
+#prdt-input {
+	width: 100%;
+}
+#prdt-input > table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #808080;
+}
+.input-label {
+	background-color: #cecece;
+	padding: 5px;
+	font-weight: 500;
+	text-align: center;
+	width: 10%;
+}
+#prdt-input td {
+	border-bottom: 1px solid #cecece;
+}
+#prdt-input input {
+	padding: 5px;
+	width: 70%;
+	font-size: medium;
+	margin: 5px 0;
+}
+.input-cnts {
+	margin: 5px;
+	padding: 5px;
+	width: 40%;
+}
+#bigcate_no, #smallcate_no {
+	width: 20%;
+	font-size: medium;
+}
+#add_option_btn {
+	padding: 5px;
+	border-radius: 4px;
+	background-color: #f4f4f4;
+	border: 1px solid black;
+}
+.div_option {
+	align-items: center;
+	margin: 4px 0;
+	display: flex;
+	flex-direction: row;
+}
+.option_no {
+	border-radius: 4px 0 0 4px;
+	height: 28px;
+	border: 1px solid black;
+	margin: 0;
+}
+.option_remove_btn {
+	background-color: #C1000C;
+	color: white;
+	padding: 8px 10px;
+	border-radius: 0 4px 4px 0;
+	margin: 0;
+	font-size: medium;
+}
+#prdt-button {
+	margin: 10px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+#write_btn {
+	padding: 10px;
+	background-color: #0F8BFF;
+	color: white;
+	font-size: medium;
+	border-radius: 4px;
+	margin: 0;
+}
+#prdt-button > a {
+	margin: 0;
+}
+#prdt-button > a > button {
+	background-color: #C1000C;
+	color: white;
+	font-size: medium;
+	border-radius: 4px;
+	padding: 10px;
+}
+#prdt-desc {
+	width: 100%;
+	margin: 10px 0;
+}
+#prdt-desc-img > img{
+	width: 100%;
+}
+#prdt-desc > p {
+	margin: 5px;
+}
+#delete_btn {
+	background-color: #C1000C;
+	color: white;
+	padding: 8px 10px;
+	border-radius: 0 4px 4px 0;
+	margin: 0;
+	margin-left: 15px;
+	font-size: medium;
+	
+}
+#right-button a > button {
+	background-color: #0F8BFF;
+	color: white;
+	padding: 8px 10px;
+	border-radius: 4px;
+	margin: 0;
+	font-size: medium;
+}
+#thumbnail_btn, #prdt_img_btn, #desc_img_btn {
+	background-color: #C1000C;
+	color: white;
+	padding: 8px 10px;
+	border-radius: 4px;
+	margin: 0;
+	margin-left: 15px;
+	font-size: medium;
+}
+#updatecancel_btn{
+	
+}

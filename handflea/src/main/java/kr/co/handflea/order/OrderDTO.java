@@ -6,6 +6,7 @@ public class OrderDTO {
 	private int prdt_cnt;
 	private int total_pay_amt;
 	private String order_date;
+	private String delivery_addr;
 	
 	private String detail_no;
 	private String prdt_no;
@@ -66,6 +67,12 @@ public class OrderDTO {
 	}
 	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
+	}
+	public String getDelivery_addr() {
+		return delivery_addr;
+	}
+	public void setDelivery_addr(String delivery_addr) {
+		this.delivery_addr = delivery_addr;
 	}
 	public String getDetail_no() {
 		return detail_no;

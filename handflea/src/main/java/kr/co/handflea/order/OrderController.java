@@ -93,7 +93,6 @@ public class OrderController {
 		OrderDTO dto = new OrderDTO();
 		dto.setDetail_no(detail_no);
 		dto.setPrdt_con("4");
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> : " + dto.getPrdt_con());
 		
 		int successCnt = 0;
 		successCnt = service.prdtRefund(dto);

@@ -172,7 +172,7 @@ public class ProductController {
 	@RequestMapping( value = "/sellerdetail", method = RequestMethod.GET )
 	public String sellerdetail( String prdt_no, Model model ) {
 		ProductDTO dto = null;
-		dto = service.sellerdetail( prdt_no );
+		dto = service.detail( prdt_no );
 		model.addAttribute("detail_dto", dto);
 		return "/product/sellerdetail";//jsp file name
 	}//sellerdetail
