@@ -16,7 +16,6 @@ public class ReviewDTO {
 	private String reg_date;
 	private String mem_name;
 	private String option_contents;
-	private String prdt_name;
 	
 	public String toString() {
 		return review_no
@@ -134,14 +133,6 @@ public class ReviewDTO {
 
 	public void setOption_contents(String option_contents) {
 		this.option_contents = option_contents;
-	}
-
-	public String getPrdt_name() {
-		return prdt_name;
-	}
-
-	public void setPrdt_name(String prdt_name) {
-		this.prdt_name = prdt_name;
 	}
 
 	
