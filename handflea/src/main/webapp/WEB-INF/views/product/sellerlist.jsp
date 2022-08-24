@@ -44,7 +44,7 @@
 			</div>
 			<div id="main-content">
 				<h2>상품 등록 / 관리</h2>
-				<div>
+				<div id="board-top">
 					<div class="search-box">
 						<form action="${pageContext.request.contextPath}/product/sellerlist" method="get">
 							<select class="form-control" id="searchOption" name="searchOption">
@@ -54,14 +54,12 @@
 							</select>
 							<input type="text" class="form-control" id="searchWord" name="searchWord"
 									value="${search_dto.searchWord}">
-							<div class="input-group-append">
-								<button type="submit" class="btn btn-primary"> 검 색 </button>
-							</div>
-						</div>
-					</form>
-					<div class="clearfix">
-						<a href="${pageContext.request.contextPath}/product/form"><!-- 컨트롤러의 RequestMapping 호출 -->
-							<button class="btn btn-primary float-right"> 상 품 등 록 </button>
+							<button type="submit"> 검 색 </button>
+						</form>
+					</div>
+					<div id="button-box">
+						<a href="${pageContext.request.contextPath}/product/form">
+							<button> 상 품 등 록 </button>
 						</a>
 					</div>
 				</div>

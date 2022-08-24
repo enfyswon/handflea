@@ -230,12 +230,14 @@ hr {
 	display: flex;
 	flex-direction: row;
 	text-align: center;
+	margin-top: 20px;
+	justify-content: center;
 }
-
 .pagination a {
 	color: black;
 	padding: 4px 10px;
 	text-decoration: none;
+	margin: 0;
 }
 
 .pagination a.active {
