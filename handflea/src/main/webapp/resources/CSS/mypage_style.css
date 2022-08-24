@@ -508,3 +508,36 @@ main {
 	padding: 0 1px;
 	margin-right: 3px;
 }
+.seller-prdt {
+	width: 70%;
+	border-top: 1px solid #cecece;
+}
+.seller-prdt-box {
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+	align-items: center;
+}
+.seller-prdt a {
+	color: black;
+	margin: 0 5px;
+}
+.seller-prdt a :hover {
+	color: #0F8BFF;
+}
+.seller-prdt-img {
+	height: 70px;
+	margin: 0 5px;
+}
+.seller-prdt-img > img {
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
+}
+.seller-prdt-box > p {
+	margin: 0 5px;
+}
+.seller-price {
+	width: 30%;
+	border-bottom: 1px solid #cecece;
+}

@@ -55,7 +55,6 @@
 					<a href="${pageContext.request.contextPath}/QnA/list?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
 						&laquo;
 					</a>
-					</li>
 				</c:if>
 				<c:forEach var="page_no" begin="${startPageNum}" end="${endPageNum}">
 					<c:choose>
