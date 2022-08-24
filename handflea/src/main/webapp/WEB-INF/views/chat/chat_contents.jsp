@@ -3,7 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div id="contents-title">
-	<img alt="profile" src="${other_photopath}">
+	<div>
+		<img alt="profile" src="${other_photopath}">
+	</div>
 	<h5>${other_name}</h5>
 </div>
 <div id="chat-history-box">
