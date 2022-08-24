@@ -29,6 +29,18 @@
 	</choose>
 	</select>
 	
+	<select id="getProfilePhoto" parameterType="kr.co.handflea.chat.ChatDTO" resultType="java.lang.String">
+	select mem_photopath from member
+	<choose>
+		<when test="send_mem_no == mem_no">
+			where mem_no = #{recv_mem_no}
+		</when>
+		<otherwise>
+			where mem_no = #{send_mem_no}
+		</otherwise>
+	</choose>
+	</select>
+	
 	<select id="chatDetail" parameterType="kr.co.handflea.chat.ChatDTO" resultType="kr.co.handflea.chat.ChatDTO">
 	select chat_no, chat_roomno, send_mem_no, recv_mem_no, chat_date, chat_photo, chat_photopath, chat_contents, chat_yn
 	from chat
@@ -86,5 +98,10 @@
 	select distinct chat_roomno from chat
 	where (recv_mem_no = #{mem_no} and send_mem_no = #{other_no})
 	or (recv_mem_no = #{other_no} and send_mem_no = #{mem_no});
+	</select>
+	
+	<select id="selectPhotopath" parameterType="java.lang.String" resultType="java.lang.String">
+	select mem_photopath from member
+	where mem_no = #{other_no}
 	</select>
 </mapper>

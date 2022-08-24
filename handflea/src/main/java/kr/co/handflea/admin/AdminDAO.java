@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.handflea.QnA.QnADTO;
+import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
 
@@ -46,6 +47,27 @@ public class AdminDAO {
 		int successCount = 0;
 		successCount = sqlSession.update("AdminMapper.replyInsert", dto);
 		return successCount;
+	}
+
+	public List<OrderDTO> refundList() {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("AdminMapper.refundList");
+				
+		return list;
+	}
+
+	public List<OrderDTO> refundCompleteList() {
+		List<OrderDTO> list = null;
+		list = sqlSession.selectList("AdminMapper.refundCompleteList");
+				
+		return list;
+	}
+
+	public int orderRefund(String detail_no) {
+		int successCnt = 0;
+	    successCnt = sqlSession.update("AdminMapper.orderRefund", detail_no);
+	      
+	    return successCnt;
 	}
 
 

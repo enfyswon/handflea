@@ -15,7 +15,9 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
 					<p>${login_info.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
 				</div>
@@ -23,13 +25,15 @@
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
 						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
-						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
+						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
 						<h4>나의 활동</h4>
-						<a href="#">Q&A 문의 내역</a>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
+						<c:if test="${login_info.mem_name}">
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
+						</c:if>
 						<c:if test="${login_info.seller_yn == 1}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/sellerlist">상품 등록 / 관리</a>
@@ -92,7 +96,7 @@
 												<option value="0">--택배사 선택--</option>
 											</select>
 											<br>
-											<input type="text" id="delivery_no" name="delivery_no" placeholder="송장 번호를 '-'없이 입력"><br>
+											<input type="text" id="delivery_no" name="delivery_no" maxlength="10" placeholder="송장 번호를 '-'없이 입력"><br>
 											<label for="delivery_no" id="delivery_no_label"></label>
 										</div>
 										<div>

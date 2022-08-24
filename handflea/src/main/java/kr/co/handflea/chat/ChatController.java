@@ -61,9 +61,11 @@ public class ChatController {
 		
 		List<ChatDTO> list = service.chatDetail(dto);
 		String mem_name = service.selectName(other_no);
+		String mem_photopath = service.selectPhotopath(other_no);
 		
 		model.addAttribute("chat_detail", list);
 		model.addAttribute("other_name", mem_name);
+		model.addAttribute("other_photopath", mem_photopath);
 		
 		return "/chat/chat_contents";
 	}

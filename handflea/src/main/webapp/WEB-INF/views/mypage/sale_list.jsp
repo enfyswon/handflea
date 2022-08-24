@@ -15,7 +15,9 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
 					<p>${login_info.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
 				</div>
@@ -23,9 +25,9 @@
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
 						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
-						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
+						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
 						<h4>나의 활동</h4>
-						<a href="#">Q&A 문의 내역</a>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>

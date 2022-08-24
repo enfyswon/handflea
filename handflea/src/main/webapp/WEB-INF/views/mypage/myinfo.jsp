@@ -16,12 +16,9 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<c:if test="${myinfo.mem_photopath != null && myinfo.mem_photopath != '0'}">
-					<img alt="profile_photo" src="${myinfo.mem_photopath}">
-					</c:if>
-					<c:if test="${myinfo.mem_photopath == null || myinfo.mem_photopath == '0'}">
-					<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
-					</c:if>
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
 					<p>${myinfo.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${myinfo.mem_email}</p>
 				</div>
@@ -29,9 +26,9 @@
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
 						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
-						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
+						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
 						<h4>나의 활동</h4>
-						<a href="#">Q&A 문의 내역</a>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
@@ -166,7 +163,7 @@
 						<div class="info-contents">
 							<div>
 								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly" value="${myinfo.seller_post_code}">
-								<button type="button" id="seller_add_btn" name="add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
+								<button type="button" id="seller_add_btn" name="seller_add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
 								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly" value="${myinfo.seller_add_1}">
@@ -380,11 +377,7 @@
 			location.href="${pageContext.request.contextPath}/mypage/";
 		}
 	}
-	$(document).ready(function() {
-		$("#seller_add_btn"),click(function() {
-			
-		});//click
-	});//ready
+	
 	function sellerDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
