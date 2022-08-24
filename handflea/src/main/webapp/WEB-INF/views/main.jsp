@@ -23,7 +23,7 @@
 					<div class="product-list">
 						<h3>&nbsp;&nbsp;&nbsp;BEST</h3><br>
 						<div class="item-box">
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${bestlist}">
 							<div class="item-card">
 								<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
 									<img alt="product_img" src="${dto.thumbnail_path}">

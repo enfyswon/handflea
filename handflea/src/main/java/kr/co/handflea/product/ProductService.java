@@ -159,4 +159,17 @@ public class ProductService {
 		return list;
 	}//bigcateSelect
 
+	public List<ProductDTO> bestmain(SearchDTO dto) {
+		List<ProductDTO> bestlist = null;
+		bestlist = dao.bestmain( dto );
+		
+		for (int i = 0; i < bestlist.size(); i++) {
+			ProductDTO pdto = bestlist.get(i);
+			pdto.setCnt(dao.reviewCnt(pdto.getPrdt_no()));
+			pdto.setStar_point(dao.reviewPoint(pdto.getPrdt_no()));
+		}
+		
+		return bestlist;
+	}//bestmain
+
 }//class

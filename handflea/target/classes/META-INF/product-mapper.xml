@@ -222,6 +222,30 @@
 		limit #{limitNum}, 8
 	</select>
 	
+	<select id="bestmain" parameterType="kr.co.handflea.util.dto.SearchDTO"
+			resultType="kr.co.handflea.product.ProductDTO">
+		select p.prdt_no, p.prdt_name, count(detail_no) cnt
+		, p.thumbnail_path, m.mem_photopath, s.seller_name, p.price
+		from product p, order_detail od, member m, seller s
+		where od.prdt_no = p.prdt_no
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'prdt_name'">
+					and p.prdt_name like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'mem_email'">
+					and m.mem_email like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+		and p.mem_no = m.mem_no
+		and s.mem_no = m.mem_no
+		group by (p.prdt_no)
+		order by cnt desc
+		limit #{limitNum}, 8
+	</select>
+	
 	<insert id="option_insert" parameterType="kr.co.handflea.product.ProductDTO">
 	insert into prdt_option (prdt_no, option_contents)
 	values
