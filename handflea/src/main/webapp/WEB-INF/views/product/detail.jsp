@@ -158,7 +158,7 @@
 								<c:forEach var="i" begin="1" end="${5 - dto.star_point}">
 								<p class="empty-star">★</p>
 								</c:forEach>
-								<c:forEach var="i" begin="${dto.star_point}" end="5">
+								<c:forEach var="i" begin="${5 - dto.star_point + 1}" end="5">
 								<p class="full-star">★</p>
 								</c:forEach>
 							</div>
