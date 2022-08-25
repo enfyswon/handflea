@@ -75,7 +75,7 @@
 							</td>
 							<td class="sale-delivery-con">
 							<c:choose>
-								<c:when test="${list.prdt_con == 3 || list.prdt_con == 4}">
+								<c:when test="${list.prdt_con == 3 || list.prdt_con == 4 || list.prdt_con == 5}">
 								상품 준비 중
 								</c:when>
 								<c:otherwise>
@@ -85,7 +85,7 @@
 							</td>
 							<td class="sale-refund">
 							<c:choose>
-								<c:when test="${list.prdt_con == 3 || list.prdt_con == 4}">
+								<c:when test="${list.prdt_con == 3 || list.prdt_con == 4 || list.prdt_con == 5}">
 								${list.code_name}
 								</c:when>
 								<c:otherwise>
