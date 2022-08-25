@@ -155,4 +155,10 @@ public class ProductDAO {
 		return star_point;
 	}
 
+	public List<ProductDTO> bestmain(SearchDTO dto) {
+		List<ProductDTO> bestlist = null;
+		bestlist = sqlSession.selectList("ProductMapper.bestmain", dto);
+		return bestlist;
+	}
+
 }//class

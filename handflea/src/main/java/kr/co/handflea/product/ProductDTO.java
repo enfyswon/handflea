@@ -51,6 +51,8 @@ public class ProductDTO {
 	private int cnt;
 	private int star_point;
 	
+	private String detail_no;
+	
 	@Override
 	public String toString() {
 		return prdt_no
@@ -390,6 +392,14 @@ public class ProductDTO {
 
 	public void setStar_point(int star_point) {
 		this.star_point = star_point;
+	}
+
+	public String getDetail_no() {
+		return detail_no;
+	}
+
+	public void setDetail_no(String detail_no) {
+		this.detail_no = detail_no;
 	}
 	
 }//class
