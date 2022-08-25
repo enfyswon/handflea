@@ -74,9 +74,9 @@
 }
 #prdt-img {
 	width: 60%;
-	margin: 5px;
 	height: 450px;
-	text-align: center;
+	margin: 5px;
+	overflow: hidden;
 }
 #prdt-img > img {
 	width: 100%;
@@ -188,6 +188,7 @@
 #review-list {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 .review-card {
 	width: 23%;
@@ -381,6 +382,7 @@
 }
 #prdt-desc-img > img{
 	width: 100%;
+	margin: 10px;
 }
 #prdt-desc > p {
 	margin: 5px;
@@ -412,6 +414,10 @@
 	margin-left: 15px;
 	font-size: medium;
 }
-#updatecancel_btn{
-	
+.review-guide {
+	font-size: small;
+	margin-top: 5px;
+}
+#rate1, #rate2, #rate3, #rate4, #rate5 {
+	font-size: medium;
 }

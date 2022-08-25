@@ -30,8 +30,6 @@ import kr.co.handflea.review.ReviewService;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
 
-
-
 @Controller
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -79,19 +77,6 @@ public class ProductController {
 									+ todaySigan + "_" + thumbnail.getOriginalFilename());
 		}
 
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
-
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
 			is = desc_img.getInputStream();
@@ -121,9 +106,6 @@ public class ProductController {
 		if(id.equals("thumbnail_btn")) {
 			dto.setThumbnail_name( path.substring(path.lastIndexOf("/") + 1) );
 			dto.setThumbnail_path(path);
-		} else if(id.equals("prdt_img_btn")) {
-			dto.setPrdt_img_name( path.substring(path.lastIndexOf("/") + 1) );
-			dto.setPrdt_img_path(path);
 		} else if(id.equals("desc_img_btn")) {
 			dto.setDesc_img_name( path.substring(path.lastIndexOf("/") + 1) );
 			dto.setDesc_img_path(path);
@@ -150,10 +132,6 @@ public class ProductController {
 
 		if(!dto.getThumbnail_path().equals("")) {
 			File file = new File("C:" + dto.getThumbnail_path());
-			file.delete();
-		}
-		if(!dto.getPrdt_img_path().equals("")) {
-			File file = new File("C:" + dto.getPrdt_img_path());
 			file.delete();
 		}
 		if(!dto.getDesc_img_path().equals("")) {
@@ -341,19 +319,6 @@ public class ProductController {
 		dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
 		dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
 								+ todaySigan + "_" + thumbnail.getOriginalFilename());
-
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
 
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {

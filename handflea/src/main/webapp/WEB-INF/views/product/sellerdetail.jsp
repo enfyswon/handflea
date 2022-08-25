@@ -83,7 +83,9 @@
 			<div id="prdt-desc">
 				<h4>상품 설명</h4>
 				<div id="prdt-desc-img">
+					<c:if test="${detail_dto.desc_img_path != null}">
 					<img alt="prdt_desc_img" src="${detail_dto.desc_img_path}">
+					</c:if>
 				</div>
 				<p>${detail_dto.description}</p>
 			</div>		
@@ -101,7 +103,6 @@
 					, {
 						prdt_no : ${detail_dto.prdt_no}
 						, thumbnail_path : "${detail_dto.thumbnail_path}"
-						, prdt_img_path : "${detail_dto.prdt_img_path}"
 						, desc_img_path : "${detail_dto.desc_img_path}"
 					}
 					, function(data, status) {

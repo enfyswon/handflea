@@ -101,23 +101,6 @@
 						<td class="input-label"> 상품 상세 이미지 </td>
 						<td class="input-cnts">
 							<c:choose>
-								<c:when test="${detail_dto.prdt_img_path != null && detail_dto.prdt_img_path != ''}">
-									<img class="prdt_img" src="${detail_dto.prdt_img_path}">
-									<button id="prdt_img_btn" type="button" value="${detail_dto.prdt_img_path}">
-										이미지 삭제
-									</button>
-								</c:when>
-								<c:otherwise>
-									<input type="file" id="prdt_img" name="prdt_img">
-									<label for="prdt_img" id="prdt_img_label" class="write_label"></label>
-								</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
-					<tr>
-						<td class="input-label"> 상품 설명 이미지 </td>
-						<td class="input-cnts" colspan="3">
-							<c:choose>
 								<c:when test="${detail_dto.desc_img_path != null && detail_dto.desc_img_path != ''}">
 									<img class="prdt_img" src="${detail_dto.desc_img_path}">
 									<button id="desc_img_btn" type="button" value="${detail_dto.desc_img_path}">

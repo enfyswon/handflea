@@ -356,6 +356,7 @@ main {
 .order-opt-qty p {
 	margin: 0;
 	font-size: small;
+	padding-right: 3px;
 }
 .order-opt-qty span {
 	background-color: #808080;
@@ -376,6 +377,13 @@ main {
 #delivery-input {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+}
+#delivery_btn {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
 }
 #withdraw-info {
 	width: 90%;
@@ -517,6 +525,14 @@ main {
 	color: white;
 	padding: 0 1px;
 	margin-right: 3px;
+}
+.review_btn {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
+	font-size: small;
+	margin-top: 3px;
 }
 .seller-prdt {
 	width: 70%;

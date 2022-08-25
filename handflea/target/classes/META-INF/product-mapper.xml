@@ -17,10 +17,6 @@
 			, thumbnail_name = #{thumbnail_name}
 			, thumbnail_path = #{thumbnail_path}
 		</if>
-		<if test="prdt_img_name != null and prdt_img_name != ''">
-			, prdt_img_name = #{prdt_img_name}
-			, prdt_img_path = #{prdt_img_path}
-		</if>
 		<if test="desc_img_name != null and desc_img_name != ''">
 			, desc_img_name = #{desc_img_name}
 			, desc_img_path = #{desc_img_path}
@@ -34,10 +30,6 @@
 		<if test="thumbnail_name != null and thumbnail_name != ''">
 			set thumbnail_name = ''
 			, thumbnail_path = ''
-		</if>
-		<if test="prdt_img_name != null and prdt_img_name != ''">
-			set prdt_img_name = ''
-			, prdt_img_path = ''
 		</if>
 		<if test="desc_img_name != null and desc_img_name != ''">
 			set desc_img_name = ''
@@ -85,9 +77,8 @@
 	<select id="sellerdetail" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
 	select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
-		, s.seller_name
+		, p.thumbnail_name, p.thumbnail_path, p.desc_img_name, p.desc_img_path
+		, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no, s.seller_name
     	from product p, member m, seller s
     	where p.prdt_no = #{prdt_no}
 		and del_yn = 0
@@ -99,8 +90,8 @@
 			resultType="kr.co.handflea.product.ProductDTO">
 		select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
+		, p.thumbnail_name, p.thumbnail_path, p.desc_img_name, p.desc_img_path
+		, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
     	from product p, member m
 		where del_yn = 0
 		<if test="searchOption != null and searchOption != ''
@@ -148,9 +139,8 @@
 	<select id="detail" parameterType="java.lang.String" resultType="kr.co.handflea.product.ProductDTO">
 	select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
-		, s.seller_name, m.mem_photopath
+		, p.thumbnail_name, p.thumbnail_path, p.desc_img_name, p.desc_img_path
+		, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no, s.seller_name, m.mem_photopath
     	from product p, member m, seller s
     	where p.prdt_no = #{prdt_no}
 		and del_yn = 0
@@ -161,9 +151,8 @@
 	<select id="smallcatelist" parameterType="java.lang.String"  resultType="kr.co.handflea.product.ProductDTO">
 	select distinct p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
-		, p.bigcate_no, p.smallcate_no, s.smallcate_name, l.seller_name, m.mem_photopath
+		, p.thumbnail_name, p.thumbnail_path, p.desc_img_name, p.desc_img_path
+		, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no, s.smallcate_name, l.seller_name, m.mem_photopath
     	from product p, member m, bigcate b, smallcate s, seller l
 		where del_yn = 0
 		and p.smallcate_no = #{smallcate_no}
@@ -177,8 +166,7 @@
 	<select id="bigcatelist" parameterType="java.lang.String"  resultType="kr.co.handflea.product.ProductDTO">
 	select distinct p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
+		, p.thumbnail_name, p.thumbnail_path, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn
 		, p.bigcate_no, p.smallcate_no, b.bigcate_name, l.seller_name, m.mem_photopath
     	from product p, member m, bigcate b, smallcate s, seller l
 		where del_yn = 0
@@ -200,9 +188,8 @@
 			resultType="kr.co.handflea.product.ProductDTO">
 		select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
 		, p.description, p.view_cnt, p.reg_date
-		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
-		, s.seller_name, m.mem_photopath
+		, p.thumbnail_name, p.thumbnail_path, p.desc_img_name, p.desc_img_path
+		, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no, s.seller_name, m.mem_photopath
     	from product p, member m, seller s
 		where del_yn = 0
 		<if test="searchOption != null and searchOption != ''
@@ -256,11 +243,10 @@
 
 	<insert id="insert" parameterType="kr.co.handflea.product.ProductDTO">
 	insert into product (prdt_name, mem_no, price, delivery_price, description, reg_date
-						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
-						, desc_img_name, desc_img_path, prdt_rdy, option_yn, bigcate_no, smallcate_no)
+						, thumbnail_name, thumbnail_path, desc_img_name, desc_img_path, prdt_rdy, option_yn, bigcate_no, smallcate_no)
 	values(#{prdt_name}, #{mem_no}, #{price}, #{delivery_price}, #{description}, now()
-			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
-			, #{desc_img_name}, #{desc_img_path}, #{prdt_rdy}, #{option_yn}, #{bigcate_no}, #{smallcate_no}) 
+			, #{thumbnail_name}, #{thumbnail_path}, #{desc_img_name}, #{desc_img_path}
+			, #{prdt_rdy}, #{option_yn}, #{bigcate_no}, #{smallcate_no}) 
 		<selectKey resultType="String" keyProperty="prdt_no" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>

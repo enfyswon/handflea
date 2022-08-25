@@ -20,6 +20,10 @@
    where mem_no = #{mem_no}
    </update>
 
+	<update id="deletePrdt" parameterType="java.lang.String">
+	update product set delete_yn = '1'
+	where mem_no = #{mem_no}
+	</update>
 
 	<update id="incrementViewCnt" parameterType="java.lang.String">
 	update QnA
