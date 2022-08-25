@@ -74,11 +74,15 @@
 }
 #prdt-img {
 	width: 60%;
-	margin: 5px;
 	height: 450px;
-	text-align: center;
+	margin: 5px;
+	overflow: hidden;
 }
-#prdt-img > img {
+#prdt-img > div {
+	width: 100%;
+	height: 100%;
+}
+#prdt-img img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -381,6 +385,7 @@
 }
 #prdt-desc-img > img{
 	width: 100%;
+	margin: 10px;
 }
 #prdt-desc > p {
 	margin: 5px;
