@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<title> 판매자 상품 수정 </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
@@ -22,130 +22,134 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> 판매자 상품 등록 </h3>
-		<hr>
+		<main>
+		<h2> 판매자 상품 등록 </h2>
 		<form id="write_form">
 			<input type="hidden" id="prdt_no" name="prdt_no" value="${detail_dto.prdt_no}">
-			<table class="table table-hover">
-				<tbody>
+			<div id="prdt-input">
+				<table>
 					<tr>
-						<th width="25%"> 상 품 명 (*) </th>
-						<td colspan="3">
-							<input type="text" id="prdt_name" name="prdt_name" maxlength="20"
-									class="form-control" value="${detail_dto.prdt_name}">
+						<td class="input-label">상품명 (*)</td>
+						<td colspan="3" class="input-cnts">
+							<input type="text" id="prdt_name" name="prdt_name" maxlength="40" 
+								placeholder="한글 최대 20자, 영문, 숫자 최대 60자" value="${detail_dto.prdt_name}">
 							<label for="prdt_name" id="prdt_name_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th width="25%"> 판 매 자 </th>
-						<td width="25%">
-							${login_info.mem_email}
+						<td class="input-label">판매자</td>
+						<td colspan="3" class="input-cnts">${login_info.mem_email}</td>
+					</tr>
+					<tr>
+						<td class="input-label">카테고리 (*)</td>
+						<td colspan="3" class="input-cnts">
+							<select id="bigcate_no" name="bigcate_no">
+								<option value="0" selected="selected">대분류 선택</option>
+							</select>
+							>
+							<select id="smallcate_no" name="smallcate_no">
+								<option value="0" selected="selected">소분류 선택</option>
+							</select>
+							<label for="smallcate_no" id="smallcate_no_label" class="write_label"></label>
+						</td>
 						</td>
 					</tr>
 					<tr>
-						<th> 판매 가격(단위 : 원) (*) </th>
-						<td>
-							<input type="text" id="price" name="price" class="form-control"
-									value="${detail_dto.price}">
+						<td class="input-label">판매 가격 (*)</td>
+						<td class="input-cnts">
+							<input type="text" id="price" name="price" value="${detail_dto.price}"> 원
 							<label for="price" id="price_label" class="write_label"></label>
 						</td>
-					</tr>
-					<tr>
-						<th> 배송비(단위 : 원) (*)  </th>
-						<td>
-							<input type="text" id="delivery_price" name="delivery_price" class="form-control"
-									value="${detail_dto.delivery_price}">
+						<td class="input-label"> 배송비 (*)  </td>
+						<td class="input-cnts">
+							<input type="text" id="delivery_price" name="delivery_price" value="${detail_dto.delivery_price}"> 원
 							<label for="delivery_price" id="delivery_price_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 주문 옵션  </th>
-						<td>
-							<button type="button" id="add_option_btn" class="mb-1"> 옵션 입력 추가 </button>
+						<td class="input-label"> 주문 옵션  </td>
+						<td class="input-cnts" colspan="3">
+							<button type="button" id="add_option_btn"> 옵션 입력 추가 </button>
 							<label for="option_yes" id="option_yes_label" class="write_label"></label>
 							<div id="option_name_div">
 							</div>
-<!-- 							<input type="text" id="option_no" name="option_no" class="form-control" placeholder="옵션을 추가하세요."> -->
 						</td>
 					</tr>
 					<tr>
-						<th> 상품 준비 기간(단위 : 일) (*)  </th>
-						
-						<td>
-							<input type="text" id="prdt_rdy" name="prdt_rdy" class="form-control" value="${detail_dto.prdt_rdy}">
+						<td class="input-label">상품 준비 기간 (*)</td>
+						<td class="input-cnts" colspan="3">
+							<input type="text" id="prdt_rdy" name="prdt_rdy" value="${detail_dto.prdt_rdy}"> 일
 							<label for="prdt_rdy" id="prdt_rdy_label" class="write_label"></label>
 						</td>
 					</tr>
 					<tr>
-						<th> 썸 네 일 이 미 지 (*) </th>
-						<td class="text-center">
+						<td class="input-label"> 썸네일 이미지 (*) </td>
+						<td class="input-cnts">
 							<c:choose>
 								<c:when test="${detail_dto.thumbnail_path != null && detail_dto.thumbnail_path != ''}">
 									<img class="prdt_img" src="${detail_dto.thumbnail_path}">
-									<button id="thumbnail_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.thumbnail_path}">
+									<button id="thumbnail_btn" type="button" value="${detail_dto.thumbnail_path}">
 										이미지 삭제
 									</button>
 								</c:when>
 								<c:otherwise>
-									<input type="file" id="thumbnail" name="thumbnail" class="form-control">
+									<input type="file" id="thumbnail" name="thumbnail">
 									<label for="thumbnail" id="thumbnail_label" class="write_label"></label>
 								</c:otherwise>
 							</c:choose>
 						</td>
-					</tr>
-					<tr>
-						<th> 상 품 상 세 이 미 지 </th>
-						<td class="text-center">
+						<td class="input-label"> 상품 상세 이미지 </td>
+						<td class="input-cnts">
 							<c:choose>
 								<c:when test="${detail_dto.prdt_img_path != null && detail_dto.prdt_img_path != ''}">
 									<img class="prdt_img" src="${detail_dto.prdt_img_path}">
-									<button id="prdt_img_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.prdt_img_path}">
+									<button id="prdt_img_btn" type="button" value="${detail_dto.prdt_img_path}">
 										이미지 삭제
 									</button>
 								</c:when>
 								<c:otherwise>
-									<input type="file" id="prdt_img" name="prdt_img" class="form-control">
+									<input type="file" id="prdt_img" name="prdt_img">
 									<label for="prdt_img" id="prdt_img_label" class="write_label"></label>
 								</c:otherwise>
 							</c:choose>
 						</td>
 					</tr>
 					<tr>
-						<th> 상 품 설 명 이 미 지 </th>
-						<td class="text-center">
+						<td class="input-label"> 상품 설명 이미지 </td>
+						<td class="input-cnts" colspan="3">
 							<c:choose>
 								<c:when test="${detail_dto.desc_img_path != null && detail_dto.desc_img_path != ''}">
 									<img class="prdt_img" src="${detail_dto.desc_img_path}">
-									<button id="desc_img_btn" type="button" class="btn btn-danger delete_btn" value="${detail_dto.desc_img_path}">
+									<button id="desc_img_btn" type="button" value="${detail_dto.desc_img_path}">
 										이미지 삭제
 									</button>
 								</c:when>
 								<c:otherwise>
-									<input type="file" id="desc_img" name="desc_img" class="form-control">
+									<input type="file" id="desc_img" name="desc_img">
 									<label for="desc_img" id="desc_img_label" class="write_label"></label>
 								</c:otherwise>
 							</c:choose>
 						</td>
 					</tr>
 					<tr>
-						<th> 상 품 설 명 </th>
-						<td colspan="3">
+						<td class="input-label"> 상품 상세 설명   </td>
+						<td class="input-cnts" colspan="3">
 							<textarea class="form-contol" id="desc_txt" name="desc_txt">${detail_dto.description}</textarea>
 							<script type="text/javascript">
 							CKEDITOR.replace("desc_txt");
 							</script>
 						</td>
 					</tr>
-				</tbody>
-			</table>
-		</form>
-		
-		<button id="write_btn" class="btn btn-primary float-right"> 상품 수정 완료 </button>
-		<a href="${pageContext.request.contextPath}/product/sellerlist">
-			<button id="updatecancel_btn" class="btn btn-warning"> 상품 수정 취소 </button>
-		</a>
-		<hr>
+				</table>
+			</div>
+		</form>		
+		<div id="prdt-button">
+			<a href="${pageContext.request.contextPath}/product/sellerlist">
+				<button id="updatecancel_btn" class="btn btn-warning"> 상품 수정 취소 </button>
+			</a>
+			<button id="write_btn" class="btn btn-primary float-right"> 상품 수정 완료 </button>
+		</div>
+		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 	<script type="text/javascript">
@@ -279,10 +283,10 @@
 					, function(data, status) {
 						$.each(JSON.parse(data), function(idx, dto) { 
 							$("#option_name_div").append(
-									'<div class="input-group" id="div_option_no'+optionNo+'">'
+									'<div class="div_option" id="div_option_no'+optionNo+'">'
 									+'<input type="hidden" id="no'+optionNo+'" value='+ dto.option_no +'>'
-									+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요." value='+ dto.option_contents +'>'
-									+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+									+'<input type="text" id="option_no'+optionNo+'" class="option_no" placeholder="옵션을 입력하세요." value='+ dto.option_contents +'>'
+									+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove_btn"> X </button>'
 									+ '</div>'
 								);//append
 								$("#option_remove_btn"+optionNo).on("click", function(){
@@ -295,9 +299,9 @@
 			);//get
 			$("#add_option_btn").click(function() {
 				$("#option_name_div").append(
-					'<div class="input-group" id="div_option_no'+optionNo+'">'
-					+'<input type="text" id="option_no'+optionNo+'" class="form-control mb-1" placeholder="옵션을 입력하세요.">'
-					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove btn btn-danger mb-1"> X </button>'
+					'<div class="div_option" id="div_option_no'+optionNo+'">'
+					+'<input type="text" id="option_no'+optionNo+'" class="option_no" placeholder="옵션을 입력하세요.">'
+					+'<button type="button" id="option_remove_btn'+optionNo+'" class="option_remove_btn"> X </button>'
 					+ '</div>'
 				);//append
 				$("#option_remove_btn"+optionNo).on("click", function(){
@@ -309,6 +313,34 @@
 			});//click
 		});//ready
 		</script>
-	
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			$("#bigcate_no").change(function() {
+				$.get(
+						"${pageContext.request.contextPath}/product/smallcate"
+						, { bigcate_no : $("#bigcate_no").val() }
+						, function(data, status) { 
+							$("#smallcate_no").empty();
+							$("#smallcate_no").append("<option value='0'>선택하세요</option>");
+							$.each(JSON.parse(data), function(idx, dto) {
+								$("#smallcate_no").append("<option value='" + dto.smallcate_no + "'>" + dto.smallcate_name + "</option>");
+							});//each
+						}//call back function
+				);//get
+			});//change
+		});//ready
+		
+		$(document).ready(function() {
+			$.get(
+					"${pageContext.request.contextPath}/product/bigcate"
+					, function(data, status) {
+						$.each(JSON.parse(data), function(idx, dto) { 
+							$("#bigcate_no").append("<option value='" + dto.bigcate_no + "'>" + dto.bigcate_name + "</option>");
+						});//each
+					}//call back function
+			);//get
+		});//ready
+		</script>	
 	</body>
 </html>

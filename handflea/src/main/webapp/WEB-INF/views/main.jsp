@@ -32,11 +32,19 @@
 											<div class="img-box">
 												<img class="seller-profile" alt="profile" src="${dto.mem_photopath}">
 											</div>
-											<p>${dto.seller_name}</p>
+											<p class="seller-name">${dto.seller_name}</p>
 										</div>
 										<h4>${dto.prdt_name}</h4>
 										<p>${dto.price}원</p>
-										<p>별점</p>
+										<div class="item-review">
+											<c:forEach var="i" begin="1" end="${dto.star_point}">
+											<p class="full-star">★</p>
+											</c:forEach>
+											<c:forEach var="i" begin="${dto.star_point + 1}" end="5">
+											<p class="empty-star">★</p>
+											</c:forEach>
+											<p>(${dto.cnt})</p>
+										</div>
 									</div>
 								</a>
 							</div>
@@ -53,11 +61,19 @@
 											<div class="img-box">
 												<img class="seller-profile" alt="profile" src="${dto.mem_photopath}">
 											</div>
-											<p>${dto.seller_name}</p>
+											<p class="seller-name">${dto.seller_name}</p>
 										</div>
 										<h4>${dto.prdt_name}</h4>
 										<p>${dto.price}원</p>
-										<p>별점</p>
+										<div class="item-review">
+											<c:forEach var="i" begin="1" end="${dto.star_point}">
+											<p class="full-star">★</p>
+											</c:forEach>
+											<c:forEach var="i" begin="${dto.star_point + 1}" end="5">
+											<p class="empty-star">★</p>
+											</c:forEach>
+											<p>(${dto.cnt})</p>
+										</div>
 									</div>
 								</a>
 							</div>

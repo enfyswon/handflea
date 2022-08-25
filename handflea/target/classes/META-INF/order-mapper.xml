@@ -36,8 +36,8 @@
 	</select>
 	
 	<insert id="insertOrder" parameterType="kr.co.handflea.order.OrderDTO">
-	insert into order_main (mem_no, prdt_cnt, total_pay_amt, order_date) 
-	values (#{mem_no}, #{prdt_cnt}, #{total_pay_amt}, now());
+	insert into order_main (mem_no, prdt_cnt, total_pay_amt, order_date, delivery_addr) 
+	values (#{mem_no}, #{prdt_cnt}, #{total_pay_amt}, now(), #{delivery_addr});
 		<selectKey resultType="String" keyProperty="order_no" order="AFTER">
 		select LAST_INSERT_ID()
 		</selectKey>

@@ -62,7 +62,7 @@
 						<p>${seller_dto.seller_account_no}</p>
 					</div>
 					<div id="withdraw-money">
-						<input type="text" id="withdraw" name="withdraw">
+						<input type="text" id="withdraw" name="withdraw" placeholder="인출 금액 입력">
 						<button id="withdraw_btn">인출</button>
 					</div>
 				</div>
@@ -79,9 +79,9 @@
 									<p>${list.prdt_name}</p>
 								</div>
 								<div class="adjust-money">
-									<p>입금</p>
-									<p>${list.deposit}원</p>
-									<p>잔액 ${list.balance}원</p>
+									<p class="deposit">입금</p>
+									<p class="deposit">${list.deposit}원</p>
+									<p class="balance">잔액 ${list.balance}원</p>
 								</div>
 							</div>
 								</c:when>
@@ -92,9 +92,9 @@
 									<p></p>
 								</div>
 								<div class="adjust-money">
-									<p>인출</p>
-									<p>${list.withdraw}원</p>
-									<p>잔액 ${list.balance}원</p>
+									<p class="withdraw">인출</p>
+									<p class="withdraw">${list.withdraw}원</p>
+									<p class="balance">잔액 ${list.balance}원</p>
 								</div>
 							</div>
 								</c:otherwise>

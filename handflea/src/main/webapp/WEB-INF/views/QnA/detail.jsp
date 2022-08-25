@@ -28,7 +28,7 @@
 					</div>
 					<div id="qna-middle">
 						<div id="qna-img">
-							<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png" >
+							<img alt="profile" src="${detail_dto.mem_photopath}" >
 						</div>
 						<div id="qna-profile">
 							<p>${detail_dto.mem_name}</p>

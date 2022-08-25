@@ -71,7 +71,16 @@
 			                		</div>
 			                	</td>
 			                	<td class="review-cnts">${dto.review_contents}</td>
-			                	<td class="review-point">★★★★★</td>
+			                	<td class="review-point">
+			                		<div>
+				                	<c:forEach var="i" begin="1" end="${dto.star_point}">
+					                	<p class="full-star">★</p>
+				                	</c:forEach>
+				                	<c:forEach var="i" begin="${dto.star_point + 1}" end="5">
+					                	<p class="empty-star">★</p>
+				                	</c:forEach>
+			                		</div>
+			                	</td>
 			                	<td class="review-date">${dto.reg_date}</td>
 			               </tr>
 			            </c:if> 

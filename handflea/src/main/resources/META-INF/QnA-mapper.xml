@@ -25,7 +25,7 @@
 	</update>
 
 	<select id="detail" parameterType="java.lang.String" resultType="kr.co.handflea.QnA.QnADTO">
-	select q.qna_no, q.title, q.mem_no, m.mem_name, q.contents, q.view_cnt, q.write_date, q.answer_yn, q.answer
+	select q.qna_no, q.title, q.mem_no, m.mem_name, q.contents, q.view_cnt, q.write_date, q.answer_yn, q.answer, m.mem_photopath
 	from QnA q, member m
 	where q.mem_no = m.mem_no
 	and q.qna_no = #{qna_no}
