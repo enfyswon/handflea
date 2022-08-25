@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.handflea.QnA.QnADTO;
 import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.util.dto.AdjustDTO;
 import kr.co.handflea.util.dto.BankDTO;
@@ -212,5 +213,12 @@ public class MyPageService {
 		dto = dao.getSellerAdjust(mem_no);
 		
 		return dto;
+	}
+
+	public List<QnADTO> qnaList(String mem_no) {
+		List<QnADTO> list = null;
+		list = dao.qnaList(mem_no);
+		
+		return list;
 	}
 }

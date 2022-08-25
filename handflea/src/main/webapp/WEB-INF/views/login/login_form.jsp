@@ -23,7 +23,7 @@
 				<input type="text" id="mem_email" name="mem_email" maxlength="20" placeholder="이메일" >
 			</div>
 			<div class="mem-input">
-				<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" placeholder="비밀번호" >
+				<input type="password" id="mem_pwd" name="mem_pwd" maxlength="20" placeholder="비밀번호">
 			</div>
 			<div class="mem-input">
 				<button id="login_btn">로그인</button>

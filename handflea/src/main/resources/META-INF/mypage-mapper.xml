@@ -279,4 +279,12 @@
 	and a.detail_no = od.detail_no
 	and od.prdt_no = p.prdt_no
 	</select>
+	
+	<select id="qnaList" parameterType="java.lang.String" resultType="kr.co.handflea.QnA.QnADTO">
+	select qna_no, title, date_format(write_date, '%Y-%m-%d') write_date, answer_yn
+	from qna
+	where mem_no = #{mem_no}
+	order by write_date desc
+	limit 5
+	</select>
 </mapper>

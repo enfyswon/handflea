@@ -17,7 +17,7 @@
 					<h3>My Page</h3>
 					<div>
 						<img alt="profile_photo" src="${login_info.mem_photopath}">
-					</div>>
+					</div>
 					<p>${login_info.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
 				</div>

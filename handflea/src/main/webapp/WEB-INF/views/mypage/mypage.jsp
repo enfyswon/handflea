@@ -108,18 +108,28 @@
 									<td>번호</td>	<td>문의제목</td>
 									<td>문의날짜</td>	<td>상태</td>
 								</tr>
+								<c:forEach var="qlist" items="${qna_list}">
 								<tr>
-									<td>번호</td>	<td>문의제목</td>
-									<td>문의날짜</td>	<td>상태</td>
+									<td>${qlist.qna_no}</td>
+									<td>${qlist.title}</td>
+									<td>${qlist.write_date}</td>
+									<td>
+									<c:choose>
+										<c:when test="${qlist.answer_yn == 1}">
+										답변 완료
+										</c:when>
+										<c:otherwise>
+										답변 대기
+										</c:otherwise>
+									</c:choose>
+									</td>
 								</tr>
+								</c:forEach>
+								<c:if test="${qna_cnt == 0}">
 								<tr>
-									<td>번호</td>	<td>문의제목</td>
-									<td>문의날짜</td>	<td>상태</td>
+									<td colspan="4">문의 내역이 없습니다.</td>
 								</tr>
-								<tr>
-									<td>번호</td>	<td>문의제목</td>
-									<td>문의날짜</td>	<td>상태</td>
-								</tr>
+								</c:if>
 							</table>
 						</div>
 					</div>

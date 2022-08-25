@@ -15,7 +15,7 @@ public class BatchController1 {
 	@Autowired
 	private BatchService1 service;
 	
-	@Scheduled( cron = "0 0 0 * * *")
+	@Scheduled( cron = "50 42 16 * * *")
 	public void updatePrdtcon() {
 		List<OrderDTO> list = null;
 		list = service.updatePrdtconList();
