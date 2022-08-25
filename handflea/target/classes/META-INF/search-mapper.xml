@@ -8,15 +8,16 @@
 	<select id="searchList" parameterType="kr.co.handflea.util.dto.SearchDTO"
 			resultType="kr.co.handflea.product.ProductDTO">
 		select p.prdt_no, p.prdt_name, p.mem_no, m.mem_email, p.price, p.delivery_price
-		, p.description, p.view_cnt, p.reg_date
+		, p.description, p.view_cnt, p.reg_date, m.mem_photopath, s.seller_name
 		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
-		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no 
-    	from product p, member m
+		, p.desc_img_name, p.desc_img_path, p.prdt_rdy, p.option_yn, p.bigcate_no, p.smallcate_no
+    	from product p, member m, seller s
 		where del_yn = 0
 		<if test=" searchWord != null and searchWord !=''">
 		and p.prdt_name like concat('%', #{searchWord}, '%')
 		</if>
 		and p.mem_no = m.mem_no
+		and p.mem_no = s.mem_no
 		order by prdt_no desc
 		
 	</select>
