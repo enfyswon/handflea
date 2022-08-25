@@ -42,7 +42,7 @@
 						</td>
 						<td class="mem-btn">
 							<c:if test="${dto.seller_yn == 1}">
-							<button id="revoke_btn" mem_no="${dto.mem_no}">권한 회수</button>
+							<button class="revoke_btn" mem_no="${dto.mem_no}">권한 회수</button>
 							</c:if>
 						</td>
 					</tr>
@@ -55,7 +55,7 @@
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$("#revoke_btn").click(function() {
+		$(".revoke_btn").click(function() {
 			let mem_no = $(this).attr('mem_no');
 			
 			$.get(
