@@ -30,8 +30,6 @@ import kr.co.handflea.review.ReviewService;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
 
-
-
 @Controller
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -108,9 +106,6 @@ public class ProductController {
 		if(id.equals("thumbnail_btn")) {
 			dto.setThumbnail_name( path.substring(path.lastIndexOf("/") + 1) );
 			dto.setThumbnail_path(path);
-		} else if(id.equals("prdt_img_btn")) {
-			dto.setPrdt_img_name( path.substring(path.lastIndexOf("/") + 1) );
-			dto.setPrdt_img_path(path);
 		} else if(id.equals("desc_img_btn")) {
 			dto.setDesc_img_name( path.substring(path.lastIndexOf("/") + 1) );
 			dto.setDesc_img_path(path);
@@ -137,10 +132,6 @@ public class ProductController {
 
 		if(!dto.getThumbnail_path().equals("")) {
 			File file = new File("C:" + dto.getThumbnail_path());
-			file.delete();
-		}
-		if(!dto.getPrdt_img_path().equals("")) {
-			File file = new File("C:" + dto.getPrdt_img_path());
 			file.delete();
 		}
 		if(!dto.getDesc_img_path().equals("")) {

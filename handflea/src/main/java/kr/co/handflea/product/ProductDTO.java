@@ -68,8 +68,6 @@ public class ProductDTO {
 				+ " : " + desc_img
 				+ " : " + thumbnail_name
 				+ " : " + thumbnail_path
-				+ " : " + prdt_img_name
-				+ " : " + prdt_img_path
 				+ " : " + desc_img_name
 				+ " : " + desc_img_path
 				+ " : " + buy_qty
@@ -214,22 +212,6 @@ public class ProductDTO {
 
 	public void setThumbnail_path(String thumbnail_path) {
 		this.thumbnail_path = thumbnail_path;
-	}
-
-	public String getPrdt_img_name() {
-		return prdt_img_name;
-	}
-
-	public void setPrdt_img_name(String prdt_img_name) {
-		this.prdt_img_name = prdt_img_name;
-	}
-
-	public String getPrdt_img_path() {
-		return prdt_img_path;
-	}
-
-	public void setPrdt_img_path(String prdt_img_path) {
-		this.prdt_img_path = prdt_img_path;
 	}
 
 	public String getDesc_img_name() {
