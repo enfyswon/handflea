@@ -166,9 +166,9 @@
 	});
 	$(document).ready(function() {
 		$(".review_btn").click(function() {
+			var detail_no = $(this).val();
 			var url = "${pageContext.request.contextPath}/review/write_form?detail_no=" + detail_no;
 			var review = confirm("후기를 작성하시겠습니까?");
-			var detail_no = $(this).val();
 			if (review) {
 				window.open(url, "후기 작성", "width = 500, height = 420, location = no, scrollbars = no");
 				//location.href="${pageContext.request.contextPath}/review/write_form?detail_no=" + detail_no;

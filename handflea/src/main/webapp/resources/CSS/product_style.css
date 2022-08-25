@@ -188,6 +188,7 @@
 #review-list {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 .review-card {
 	width: 23%;
