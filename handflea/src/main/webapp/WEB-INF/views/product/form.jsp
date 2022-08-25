@@ -84,16 +84,9 @@
 							<input type="file" id="thumbnail" name="thumbnail">
 							<label for="thumbnail" id="thumbnail_label" class="write_label"></label>
 						</td>
-						<td class="input-label"> 상품 상세 이미지 </td>
-						<td class="input-cnts">
-							<input type="file" id="prdt_img" name="prdt_img">
-							<label for="prdt_img" id="prdt_img_label" class="write_label"></label>
-						</td>
-					</tr>
-					<tr>
 						<td class="input-label"> 상품 설명 이미지 </td>
-						<td class="input-cnts" colspan="3">
-							<input type="file" id="desc_img" name="desc_img" class="form-control">
+						<td class="input-cnts">
+							<input type="file" id="desc_img" name="desc_img">
 							<label for="desc_img" id="desc_img_label" class="write_label"></label>
 						</td>
 					</tr>
@@ -161,14 +154,6 @@
 				$("#thumbnail_label").text("필수 입력 사항이며, jpg/jpeg/gif/png 파일만 허용 됩니다.");
 				return;
 			} else { $("#thumbnail_label").text(""); }
-
-			let tmp2 = $("#prdt_img").val().substring($("#prdt_img").val().length-3);
-			let tmp2_boolean = (tmp2 == "jpg" || tmp2 == "jpeg" || tmp2 == "gif" || tmp2 == "png"
-				|| tmp2 == "JPG" || tmp2 == "JPEG" || tmp2 == "GIF" || tmp2 == "PNG");
-			if( $.trim( $("#prdt_img").val() ) != "" && tmp2_boolean == false ){
-				$("#prdt_img_label").text("상품이미지는 jpg/jpeg/gif/png 파일만 허용 됩니다.");
-				return;
-			} else { $("#prdt_img_label").text(""); }
 
 			let tmp3 = $("#desc_img").val().substring($("#desc_img").val().length-3);
 			let tmp3_boolean = (tmp3 == "jpg" || tmp3 == "jpeg" || tmp3 == "gif" || tmp3 == "png"
