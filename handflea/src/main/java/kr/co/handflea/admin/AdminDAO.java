@@ -70,5 +70,12 @@ public class AdminDAO {
 	    return successCnt;
 	}
 
+	public int deletePrdt(String mem_no) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("AdminMapper.deletePrdt", mem_no);
+		
+		return successCnt;
+	}
+
 
 }

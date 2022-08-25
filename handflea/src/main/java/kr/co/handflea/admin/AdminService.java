@@ -33,6 +33,9 @@ public class AdminService {
    public int sellerRevoke(String mem_no) {
       int successCnt = 0;
       successCnt = dao.sellerRevoke(mem_no);
+      if (successCnt > 0) {
+    	  successCnt = dao.deletePrdt(mem_no);
+      }
       
       return successCnt;
    }
