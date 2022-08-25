@@ -12,8 +12,6 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
      	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
-     	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-     	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -25,11 +23,6 @@
 					<div>
 						<img alt="product_pic" src="${detail_dto.thumbnail_path}">
 					</div>
-					<c:if test="${detail_dto.prdt_img_path != null}">
-					<div>
-						<img alt="product_pic" scr="${detail_dto.prdt_img_path}">
-					</div>
-					</c:if>
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
@@ -186,7 +179,6 @@
 			</div>
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
-	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$.get(
@@ -279,20 +271,6 @@
             'maxHeight' : 600,
         })		
 	});//ready
-	</script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('#prdt-img').slick({
-			  dots: true,
-			  infinite: true,
-			  speed: 500,
-			  arrows: true,
-			  cssEase: 'linear',
-			  fade: true,
-			  prevArrow: '<button class="slick-prev slick-arrow" style="right: 90%;><button>',
-			  nextArrow: '<button class="slick-next slick-arrow" style="left: 90%;"><button>'
-		});
-	});
 	</script>
 	</body>
 </html>
