@@ -78,11 +78,7 @@
 	margin: 5px;
 	overflow: hidden;
 }
-#prdt-img > div {
-	width: 100%;
-	height: 100%;
-}
-#prdt-img img {
+#prdt-img > img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
