@@ -20,8 +20,6 @@ public class ProductDTO {
 	private MultipartFile desc_img;
 	private String thumbnail_name;
 	private String thumbnail_path;
-	private String prdt_img_name;
-	private String prdt_img_path;
 	private String desc_img_name;
 	private String desc_img_path;
 	

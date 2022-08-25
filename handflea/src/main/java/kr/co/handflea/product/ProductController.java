@@ -79,19 +79,6 @@ public class ProductController {
 									+ todaySigan + "_" + thumbnail.getOriginalFilename());
 		}
 
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
-
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
 			is = desc_img.getInputStream();
@@ -341,19 +328,6 @@ public class ProductController {
 		dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
 		dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
 								+ todaySigan + "_" + thumbnail.getOriginalFilename());
-
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
 
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
