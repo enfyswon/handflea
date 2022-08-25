@@ -20,9 +20,7 @@
 		<main>
 			<div id="prdt-outline">
 				<div id="prdt-img">
-					<div>
-						<img alt="product_pic" src="${detail_dto.thumbnail_path}">
-					</div>
+					<img alt="product_pic" src="${detail_dto.thumbnail_path}">
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
