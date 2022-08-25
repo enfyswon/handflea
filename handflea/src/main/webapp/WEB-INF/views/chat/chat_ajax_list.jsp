@@ -17,7 +17,7 @@
 						</div>
 						<c:if test="${tmp.unread > 0}">
 						<div class="unread${tmp.chat_roomno} unread">
-							<span class="badge bg-danger">${tmp.unread}</span>
+							<span class="badge">${tmp.unread}</span>
 						</div>
 						</c:if>
 					</div>

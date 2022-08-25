@@ -226,3 +226,25 @@ hr {
 	border: 0;
 	margin: 20px 0;
 }
+.pagination {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+}
+
+.pagination a {
+	color: black;
+	padding: 4px 10px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #0F8BFF;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #cecece;
+	border-radius: 5px;
+}

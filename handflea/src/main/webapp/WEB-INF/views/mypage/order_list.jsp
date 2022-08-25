@@ -15,7 +15,9 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<img alt="profile_photo" src="${login_info.mem_photopath}">
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
 					<p>${login_info.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${login_info.mem_email}</p>
 				</div>
@@ -26,7 +28,7 @@
 						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
 						<h4>나의 활동</h4>
 						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
-						<a href="#">내가 작성한 후기</a>
+						<a href="${pageContext.request.contextPath}/review/mylist">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
 						<a href="${pageContext.request.contextPath}/mypage/regist">판매자 등록</a>
@@ -102,7 +104,7 @@
 								</c:when>
 								<c:when test="${list.prdt_con == 3}">
 								결제 완료<br>
-								<button>환불 요청</button>
+								<button class="refund_btn" value="${list.detail_no}">환불 요청</button>
 								</c:when>
 								<c:otherwise>
 								${list.code_name}
@@ -142,6 +144,25 @@
 				);
 			}
 		});
+		
+		$(".refund_btn").click(function() {
+			var refund = confirm("환불하시겠습니까?");
+			if (refund) {
+				$.get(
+						"${pageContext.request.contextPath}/order/refund",
+						{
+							detail_no : $(this).val()
+						}, 
+						function(data, status) {
+							if (data >= 1) {
+								location.href="${pageContext.request.contextPath}/mypage/order";
+							} else {
+								alert("에러");
+							}
+						}
+				);
+			}
+		})
 	});
 	$(document).ready(function() {
 		$(".review_btn").click(function() {
@@ -152,6 +173,17 @@
 			}
 		});
 	});
+	</script>
+	<script>
+	function pwd_ch() {
+		var userinput = prompt("비밀번호를 입력해주세요.");
+		if ("${login_info.mem_pwd}" == userinput) {
+			location.href="${pageContext.request.contextPath}/mypage/myinfo";
+		} else {
+			alert("비밀번호가 틀렸습니다.");
+			location.href="${pageContext.request.contextPath}/mypage/";
+		}
+	}
 	</script>
 	</body>
 </html>

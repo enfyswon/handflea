@@ -91,4 +91,11 @@ public class OrderDAO {
 		
 		return successCnt;
 	}
+
+	public int prdtRefund(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("OrderMapper.prdtRefund", dto);
+		
+		return successCnt;
+	}
 }

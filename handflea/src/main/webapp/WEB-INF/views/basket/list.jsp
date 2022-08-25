@@ -6,95 +6,100 @@
 		<meta charset="UTF-8">
 		<title> 장바구니 목록 </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/order_style.css">
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
-		<hr>
-		<h3> 장바구니 목록 </h3>
-		<hr>
-		<table class="table table-hover">
-			<col class="col-1">
-			<thead>
-				<tr>
-					<th> 선택 </th>	<th> 썸네일 </th>	<th> 상품명 </th>
-					<th> 단가 </th>	<th> 구매 수량 </th>	<th> 구매 금액 </th>
-					<th> 배송비</th> <th> 실 구매 금액 </th>	<th> 삭제 </th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:set var="sum_product_class_qty" value="0" />
-				<c:set var="sum_buy_amt" value="0" />
-				<c:set var="sum_delivery_amt" value="0" />
-				<c:set var="sum_buy_allamt" value="0" />
-				
-				<c:forEach var="dto" items="${list}" varStatus="status">
-					<c:set var="sum_product_class_qty" value="${sum_product_class_qty + 1}" />
-					<c:set var="sum_buy_amt" value="${sum_buy_amt + (dto.price * dto.buy_qty)}" />
-					<c:set var="sum_delivery_amt" value="${sum_delivery_amt + dto.delivery_price}" />
-					<c:set var="sum_buy_allamt" value="${sum_buy_allamt + (dto.price * dto.buy_qty) + dto.delivery_price}" />
-					<tr>
-						<td>
-							<input type="checkbox" class="order_check_box form-control" checked="checked" id="${dto.price}" name="${dto.price}" value="${dto.buy_qty}">
-							<input type="hidden" id="basket_no${status.index}" name="basket_no${status.index}" value="${dto.basket_no}">
-						</td>
-						<td width="10%">
-							<img src="${dto.thumbnail_path}" class="img-thumbnail">
-						</td>
-						<td>
-							<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
-								${dto.prdt_name}
-							</a>
-							<p>${dto.option_contents}</p>
-						</td>
-						<td> ${dto.price} 원 </td>
-						<td>
-							<select id="buy_qty" name="buy_qty">
-								<c:forEach var="tmp_qty" begin="1" end="10">
-									<option value="${tmp_qty}"
-										<c:if test="${dto.buy_qty == tmp_qty}"> selected="selected"</c:if>
-									> ${tmp_qty} </option>
-								</c:forEach>
-							</select>
-							<button type="button" class="btn btn-danger btn-sm qty_chg_btn" value="${dto.basket_no}">수량 변경</button>
-						</td>
-						<td> ${dto.price * dto.buy_qty} 원 </td>
-						<td> ${dto.delivery_price} 원 </td>
-						<td class="text-danger"> ${ (dto.price ) * dto.buy_qty + dto.delivery_price} 원 </td>
-						<td>
-							<button class="basket_delete_btn btn btn-danger btn-sm" value="${dto.basket_no}"> X </button>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<hr>
-		<table class="table">
-			<tr>
-				<td rowspan="5"> <h1>전 체 합 계</h1> </td>
-				<th> 총 상 품 수 </th>
-				<td class="text-right"> <span id="span_sum_product_class_qty"> ${sum_product_class_qty}</span> 개 </td>
-			</tr>
-			<tr>
-				<th> 총 구 매 금 액 </th>
-				<td class="text-right"> <span id="span_sum_buy_amt"> ${sum_buy_amt}</span> 원 </td>
-			</tr>
-			<tr>
-				<th> 배 송 비 </th>
-				<td class="text-right"> <span id="span_sum_delivery_amt"> ${sum_delivery_amt} </span> 원 </td>
-			</tr>
-			<tr>
-				<th> <h1>총 주 문 금 액</h1> </th>
-				<td class="text-right text-danger"> <h1><span id="span_sum_total_buy_allamt"> ${sum_buy_allamt}</span> 원</h1> </td>
-			</tr>
-		</table>
-		<hr>
-		<div class="text-center">
-			<button id="order_btn" class="btn btn-danger btn-large"> 주 문 하 기 </button>
-		</div>
-		<hr>
+		<main>
+			<h3> 장바구니 목록 </h3>
+			<div id="basket">
+				<table>
+					<thead>
+						<tr>
+							<th class="basket-chk"> 선택 </th>
+							<th class="basket-prdt"> 상품명 </th>
+							<th class="basket-price"> 단가 </th>
+							<th class="basket-qty"> 구매 수량 </th>
+							<th class="basket-amt"> 구매 금액 </th>
+							<th class="basket-deliamt"> 배송비</th>
+							<th class="basket-delete"> 삭제 </th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:set var="sum_product_class_qty" value="0" />
+						<c:set var="sum_buy_amt" value="0" />
+						<c:set var="sum_delivery_amt" value="0" />
+						<c:set var="sum_buy_allamt" value="0" />
+						
+						<c:forEach var="dto" items="${list}" varStatus="status">
+							<c:set var="sum_product_class_qty" value="${sum_product_class_qty + 1}" />
+							<c:set var="sum_buy_amt" value="${sum_buy_amt + (dto.price * dto.buy_qty)}" />
+							<c:set var="sum_delivery_amt" value="${sum_delivery_amt + dto.delivery_price}" />
+							<c:set var="sum_buy_allamt" value="${sum_buy_allamt + (dto.price * dto.buy_qty) + dto.delivery_price}" />
+							<tr>
+								<td class="basket-chk">
+									<input type="checkbox" class="order_check_box form-control" checked="checked" id="${dto.price}" name="${dto.delivery_price}" value="${dto.buy_qty}">
+									<input type="hidden" id="basket_no${status.index}" name="basket_no${status.index}" value="${dto.basket_no}">
+								</td>
+								<td class="basket-prdt">
+									<div class="order-prdt">
+										<div class="order-prdt-img">
+											<img src="${dto.thumbnail_path}" class="img-thumbnail">
+										</div>
+										<div class="order-prdt-outline">
+											<a href="${pageContext.request.contextPath}/product/detail?prdt_no=${dto.prdt_no}">
+												${dto.prdt_name}
+											</a>
+											<p><span>옵션</span>${dto.option_contents}</p>
+										</div>
+									</div>
+								</td>
+								<td class="basket-price"> ${dto.price} 원 </td>
+								<td class="basket-qty">
+									<select id="buy_qty" name="buy_qty">
+										<c:forEach var="tmp_qty" begin="1" end="10">
+											<option value="${tmp_qty}"
+												<c:if test="${dto.buy_qty == tmp_qty}"> selected="selected"</c:if>
+											> ${tmp_qty} </option>
+										</c:forEach>
+									</select>
+									<button type="button" class="qty_chg_btn" value="${dto.basket_no}">변경</button>
+								</td>
+								<td class="basket-amt"> ${dto.price * dto.buy_qty} 원 </td>
+								<td class="basket-deliamt"> ${dto.delivery_price} 원 </td>
+								<td class="basket-delete">
+									<button class="basket_delete_btn" value="${dto.basket_no}"> X </button>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div id="basket-total">
+				<div id="chk-sum">
+					<div>
+						<p>선택 상품 금액</p>
+						<span id="span_sum_buy_amt"> ${sum_buy_amt}</span> 원 
+					</div>
+					<div>
+						<img alt="+" src="${pageContext.request.contextPath}/resources/img/plus.png">
+					</div>
+					<div>
+						<p>배송비</p>
+						<span id="span_sum_delivery_amt"> ${sum_delivery_amt} </span> 원
+					</div>
+				</div>
+				<div id="total-sum">
+					<p>총 주문 금액</p>
+					<span id="span_sum_total_buy_allamt"> ${sum_buy_allamt}</span> 원
+				</div>
+				<div id="basket-order">
+					<button id="order_btn" class="btn btn-danger btn-large"> 주문하기 </button>
+				</div>
+			</div>
+		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 	<script type="text/javascript">
@@ -177,26 +182,26 @@
 			//alert($(this).val() + " : " + $(this).attr("name") + " : " + $(this).attr("id"));
 
 			if( $(this).prop("checked") == true ) {
-				$("#span_sum_product_class_qty").text(
-					parseInt($("#span_sum_product_class_qty").text()) + 1
+				$("#span_sum_delivery_amt").text(
+					parseInt($("#span_sum_delivery_amt").text()) + parseInt($(this).attr("name"))
 				);
 				$("#span_sum_buy_amt").text(
 						parseInt($("#span_sum_buy_amt").text()) + ( $(this).attr("id")  * $(this).val() )
 				);
-				$("#span_sum_total_buy_amt").text(
-						parseInt($("#span_sum_total_buy_amt").text())
-						+ ( $(this).attr("name") * $(this).val() )
+				$("#span_sum_total_buy_allamt").text(
+						parseInt($("#span_sum_total_buy_allamt").text())
+						+ parseInt( parseInt($(this).attr("name")) + ($(this).attr("id") * $(this).val()))
 				);
 			} else if( $(this).prop("checked") == false ) {
-				$("#span_sum_product_class_qty").text(
-						$("#span_sum_product_class_qty").text() - 1
+				$("#span_sum_delivery_amt").text(
+						parseInt($("#span_sum_delivery_amt").text()) - parseInt($(this).attr("name"))
 				);
 				$("#span_sum_buy_amt").text(
 						$("#span_sum_buy_amt").text() - ( $(this).attr("id")  * $(this).val() )
 				);
-				$("#span_sum_total_buy_amt").text(
-						$("#span_sum_total_buy_amt").text()
-						- ( $(this).attr("name") * $(this).val() )
+				$("#span_sum_total_buy_allamt").text(
+						parseInt($("#span_sum_total_buy_allamt").text())
+						- parseInt( parseInt($(this).attr("name")) + ($(this).attr("id") * $(this).val()))
 				);
 			}//if
 
