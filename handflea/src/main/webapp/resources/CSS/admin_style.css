@@ -58,3 +58,9 @@
 .refund {
 	width: 15%;
 }
+.admin_refund {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
+}

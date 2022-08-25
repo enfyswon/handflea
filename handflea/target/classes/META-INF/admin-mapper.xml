@@ -21,7 +21,7 @@
    </update>
 
 	<update id="deletePrdt" parameterType="java.lang.String">
-	update product set delete_yn = '1'
+	update product set del_yn = '1'
 	where mem_no = #{mem_no}
 	</update>
 

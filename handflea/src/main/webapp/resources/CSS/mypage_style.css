@@ -186,16 +186,16 @@ main {
 #seller_name {
 	width: 300px;
 }
-#seller_add_1 {
+#post_code {
 	width: 100px;
 }
-#seller_add_2 {
+#seller_add_1 {
 	width: 250px;
 }
-#seller_add_3 {
+#seller_add_2 {
 	width: 200px;
 }
-#seller_add_4 {
+#seller_add_3 {
 	width: 150px;
 }
 #account_no {
@@ -269,13 +269,13 @@ main {
 	height: 30px;
 	border-radius: 4px;
 }
-#button-box {
+#info-button-box {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	margin-bottom: 20px;
 }
-#button-box button {
+#info-button-box button {
 	margin: 0;
 	padding: 5px;
 	width: 100px;
@@ -527,6 +527,14 @@ main {
 	margin-right: 3px;
 }
 .review_btn {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
+	font-size: small;
+	margin-top: 3px;
+}
+.refund_btn {
 	background-color: #333333;
 	color: white;
 	padding: 3px;

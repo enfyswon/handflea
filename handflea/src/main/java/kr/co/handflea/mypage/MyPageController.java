@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import kr.co.handflea.QnA.QnADTO;
 import kr.co.handflea.order.OrderDTO;
 import kr.co.handflea.order.OrderService;
 import kr.co.handflea.util.dto.AdjustDTO;
@@ -77,6 +78,11 @@ public class MyPageController {
 		olist = service.recentOrder(mem_no);
 		model.addAttribute("recent_order_list", olist);
 		model.addAttribute("order_cnt", olist.size());
+		
+		List<QnADTO> qlist = null;
+		qlist = service.qnaList(mem_no);
+		model.addAttribute("qna_list", qlist);
+		model.addAttribute("qna_cnt", qlist.size());
 		
 		MemberDTO memdto = new MemberDTO();
 		int basketCnt = service.getBasketCnt(mem_no);
@@ -186,8 +192,10 @@ public class MyPageController {
 		
 		if (seller_yn.equals("1")) {
 			updateYn = service.sellerInfoUpdate(dto);
+			session.setAttribute("login_info", dto);
 		}else {
 			updateYn = service.infoUpdate(dto);
+			session.setAttribute("login_info", dto);
 		}
 		System.out.println(dto.toString());
 		out.print(updateYn);
