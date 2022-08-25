@@ -191,7 +191,7 @@
 				</div>
 		</c:if>	
 			</form>
-				<div id="button-box">
+				<div id="info-button-box">
 					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
 					<button type="button" id="save_btn" name="save_btn">저장</button>
 				</div>

@@ -269,13 +269,13 @@ main {
 	height: 30px;
 	border-radius: 4px;
 }
-#button-box {
+#info-button-box {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	margin-bottom: 20px;
 }
-#button-box button {
+#info-button-box button {
 	margin: 0;
 	padding: 5px;
 	width: 100px;
