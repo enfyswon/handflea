@@ -16,10 +16,18 @@ main {
 #profile > h3 {
 	margin-top: 10px;
 }
-#profile > img {
-	width: 50%;
-	height: 50%;
-	margin : 10px 0 5px 0;
+#profile > div {
+	width: 70px;
+	height: 70px;
+	border-radius: 70%;
+	overflow: hidden;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+#profile img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 #profile > p {
 	margin: 5px 0;
@@ -87,6 +95,7 @@ main {
 }
 .list-top {
 	background-color: #a8a8a8;
+	text-align: center;
 }
 .list-top > td {
 	font-weight: 500;
@@ -94,6 +103,48 @@ main {
 }
 .list-box td {
 	padding: 5px 0;
+}
+.rorder-date {
+	width: 15%;
+}
+.rorder-no {
+	width: 10%;
+}
+.rorder-prdt {
+	width: 40%;
+}
+.rorder-prdt > a {
+	color: black;
+}
+.rorder-prdt > a :hover {
+	color: #0F8BFF;
+}
+.rorder-amt {
+	width: 20%;
+}
+.rorder-con {
+	width: 15%;
+}
+.sell-no {
+	width: 10%;
+}
+.sell-prdt {
+	width: 45%;
+}
+.sell-prdt > a {
+	color: black;
+}
+.sell-prdt > a :hover {
+	color: #0F8BFF;
+}
+.sell-date {
+	width: 15%;
+}
+.sell-deadline {
+	width: 15%;
+}
+.sell-con {
+	width: 15%;
 }
 #regist-box {
 	background-color: #f4f4f4;
@@ -105,9 +156,7 @@ main {
 	background-color: #5b5b5b;
 	color: white;
 	text-align: center;
-	border: 0;
 	border-radius: 4px;
-	outline: 0;
 	padding: 5px 10px;
 }
 .input-block {
@@ -137,16 +186,16 @@ main {
 #seller_name {
 	width: 300px;
 }
-#seller_add_1 {
+#post_code {
 	width: 100px;
 }
-#seller_add_2 {
+#seller_add_1 {
 	width: 250px;
 }
-#seller_add_3 {
+#seller_add_2 {
 	width: 200px;
 }
-#seller_add_4 {
+#seller_add_3 {
 	width: 150px;
 }
 #account_no {
@@ -211,13 +260,22 @@ main {
 	height: 30px;
 	border-radius: 4px;
 }
-#button-box {
+#seller_add_btn {
+	background-color: #0F8BFF;
+	color: white;
+	outline: 0;
+	border: 0;
+	width: 100px;
+	height: 30px;
+	border-radius: 4px;
+}
+#info-button-box {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	margin-bottom: 20px;
 }
-#button-box button {
+#info-button-box button {
 	margin: 0;
 	padding: 5px;
 	width: 100px;
@@ -229,4 +287,332 @@ main {
 #save_btn {
 	background-color: #333333;
 	color: white;
+}
+.sale-list {
+	height: 60px;
+}
+.sale-no {
+	width: 10%;
+}
+.sale-prdt {
+	width: 30%;
+}
+.sale-prdt a {
+	color: black;
+}
+.sale-prdt a :hover {
+	color: #0F8BFF;
+}
+.sale-opt-qty {
+	width: 15%;
+}
+.sale-delivery {
+	width: 20%;
+}
+.sale-delivery-con {
+	width: 15%;
+}
+.sale-refund {
+	width: 10%;
+}
+.order-list {
+	height: 70px;
+}
+.order-no {
+	width: 10%;
+}
+.order-prdt {
+	width: 35%;
+}
+.order-prdt-box {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.order-prdt-img {
+	width: 25%;
+}
+.order-prdt-img img {
+	width: 50px;
+	height: 70px;
+	object-fit: cover;
+}
+.order-prdt-outline {
+	width: 85%;
+	align-items: center;
+	text-align: left;
+}
+.order-prdt-outline a {
+	color: black;
+}
+.order-prdt-outline a :hover {
+	color: #0F8BFF;
+}
+.order-opt-qty {
+	display: flex;
+	flex-direction: row;
+}
+.order-opt-qty p {
+	margin: 0;
+	font-size: small;
+	padding-right: 3px;
+}
+.order-opt-qty span {
+	background-color: #808080;
+	color: white;
+}
+.order-date {
+	width: 10%;
+}
+.order-amt {
+	width: 15%;
+}
+.order-delivery {
+	width: 15%;
+}
+.order-con {
+	width: 15%;
+}
+#delivery-input {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+#delivery_btn {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
+}
+#withdraw-info {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	margin: 20px auto;
+	align-items: center;
+}
+#withdraw-account {
+	width: 40%;
+}
+#withdraw-money {
+	width: 60%;
+	margin: 0;
+	text-align: right;
+}
+#withdraw-money > input {
+	width : 60%;
+	line-heigth : 30px;
+	padding : 5.5px;
+	margin : 0;
+	font-size: medium;
+}
+#withdraw-money > button {
+	text-align : center;
+	text-decoration : none;
+	font-size : medium;
+	width : 10%;
+	height : 35px;
+	background-color: #0F8BFF;
+	color : white;
+	border : 0;
+	outline : 0;
+	border-radius: 4px;
+}
+.adjust-box {
+	width: 95%;
+	margin-top: 20px;
+}
+.adjust-detail {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1px solid #cecece;
+}
+.adjust-prdt {
+	width: 60%;
+	text-align: left;
+	margin: 0;
+}
+.adjust-money {
+	width: 40%;
+	text-align: right;
+	margin: 0;
+}
+.withdraw {
+	color: #C1000C;
+}
+.deposit {
+	color: #3018CC;
+}
+.balance {
+	font-size: small;
+	color: #a8a8a8;
+}
+.review-list {
+	width: 100%;
+	height: 80px;
+	align-items: center;
+}
+.review-list td {
+	border-bottom: 1px solid #cecece;
+}
+.review-list .review-prdt {
+	text-align: left;
+}
+.review-list .review-cnts {
+	text-align: left;
+}
+.review-prdt-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0;
+}
+.review-prdt-img {
+	width: 30%;
+	height: 100%;
+}
+.review-prdt-img > img {
+	height: 70px;
+	width: 50px;
+	object-fit: cover;
+	margin-top: auto;
+	margin-left: 5px;
+}
+.review-prdt-outline {
+	width: 70%;
+}
+.review-prdt {
+	width: 30%;
+}
+.review-cnts {
+	width: 45%;
+}
+.review-point {
+	width: 10%;
+	font-size: 14px;
+}
+.review-point > div {
+	display: flex;
+	flex-direction: row;
+}
+.full-star {
+	margin: 0;
+	color: #FFDC2D;
+}
+.empty-star {
+	margin: 0;
+	color: #cecece;
+}
+.review-date {
+	width: 15%;
+}
+.review-prdt-outline a {
+	color: black;
+}
+.review-prdt-outline a :hover {
+	color: #0F8BFF;
+}
+.review-prdt-opt {
+	margin: 0;
+	font-size: small;
+	padding-top: 3px;
+}
+.review-prdt-opt span {
+	background-color: #808080;
+	color: white;
+	padding: 0 1px;
+	margin-right: 3px;
+}
+.review_btn {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
+	font-size: small;
+	margin-top: 3px;
+}
+.refund_btn {
+	background-color: #333333;
+	color: white;
+	padding: 3px;
+	border-radius: 3px;
+	font-size: small;
+	margin-top: 3px;
+}
+.seller-prdt {
+	width: 70%;
+	border-top: 1px solid #cecece;
+}
+.seller-prdt-box {
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+	align-items: center;
+}
+.seller-prdt a {
+	color: black;
+	margin: 0 5px;
+}
+.seller-prdt a :hover {
+	color: #0F8BFF;
+}
+.seller-prdt-img {
+	height: 70px;
+	margin: 0 5px;
+}
+.seller-prdt-img > img {
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
+}
+.seller-prdt-box > p {
+	margin: 0 5px;
+}
+.seller-price {
+	width: 30%;
+	border-bottom: 1px solid #cecece;
+}
+#board-top {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 20px 0;
+}
+.search-box {
+	width: 80%;
+	margin: 0;
+}
+.search-box > form {
+	text-align: center;
+}
+.search-box select {
+	width: 15%;
+	height: 35px;
+	font-size: 15px;
+}
+.search-box input {
+	padding: 5px;
+	width: 50%;
+}
+.search-box button {
+	background-color: #0F8BFF;
+	color: white;
+	padding: 5px;
+	border-radius: 4px;
+	font-size: 15px;
+}
+#button-box {
+	width: 20%;
+	margin: auto;
+}
+#button-box button {
+	background-color: #0F8BFF;
+	color: white;
+	padding: 5px;
+	border-radius: 4px;
+	font-size: 15px;
 }

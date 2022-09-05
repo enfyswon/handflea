@@ -25,10 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 
 import kr.co.handflea.product.ProductDTO;
+import kr.co.handflea.review.ReviewDTO;
+import kr.co.handflea.review.ReviewService;
 import kr.co.handflea.util.dto.MemberDTO;
 import kr.co.handflea.util.dto.SearchDTO;
-
-
 
 @Controller
 @RequestMapping(value = "/product")
@@ -38,6 +38,9 @@ public class ProductController {
 	
 	@Autowired             
 	private ProductService service;
+	
+	@Autowired
+	private ReviewService rsevice;
 	
 	@RequestMapping( value = "/update", method = RequestMethod.POST )
 	public void update( ProductDTO dto, HttpSession session, PrintWriter out ) throws IOException {
@@ -74,19 +77,6 @@ public class ProductController {
 									+ todaySigan + "_" + thumbnail.getOriginalFilename());
 		}
 
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
-
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
 			is = desc_img.getInputStream();
@@ -116,9 +106,6 @@ public class ProductController {
 		if(id.equals("thumbnail_btn")) {
 			dto.setThumbnail_name( path.substring(path.lastIndexOf("/") + 1) );
 			dto.setThumbnail_path(path);
-		} else if(id.equals("prdt_img_btn")) {
-			dto.setPrdt_img_name( path.substring(path.lastIndexOf("/") + 1) );
-			dto.setPrdt_img_path(path);
 		} else if(id.equals("desc_img_btn")) {
 			dto.setDesc_img_name( path.substring(path.lastIndexOf("/") + 1) );
 			dto.setDesc_img_path(path);
@@ -147,10 +134,6 @@ public class ProductController {
 			File file = new File("C:" + dto.getThumbnail_path());
 			file.delete();
 		}
-		if(!dto.getPrdt_img_path().equals("")) {
-			File file = new File("C:" + dto.getPrdt_img_path());
-			file.delete();
-		}
 		if(!dto.getDesc_img_path().equals("")) {
 			File file = new File("C:" + dto.getDesc_img_path());
 			file.delete();
@@ -167,13 +150,13 @@ public class ProductController {
 	@RequestMapping( value = "/sellerdetail", method = RequestMethod.GET )
 	public String sellerdetail( String prdt_no, Model model ) {
 		ProductDTO dto = null;
-		dto = service.sellerdetail( prdt_no );
+		dto = service.detail( prdt_no );
 		model.addAttribute("detail_dto", dto);
 		return "/product/sellerdetail";//jsp file name
 	}//sellerdetail
 	
 	@RequestMapping( value = "/sellerlist", method = RequestMethod.GET )
-	public String sellerlist( Model model, String userWantPage, SearchDTO dto ) {
+	public String sellerlist( Model model, String userWantPage, SearchDTO dto, HttpSession session ) {
 		if( userWantPage == null || userWantPage.equals("") ) userWantPage = "1";
 		int totalCount = 0, startPageNum = 1, endPageNum = 10, lastPageNum = 1;
 		totalCount = service.searchListCount( dto );
@@ -203,7 +186,8 @@ public class ProductController {
 		model.addAttribute("userWantPage", userWantPage);
 
 		dto.setLimitNum( ( Integer.parseInt(userWantPage) - 1 ) * 10  );
-
+		dto.setMem_no( ( (MemberDTO) session.getAttribute("login_info") ).getMem_no() );
+		
 		List<ProductDTO> list = null;
 		list = service.sellerlist( dto );
 		model.addAttribute("list", list);
@@ -229,6 +213,11 @@ public class ProductController {
 		ProductDTO dto = null;
 		dto = service.detail( prdt_no );
 		model.addAttribute("detail_dto", dto);
+		
+		List<ReviewDTO> list = null;
+		list = rsevice.reviewList(prdt_no);
+		model.addAttribute("reviewlist", list);
+		
 		return "/product/detail";//jsp file name
 	}//detail
 	
@@ -330,19 +319,6 @@ public class ProductController {
 		dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
 		dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
 								+ todaySigan + "_" + thumbnail.getOriginalFilename());
-
-		MultipartFile prdt_img = dto.getPrdt_img();
-		if(prdt_img != null && !prdt_img.getOriginalFilename().equals("")) {
-			is = prdt_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
-										+ todaySigan + "_" + prdt_img.getOriginalFilename() );
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			dto.setPrdt_img_name(todayNalja + "_" + todaySigan + "_" + prdt_img.getOriginalFilename());
-			dto.setPrdt_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
-									+ todaySigan + "_" + prdt_img.getOriginalFilename());
-		}
 
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {

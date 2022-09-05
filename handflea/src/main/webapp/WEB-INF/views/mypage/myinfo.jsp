@@ -8,92 +8,6 @@
 		<title>HandFlea</title>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/mypage_style.css">
-<style type="text/css">
-.info {
-	margin-bottom: 2%;
-}
-.info-title {
-	display: inline-flex;
-	flex-direction: row;
-}
-.info-title > h2 {
-	margin-right: 7px;
-}
-.type {
-	color: #0F8BFF;
-}
-.info-line {
-	display: flex;
-	flex-direction: row;
-	border-top: 1px solid #595959;
-	padding: 10px 0 ;
-}
-.info-label {
-	width: 20%;
-	text-align: center;
-	display: flex;
-	align-items: center;
-}
-#info-guide {
-	font-size: small;
-	margin-left: 10%;
-}
-.info-contents {
-	width: 80%;
-}
-.info-contents > img {
-	width: 100px;
-}
-.info-contents input {
-	margin-top: 5px;
-	padding: 5px;
-}
-#mem_pwd {
-	display: block;
-	margin: 0;
-}
-.info-contents label {
-	font-size: small;
-	color: red;
-}
-#add_btn {
-	background-color: #0F8BFF;
-	color: white;
-	outline: 0;
-	border: 0;
-	width: 100px;
-	height: 30px;
-	border-radius: 4px;
-}
-#seller_add_btn{
-	background-color: #0F8BFF;
-	color: white;
-	outline: 0;
-	border: 0;
-	width: 100px;
-	height: 30px;
-	border-radius: 4px;
-}
-#button-box {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-#button-box button {
-	margin: 0;
-	padding: 5px;
-	width: 100px;
-	border-radius: 4px;
-}
-#quit_btn {
-	background-color: #f4f4f4;
-}
-#save_btn {
-	background-color: #333333;
-	color: white;
-}
-</style>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -102,18 +16,19 @@
 			<div id="side">
 				<div id="profile">
 					<h3>My Page</h3>
-					<!-- ${pageContext.request.contextPath}/resources/img/user.png -->
-					<img alt="profile_photo" src="${myinfo.mem_photopath}">
+					<div>
+						<img alt="profile_photo" src="${login_info.mem_photopath}">
+					</div>
 					<p>${myinfo.mem_name} 님</p>
 					<p style="font-size: small; margin-bottom: 10px;">${myinfo.mem_email}</p>
 				</div>
 				<div id="menu-box">
 					<div id="menu-link">
 						<h4>나의 쇼핑</h4>
-						<a href="#">주문 내역</a>
-						<a href="${pageContext.request.contextPath}/cart/">장바구니</a>
+						<a href="${pageContext.request.contextPath}/mypage/order">주문 내역</a>
+						<a href="${pageContext.request.contextPath}/basket/list">장바구니</a>
 						<h4>나의 활동</h4>
-						<a href="#">Q&A 문의 내역</a>
+						<a href="${pageContext.request.contextPath}/QnA/mylist">Q&A 문의 내역</a>
 						<a href="#">내가 작성한 후기</a>
 						<h4>내 정보</h4>
 						<a onclick="pwd_ch()">회원정보 변경</a>
@@ -121,8 +36,8 @@
 						<c:if test="${login_info.seller_yn != null && login_info.seller_yn != '0'}">
 						<h4>판매자 메뉴</h4>
 						<a href="${pageContext.request.contextPath}/product/form">상품 등록 / 관리</a>
-						<a href="#">판매 내역</a>
-						<a href="#">정산</a>
+						<a href="${pageContext.request.contextPath}/mypage/sale">판매 내역</a>
+						<a href=${pageContext.request.contextPath}/mypage/adjust>정산</a>
 						</c:if>
 					</div>
 				</div>
@@ -140,7 +55,12 @@
 									<p>프로필 사진</p>
 								</div>
 								<div class="info-contents">
-									<img alt="profile" src="${myinfo.mem_photopath}">
+									<c:if test="${myinfo.mem_photopath != null && myinfo.mem_photopath != '0'}">
+									<img alt="profile_photo" src="${myinfo.mem_photopath}">
+									</c:if>
+									<c:if test="${myinfo.mem_photopath == null || myinfo.mem_photopath == '0'}">
+									<img alt="profile_photo" src="${pageContext.request.contextPath}/resources/img/user.png">
+									</c:if>
 									<input type="file" id="profile" name="profile">
 									<p>사진은 회원님의 게시물이나 리뷰 등에 사용됩니다.</p>
 								</div>
@@ -233,6 +153,7 @@
 						</div>
 						<div class="info-contents">
 							<input type="text" id="seller_name" name="seller_name" maxlength="20" value="${myinfo.seller_name}">
+							<label id="seller_name_label" for="seller_name"></label>
 						</div>
 					</div>
 					<div class="info-line">
@@ -242,7 +163,7 @@
 						<div class="info-contents">
 							<div>
 								<input type="text" id="seller_post_code" name="seller_post_code" placeholder="우편번호" readonly="readonly" value="${myinfo.seller_post_code}">
-								<button type="button" id="seller_add_btn" name="add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
+								<button type="button" id="seller_add_btn" name="seller_add_btn" onclick="sellerDaumPostcode()">우편번호 찾기</button>
 							</div>
 							<div>
 								<input type="text" id="seller_add_1" name="seller_add_1" placeholder="도로명 주소" readonly="readonly" value="${myinfo.seller_add_1}">
@@ -250,6 +171,7 @@
 							<div>
 								<input type="text" id="seller_add_2" name="seller_add_2" placeholder="상세 주소" value="${myinfo.seller_add_2}">
 								<input type="text" id="seller_add_3" name="seller_add_3" placeholder="참고항목" readonly="readonly">
+								<label id="seller_add_label" for="seller_add_2"></label>
 							</div>
 						</div>
 					</div>
@@ -263,12 +185,13 @@
 								<option value="0">--은행 선택--</option>
 							</select>
 							<input type="text" id="seller_account_no" name="seller_account_no" placeholder="계좌 번호" value="${myinfo.seller_account_no}">
+							<label id="seller_account_no_label" for="seller_account_no"></label>
 						</div>
 					</div>
 				</div>
 		</c:if>	
 			</form>
-				<div id="button-box">
+				<div id="info-button-box">
 					<button type="button" id="quit_btn" name="quit_btn">회원 탈퇴</button>
 					<button type="button" id="save_btn" name="save_btn">저장</button>
 				</div>
@@ -334,6 +257,16 @@
 				pwd = $("#mem_pwd").val();
 			} else { $("#mem_pwd_label").text(""); }
 			
+			if( $("#seller_name").val() == "") {
+				$("#seller_name_label").text("마켓명을 입력해주세요.");
+				return;
+			} else { $("#seller_name_label").text(""); }
+			
+			if( $("#seller_account_no").val() == "") {
+				$("#seller_account_no_label").text("계좌번호를 입력해주세요.");
+				return;
+			} else { $("#seller_account_no_label").text(""); }
+			
 			if( $("#add_2").val() == "") {
 				$("#add_label").text("상세주소를 입력해주세요.");
 				return;
@@ -342,6 +275,16 @@
 			let add2 = $("#add_2").val();
 			if ($("#add_3").val() != "") {
 				add2 = add2 + " " + $("#add_3").val();
+			}
+			
+			if( $("#seller_add_2").val() == "") {
+				$("#seller_add_label").text("상세주소를 입력해주세요.");
+				return;
+			} else { $("#seller_add_label").text(""); }
+
+			let seller_add2 = $("#seller_add_2").val();
+			if ($("#seller_add_3").val() != "") {
+				seller_add2 = seller_add2 + " " + $("#seller_add_3").val();
 			}
 			
 			let pnum = $.trim($("#pnum").val());
@@ -363,6 +306,14 @@
 				$("#account_no_label").text("숫자만 허용됩니다.");
 				return;
 			} else { $("#account_no_label").text(''); }
+			
+			
+			let seller_account = $.trim($("#seller_account_no").val());
+			
+			if (seller_account != "" && seller_account.match(onlyNum) == null) {
+				$("#seller_account_no_label").text("숫자만 허용됩니다.");
+				return;
+			} else { $("#seller_account_no_label").text(''); }
 			
 			let form = new FormData( document.getElementById( "user_info" ) );
 			
@@ -400,10 +351,10 @@
 					, {
 						mem_no : ${login_info.mem_no}
 					}
-					, function() {
+					, function(data, status) {
 						if( data >= 1 ){
 							alert("회원탈퇴가 완료되었습니다.");
-							location.href="${pageContext.request.contextPath}/mypage/myinfo";
+							location.href="${pageContext.request.contextPath}/logout";
 						} else if( data <= 0 ) {
 							alert("회원탈퇴를 실패 하였습니다.");
 						} else {
@@ -426,11 +377,7 @@
 			location.href="${pageContext.request.contextPath}/mypage/";
 		}
 	}
-	$(document).ready(function() {
-		$("#seller_add_btn"),click(function() {
-			
-		});//click
-	});//ready
+	
 	function sellerDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {

@@ -95,24 +95,47 @@ public class ProductService {
 
 		ProductDTO dto = null;
 		dto = dao.detail( prdt_no );
+		dto.setCnt(dao.reviewCnt(prdt_no));
+		dto.setStar_point(dao.reviewPoint(prdt_no));
 		return dto;
 	}//detail
 	
 	public List<ProductDTO> smallcatelist(String smallcate_no) {
 		List<ProductDTO> list = null;
 		list = dao.smallcatelist( smallcate_no );
+
+		for (int i = 0; i < list.size(); i++) {
+			ProductDTO pdto = list.get(i);
+			pdto.setCnt(dao.reviewCnt(pdto.getPrdt_no()));
+			pdto.setStar_point(dao.reviewPoint(pdto.getPrdt_no()));
+		}
+		
 		return list;
 	}//smallcatelist
 	
 	public List<ProductDTO> bigcatelist(String bigcate_no) {
 		List<ProductDTO> list = null;
 		list = dao.bigcatelist( bigcate_no );
+		
+		for (int i = 0; i < list.size(); i++) {
+			ProductDTO pdto = list.get(i);
+			pdto.setCnt(dao.reviewCnt(pdto.getPrdt_no()));
+			pdto.setStar_point(dao.reviewPoint(pdto.getPrdt_no()));
+		}
+		
 		return list;
 	}//bigcatelist
 	
 	public List<ProductDTO> main( SearchDTO dto ) {
 		List<ProductDTO> list = null;
 		list = dao.main( dto );
+		
+		for (int i = 0; i < list.size(); i++) {
+			ProductDTO pdto = list.get(i);
+			pdto.setCnt(dao.reviewCnt(pdto.getPrdt_no()));
+			pdto.setStar_point(dao.reviewPoint(pdto.getPrdt_no()));
+		}
+		
 		return list;
 	}//searchList
 
@@ -141,13 +164,28 @@ public class ProductService {
 	public List<ProductDTO> smallcateSelect(String bigcate_no) {
 		List<ProductDTO> list = null;
 		list = dao.smallcateSelect( bigcate_no );
+			
 		return list;
 	}//smallcateSelect
 	
 	public List<ProductDTO> bigcateSelect() {
 		List<ProductDTO> list = null;
 		list = dao.bigcateSelect();
+		
 		return list;
 	}//bigcateSelect
+
+	public List<ProductDTO> bestmain(SearchDTO dto) {
+		List<ProductDTO> bestlist = null;
+		bestlist = dao.bestmain( dto );
+		
+		for (int i = 0; i < bestlist.size(); i++) {
+			ProductDTO pdto = bestlist.get(i);
+			pdto.setCnt(dao.reviewCnt(pdto.getPrdt_no()));
+			pdto.setStar_point(dao.reviewPoint(pdto.getPrdt_no()));
+		}
+		
+		return bestlist;
+	}//bestmain
 
 }//class

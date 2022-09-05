@@ -10,98 +10,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-table {
-	width: 100%;
-	border: 1px solid #cecece;
-	border-collapse: collapse;
-}
-th {
-	font-weight: 500;
-}
-main > h3 {
-	width: 80%;
-}
-main > div {
-	margin: 20px auto;
-	width: 80%;
-}
-#prdt-info-table {
-	text-align: center;
-}
-#prdt-info-table th {
-	border-bottom: 1px solid #cecece;
-}
-#prdt-info-table td {
-	border-bottom: 1px solid #cecece;
-}
-.table-order {
-	height: 80px;
-}
-.table-prdt {
-	width: 60%;
-}
-.order-prdt {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	margin: 0;
-	align-items: center;
-}
-.order-prdt-img {
-	width: 15%;
-	display: flex;
-	align-items: center;
-}
-.order-prdt-img > img {
-	height: 70px;
-	width: auto;
-	overflow: hidden;
-}
-.order-prdt-outline {
-	width: 90%;
-	text-align: left;
-	margin-left: 5px;
-}
-.order-prdt-outline a {
-	color: black;
-	text-decoration: none;
-}
-.order-prdt-outline a:hover {
-	color: #0F8BFF;
-}
-.order-prdt-outline > p {
-	font-size: small;
-	margin-top: 5px;
-}
-.order-prdt-outline span {
-	background-color: #808080;
-	color: white;
-	padding: 0 5px;
-	margin-right: 5px;
-}
-.table-qty {
-	width: 5%;
-}
-.table-dprice {
-	width: 10%;
-}
-.table-prdtprice {
-	width: 10%;
-}
-.table-totalprice {
-	width: 15%;
-}
-#order-btn-box {
-	text-align: center;
-}
-#order_btn {
-	background-color: #0F8BFF;
-	color: white;
-	padding: 10px;
-	border-radius: 5px;
-}
-</style>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/order_style.css">
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -113,17 +23,42 @@ main > div {
 				<table>
 					<tr>
 						<th>수령인</th>
-						<td>${buyer_info.mem_name}</td>
+						<td colspan="2">${buyer_info.mem_name}</td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td>${buyer_info.pnum}</td>
+						<td colspan="2">${buyer_info.pnum}</td>
 					</tr>
 					<tr>
-						<th>수령인</th>
-						<td>(${buyer_info.post_code})${buyer_info.add_1} ${buyer_info.add_2}</td>
+						<th>수령 주소</th>
+						<td id="buyer-address">(${buyer_info.post_code})${buyer_info.add_1} ${buyer_info.add_2}
+						</td>
+						<td class="btn-td">
+							<button id="addr-change">배송지 변경</button>
+						</td>
+					</tr>
+					<tr class="buyer-addr">
+						<th>수령 주소 변경</th>
 						<td>
-							<button>배송지 변경</button>
+							<div id="addr-input">
+								<div>
+									<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly">
+									<button type="button" id="add_btn" name="add_btn" onclick="DaumPostcode()">우편번호 찾기</button>
+								</div>
+								<div>
+									<input type="text" id="add_1" name="add_1" placeholder="도로명 주소" readonly="readonly"">
+								</div>
+								<div>
+									<input type="text" id="add_2" name="add_2" placeholder="상세 주소"">
+									<input type="text" id="add_3" name="add_3" placeholder="참고항목" readonly="readonly">
+									<label id="add_label" for="add_2"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div id="addr-input-button">
+								<button id="addr-input-btn">변경 저장</button>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -196,6 +131,27 @@ main > div {
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#addr-change").click(function() {
+			var currentRow = $(this).closest('tr');
+			var detail = currentRow.next('tr');
+			if (detail.is(":visible")) {
+				detail.hide();
+			} else {
+				detail.show();
+			}
+		});
+		
+		$("#addr-input-btn").click(function() {
+			buyer_addr = '(' + $("#post_code").val() + ')' + $("#add_1").val() + ' ' + $("#add_2").val() + ' ' + $("#add_3").val();
+			$("#buyer-address").text("");
+			$("#buyer-address").text(buyer_addr);
+			var currentRow = $(this).closest('tr');
+			currentRow.hide();
+		});
+	});
+	</script>
+	<script type="text/javascript">
 	let str_basket_no = "";
 	$.each( ${arr_basket_no}, function(idx, str) {
 		if (idx == 0) {
@@ -207,6 +163,7 @@ main > div {
 	let buy_now_prdt_no = "${list[0].prdt_no}";
 	let buy_now_qty = "${list[0].buy_qty}";
 	let buy_now_option_no = "${list[0].option_no}";
+	let buyer_addr = $("#buyer-address").text();
 	</script>
 	
 	<script type="text/javascript">
@@ -215,6 +172,7 @@ main > div {
 			$.post(
 					"${pageContext.request.contextPath}/order/insert",
 					{
+						delivery_addr : buyer_addr,
 						prdt_cnt : ${sum_prdt_qty}, 
 						total_pay_amt : ${total_sum},
 						str_basket_no : str_basket_no, 
@@ -235,5 +193,43 @@ main > div {
 			);
 		});
 	});
+	</script>
+	<script type="text/javascript">
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				let addr = '';
+				let extraAddr = '';
+				
+				if(data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
+				
+				if(data.userSelectedType === 'R') {
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					
+					if(data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== ''?', ' + data.buildingName : data.buildingName);
+					}
+					
+					if(extraAddr !== '') {
+						extraAddr = '(' + extraAddr + ')';
+					}
+					
+					document.getElementById("add_3").value = extraAddr;
+				} else {
+					document.getElementById("add_3").value = '';
+				}
+				
+				document.getElementById("post_code").value = data.zonecode;
+				document.getElementById("add_1").value = addr;
+				document.getElementById("add_2").focus();
+			}
+		}).open();
+	}
 	</script>
 </html>

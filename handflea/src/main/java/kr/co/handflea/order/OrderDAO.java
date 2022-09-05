@@ -63,4 +63,39 @@ public class OrderDAO {
 		
 		return successCnt;
 	}
+
+	public int deliveryUpdate(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("OrderMapper.deliveryUpdate", dto);
+		
+		return successCnt;
+	}
+
+	public int prdtReceive(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("OrderMapper.prdtReceive", dto);
+		
+		return successCnt;
+	}
+
+	public int insertAmt(String detail_no) {
+		int successCnt = 0;
+		successCnt = sqlSession.insert("OrderMapper.insertAmt", detail_no);
+		
+		return successCnt;
+	}
+
+	public int updateSellerPrice(String detail_no) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("OrderMapper.updateSellerPrice", detail_no);
+		
+		return successCnt;
+	}
+
+	public int prdtRefund(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = sqlSession.update("OrderMapper.prdtRefund", dto);
+		
+		return successCnt;
+	}
 }

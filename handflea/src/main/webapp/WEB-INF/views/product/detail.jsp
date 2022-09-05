@@ -9,84 +9,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	<style type="text/css">
-#prdt-outline {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-}
-#prdt-img {
-	width: 60%;
-	margin: 5px;
-	height: 450px;
-	text-align: center;
-}
-#prdt-img > img {
-	height: 100%;
-}
-#prdt-detail {
-	width: 40%;
-	height: 450px;
-	border: 2px solid #cecece;
-	margin: 10px;
-}
-#prdt-detail > div {
-	margin: 10px 15px;
-}
-#prdt-detail h3 {
-	padding: 5px 0;
-}
-#profile {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-#profile > img {
-	width: 30px;
-	height: 30px;
-	margin: 0;
-}
-#profile > p {
-	margin: 0 5px;
-}
-.prdt-element {
-	display: flex;
-	flex-direction: row;
-	padding-top: 10px;
-}
-.element-label {
-	width: 40%;
-	margin: 0;
-}
-.element-value {
-	width: 60%;
-	margin: 0;
-	display: flex;
-	flex-direction: row;
-}
-.element-value > p {
-	margin: 0;
-}
-.element-value > select {
-	margin: 0;
-}
-.element-value > input {
-	margin: 0;
-}
-#button-box {
-	display: flex;
-	flex-direction: row;
-	padding: 20px 0 ;
-}
-#button-box button {
-	margin: 0;
-}
-#left-button {
-	align-items: flex-start;
-}
-#right-button {
-}
-	</style>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/product_style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+     	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -99,12 +24,14 @@
 				</div>
 				<div id="prdt-detail">
 					<div id="profile">
-						<img alt="profile" src="${pageContext.request.contextPath}/resources/img/user.png">
-						<p>${detail_dto.seller_name}</p>
+						<div>
+							<div class="detail-img-box">
+								<img class="detail-seller-profile" alt="profile" src="${detail_dto.mem_photopath}">
+							</div>
+							<p>${detail_dto.seller_name}</p>
+						</div>
 					</div>
-					<div>
-						<h3>${detail_dto.prdt_name}</h3>
-					</div>
+					<h3>${detail_dto.prdt_name}</h3>
 					<div class="prdt-element">
 						<div class="element-label">
 							판매가
@@ -134,7 +61,15 @@
 							구매 후기
 						</div>
 						<div class="element-value">
-							<p>★★★★★</p>
+							<div class="prdt-review">
+								<c:forEach var="i" begin="1" end="${detail_dto.star_point}">
+								<p class="full-star">★</p>
+								</c:forEach>
+								<c:forEach var="i" begin="${detail_dto.star_point + 1}" end="5">
+								<p class="empty-star">★</p>
+								</c:forEach>
+								<p>&nbsp;(${detail_dto.cnt})</p>
+							</div>
 						</div>
 					</div>
 					<form id="buy_form">
@@ -178,18 +113,67 @@
 							</a>
 						</div>
 						<div id="right-button">
+							<button type="button" id="buy_now_btn">구매하기</button>
 							<button type="button" id="jang_btn">장바구니 담기</button>
-							<button type="button" id="buy_now_btn">바로 구매하기</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
-				상품 설명
+			<div id="prdt-desc">
+				<h4>상품 설명</h4>
+				<c:if test="${detail_dto.desc_img_path != null}">
+				<div id="prdt-desc-img">
+					<img alt="prdt_desc_img" src="${detail_dto.desc_img_path}">
+				</div>
+				</c:if>
 				<p>${detail_dto.description}</p>
 			</div>
-			<div>
-				상품 후기
+			<hr>
+			<div id="prdt-review">
+				<h4>상품 후기</h4>
+				<div id="review-list">
+				<c:forEach var="dto" items="${reviewlist}">
+					<div class="review-card">
+						<div class="review-top">
+							<div class="review-profile">
+								<div class="review-profile-img">
+									<img alt="profile" src="${dto.mem_photopath}">
+								</div>
+								<div class="review-outline">
+									<p class="writer">${dto.mem_name}</p>
+									<p class="write-date">${dto.reg_date}</p>
+								</div>
+							</div>
+							<div class="review-photo">
+								<c:if test="${dto.review_photopath != null}">
+								<a href="${dto.review_photopath}" data-lightbox="image">
+									<img alt="review_photo" src="${dto.review_photopath}">
+								</a>
+								</c:if>
+							</div>
+						</div>
+						<div class="review-middle">
+							<c:if test="${dto.option_contents != null && dto.option_contents != '0'}">
+							<p class="review-opt"><span>옵션</span>${dto.option_contents}</p>
+							</c:if>
+							<c:if test="${dto.option_contents == null || dto.option_contents == '0'}">
+							<p class="review-opt"><span>옵션 없음</span></p>
+							</c:if>
+							<div class="write-star">
+								<c:forEach var="i" begin="1" end="${5 - dto.star_point}">
+								<p class="empty-star">★</p>
+								</c:forEach>
+								<c:forEach var="i" begin="${5 - dto.star_point + 1}" end="5">
+								<p class="full-star">★</p>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="review-bottom">
+							<p class="review-cnts">${dto.review_contents}</p>
+						</div>
+					</div>
+				</c:forEach>
+				</div>
 			</div>
 		</main>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
@@ -273,6 +257,18 @@
 		});//click
 	});//ready
 	</script>
-	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		 //사진확대 
+        lightbox.option({
+            'resizeDuration' : 200,
+            'wrapAround' : false,
+            'disableScrolling' : false,
+            'fitImagesInViewport' :false,
+            'maxWidth' : 600,
+            'maxHeight' : 600,
+        })		
+	});//ready
+	</script>
 	</body>
 </html>

@@ -131,4 +131,34 @@ public class ProductDAO {
 		return sqlSession.insert("ProductMapper.optionInsert", dto);
 	}
 
+	public int reviewCnt(String prdt_no) {
+		String count = null;
+		int cnt = 0;
+		count = sqlSession.selectOne("ProductMapper.reviewCnt", prdt_no);
+		if (count != null) {
+			cnt = Integer.parseInt(count);
+		}
+		
+		return cnt;
+	}
+
+	public int reviewPoint(String prdt_no) {
+		int star_point = 0;
+		String point = null;
+		point = sqlSession.selectOne("ProductMapper.reviewPoint", prdt_no);
+		
+		if (point != null) {
+			point = point.substring(0, 1);
+			star_point = Integer.parseInt(point);
+		}
+		
+		return star_point;
+	}
+
+	public List<ProductDTO> bestmain(SearchDTO dto) {
+		List<ProductDTO> bestlist = null;
+		bestlist = sqlSession.selectList("ProductMapper.bestmain", dto);
+		return bestlist;
+	}
+
 }//class

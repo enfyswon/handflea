@@ -60,12 +60,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/#">
-								<span>정산</span>
-							</a>
-						</li>
-						<li>
-							<a href="${pageContext.request.contextPath}/#">
+							<a href="${pageContext.request.contextPath}/admin/ad_list">
 								<span>Q&A</span>
 							</a>
 						</li>

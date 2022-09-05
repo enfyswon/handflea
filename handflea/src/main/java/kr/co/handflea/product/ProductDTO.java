@@ -20,8 +20,6 @@ public class ProductDTO {
 	private MultipartFile desc_img;
 	private String thumbnail_name;
 	private String thumbnail_path;
-	private String prdt_img_name;
-	private String prdt_img_path;
 	private String desc_img_name;
 	private String desc_img_path;
 	
@@ -45,6 +43,14 @@ public class ProductDTO {
 	
 	private String seller_name;
 	
+	private String mem_photopath;
+	private String mem_photo;
+	
+	private int cnt;
+	private int star_point;
+	
+	private String detail_no;
+	
 	@Override
 	public String toString() {
 		return prdt_no
@@ -62,8 +68,6 @@ public class ProductDTO {
 				+ " : " + desc_img
 				+ " : " + thumbnail_name
 				+ " : " + thumbnail_path
-				+ " : " + prdt_img_name
-				+ " : " + prdt_img_path
 				+ " : " + desc_img_name
 				+ " : " + desc_img_path
 				+ " : " + buy_qty
@@ -210,22 +214,6 @@ public class ProductDTO {
 		this.thumbnail_path = thumbnail_path;
 	}
 
-	public String getPrdt_img_name() {
-		return prdt_img_name;
-	}
-
-	public void setPrdt_img_name(String prdt_img_name) {
-		this.prdt_img_name = prdt_img_name;
-	}
-
-	public String getPrdt_img_path() {
-		return prdt_img_path;
-	}
-
-	public void setPrdt_img_path(String prdt_img_path) {
-		this.prdt_img_path = prdt_img_path;
-	}
-
 	public String getDesc_img_name() {
 		return desc_img_name;
 	}
@@ -352,6 +340,46 @@ public class ProductDTO {
 
 	public void setSeller_name(String seller_name) {
 		this.seller_name = seller_name;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public String getMem_photopath() {
+		return mem_photopath;
+	}
+
+	public void setMem_photopath(String mem_photopath) {
+		this.mem_photopath = mem_photopath;
+	}
+
+	public String getMem_photo() {
+		return mem_photo;
+	}
+
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
+	}
+
+	public int getStar_point() {
+		return star_point;
+	}
+
+	public void setStar_point(int star_point) {
+		this.star_point = star_point;
+	}
+
+	public String getDetail_no() {
+		return detail_no;
+	}
+
+	public void setDetail_no(String detail_no) {
+		this.detail_no = detail_no;
 	}
 	
 }//class

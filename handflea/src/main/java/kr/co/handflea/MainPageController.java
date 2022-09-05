@@ -57,6 +57,9 @@ public class MainPageController {
 		List<ProductDTO> list = null;
 		list = service.main( dto );
 		model.addAttribute("list", list);
+		List<ProductDTO> bestlist = null;
+		bestlist = service.bestmain( dto );
+		model.addAttribute("bestlist", bestlist);
 		model.addAttribute("search_dto", dto);
 		return "main";//jsp file name
 	}//mainPage

@@ -7,7 +7,7 @@
 		<div type="button" class="chat-room" room="${tmp.chat_roomno}" other_no="${tmp.other_no}">
 			<div class="chat-people">
 				<div class="chat-img">
-					<img src="${pageContext.request.contextPath}/resources/img/user.png" alt="profile">
+					<img src="${tmp.mem_photopath}" alt="profile">
 				</div>
 				<div class="chat-ib">
 					<h4>${tmp.other_name}<span class="chat_date">${tmp.chat_date}</span></h4>
@@ -17,7 +17,7 @@
 						</div>
 						<c:if test="${tmp.unread > 0}">
 						<div class="unread${tmp.chat_roomno} unread">
-							<span class="badge bg-danger">${tmp.unread}</span>
+							<span class="badge">${tmp.unread}</span>
 						</div>
 						</c:if>
 					</div>

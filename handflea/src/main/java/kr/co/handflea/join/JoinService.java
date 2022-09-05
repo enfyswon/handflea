@@ -13,13 +13,13 @@ public class JoinService {
 
 	public int join( MemberDTO dto ) {
 		int successCount = 0;
-
+		
 		if( dto.getTel1() != null && !dto.getTel1().equals("")
-			&& dto.getTel2() != null && !dto.getTel2().equals("")
-			&& dto.getTel3() != null && !dto.getTel3().equals("") ) {
-			dto.setPnum( dto.getTel1() + "-" + dto.getTel2() + "-" + dto.getTel3() );
-		}
-
+				&& dto.getTel2() != null && !dto.getTel2().equals("")
+				&& dto.getTel3() != null && !dto.getTel3().equals("") ) {
+				dto.setPnum( dto.getTel1() + dto.getTel2() + dto.getTel3() );
+			}
+		
 		successCount = dao.join( dto );
 		return successCount;
 	}//join

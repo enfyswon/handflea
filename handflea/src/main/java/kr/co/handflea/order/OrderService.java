@@ -57,4 +57,32 @@ public class OrderService {
 		
 		return successCnt;
 	}
+
+	public int deliveryUpdate(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = dao.deliveryUpdate(dto);
+		
+		return successCnt;
+	}
+
+	public int prdtReceive(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = dao.prdtReceive(dto);
+		
+		if (successCnt < 1) {
+			return successCnt;
+		}
+		
+		successCnt = dao.insertAmt(dto.getDetail_no());
+		successCnt = dao.updateSellerPrice(dto.getDetail_no());
+		
+		return successCnt;
+	}
+
+	public int prdtRefund(OrderDTO dto) {
+		int successCnt = 0;
+		successCnt = dao.prdtRefund(dto);
+		
+		return successCnt;
+	}
 }
