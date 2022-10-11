@@ -58,7 +58,7 @@ public class ProductController {
 		String todaySigan = sigan.format(today);
 		
 		String mem_email = ( (MemberDTO) session.getAttribute("login_info") ).getMem_email();
-		File newFolder = new File("C:/upload/product/" + mem_email + "/");
+		File newFolder = new File("S:/upload/product/" + mem_email + "/");
 		if( newFolder.exists() == false ) newFolder.mkdirs();
 		
 		InputStream is = null;
@@ -67,7 +67,7 @@ public class ProductController {
 		MultipartFile thumbnail = dto.getThumbnail();
 		if(thumbnail != null && !thumbnail.getOriginalFilename().equals("")) {
 			is = thumbnail.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+			fos = new FileOutputStream( "S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 														+ todaySigan + "_" + thumbnail.getOriginalFilename() );
 			FileCopyUtils.copy(is, fos);
 			is.close();
@@ -80,7 +80,7 @@ public class ProductController {
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
 			is = desc_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+			fos = new FileOutputStream( "S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 										+ todaySigan + "_" + desc_img.getOriginalFilename() );
 			FileCopyUtils.copy(is, fos);
 			is.close();
@@ -100,7 +100,7 @@ public class ProductController {
 	
 	@RequestMapping( value = "/file/delete", method = RequestMethod.GET )
 	public void fileDelete( String id, String path, ProductDTO dto, HttpSession session, PrintWriter out ) {
-		File file = new File("C:" + path);
+		File file = new File("S:" + path);
 		file.delete();
 
 		if(id.equals("thumbnail_btn")) {
@@ -131,11 +131,11 @@ public class ProductController {
 	public void delete( ProductDTO dto, HttpSession session, PrintWriter out ) {
 
 		if(!dto.getThumbnail_path().equals("")) {
-			File file = new File("C:" + dto.getThumbnail_path());
+			File file = new File("S:" + dto.getThumbnail_path());
 			file.delete();
 		}
 		if(!dto.getDesc_img_path().equals("")) {
-			File file = new File("C:" + dto.getDesc_img_path());
+			File file = new File("S:" + dto.getDesc_img_path());
 			file.delete();
 		}
 
@@ -306,12 +306,12 @@ public class ProductController {
 		String todaySigan = sigan.format(today);
 
 		String mem_email = ( (MemberDTO) session.getAttribute("login_info") ).getMem_email();
-		File newFolder = new File("C:/upload/product/" + mem_email + "/");
+		File newFolder = new File("S:/upload/product/" + mem_email + "/");
 		if( newFolder.exists() == false ) newFolder.mkdirs();
 
 		MultipartFile thumbnail = dto.getThumbnail();
 		InputStream is = thumbnail.getInputStream();
-		FileOutputStream fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+		FileOutputStream fos = new FileOutputStream( "S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 													+ todaySigan + "_" + thumbnail.getOriginalFilename() );
 		FileCopyUtils.copy(is, fos);
 		is.close();
@@ -323,7 +323,7 @@ public class ProductController {
 		MultipartFile desc_img = dto.getDesc_img();
 		if(desc_img != null && !desc_img.getOriginalFilename().equals("")) {
 			is = desc_img.getInputStream();
-			fos = new FileOutputStream( "C:/upload/product/" + mem_email + "/" + todayNalja + "_"
+			fos = new FileOutputStream( "S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 										+ todaySigan + "_" + desc_img.getOriginalFilename() );
 			FileCopyUtils.copy(is, fos);
 			is.close();
