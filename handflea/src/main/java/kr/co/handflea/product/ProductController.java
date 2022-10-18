@@ -73,7 +73,7 @@ public class ProductController {
 			is.close();
 			fos.close();
 			dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
-			dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+			dto.setThumbnail_path("S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 									+ todaySigan + "_" + thumbnail.getOriginalFilename());
 		}
 
@@ -86,7 +86,7 @@ public class ProductController {
 			is.close();
 			fos.close();
 			dto.setDesc_img_name(todayNalja + "_" + todaySigan + "_" + desc_img.getOriginalFilename());
-			dto.setDesc_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+			dto.setDesc_img_path("S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 									+ todaySigan + "_" + desc_img.getOriginalFilename());
 		}
 
@@ -317,7 +317,7 @@ public class ProductController {
 		is.close();
 		fos.close();
 		dto.setThumbnail_name(todayNalja + "_" + todaySigan + "_" + thumbnail.getOriginalFilename());
-		dto.setThumbnail_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+		dto.setThumbnail_path("S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 								+ todaySigan + "_" + thumbnail.getOriginalFilename());
 
 		MultipartFile desc_img = dto.getDesc_img();
@@ -329,7 +329,7 @@ public class ProductController {
 			is.close();
 			fos.close();
 			dto.setDesc_img_name(todayNalja + "_" + todaySigan + "_" + desc_img.getOriginalFilename());
-			dto.setDesc_img_path("/upload/product/" + mem_email + "/" + todayNalja + "_"
+			dto.setDesc_img_path("S:/upload/product/" + mem_email + "/" + todayNalja + "_"
 									+ todaySigan + "_" + desc_img.getOriginalFilename());
 		}
 
